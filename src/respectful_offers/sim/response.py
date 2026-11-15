@@ -20,7 +20,8 @@ against the list price. All randomness comes from common random numbers keyed by
 period and stream, so every policy faces the same luck.
 
 `expected_reward` gives the exact expected period-1 net revenue of each action for each member
-(averaged over the segment mix of the member's cell): the oracle that OPE is scored against.
+(averaged over the segment mix of the member's cell). OPE is scored against
+`expected_reward_by_segment`, each member's own fixed segment (D-36).
 """
 
 from __future__ import annotations

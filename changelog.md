@@ -3,6 +3,7 @@
 Format: `[TYPE] [NODE] — summary`, newest first.
 
 - [CHANGE] [N1.1] — run config: `ts_integration_nodes` and `ts_support_floor` replace `ts_mc_draws` (D-35); disparity keys may be `policy.metric.attribute` (D-34); churn stage version 4 (its schemas changed).
+- [FEAT] [A2.6] — off-policy estimators for period 1: IPS, SNIPS and DR with a cross-fitted gradient-boosted reward model, block-bootstrap intervals, support and scope guards, pilot logs checked against what the logger did (D-33), and a 200-replicate coverage study against the exact oracle on members' own segments, for four kinds of target (D-36).
 - [FEAT] [A2.5] — Thompson sampling bandit: disjoint Bayesian linear posteriors on revenue ÷ price; exact choice probabilities by a one-dimensional integral with a support floor applied last (D-35); simulated training; a frozen posterior that carries its flag, settings and column order; learning curve against the respectful oracle; allow-listed context with R7 proxy checks.
 - [FIX] [A2.4] — verifier round 1 (D-32, L-29): exact pacer, oracle falls back to its best free action, member-keyed choices, probabilities validated, status quo honours R3, clear errors on empty cohorts.
 - [FEAT] [A2.4] — policies (no offer, holdout, status quo, rule-following baseline, logging pilot, segment oracle), face-value budget pacer, and the H-period rollout engine with CRN, plan-change eligibility and contract-checked logs.
