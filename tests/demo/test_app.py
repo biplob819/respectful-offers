@@ -77,11 +77,25 @@ def test_central_is_the_default_and_the_sliders_drive_the_numbers(cube_file, mon
 
 
 def test_the_page_makes_no_network_calls(cube_file, monkeypatch):
-    def refuse(*a, **k):
-        raise AssertionError("the demo page tried to open a network connection")
+    """Any connection off this machine fails the test. Loopback is allowed: on Windows the
+    asyncio event loop connects a socket pair to itself as an internal wake-up pipe."""
+    real_connect = socket.socket.connect
+    real_create = socket.create_connection
+    local = {"127.0.0.1", "::1", "localhost"}
 
-    monkeypatch.setattr(socket.socket, "connect", refuse)
-    monkeypatch.setattr(socket, "create_connection", refuse)
+    def guarded_connect(sock, address, *a, **k):
+        host = address[0] if isinstance(address, tuple) else address
+        if host not in local:
+            raise AssertionError(f"the demo page tried to connect to {host}")
+        return real_connect(sock, address, *a, **k)
+
+    def guarded_create(address, *a, **k):
+        if address[0] not in local:
+            raise AssertionError(f"the demo page tried to connect to {address[0]}")
+        return real_create(address, *a, **k)
+
+    monkeypatch.setattr(socket.socket, "connect", guarded_connect)
+    monkeypatch.setattr(socket, "create_connection", guarded_create)
     page(cube_file, monkeypatch)
 
 

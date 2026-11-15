@@ -3,6 +3,7 @@
 Format: `[TYPE] [NODE] — summary`, newest first.
 
 - [FIX] [A2.5] [A2.6] — verifier round 2 (D-37, L-31): contexts carry their column names; posteriors validated on load; non-finite moments refused; one R7 word list in two independent copies proven to agree; pilot outcomes matched to their actions; tighter OPE bias bound; `bootstrap_blocks` ≥ 20.
+- [FIX] [D3.2] — the no-network test allows loopback (Windows asyncio wakes its event loop through a local socket pair); any connection off the machine still fails it.
 - [FIX] [D3.2] — verifier round 1 (D-45, L-36): a failed audit stops the page before any number; simulated labels on every metric; holdout card from the run; slider range from the cube; cube integrity digest and simulator hash check; bundle refuses symlinks and foreign files, turns off usage statistics, installs from the repository.
 - [FEAT] [D3.2] — demo page: Streamlit policy simulator (sliders, variant switch, policy cards and chart, live audit, holdout card, simulated footer) reading only a local cube; `offers demo-bundle` deploy folder; optional `[demo]` extra (D-44).
 - [FIX] [D3.1] — verifier round 1 (D-43, L-35): cube bound to its run; disclosure control against differencing; strict cube validation; agreement on retained, incremental and offers with mutant tests; safe `--out`; cold-call latency; evaluate and features stage versions 4, features_table 2.
