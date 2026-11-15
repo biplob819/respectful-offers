@@ -1,10 +1,10 @@
 # A2.5 acceptance criteria
 
 **BND-01 — model**
-- After observing data, each action's posterior mean and precision equal the closed-form Bayesian ridge solution on that action's data; non-positive, non-finite or non-numeric hyperparameters, integration nodes outside 8..256 and support floors outside (0, 0.05] are refused; NaN features are refused.
+- After observing data, each action's posterior mean and precision equal the closed-form Bayesian ridge solution on that action's data; non-positive, non-finite or non-numeric hyperparameters, integration nodes outside 16..256 and support floors outside (0, 0.05] are refused, in the constructor and when a posterior is loaded (with its shapes, finiteness, positive scales and positive-definite precision); NaN features and non-finite score moments are refused (D-37).
 
 **BND-02 — training and freezing**
-- `train_bandit` trains for the given epochs and returns a frozen bandit whose posterior does not change during an evaluation rollout; the posterior round-trips through JSON exactly, carries its frozen flag and settings, and is copied (never shared) when loaded; the same seed gives identical posteriors.
+- `train_bandit` trains for the given epochs and returns a frozen bandit whose posterior does not change during an evaluation rollout; the posterior round-trips through JSON exactly, carries its frozen flag and settings, is copied (never shared) when loaded, refuses settings that disagree with it, and an artifact older than D-35 is refused with that reason; the same seed gives identical posteriors.
 
 **BND-03 — choice probabilities**
 - Choice probabilities are exact integrals (D-35): for two allowed actions they match Φ((m₁ − m₂)/√(s₁² + s₂²)) within 1e-3, and for three or four actions with scales up to 150x apart they match adaptive quadrature within 2e-3; they are zero outside the allowed set, at least the support floor inside it (after normalising) and sum to 1; they depend only on the member; the logged propensity equals the probability of the requested action.
@@ -16,4 +16,4 @@
 - The curve holds one point before training and one per epoch; the trained greedy value exceeds the untrained one by more than 0.5 NTD per member and never exceeds the respectful segment oracle's exact period-1 value.
 
 **BND-06 — allow-listed context**
-- A protected, proxy (`city_id`, `userGender`) or non-allow-listed column in the context raises; a context of another shape or column order raises; the bandit's context columns are logged for the auditor's R7 check and audit clean.
+- A protected, proxy (`city_id`, `userGender`) or non-allow-listed column in the context raises; a context whose shape, column names or column order differ from the posterior's raises (names travel with the context, D-37); the bandit's context columns are logged for the auditor's R7 check and audit clean.

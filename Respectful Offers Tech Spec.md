@@ -297,7 +297,7 @@ class RunConfig(FrozenModel):
     decision_features: tuple[str, ...]     # the allow-list (D-9)
     ts_prior_precision: float
     ts_noise_variance: float
-    ts_integration_nodes: int = 32           # per action, exact choice probabilities (D-35)
+    ts_integration_nodes: int = 32           # per action, 16..256, exact choice probabilities (D-35)
     ts_support_floor: float = 0.001          # every allowed action keeps at least this probability
     bootstrap_blocks: int = 1_000
     bootstrap_resamples: int = 10_000

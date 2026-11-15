@@ -521,3 +521,65 @@ def test_filter_and_auditor_agree_on_protected_names_and_float32_thresholds():
         risk_threshold=np.float32(0.5),
     )
     assert a.tolist() == [[True, True, False, False]]
+
+
+R7_NAMES = (
+    "birthYear",
+    "birth_date",
+    "year_of_birth",
+    "registered",
+    "registered_days",
+    "registration_init_time",
+    "dob",
+    "yob",
+    "regVia",
+    "registration_method",
+    "gndr",
+    "user_id",
+    "userId",
+    "zip",
+    "region",
+    "location",
+    "BD",
+    "bd2",
+    "Gender2",
+    "cityName",
+    "registeredVia",
+    "cityId",
+    "city_id",
+    "ageBand",
+    "age_band",
+    "sex_code",
+    "userGender",
+    "registered_via_code",
+    "postcode_area",
+    "msno",
+    "age",
+    "account_age_days",
+)
+R7_ALLOWED = (
+    "average_listen",
+    "tenure_days",
+    "cancels_90d",
+    "listening_trend_30d",
+    "price_30d",
+    "auto_renew",
+    "churn_risk",
+    "nudged",
+    "declined",
+    "percentage",
+    "payment_method_id",
+    "plan_days",
+    "is_cancel",
+)
+
+
+def test_r7_filter_and_auditor_agree_on_protected_names():
+    """Two independent copies of one rule (D-37): they must never drift apart."""
+    from respectful_offers.policy.audit import _protected
+    from respectful_offers.schemas.config import protected_name
+
+    for name in (*R7_NAMES, *R7_ALLOWED):
+        assert protected_name(name) == _protected(name), name
+    assert all(protected_name(n) for n in R7_NAMES)
+    assert not any(protected_name(n) for n in R7_ALLOWED)

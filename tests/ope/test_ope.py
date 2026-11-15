@@ -118,7 +118,11 @@ def test_dr_and_snips_coverage_over_replicates_is_near_nominal(cohort, sim):
     for key in hits:
         coverage = hits[key] / reps
         assert 0.90 <= coverage <= 0.99, (key, coverage)
-        assert abs(np.mean(err[key])) < 1.0, (key, np.mean(err[key]))  # NTD per member
+        e = np.asarray(err[key])
+        se = e.std(ddof=1) / np.sqrt(reps)
+        # unbiased within 3.5 standard errors of the replicate mean (about 0.5 NTD here), and
+        # never more than 1 NTD per member (D-36)
+        assert abs(e.mean()) < min(1.0, 3.5 * se), (key, e.mean(), se)
 
 
 def test_support_outside_the_logger_is_refused(cohort, sim):

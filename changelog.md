@@ -2,6 +2,7 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FIX] [A2.5] [A2.6] — verifier round 2 (D-37, L-31): contexts carry their column names; posteriors validated on load; non-finite moments refused; one R7 word list in two independent copies proven to agree; pilot outcomes matched to their actions; tighter OPE bias bound; `bootstrap_blocks` ≥ 20.
 - [CHANGE] [N1.1] — run config: `ts_integration_nodes` and `ts_support_floor` replace `ts_mc_draws` (D-35); disparity keys may be `policy.metric.attribute` (D-34); churn stage version 4 (its schemas changed).
 - [FEAT] [A2.6] — off-policy estimators for period 1: IPS, SNIPS and DR with a cross-fitted gradient-boosted reward model, block-bootstrap intervals, support and scope guards, pilot logs checked against what the logger did (D-33), and a 200-replicate coverage study against the exact oracle on members' own segments, for four kinds of target (D-36).
 - [FEAT] [A2.5] — Thompson sampling bandit: disjoint Bayesian linear posteriors on revenue ÷ price; exact choice probabilities by a one-dimensional integral with a support floor applied last (D-35); simulated training; a frozen posterior that carries its flag, settings and column order; learning curve against the respectful oracle; allow-listed context with R7 proxy checks.

@@ -41,7 +41,7 @@ from respectful_offers.policy.baselines import Policy, View
 from respectful_offers.policy.respect import check_context_columns
 
 DYNAMIC = ("nudged", "declined")  # state flags the bandit sees, built each period
-MIN_NODES, MAX_NODES = 8, 256  # integration nodes per action (memory and time stay bounded)
+MIN_NODES, MAX_NODES = 16, 256  # integration nodes per action (memory and time stay bounded)
 MAX_FLOOR = 0.05  # four allowed actions at most: the mixture keeps 1 − 4·floor of the posterior
 # risk_band is skipped: churn_risk already carries it, and the bands are the simulator's
 
@@ -69,6 +69,17 @@ def static_context(
     return x, cols
 
 
+def check_settings(integration_nodes: object, support_floor: object) -> None:
+    if isinstance(integration_nodes, bool) or not isinstance(integration_nodes, int):
+        raise ValueError("integration_nodes must be an integer")
+    if not MIN_NODES <= integration_nodes <= MAX_NODES:
+        raise ValueError(f"integration_nodes must lie in [{MIN_NODES}, {MAX_NODES}]")
+    if isinstance(support_floor, bool) or not isinstance(support_floor, float):
+        raise ValueError("support_floor must be a float")
+    if not 0.0 < support_floor <= MAX_FLOOR:
+        raise ValueError(f"support_floor must lie in (0, {MAX_FLOOR}]")
+
+
 @dataclass
 class Posterior:
     columns: list[str]
@@ -83,6 +94,48 @@ class Posterior:
     frozen: bool = False
     integration_nodes: int = 32
     support_floor: float = 0.001
+
+    def __post_init__(self) -> None:
+        """Everything that decides behaviour is checked here, so a hand-edited or stale
+        artifact cannot load (A2.5 verifier round 2)."""
+        check_settings(self.integration_nodes, self.support_floor)
+        nv = self.noise_variance
+        if (
+            isinstance(nv, bool)
+            or not isinstance(nv, int | float)
+            or not (math.isfinite(nv) and nv > 0)
+        ):
+            raise ValueError("noise variance must be a positive finite number")
+        k = len(self.columns)
+        if len(set(self.columns)) != k:
+            raise ValueError("posterior columns must not repeat")
+        if self.mu.ndim != 2 or self.mu.shape[0] != 4:
+            raise ValueError("mu must be [4, d]")
+        d = self.mu.shape[1]
+        shapes = {
+            "mean": (self.mean, (k,)),
+            "scale": (self.scale, (k,)),
+            "b": (self.b, (4, d)),
+            "precision": (self.precision, (4, d, d)),
+        }
+        for name, (arr, shape) in shapes.items():
+            if arr.shape != shape:
+                raise ValueError(f"{name} must have shape {shape}, got {arr.shape}")
+        for name, arr in (
+            ("mean", self.mean),
+            ("scale", self.scale),
+            ("mu", self.mu),
+            ("precision", self.precision),
+            ("b", self.b),
+        ):
+            if not np.isfinite(arr).all():
+                raise ValueError(f"posterior {name} must be finite")
+        if (self.scale <= 0).any():
+            raise ValueError("posterior scales must be positive")
+        if not np.allclose(self.precision, np.swapaxes(self.precision, 1, 2)):
+            raise ValueError("posterior precision matrices must be symmetric")
+        if (np.linalg.eigvalsh(self.precision) <= 0).any():
+            raise ValueError("posterior precision matrices must be positive definite")
 
     @property
     def dim(self) -> int:
@@ -113,6 +166,28 @@ class Posterior:
     @classmethod
     def from_json(cls, text: str) -> Posterior:
         d = json.loads(text)
+        need = {
+            "columns",
+            "mean",
+            "scale",
+            "mu",
+            "precision",
+            "b",
+            "noise_variance",
+            "trained_periods",
+            "learning_curve",
+            "frozen",
+            "integration_nodes",
+            "support_floor",
+        }
+        missing = sorted(need - set(d))
+        if missing:
+            raise ValueError(
+                f"this posterior artifact is missing {missing}: it predates D-35 (exact choice "
+                "probabilities); retrain the bandit"
+            )
+        if not isinstance(d["frozen"], bool):
+            raise ValueError("'frozen' must be true or false")
         return cls(
             d["columns"],
             np.array(d["mean"]),
@@ -123,9 +198,9 @@ class Posterior:
             float(d["noise_variance"]),
             int(d["trained_periods"]),
             list(d["learning_curve"]),
-            bool(d["frozen"]),
-            int(d["integration_nodes"]),
-            float(d["support_floor"]),
+            d["frozen"],
+            d["integration_nodes"],
+            d["support_floor"],
         )
 
     def copy(self) -> Posterior:
@@ -142,35 +217,36 @@ class ThompsonBandit(Policy):
         columns: list[str],
         decision_features: tuple[str, ...],
         *,
-        prior_precision: float,
-        noise_variance: float,
-        integration_nodes: int = 32,
-        support_floor: float = 0.001,
+        prior_precision: float | None = None,
+        noise_variance: float | None = None,
+        integration_nodes: int | None = None,
+        support_floor: float | None = None,
         posterior: Posterior | None = None,
     ) -> None:
         check_context_columns(
             [*columns, *(c for c in DYNAMIC if c in decision_features)], decision_features
         )
-        for name, v in (("prior precision", prior_precision), ("noise variance", noise_variance)):
-            if (
-                isinstance(v, bool)
-                or not isinstance(v, int | float)
-                or not (math.isfinite(v) and v > 0)
-            ):
-                raise ValueError(f"{name} must be a positive finite number")
-        if isinstance(integration_nodes, bool) or not isinstance(integration_nodes, int):
-            raise ValueError("integration_nodes must be an integer")
-        if not MIN_NODES <= integration_nodes <= MAX_NODES:
-            raise ValueError(f"integration_nodes must lie in [{MIN_NODES}, {MAX_NODES}]")
-        if not (isinstance(support_floor, float) and 0.0 < support_floor <= MAX_FLOOR):
-            raise ValueError(f"support_floor must lie in (0, {MAX_FLOOR}]")
         self._use_dynamic = tuple(c for c in DYNAMIC if c in decision_features)
         self.context_columns = (*columns, *self._use_dynamic)
         d = static.shape[1] + 1 + (1 if "nudged" in self._use_dynamic else 0)
         d += 3 if "declined" in self._use_dynamic else 0
         if posterior is None:
+            for name, v in (
+                ("prior precision", prior_precision),
+                ("noise variance", noise_variance),
+            ):
+                if (
+                    v is None
+                    or isinstance(v, bool)
+                    or not isinstance(v, int | float)
+                    or not (math.isfinite(v) and v > 0)
+                ):
+                    raise ValueError(f"{name} must be a positive finite number")
+            assert prior_precision is not None and noise_variance is not None
             if static.ndim != 2 or static.shape[1] != len(columns):
                 raise ValueError("the static context must have one column per named column")
+            if not np.isfinite(static).all():
+                raise ValueError("the static context must be finite")
             mean = static.mean(axis=0) if static.size else np.zeros(len(columns))
             scale = static.std(axis=0) if static.size else np.zeros(len(columns))
             scale = np.where(scale > 0, scale, 1.0)
@@ -179,11 +255,11 @@ class ThompsonBandit(Policy):
                 mean,
                 scale,
                 np.zeros((4, d)),
-                np.tile(np.eye(d) * prior_precision, (4, 1, 1)),
+                np.tile(np.eye(d) * float(prior_precision), (4, 1, 1)),
                 np.zeros((4, d)),
-                noise_variance,
-                integration_nodes=integration_nodes,
-                support_floor=support_floor,
+                float(noise_variance),
+                integration_nodes=32 if integration_nodes is None else integration_nodes,
+                support_floor=0.001 if support_floor is None else support_floor,
             )
         else:
             # a copy: two bandits never share (and silently rewrite) one posterior
@@ -192,10 +268,17 @@ class ThompsonBandit(Policy):
                 raise ValueError(
                     f"the posterior was trained on columns {posterior.columns}, not {list(columns)}"
                 )
-            if posterior.dim != d or len(posterior.mean) != len(columns):
+            if posterior.dim != d:
                 raise ValueError("the posterior's dimension does not match the context")
+            given = {
+                "noise_variance": noise_variance,
+                "integration_nodes": integration_nodes,
+                "support_floor": support_floor,
+            }
+            clash = {k: v for k, v in given.items() if v is not None and v != getattr(posterior, k)}
+            if clash:
+                raise ValueError(f"settings {clash} disagree with the loaded posterior's")
         self.posterior = posterior
-        self._cov = posterior.cov()
         self._explored = 0
         self._decisions = 0
 
@@ -221,6 +304,11 @@ class ThompsonBandit(Policy):
                 f"the context must be [{n}, {len(p.columns)}] for columns {p.columns}, "
                 f"got {list(ctx.shape)}"
             )
+        if tuple(view.context_columns) != tuple(p.columns):
+            raise ValueError(
+                f"the context's columns {list(view.context_columns)} are not the posterior's "
+                f"{p.columns}, in that order: build it with `context_for`"
+            )
         if not np.isfinite(ctx).all():
             raise ValueError("the context must be finite")
         z = (ctx - p.mean) / p.scale if ctx.size else np.zeros((n, 0))
@@ -234,7 +322,7 @@ class ThompsonBandit(Policy):
     # -- policy ----------------------------------------------------------------------------
     def _moments(self, x: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         mean = x @ self.posterior.mu.T  # [n, 4]
-        var = np.einsum("nd,ade,ne->na", x, self._cov, x)
+        var = np.einsum("nd,ade,ne->na", x, self.posterior.cov(), x)  # never a stale cache
         return mean, np.sqrt(np.maximum(var, 1e-12))
 
     def probabilities(self, view: View) -> np.ndarray:
@@ -285,7 +373,6 @@ class ThompsonBandit(Policy):
             p.b[a] += xa.T @ y[m] / p.noise_variance
             p.mu[a] = np.linalg.solve(p.precision[a], p.b[a])
         p.trained_periods += 1
-        self._cov = p.cov()
 
     def freeze(self) -> None:
         """Permanent: the flag travels with the posterior's JSON, and a frozen posterior never
@@ -310,6 +397,12 @@ def win_probabilities(
     out = np.zeros((n, 4))
     if n == 0:
         return out
+    if not allowed.any(axis=1).all():
+        raise ValueError("every member needs at least one allowed action")
+    if not (np.isfinite(mean[allowed]).all() and np.isfinite(sd[allowed]).all()):
+        raise ValueError("score means and sds must be finite for every allowed action")
+    if (sd[allowed] <= 0).any():
+        raise ValueError("score sds must be positive")
     g = np.sinh(np.linspace(-np.arcsinh(40.0), np.arcsinh(40.0), nodes)) * (9.0 / 40.0)
     chunk = max(1, 400_000 // (4 * nodes))
     for lo in range(0, n, chunk):
@@ -367,6 +460,7 @@ def greedy_value(
         cohort.base,
         cohort.segment,
         t,
+        context_columns=tuple(bandit.posterior.columns),
     )
     mean, _ = bandit._moments(bandit.features(view))
     pick = np.where(allowed, mean, -np.inf).argmax(axis=1)
@@ -417,6 +511,7 @@ def train_bandit(
             seed=seed + 1000 * (epoch + 1),
             run_id=f"train-{variant}-{epoch}",
             context=static,
+            context_columns=tuple(cols),
         )
         curve.append(
             {

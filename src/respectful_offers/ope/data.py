@@ -23,6 +23,7 @@ def period1_view(
     risk_threshold: float,
     context: np.ndarray | None = None,
     periods: int = 3,
+    context_columns: tuple[str, ...] = (),
 ) -> View:
     """Every member at period 1: no history, so allowed sets are the logger's (C3)."""
     n = len(cohort)
@@ -48,6 +49,7 @@ def period1_view(
         cohort.base,
         cohort.segment,
         Tables.from_config(sim, variant),
+        context_columns=tuple(context_columns),
     )
 
 
@@ -75,6 +77,15 @@ def logs_from_pilot(
         raise ValueError("the pilot's period-1 logs must hold every cohort member exactly once")
     d = dec.set_index("msno").loc[cohort.msno]
     o = out.set_index("msno").loc[cohort.msno]
+    # each outcome must describe the logged action: shown actions get a response, no offer
+    # never does (catches outcomes taken from another pilot that reused the run id)
+    shown = (d["chosen"] != "no_offer").to_numpy()
+    responded = (o["response"] != "not_shown").to_numpy()
+    if (shown != responded).any():
+        raise ValueError(
+            f"{int((shown != responded).sum())} outcomes do not match their logged action: "
+            "decisions and outcomes come from different runs"
+        )
     logged = np.zeros((len(cohort), 4), bool)
     for row, acts in enumerate(d["allowed"]):
         logged[row, [_INDEX[a] for a in acts]] = True

@@ -60,6 +60,7 @@ def rollout(
     run_id: str,
     in_holdout: np.ndarray | None = None,
     context: np.ndarray | None = None,
+    context_columns: tuple[str, ...] = (),
 ) -> RolloutResult:
     n = len(cohort)
     if n == 0:
@@ -126,6 +127,7 @@ def rollout(
             segment=cohort.segment[idx],
             tables=t,
             plan_multiplier=mult[idx],
+            context_columns=tuple(context_columns),
         )
         probs = policy.probabilities(view)
         check_distributions(probs)

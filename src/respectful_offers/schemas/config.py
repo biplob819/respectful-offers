@@ -110,9 +110,9 @@ class RunConfig(Versioned):
     decision_features: tuple[Name, ...] = Field(min_length=1)
     ts_prior_precision: float = Field(gt=0.0, allow_inf_nan=False)
     ts_noise_variance: float = Field(gt=0.0, allow_inf_nan=False)
-    ts_integration_nodes: int = Field(default=32, ge=8, le=256, strict=True)
+    ts_integration_nodes: int = Field(default=32, ge=16, le=256, strict=True)
     ts_support_floor: float = Field(default=0.001, gt=0.0, le=0.05, allow_inf_nan=False)
-    bootstrap_blocks: int = Field(default=1_000, ge=10, strict=True)
+    bootstrap_blocks: int = Field(default=1_000, ge=20, strict=True)  # OPE needs 20 (D-36)
     bootstrap_resamples: int = Field(default=10_000, ge=100, strict=True)
 
     @field_validator("budget_sweep")
@@ -179,7 +179,27 @@ def _first_non_json(value: Any, key: str) -> tuple[str, Any] | None:
     return key, value
 
 
-_PROTECTED_WORDS = PROTECTED_ATTRIBUTES | {"msno", "sex"}
+# Protected or identifying attributes and their usual proxies, matched as whole words or
+# adjacent word pairs (D-37). The auditor keeps its own copy of this list, written apart
+# (audit.py); a test proves the two agree. "age" is protected as a word, so a tenure
+# feature must be named `tenure_*`, not `account_age_*`.
+_PROTECTED_WORDS = PROTECTED_ATTRIBUTES | {
+    "msno",
+    "sex",
+    "gndr",
+    "birth",
+    "dob",
+    "yob",
+    "registered",
+    "registration",
+    "reg_via",
+    "city",
+    "region",
+    "location",
+    "zip",
+    "postcode",
+    "user_id",
+}
 
 
 def protected_name(name: str) -> bool:

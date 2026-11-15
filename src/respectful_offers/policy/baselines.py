@@ -42,6 +42,7 @@ class View:
     segment: np.ndarray
     tables: Tables
     plan_multiplier: np.ndarray | None = None  # 1 = full plan; a plan change is offered once
+    context_columns: tuple[str, ...] = ()  # names of `context`'s columns, in order
 
 
 class Policy:

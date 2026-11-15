@@ -16,6 +16,7 @@ Counts per policy × variant:
 
 from __future__ import annotations
 
+import itertools
 import numbers
 import re
 from collections.abc import Mapping, Sequence
@@ -32,15 +33,43 @@ KEYS = ["policy", "variant", "msno", "period"]
 _ALL_ACTIONS = frozenset({"no_offer", "content_nudge", "discount_1m", "plan_change"})
 _RESPONSES = frozenset({"accepted", "declined", "not_shown"})
 _PROTECTED = frozenset({"age", "bd", "age_band", "gender", "sex", "city", "registered_via", "msno"})
-_PROTECTED_WORDS = frozenset({"age", "bd", "gender", "sex", "city", "registered", "msno", "birth"})
+_PROTECTED_WORDS = frozenset(
+    {
+        "age",
+        "bd",
+        "gender",
+        "gndr",
+        "sex",
+        "city",
+        "region",
+        "location",
+        "zip",
+        "postcode",
+        "birth",
+        "dob",
+        "yob",
+        "registered",
+        "registration",
+        "msno",
+    }
+)
+_PROTECTED_PAIRS = frozenset(
+    {("reg", "via"), ("registered", "via"), ("age", "band"), ("user", "id")}
+)
 
 
 def _protected(column: str) -> bool:
-    """Its own proxy rule, written apart from the filter's: a column is protected if its name
-    or any word in it (snake, kebab or camel case, digits split off) is a protected word."""
+    """Its own proxy rule, written apart from the filter's: a column is protected if its name,
+    any word in it (snake, kebab or camel case, digits split off), or any adjacent pair of
+    words is protected (D-37)."""
     spaced = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", column)
-    words = {w for w in re.split(r"[^a-z]+", spaced.lower()) if w}
-    return column in _PROTECTED or bool(words & _PROTECTED_WORDS)
+    words = [w for w in re.split(r"[^a-z]+", spaced.lower()) if w]
+    pairs = set(itertools.pairwise(words))
+    return (
+        column in _PROTECTED
+        or bool(set(words) & _PROTECTED_WORDS)
+        or bool(pairs & _PROTECTED_PAIRS)
+    )
 
 
 _AUDIT_ACTIONS = ("content_nudge", "discount_1m", "plan_change")
