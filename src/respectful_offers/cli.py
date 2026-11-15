@@ -520,6 +520,75 @@ def cmd_demo_cube(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+BUNDLE_APP = """# Respectful Offers demo page (deploy bundle, DEM-03). All outcomes are simulated.
+import os
+from pathlib import Path
+
+os.environ.setdefault("OFFERS_DEMO_CUBE", str(Path(__file__).with_name("cube.json")))
+
+from respectful_offers.demo.app import main
+
+main()
+"""
+
+
+def cmd_demo_bundle(args: argparse.Namespace) -> int:
+    """A folder that deploys the demo page as files: the page, the cube, requirements (DEM-03)."""
+    import shutil
+
+    from respectful_offers import __version__
+    from respectful_offers.demo.engine import load_cube
+    from respectful_offers.schemas.config import ConfigError
+
+    try:
+        cube = Path(args.cube)
+        if not cube.is_file():
+            raise ConfigError(f"{cube}: no such cube; run `offers demo-cube` first")
+        load_cube(cube)  # refuse a tampered or foreign cube before shipping it
+        out = Path(args.out)
+        ours = {
+            "streamlit_app.py",
+            "cube.json",
+            "requirements.txt",
+            ".streamlit",
+            ".streamlit/config.toml",
+        }
+        if out.is_symlink() or (out.exists() and not out.is_dir()):
+            raise ConfigError(f"{out} is a symlink or a file: choose a new folder")
+        if "runs" in out.resolve().parts:
+            raise ConfigError("the bundle never goes into a runs/ folder")
+        if out.exists():
+            for path in out.rglob("*"):
+                rel = path.relative_to(out).as_posix()
+                if path.is_symlink():
+                    raise ConfigError(f"{out} holds a symlink ({rel}): choose a new folder")
+                if rel not in ours:
+                    raise ConfigError(
+                        f"{out} holds {rel}, which is not part of a bundle: choose a new folder"
+                    )
+        (out / ".streamlit").mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(cube, out / "cube.json")
+        (out / "streamlit_app.py").write_text(BUNDLE_APP, encoding="utf-8")
+        # no usage statistics leave viewers' browsers (DEM-02, privacy)
+        (out / ".streamlit" / "config.toml").write_text(
+            "[browser]\ngatherUsageStats = false\n", encoding="utf-8"
+        )
+        (out / "requirements.txt").write_text(
+            "# Installable today from the public repository; after v0.1.0 is on PyPI this may be\n"
+            f"# replaced by: respectful-offers[demo]=={__version__}\n"
+            "respectful-offers[demo] @ git+https://github.com/biplob819/respectful-offers\n",
+            encoding="utf-8",
+        )
+    except (*_user_errors(), ValueError) as exc:
+        return _fail(args, "demo-bundle", exc)
+    _emit(
+        {"ok": True, "bundle": str(out)},
+        args.json,
+        f"offers demo-bundle: {out} holds streamlit_app.py, cube.json and requirements.txt",
+    )
+    return EXIT_OK
+
+
 def cmd_doctor(args: argparse.Namespace) -> int:
     from respectful_offers.doctor import run_checks
 
@@ -811,6 +880,11 @@ def build_parser() -> argparse.ArgumentParser:
     dc.add_argument("--prereg", default=None)
     dc.add_argument("--json", action="store_true")
     dc.set_defaults(func=cmd_demo_cube)
+    db = sub.add_parser("demo-bundle", help="a folder that deploys the demo page as files")
+    db.add_argument("--cube", default="demo/cube.json")
+    db.add_argument("--out", default="demo/bundle")
+    db.add_argument("--json", action="store_true")
+    db.set_defaults(func=cmd_demo_bundle)
     dr = sub.add_parser("doctor", help="check this machine and project; prints no secrets")
     dr.add_argument("--root", default=".")
     dr.add_argument("--data-dir", default="data")

@@ -14,6 +14,7 @@ the agreement check, DMO-05).
 
 from __future__ import annotations
 
+import hashlib
 import json
 from typing import Any
 
@@ -145,7 +146,14 @@ def _sig3(x: float) -> float:
     return float(f"{x:.3g}")
 
 
+def integrity(cube: dict[str, Any]) -> str:
+    """sha256 of everything but the digest itself: catches edits made after `demo-cube`."""
+    body = {k: v for k, v in cube.items() if k != "integrity"}
+    return hashlib.sha256(json.dumps(body, sort_keys=True).encode()).hexdigest()
+
+
 def dumps(cube: dict[str, Any]) -> str:
+    cube = {**cube, "integrity": integrity(cube)}
     return json.dumps(cube, indent=1, sort_keys=True) + "\n"
 
 
@@ -210,6 +218,12 @@ def make_cube(
         "run_id": summary.run_id,
         "simulator_hash": summary.simulator_hash,
         "prereg_status": summary.prereg_status,
+        # holdout facts from the run, so the page never asserts what it cannot show
+        "holdout_share": (cfg.cohort_buckets["holdout"][1] - cfg.cohort_buckets["holdout"][0])
+        / 100,
+        "holdout_check": {
+            v: json.loads(iv.model_dump_json()) for v, iv in summary.holdout_check.items()
+        },
     }
     return build_cube(
         scores[keep],

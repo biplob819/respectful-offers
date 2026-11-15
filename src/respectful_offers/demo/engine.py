@@ -22,7 +22,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from respectful_offers.demo.cube import CUBE_VERSION, DIMS, MIN_CELL, SPREAD
+from respectful_offers.demo.cube import CUBE_VERSION, DIMS, MIN_CELL, SPREAD, integrity
 from respectful_offers.policy.audit import audit
 from respectful_offers.policy.bandit import Posterior, ThompsonBandit
 from respectful_offers.policy.baselines import NoOffer, Policy, RuleFollowingBaseline, StatusQuo
@@ -48,7 +48,9 @@ class Cube:
         return self.data["reference"]
 
 
+DATA_SOURCES = {"kaggle", "local", "synthetic", "your_table"}
 CUBE_KEYS = {
+    "integrity",
     "cube_version",
     "simulated",
     "data_source",
@@ -105,7 +107,14 @@ def check_cube(data: dict[str, Any]) -> None:
         total += n
     if total != data["members"]:
         raise ValueError("cube counts do not add up to its members")
+    if data["integrity"] != integrity(data):
+        raise ValueError("the cube was edited after `offers demo-cube` wrote it (integrity check)")
+    if data["data_source"] not in DATA_SOURCES:
+        raise ValueError(f"unknown data source {data['data_source']!r}")
     ref = data["reference"]
+    yaml_sha = hashlib.sha256(data["simulator_yaml"].encode("utf-8")).hexdigest()
+    if not yaml_sha.startswith(ref["simulator_hash"]):
+        raise ValueError("the cube's simulator text is not the run's pre-registered simulator")
     if any(protected_name(c) for c in ref["decision_features"]):
         raise ValueError("the cube's decision features include a protected attribute")
     missing = sorted(set(ref["variants"]) - set(data["posteriors"]))
@@ -295,6 +304,7 @@ def simulate(cube: Cube, budget: float, threshold: float, variant: str) -> dict[
         "threshold": threshold,
         "bandit_trained_at": float(ref["risk_threshold"]),
         "members": len(cohort),
+        "at_risk_now": int((cohort.churn_risk >= threshold).sum()),
         "policies": runs,
     }
 
