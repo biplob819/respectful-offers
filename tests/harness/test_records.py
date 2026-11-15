@@ -95,7 +95,7 @@ def test_pre_commit_runs_ruff_and_both_scans():
 
 def test_gitignore_keeps_data_and_notes_out():
     text = (ROOT / ".gitignore").read_text(encoding="utf-8")
-    for entry in ("Portfolio notes.md", "data/", ".offers/", "runs/", ".env"):
+    for entry in ("Portfolio notes.md", "/data/", "/.offers/", "/runs/", ".env"):
         assert entry in text.splitlines()
 
 
@@ -117,3 +117,16 @@ def test_status_output_is_deterministic(capsys):
 def test_gitattributes_force_lf():
     text = (ROOT / ".gitattributes").read_text(encoding="utf-8")
     assert "* text=auto eol=lf" in text
+
+
+def test_every_source_and_test_file_is_tracked_or_trackable():
+    """No project code may be swallowed by .gitignore (L-23: `data/` hid the data package)."""
+    import subprocess
+
+    paths = [
+        str(p.relative_to(ROOT))
+        for base in ("src", "tests", "scripts")
+        for p in (ROOT / base).rglob("*.py")
+    ]
+    out = subprocess.run(["git", "check-ignore", *paths], cwd=ROOT, capture_output=True, text=True)
+    assert out.stdout.strip() == "", out.stdout

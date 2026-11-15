@@ -16,9 +16,10 @@ build/
 Portfolio notes.md
 
 # KKBox raw data and member-level derived artifacts: never committed (NFR5)
-data/
-.offers/
-runs/
+# anchored to the repo root: an unanchored `data/` also ignored src/respectful_offers/data/ (L-23)
+/data/
+/.offers/
+/runs/
 
 # Streamlit local secrets
 .streamlit/secrets.toml

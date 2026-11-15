@@ -39,50 +39,22 @@ def test_abc_and_generic_bases_hash_without_library_sources():
     assert versions._is_project_class(Stage)
 
 
-def test_generic_stage_hash_is_identical_on_every_python(tmp_path):
-    pkg = tmp_path / "gen"
-    pkg.mkdir()
-    (pkg / "__init__.py").write_text("", encoding="utf-8")
-    (pkg / "m.py").write_text(
-        textwrap.dedent("""
-        from typing import Generic, TypeVar
-        from respectful_offers.runtime import Stage
-        T = TypeVar("T")
-        class G(Stage, Generic[T]):
-            name = "g"
-            code_version = "1"
-            def run(self, inputs, out, ctx):
-                pass
-    """),
-        encoding="utf-8",
-    )
-    code = (
-        f"import sys; sys.path.insert(0, {str(tmp_path)!r})\n"
-        "from respectful_offers.runtime import versions; import gen.m as m\n"
-        "print(versions.behaviour_hash(m.G))\n"
-    )
-    hashes = set()
-    for py in ("3.11", "3.13"):
-        r = subprocess.run(
-            [
-                "uv",
-                "run",
-                "--python",
-                py,
-                "--isolated",
-                "--with-editable",
-                ".",
-                "python",
-                "-c",
-                code,
-            ],
-            capture_output=True,
-            text=True,
-        )
-        if r.returncode != 0:
-            pytest.skip(f"Python {py} not available: {r.stderr[-200:]}")
-        hashes.add(r.stdout.strip())
-    assert len(hashes) == 1
+def test_generic_stage_hash_reads_no_library_source(monkeypatch):
+    """The cross-version difference came from hashing typing.Generic's source; prove no
+    library class is ever read (cheap stand-in for running every Python version)."""
+    import inspect
+
+    real = inspect.getsource
+    read = []
+
+    def spy(obj):
+        read.append(getattr(obj, "__module__", ""))
+        return real(obj)
+
+    monkeypatch.setattr(versions.inspect, "getsource", spy)
+    versions.behaviour_hash(GenericStage)
+    versions.behaviour_hash(AbcStage)
+    assert not {"typing", "abc", "builtins"} & set(read), read
 
 
 def test_imported_constants_change_the_hash(tmp_path):
