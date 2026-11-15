@@ -148,3 +148,11 @@ def test_live_repo_scan_works_without_git(tmp_path, monkeypatch):
     files = secret_scan.candidate_files(copy)
     assert not any(".ruff_cache" in p.parts or ".pytest_cache" in p.parts for p in files)
     assert data_scan.scan(files, copy) == []
+
+
+def test_labels_use_forward_slashes_on_every_os(tmp_path):
+    site = tmp_path / "site" / "assets"
+    site.mkdir(parents=True)
+    (site / "cube.json").write_text(f'["{FAKE_ID}"]', encoding="utf-8")
+    hits = data_scan.scan_publish(tmp_path / "site")
+    assert hits and hits[0].startswith("assets/cube.json")

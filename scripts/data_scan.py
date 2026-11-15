@@ -116,9 +116,9 @@ def _check_file(f: Path, label: str) -> str | None:
 
 def _label(f: Path, root: Path) -> str:
     try:
-        return str(f.relative_to(root))
+        return f.relative_to(root).as_posix()  # same label on every OS (CI on Windows)
     except ValueError:
-        return str(f)
+        return f.as_posix()
 
 
 def scan(files: list[Path], root: Path = ROOT) -> list[str]:
