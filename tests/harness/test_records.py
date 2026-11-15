@@ -12,7 +12,7 @@ WORKFLOWS = ROOT / ".github" / "workflows"
 def test_decisions_seeded_d1_to_d18():
     text = (ROOT / "docs" / "decisions.md").read_text(encoding="utf-8")
     ids = {int(n) for n in re.findall(r"^\| (?:OWNER )?D-(\d+) \|", text, re.M)}
-    assert set(range(1, 22)) <= ids
+    assert set(range(1, 25)) <= ids
     for owner in (1, 15, 17, 18, 19, 21):
         assert f"| OWNER D-{owner} |" in text
 

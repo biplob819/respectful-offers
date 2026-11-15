@@ -1,0 +1,236 @@
+# Structure-valid fixture for tests. NOT the pre-registered simulator values (A2.2 sets those).
+schema_version: '1.0'
+period_days: 30
+horizon_periods: 3
+currency: NTD
+risk_bands:
+  cuts:
+  - 0.2
+  - 0.5
+trend_bands:
+  cuts:
+  - -0.25
+segments:
+- sure_thing
+- persuadable
+- lost_cause
+- sleeping_dog
+actions:
+  content_nudge:
+    cost: 0.0
+  discount_1m:
+    discount_fraction: 0.5
+  plan_change:
+    price_ratio: 0.7
+allow_unconventional: false
+variants:
+  conservative:
+    segment_mix:
+      low.stable:
+        sure_thing: 0.7
+        persuadable: 0.15
+        lost_cause: 0.05
+        sleeping_dog: 0.1
+      low.declining:
+        sure_thing: 0.7
+        persuadable: 0.15
+        lost_cause: 0.05
+        sleeping_dog: 0.1
+      medium.stable:
+        sure_thing: 0.45
+        persuadable: 0.3
+        lost_cause: 0.1
+        sleeping_dog: 0.15
+      medium.declining:
+        sure_thing: 0.45
+        persuadable: 0.3
+        lost_cause: 0.1
+        sleeping_dog: 0.15
+      high.stable:
+        sure_thing: 0.2
+        persuadable: 0.35
+        lost_cause: 0.3
+        sleeping_dog: 0.15
+      high.declining:
+        sure_thing: 0.2
+        persuadable: 0.35
+        lost_cause: 0.3
+        sleeping_dog: 0.15
+    acceptance:
+      content_nudge:
+        sure_thing: 0.18
+        persuadable: 0.24
+        lost_cause: 0.06
+        sleeping_dog: 0.12
+      discount_1m:
+        sure_thing: 0.3
+        persuadable: 0.3
+        lost_cause: 0.06
+        sleeping_dog: 0.12
+      plan_change:
+        sure_thing: 0.12
+        persuadable: 0.18
+        lost_cause: 0.03
+        sleeping_dog: 0.06
+    exposure_effect:
+      content_nudge:
+        sure_thing: 0.0
+        persuadable: 0.02
+        lost_cause: 0.0
+        sleeping_dog: -0.02
+      discount_1m:
+        sure_thing: 0.0
+        persuadable: 0.03
+        lost_cause: 0.0
+        sleeping_dog: -0.08
+      plan_change:
+        sure_thing: 0.0
+        persuadable: 0.02
+        lost_cause: 0.0
+        sleeping_dog: -0.06
+    acceptance_effect:
+      content_nudge:
+        sure_thing: 0.0
+        persuadable: 0.06
+        lost_cause: 0.01
+        sleeping_dog: 0.0
+  central:
+    segment_mix:
+      low.stable:
+        sure_thing: 0.7
+        persuadable: 0.15
+        lost_cause: 0.05
+        sleeping_dog: 0.1
+      low.declining:
+        sure_thing: 0.7
+        persuadable: 0.15
+        lost_cause: 0.05
+        sleeping_dog: 0.1
+      medium.stable:
+        sure_thing: 0.45
+        persuadable: 0.3
+        lost_cause: 0.1
+        sleeping_dog: 0.15
+      medium.declining:
+        sure_thing: 0.45
+        persuadable: 0.3
+        lost_cause: 0.1
+        sleeping_dog: 0.15
+      high.stable:
+        sure_thing: 0.2
+        persuadable: 0.35
+        lost_cause: 0.3
+        sleeping_dog: 0.15
+      high.declining:
+        sure_thing: 0.2
+        persuadable: 0.35
+        lost_cause: 0.3
+        sleeping_dog: 0.15
+    acceptance:
+      content_nudge:
+        sure_thing: 0.3
+        persuadable: 0.4
+        lost_cause: 0.1
+        sleeping_dog: 0.2
+      discount_1m:
+        sure_thing: 0.5
+        persuadable: 0.5
+        lost_cause: 0.1
+        sleeping_dog: 0.2
+      plan_change:
+        sure_thing: 0.2
+        persuadable: 0.3
+        lost_cause: 0.05
+        sleeping_dog: 0.1
+    exposure_effect:
+      content_nudge:
+        sure_thing: 0.0
+        persuadable: 0.02
+        lost_cause: 0.0
+        sleeping_dog: -0.02
+      discount_1m:
+        sure_thing: 0.0
+        persuadable: 0.03
+        lost_cause: 0.0
+        sleeping_dog: -0.08
+      plan_change:
+        sure_thing: 0.0
+        persuadable: 0.02
+        lost_cause: 0.0
+        sleeping_dog: -0.06
+    acceptance_effect:
+      content_nudge:
+        sure_thing: 0.0
+        persuadable: 0.1
+        lost_cause: 0.01
+        sleeping_dog: 0.0
+  optimistic:
+    segment_mix:
+      low.stable:
+        sure_thing: 0.7
+        persuadable: 0.15
+        lost_cause: 0.05
+        sleeping_dog: 0.1
+      low.declining:
+        sure_thing: 0.7
+        persuadable: 0.15
+        lost_cause: 0.05
+        sleeping_dog: 0.1
+      medium.stable:
+        sure_thing: 0.45
+        persuadable: 0.3
+        lost_cause: 0.1
+        sleeping_dog: 0.15
+      medium.declining:
+        sure_thing: 0.45
+        persuadable: 0.3
+        lost_cause: 0.1
+        sleeping_dog: 0.15
+      high.stable:
+        sure_thing: 0.2
+        persuadable: 0.35
+        lost_cause: 0.3
+        sleeping_dog: 0.15
+      high.declining:
+        sure_thing: 0.2
+        persuadable: 0.35
+        lost_cause: 0.3
+        sleeping_dog: 0.15
+    acceptance:
+      content_nudge:
+        sure_thing: 0.39
+        persuadable: 0.52
+        lost_cause: 0.13
+        sleeping_dog: 0.26
+      discount_1m:
+        sure_thing: 0.65
+        persuadable: 0.65
+        lost_cause: 0.13
+        sleeping_dog: 0.26
+      plan_change:
+        sure_thing: 0.26
+        persuadable: 0.39
+        lost_cause: 0.065
+        sleeping_dog: 0.13
+    exposure_effect:
+      content_nudge:
+        sure_thing: 0.0
+        persuadable: 0.02
+        lost_cause: 0.0
+        sleeping_dog: -0.02
+      discount_1m:
+        sure_thing: 0.0
+        persuadable: 0.03
+        lost_cause: 0.0
+        sleeping_dog: -0.08
+      plan_change:
+        sure_thing: 0.0
+        persuadable: 0.02
+        lost_cause: 0.0
+        sleeping_dog: -0.06
+    acceptance_effect:
+      content_nudge:
+        sure_thing: 0.0
+        persuadable: 0.13
+        lost_cause: 0.01
+        sleeping_dog: 0.0

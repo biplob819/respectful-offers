@@ -1,0 +1,255 @@
+{
+  "schema_version": "1.0",
+  "run_id": "r-fixture",
+  "git_sha": "434a9f4",
+  "config_hash": "c0ffee",
+  "simulator_hash": "5eed",
+  "prereg_status": "preregistered",
+  "simulated": true,
+  "variants": [
+    "central"
+  ],
+  "policies": [
+    {
+      "policy": "no_offer",
+      "variant": "central",
+      "respectful": true,
+      "n_members": 200000,
+      "retained_per_1000": {
+        "point": 712.0,
+        "lo": 708.0,
+        "hi": 716.0
+      },
+      "incremental_retained_per_1000": {
+        "point": 0.0,
+        "lo": -3.0,
+        "hi": 3.0
+      },
+      "retained_per_1000_at_risk": {
+        "point": 401.0,
+        "lo": 395.0,
+        "hi": 407.0
+      },
+      "ltv_proxy_per_member": {
+        "point": 318.5,
+        "lo": 316.0,
+        "hi": 321.0
+      },
+      "discount_cost_total": 0.0,
+      "cost_per_incremental_retained": null,
+      "offers_per_member_month": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "max_offers_in_a_month": 0,
+      "no_offer_share": 1.0,
+      "exploration_rate": null,
+      "spend": [],
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "variant": "central",
+      "respectful": false,
+      "n_members": 200000,
+      "retained_per_1000": {
+        "point": 721.0,
+        "lo": 717.0,
+        "hi": 725.0
+      },
+      "incremental_retained_per_1000": {
+        "point": 9.0,
+        "lo": 6.0,
+        "hi": 12.0
+      },
+      "retained_per_1000_at_risk": {
+        "point": 410.0,
+        "lo": 404.0,
+        "hi": 416.0
+      },
+      "ltv_proxy_per_member": {
+        "point": 318.5,
+        "lo": 316.0,
+        "hi": 321.0
+      },
+      "discount_cost_total": 2400000.0,
+      "cost_per_incremental_retained": {
+        "point": 1333.3333333333333,
+        "lo": 1000.0,
+        "hi": 2000.0
+      },
+      "offers_per_member_month": {
+        "point": 0.12,
+        "lo": 0.11,
+        "hi": 0.13
+      },
+      "max_offers_in_a_month": 1,
+      "no_offer_share": 0.88,
+      "exploration_rate": null,
+      "spend": [
+        {
+          "period": 1,
+          "budget": 1000000.0,
+          "face_value_committed": 990000.0,
+          "realised_cost": 412000.0
+        }
+      ],
+      "violations": {
+        "R1": 412,
+        "R2": 1880,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "variant": "central",
+      "respectful": true,
+      "n_members": 200000,
+      "retained_per_1000": {
+        "point": 724.0,
+        "lo": 720.0,
+        "hi": 728.0
+      },
+      "incremental_retained_per_1000": {
+        "point": 12.0,
+        "lo": 9.0,
+        "hi": 15.0
+      },
+      "retained_per_1000_at_risk": {
+        "point": 413.0,
+        "lo": 407.0,
+        "hi": 419.0
+      },
+      "ltv_proxy_per_member": {
+        "point": 318.5,
+        "lo": 316.0,
+        "hi": 321.0
+      },
+      "discount_cost_total": 900000.0,
+      "cost_per_incremental_retained": {
+        "point": 375.0,
+        "lo": 300.0,
+        "hi": 500.0
+      },
+      "offers_per_member_month": {
+        "point": 0.12,
+        "lo": 0.11,
+        "hi": 0.13
+      },
+      "max_offers_in_a_month": 1,
+      "no_offer_share": 0.88,
+      "exploration_rate": 0.07,
+      "spend": [
+        {
+          "period": 1,
+          "budget": 1000000.0,
+          "face_value_committed": 990000.0,
+          "realised_cost": 412000.0
+        }
+      ],
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    }
+  ],
+  "ope": [
+    {
+      "policy": "bandit",
+      "variant": "central",
+      "estimator": "dr",
+      "value": {
+        "point": 52.1,
+        "lo": 50.2,
+        "hi": 54.0
+      },
+      "oracle": 51.7,
+      "covered": true,
+      "effective_sample_size": 18234.5
+    }
+  ],
+  "comparisons": [
+    {
+      "variant": "central",
+      "metric": "incremental_retained_per_1000",
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "point": 3.0,
+        "lo": 0.4,
+        "hi": 5.6
+      },
+      "p_value": 0.02,
+      "separated": true
+    }
+  ],
+  "churn": {
+    "auc": {
+      "point": 0.87,
+      "lo": 0.86,
+      "hi": 0.88
+    },
+    "brier": {
+      "point": 0.07,
+      "lo": 0.068,
+      "hi": 0.072
+    },
+    "ece": 0.01,
+    "reliability": [
+      [
+        0.05,
+        0.048,
+        90000
+      ],
+      [
+        0.6,
+        0.61,
+        4000
+      ]
+    ],
+    "baseline_auc": {
+      "point": 0.71,
+      "lo": 0.7,
+      "hi": 0.72
+    },
+    "features": [
+      "tenure_days",
+      "auto_renew"
+    ]
+  },
+  "holdout_check": {
+    "central": {
+      "point": 1.2,
+      "lo": -2.5,
+      "hi": 4.9
+    }
+  },
+  "disparity": {
+    "gender": {
+      "female": {
+        "point": 0.12,
+        "lo": 0.11,
+        "hi": 0.13
+      },
+      "male": {
+        "point": 0.12,
+        "lo": 0.11,
+        "hi": 0.13
+      }
+    }
+  },
+  "started_at": "2026-11-21T07:00:00Z",
+  "finished_at": "2026-11-21T07:04:10Z"
+}

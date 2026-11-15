@@ -1,0 +1,20 @@
+schema_version: "1.0"
+seed: 20261121
+holdout_salt: "respectful-offers-v1"
+cohort_buckets:
+  holdout: [0, 10]
+  train: [10, 40]
+  logging: [40, 60]
+  eval: [60, 100]
+eval_sample: 200000
+horizon_periods: 3
+risk_threshold: 0.5
+budget_per_1000_per_period: 5000.0
+budget_sweep: [0.0, 2500.0, 5000.0, 10000.0, 20000.0]
+variants: [conservative, central, optimistic]
+decision_features: [churn_risk, risk_band, auto_renew, tenure_days, listening_trend_30d, price_30d, nudged, declined]
+ts_prior_precision: 1.0
+ts_noise_variance: 2500.0
+ts_mc_draws: 500
+bootstrap_blocks: 1000
+bootstrap_resamples: 10000

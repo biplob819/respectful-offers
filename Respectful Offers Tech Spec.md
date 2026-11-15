@@ -10,7 +10,7 @@ A loophole review of the PRD came before this spec. Its findings (C1–C6 critic
 
 ## 1. Design decisions
 
-Each decision below seeds `docs/decisions.md` as D-1 to D-21. `OWNER D-n` marks a ruling the owner made in the §13 askme batch (2026-11-15).
+Each decision below seeds `docs/decisions.md` as D-1 to D-24. `OWNER D-n` marks a ruling the owner made in the §13 askme batch (2026-11-15).
 
 | ID | Decision | Alternatives considered | Why |
 | --- | --- | --- | --- |
@@ -32,6 +32,7 @@ Each decision below seeds `docs/decisions.md` as D-1 to D-21. `OWNER D-n` marks 
 | D-16 | Intervals come from a **block bootstrap**: 1,000 hash-defined member blocks, 10,000 resamples, one seeded resample matrix shared by every policy and metric, paired across policies under CRN. A gap counts as separated only after a Holm correction per metric and variant (as in EvalKit D-36, D-37) | A member-level bootstrap; no correction | A member-level resample matrix over 200,000 members is too large. Members are independent, so resampling blocks is valid and cheap. Holm stops one lucky comparison from being called a win |
 | OWNER D-17 | "Discount everyone at risk" appears twice: an unconstrained **status quo** reported with its violation counts, and a **rule-following baseline** through the filter. NFR2 becomes "zero violations for every respectful policy" (Q1) | Only the rule-following version | Filtering the baseline turns it into "nudge then discount" and erases the comparison the project exists to make (C5) |
 | OWNER D-21 | **Open source, as EvalKit is.** Published on PyPI as `respectful-offers` (free, checked 15 Nov 2026) by GitHub trusted publishing on tag; Python 3.11–3.13 on Linux, macOS and Windows; anyone can run the policy on **their own subscription data** through a documented features table, with `offers init`, `doctor`, `report --example`; docs, community files, semver, no telemetry and no network calls outside the KKBox download | A project repo only (D-14 as first written) | Owner's instruction (2026-11-15): "It should be published as an open source project". A tool others can run on their own members is more useful than one tied to one Kaggle dataset |
+| D-24 | The real KKBox download, its verification and the licence ruling move from N1.2 to a new node **N1.5**, and the real-data results run becomes node **A2.8**. The pipeline is built and proven on the synthetic KKBox-format fixture; only A2.8 and what publishes its numbers (B2.3, P2.1, D3.1) wait for real data | Keep everything behind N1.2 | Owner-only steps (Kaggle credentials, rules, licence) should not block building and testing the whole pipeline |
 | OWNER D-18 | R1 covers **every shown action**, the content nudge included: a nudge the member ignores is not repeated (Q2) | Commercial offers only | Matches the PRD's wording and is the simplest rule to audit |
 
 ---
@@ -613,16 +614,17 @@ src/respectful_offers/
 
 Status vocabulary: `not-started | spec | building | green`.
 
-### 11.2 Build graph: 20 nodes in four waves
+### 11.2 Build graph: 22 nodes in four waves
 
-**v0.1.0, the open-source release on PyPI with published results (every Must story, US1–US6, plus US8): 17 nodes.** W0.1, N1.1–N1.4, A2.1–A2.7, B2.1–B2.4, P2.1.
-**Full scope, adding the demo, project page and video (US7): 20 nodes.**
+**v0.1.0, the open-source release on PyPI with published results (every Must story, US1–US6, plus US8): 19 nodes.** W0.1, N1.1–N1.5, A2.1–A2.8, B2.1–B2.4, P2.1.
+**Full scope, adding the demo, project page and video (US7): 22 nodes.**
 
 | Node | Title | Depends on | Deliverable (what exists when it is green) | Stories |
 | --- | --- | --- | --- | --- |
 | **W0.1** | Repo and harness | — | Repo, uv project, CI, the ported harness scripts each with `--self-test`, decisions, lessons and changelog files | — |
 | **N1.1** | Schemas and config | W0.1 | `respectful_offers.schemas` (§3), `RunConfig` and simulator config loaders, column contracts, results format v1 fixtures | US1, US5 |
-| **N1.2** | Data acquisition and licence | N1.1 | `offers data download/verify`, manifest with checksums and date ranges, licence ruling, synthetic fixture generator, `DATA_CARD.md` | — |
+| **N1.2** | Data contract, synthetic fixture and download tooling | N1.1 | `offers data download/verify` (tested against a fake Kaggle client), manifest format, synthetic KKBox-format fixture generator, raw-data gate, `DATA_CARD.md` | — |
+| **N1.5** | KKBox acquisition and licence | N1.2 | Real KKBox files downloaded with the owner's credentials and verified; licence ruling recorded | — |
 | **N1.3** | Stage runner and artifact store | N1.1 | Stage contract, content-addressed store, lineage, seed tree with CRN streams, version check | US1 |
 | **N1.4** | Features | N1.2, N1.3 | DuckDB ingestion, as-of feature builder, February and March cohorts, allow-list, audit table, `offers features` | US1 |
 | **A2.1** | Churn model and calibration | N1.4 | LightGBM model, isotonic calibration, March report, risk scores and bands, `offers churn` | US1 |
@@ -632,12 +634,13 @@ Status vocabulary: `not-started | spec | building | green`.
 | **A2.5** | Thompson sampling bandit | A2.4 | Linear TS, simulated training, frozen posterior, Monte Carlo propensities, learning curve | US1, US2 |
 | **A2.6** | Off-policy estimators | A2.4 | IPS, SNIPS, DR with cross-fitted reward model, block bootstrap, validation against the oracle | US8 |
 | **A2.7** | Evaluate and compare | A2.5, A2.6 | `offers evaluate`: rollouts per variant, metrics, paired comparisons, OPE beside oracle, audit, holdout check, budget sweep, disparity, `summary.json` | US1–US5, US8 |
+| **A2.8** | Real-data results run | A2.7, N1.5 | The pre-registered pipeline run on real KKBox data for all three variants, with real decisions read end to end | US1–US5 |
 | **B2.1** | Results report | A2.7 | Static HTML report with "Simulated" labels, YAML quoted, audit and calibration panels | US1, US2, US5, US8 |
 | **B2.2** | CLI | A2.7, B2.1 | Typer CLI (§4), `doctor`, `report --example`, `run --all`, exit codes, `--json` | US1 |
-| **B2.3** | Report deploy and README | B2.1, B2.2 | README headline chart, report published on GitHub Pages, docs commands tested | US1 |
-| **P2.1** | PR/FAQ | A2.7, B2.1 | One-page PR/FAQ, numbers templated from `summary.json`, PDF | US6 |
+| **B2.3** | Report deploy and README | B2.1, B2.2, A2.8 | README headline chart, report published on GitHub Pages, docs commands tested | US1 |
+| **P2.1** | PR/FAQ | A2.8, B2.1 | One-page PR/FAQ, numbers templated from `summary.json`, PDF | US6 |
 | **B2.4** | Open-source packaging and v0.1.0 | B2.3, P2.1 | PyPI `respectful-offers`, Python × OS CI matrix, docs (quickstart, your own data, simulator config), community files, history audit, data card, tag v0.1.0 | US6 |
-| **D3.1** | Demo engine | A2.7 | Aggregates-only cohort cube, `simulate()`, perf test, agreement with the full run | US7 |
+| **D3.1** | Demo engine | A2.8 | Aggregates-only cohort cube, `simulate()`, perf test, agreement with the full run | US7 |
 | **D3.2** | Demo page | D3.1, B2.2 | Streamlit page in `portfolio-demos` matching the PRD wireframe, deployed | US7 |
 | **D3.3** | Project page and video | B2.4, D3.2 | Case study page and 90-second video script, numbers checked against `summary.json`, links resolve | — |
 
@@ -652,6 +655,7 @@ graph LR
   N11 --> N13[N1.3 Stage runner]
   N11 --> A23[A2.3 Respect filter + auditor]
   N12 --> N14[N1.4 Features]
+  N12 --> N15[N1.5 KKBox + licence]
   N13 --> N14
   N14 --> A21[A2.1 Churn + calibration]
   A21 --> A22[A2.2 Simulator]
@@ -662,16 +666,19 @@ graph LR
   A24 --> A26[A2.6 OPE estimators]
   A25 --> A27[A2.7 Evaluate + compare]
   A26 --> A27
+  A27 --> A28[A2.8 Real-data run]
+  N15 --> A28
+  A28 --> B23
   A27 --> B21[B2.1 Report]
   A27 --> B22[B2.2 CLI]
   B21 --> B22
   B21 --> B23[B2.3 Deploy + README]
   B22 --> B23
-  A27 --> P21[P2.1 PR/FAQ]
+  A28 --> P21[P2.1 PR/FAQ]
   B21 --> P21
   B23 --> B24[B2.4 OSS packaging + v0.1.0]
   P21 --> B24
-  A27 --> D31[D3.1 Demo engine]
+  A28 --> D31[D3.1 Demo engine]
   D31 --> D32[D3.2 Demo page]
   B22 --> D32
   B24 --> D33[D3.3 Project page + video]
@@ -684,38 +691,39 @@ graph LR
 | --- | --- |
 | 0 | W0.1 |
 | 1 | N1.1 |
-| 2 | N1.2, N1.3, A2.3 |
-| 3 | N1.4 |
+| 2 | N1.3, N1.2, A2.3 |
+| 3 | N1.4, N1.5 |
 | 4 | A2.1 |
 | 5 | A2.2 |
 | 6 | A2.4 |
-| 7 | A2.5, A2.6 |
+| 7 | A2.6, A2.5 |
 | 8 | A2.7 |
-| 9 | B2.1, D3.1 |
-| 10 | B2.2, P2.1 |
+| 9 | A2.8, B2.1 |
+| 10 | B2.2, P2.1, D3.1 |
 | 11 | B2.3, D3.2 |
 | 12 | B2.4 |
 | 13 | D3.3 |
 
-**Critical path to v0.1.0 (13 nodes):** W0.1 → N1.1 → N1.2 → N1.4 → A2.1 → A2.2 → A2.4 → A2.5 → A2.7 → B2.1 → B2.2 → B2.3 → B2.4. D3.3 adds a fourteenth for full scope.
+**Critical path to v0.1.0 (13 nodes):** W0.1 → N1.1 → N1.2 → N1.4 → A2.1 → A2.2 → A2.4 → A2.5 → A2.7 → B2.1 → B2.2 → B2.3 → B2.4. A2.8 (the real-data run) must also be green before B2.3, and N1.5 (the owner's Kaggle credentials and licence ruling) before A2.8. D3.3 adds a fourteenth node for full scope.
 
 **Build order for a single builder.** Every node appears after all of its dependencies.
 
 | # | Node | # | Node | # | Node |
 | --- | --- | --- | --- | --- | --- |
-| 1 | W0.1 | 8 | A2.2 | 15 | P2.1 |
-| 2 | N1.1 | 9 | A2.4 | 16 | B2.3 |
-| 3 | N1.3 | 10 | A2.6 | 17 | B2.4 → **v0.1.0 on PyPI** |
-| 4 | N1.2 | 11 | A2.5 | 18 | D3.1 |
-| 5 | A2.3 | 12 | A2.7 | 19 | D3.2 |
-| 6 | N1.4 | 13 | B2.1 | 20 | D3.3 |
-| 7 | A2.1 | 14 | B2.2 | | |
+| 1 | W0.1 | 9 | A2.4 | 17 | P2.1 |
+| 2 | N1.1 | 10 | A2.6 | 18 | B2.3 |
+| 3 | N1.3 | 11 | A2.5 | 19 | B2.4 → **v0.1.0 on PyPI** |
+| 4 | N1.2 | 12 | A2.7 | 20 | D3.1 |
+| 5 | A2.3 | 13 | N1.5 | 21 | D3.2 |
+| 6 | N1.4 | 14 | A2.8 | 22 | D3.3 |
+| 7 | A2.1 | 15 | B2.1 |  |  |
+| 8 | A2.2 | 16 | B2.2 |  |  |
 
-N1.3 comes before N1.2 because the runtime is the riskier design, and N1.2 waits on the owner's Kaggle credentials. A2.3 comes early because it needs only schemas and the respect rules are the project's thesis. A2.6 comes before A2.5 because validating the estimators against the oracle is the riskier method.
+N1.3 comes before N1.2 because the runtime is the riskier design, and N1.2 waits on the owner's Kaggle credentials. A2.3 comes early because it needs only schemas and the respect rules are the project's thesis. A2.6 comes before A2.5 because validating the estimators against the oracle is the riskier method. N1.5 and A2.8 wait for the owner's Kaggle credentials and licence ruling (D-24); everything before them runs on the synthetic fixture.
 
 ### 11.4 Capability catalog
 
-Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`. A node turns green when all of its rows are green. The trace column links each capability to the PRD (US, FR, NFR, R) or to a loophole finding (Appendix A). **116 capabilities**: 105 in v0.1.0, 11 in the demo and project page.
+Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`. A node turns green when all of its rows are green. The trace column links each capability to the PRD (US, FR, NFR, R) or to a loophole finding (Appendix A). **121 capabilities**: 110 in v0.1.0, 11 in the demo and project page.
 
 **W0.1 Repo and harness**
 
@@ -740,16 +748,22 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | SCH-05 | Column contracts (dtype, nullability, range) checked at stage boundaries | D-11 |
 | SCH-06 | Results format v1: `schema_version`, fixtures, round-trip tests, deep immutability, no non-finite floats | NFR4 |
 
-**N1.2 Data acquisition and licence**
+**N1.2 Data contract, synthetic fixture and download tooling**
 
 | Cap | Capability | Trace |
 | --- | --- | --- |
-| DAT-01 | `offers data download` through the Kaggle API; credentials read from the environment and never printed; checksums in `data/manifest.json` | FR1, E5 |
+| DAT-01 | `offers data download` through the Kaggle API; credentials read from the environment and never printed; checksums in `data/manifest.json`; tested against a fake Kaggle client | FR1, E5 |
 | DAT-02 | `offers data verify`: sizes, checksums, columns, row counts and per-file date ranges | NFR4, C4 |
-| DAT-03 | Competition rules read; terms quoted in the data card; publishing ruled as `OWNER D-n` | NFR5 |
 | DAT-04 | `.gitignore` and the raw-data gate keep raw and member-level files out of git | NFR5 |
 | DAT-05 | Seeded synthetic fixture generator producing KKBox-format CSVs (5,000 members) for tests, the golden run and `report --example` | NFR4 |
 | DAT-06 | `DATA_CARD.md`: files, date ranges, cohorts, label definition, licence, what is published, protected-attribute handling | NFR5 |
+
+**N1.5 KKBox acquisition and licence**
+
+| Cap | Capability | Trace |
+| --- | --- | --- |
+| DAT-03 | Competition rules read; terms quoted in the data card; publishing ruled as `OWNER D-n` | NFR5 |
+| DAT-07 | Real KKBox files downloaded with the owner's credentials and verified; real checksums, row counts and date ranges recorded in the manifest and data card | FR1, C4 |
 
 **N1.3 Stage runner and artifact store**
 
@@ -853,6 +867,15 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | EVL-07 | Budget sweep and retained-against-spend frontiers | US2, US7 |
 | EVL-08 | Disparity audit by age band and gender (audit only, never a decision input) | H7 |
 | EVL-09 | `summary.json` with `prereg_status`, `simulated` and hashes; refuses stale or misaligned inputs | NFR1, C6 |
+
+**A2.8 Real-data results run**
+
+| Cap | Capability | Trace |
+| --- | --- | --- |
+| REA-01 | `offers run --all` on real KKBox data for all three pre-registered variants; `summary.json` stamped `preregistered` | US1–US5, C6 |
+| REA-02 | A sample of real decisions read end to end (member, allowed set, choice, response, renewal) and every failure reason confirmed before any number is reported (L-11) | L-11 |
+| REA-03 | Churn model report and leakage probe re-run on the real cohorts | FR2, C4 |
+| REA-04 | The run's published outputs pass the publish scan and respect the DAT-03 licence ruling | NFR5 |
 
 **B2.1 Results report**
 
