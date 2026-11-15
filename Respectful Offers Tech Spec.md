@@ -10,7 +10,7 @@ A loophole review of the PRD came before this spec. Its findings (C1–C6 critic
 
 ## 1. Design decisions
 
-Each decision below seeds `docs/decisions.md` as D-1 to D-18. `OWNER D-n` marks a ruling the owner made in the §13 askme batch (2026-11-15).
+Each decision below seeds `docs/decisions.md` as D-1 to D-21. `OWNER D-n` marks a ruling the owner made in the §13 askme batch (2026-11-15).
 
 | ID | Decision | Alternatives considered | Why |
 | --- | --- | --- | --- |
@@ -27,10 +27,11 @@ Each decision below seeds `docs/decisions.md` as D-1 to D-18. `OWNER D-n` marks 
 | D-11 | Pydantic models for configs, summaries and the decision and outcome row contracts. DataFrames are checked against **column contracts** (dtype, nullability, ranges) at every stage boundary | One pydantic object per member; pandera | Around a million pydantic objects is slow, and column contracts give the same guarantees without another dependency |
 | D-12 | Everything published holds **aggregates only**. The demo reads a **binned cohort cube** (counts per feature cell) and samples synthetic members from it, never member rows | "Cached member scores" in the demo (PRD) | The PRD's own risk mitigation says publish only aggregates. Per-member scores in a public demo break that (H9) |
 | D-13 | Built with the **EvalKit lean Kova harness**: the same scripts ported (`harness_lib`, `verify_graph_eligibility`, `node_start`, `node_converge`, `status`, `secret_scan`), 12 gates with a respect-and-OPE gate in place of the judge gate, one builder plus a skeptical verifier, and live status from `scripts/status.py` | Tests only; full Kova | Owner's instruction: the same harness and methodology as EvalKit. As in EvalKit D-13, statusnow's `gather.py` does not read this repo, so status comes from the repo itself |
-| D-14 | Repo `respectful-offers`, import `respectful_offers`, CLI `offers`, Python 3.12 with uv, hatchling and src layout. CI runs on Linux and macOS. No PyPI release | A PyPI package; the EvalKit Python × OS matrix | This is a project repo, not a library, so the PRD's Python 3.12 is enough and a PyPI name gives nothing |
+| D-14 | Repo `respectful-offers`, import `respectful_offers`, CLI `offers`, uv, hatchling and src layout. *Superseded in part by OWNER D-21:* the original "Python 3.12 only, Linux and macOS, no PyPI" no longer holds | — | — |
 | OWNER D-15 | The report is a **static self-contained HTML** page (inline SVG, stdlib templates, Vega-Lite JSON alongside, as in EvalKit D-42). Every number that depends on the simulator carries a visible "Simulated" label, and all three variants' YAML is quoted byte for byte. It is hosted on GitHub Pages (owner ruling, Q4) | Cloudflare Pages (PRD); a notebook | Follows NFR1, and EvalKit moved to GitHub Pages for the same free public-repo hosting (EvalKit OWNER D-47) |
 | D-16 | Intervals come from a **block bootstrap**: 1,000 hash-defined member blocks, 10,000 resamples, one seeded resample matrix shared by every policy and metric, paired across policies under CRN. A gap counts as separated only after a Holm correction per metric and variant (as in EvalKit D-36, D-37) | A member-level bootstrap; no correction | A member-level resample matrix over 200,000 members is too large. Members are independent, so resampling blocks is valid and cheap. Holm stops one lucky comparison from being called a win |
 | OWNER D-17 | "Discount everyone at risk" appears twice: an unconstrained **status quo** reported with its violation counts, and a **rule-following baseline** through the filter. NFR2 becomes "zero violations for every respectful policy" (Q1) | Only the rule-following version | Filtering the baseline turns it into "nudge then discount" and erases the comparison the project exists to make (C5) |
+| OWNER D-21 | **Open source, as EvalKit is.** Published on PyPI as `respectful-offers` (free, checked 15 Nov 2026) by GitHub trusted publishing on tag; Python 3.11–3.13 on Linux, macOS and Windows; anyone can run the policy on **their own subscription data** through a documented features table, with `offers init`, `doctor`, `report --example`; docs, community files, semver, no telemetry and no network calls outside the KKBox download | A project repo only (D-14 as first written) | Owner's instruction (2026-11-15): "It should be published as an open source project". A tool others can run on their own members is more useful than one tied to one Kaggle dataset |
 | OWNER D-18 | R1 covers **every shown action**, the content nudge included: a nudge the member ignores is not repeated (Q2) | Commercial offers only | Matches the PRD's wording and is the simplest rule to audit |
 
 ---
@@ -340,6 +341,8 @@ def simulate(budget: float, threshold: float, variant: str) -> DemoResult: ...  
 | `offers evaluate --variant all` | Rollouts, OPE, audit and aggregate; writes `summary.json` | Yes |
 | `offers report` | Builds the static report from `summary.json` | No |
 | `offers run --all` | Every stage from raw files with one command (NFR4) | Yes |
+| `offers init` | Writes `offers.yaml`, a simulator template and a features-table template into a new folder; never overwrites user files | No |
+| `offers features --from-table members.csv` | Uses your own subscription data: validates a CSV or Parquet features table against the `MemberFeatures` contract instead of building from KKBox | No |
 | `offers doctor` | Python version, data present and verified, prereg status, Kaggle credentials present (never printed) | No |
 | `offers report --example` | Renders the report from the bundled synthetic run | No |
 | `offers demo-cube` | Writes the aggregates-only cohort cube and frozen posteriors for the demo | Yes |
@@ -555,6 +558,7 @@ For each variant, every policy in §6.3 runs H = 3 periods on the evaluation coh
 | Leakage | As-of rule on every feature; the planted oracle-feature probe is caught | `pytest -m safety` |
 | Static | Lint and types | `uv run ruff check`, `uv run pyright` |
 | Build | Wheel builds and installs in a clean venv; `offers doctor` and `offers report --example` run with no raw data | `uv build` |
+| Compatibility | Python 3.11, 3.12 and 3.13 on Linux, macOS and Windows (OWNER D-21) | CI matrix |
 | Safety | Secret scan; raw-data scan; publish scan; no HTTP client imported outside `data/download.py` (NFR3); every text read and write names `encoding="utf-8"` (EvalKit L-32) | `pytest -m safety` plus the scanners |
 | Performance | Demo `simulate` p95 within budget | `pytest -m perf` |
 | Docs | Every command in the README and docs runs in a scripted fixture project (EvalKit L-40) | `pytest -m docs` |
@@ -611,7 +615,7 @@ Status vocabulary: `not-started | spec | building | green`.
 
 ### 11.2 Build graph: 20 nodes in four waves
 
-**v0.1.0, the public results release (every Must story, US1–US6, plus US8): 17 nodes.** W0.1, N1.1–N1.4, A2.1–A2.7, B2.1–B2.4, P2.1.
+**v0.1.0, the open-source release on PyPI with published results (every Must story, US1–US6, plus US8): 17 nodes.** W0.1, N1.1–N1.4, A2.1–A2.7, B2.1–B2.4, P2.1.
 **Full scope, adding the demo, project page and video (US7): 20 nodes.**
 
 | Node | Title | Depends on | Deliverable (what exists when it is green) | Stories |
@@ -632,7 +636,7 @@ Status vocabulary: `not-started | spec | building | green`.
 | **B2.2** | CLI | A2.7, B2.1 | Typer CLI (§4), `doctor`, `report --example`, `run --all`, exit codes, `--json` | US1 |
 | **B2.3** | Report deploy and README | B2.1, B2.2 | README headline chart, report published on GitHub Pages, docs commands tested | US1 |
 | **P2.1** | PR/FAQ | A2.7, B2.1 | One-page PR/FAQ, numbers templated from `summary.json`, PDF | US6 |
-| **B2.4** | Release v0.1.0 | B2.3, P2.1 | Public repo after a history audit, data card, decision log, "how I built it" note, tag v0.1.0 | US6 |
+| **B2.4** | Open-source packaging and v0.1.0 | B2.3, P2.1 | PyPI `respectful-offers`, Python × OS CI matrix, docs (quickstart, your own data, simulator config), community files, history audit, data card, tag v0.1.0 | US6 |
 | **D3.1** | Demo engine | A2.7 | Aggregates-only cohort cube, `simulate()`, perf test, agreement with the full run | US7 |
 | **D3.2** | Demo page | D3.1, B2.2 | Streamlit page in `portfolio-demos` matching the PRD wireframe, deployed | US7 |
 | **D3.3** | Project page and video | B2.4, D3.2 | Case study page and 90-second video script, numbers checked against `summary.json`, links resolve | — |
@@ -665,7 +669,7 @@ graph LR
   B22 --> B23
   A27 --> P21[P2.1 PR/FAQ]
   B21 --> P21
-  B23 --> B24[B2.4 Release v0.1.0]
+  B23 --> B24[B2.4 OSS packaging + v0.1.0]
   P21 --> B24
   A27 --> D31[D3.1 Demo engine]
   D31 --> D32[D3.2 Demo page]
@@ -701,7 +705,7 @@ graph LR
 | --- | --- | --- | --- | --- | --- |
 | 1 | W0.1 | 8 | A2.2 | 15 | P2.1 |
 | 2 | N1.1 | 9 | A2.4 | 16 | B2.3 |
-| 3 | N1.3 | 10 | A2.6 | 17 | B2.4 → **v0.1.0** |
+| 3 | N1.3 | 10 | A2.6 | 17 | B2.4 → **v0.1.0 on PyPI** |
 | 4 | N1.2 | 11 | A2.5 | 18 | D3.1 |
 | 5 | A2.3 | 12 | A2.7 | 19 | D3.2 |
 | 6 | N1.4 | 13 | B2.1 | 20 | D3.3 |
@@ -711,18 +715,18 @@ N1.3 comes before N1.2 because the runtime is the riskier design, and N1.2 waits
 
 ### 11.4 Capability catalog
 
-Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`. A node turns green when all of its rows are green. The trace column links each capability to the PRD (US, FR, NFR, R) or to a loophole finding (Appendix A). **109 capabilities**: 98 in v0.1.0, 11 in the demo and project page.
+Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`. A node turns green when all of its rows are green. The trace column links each capability to the PRD (US, FR, NFR, R) or to a loophole finding (Appendix A). **116 capabilities**: 105 in v0.1.0, 11 in the demo and project page.
 
 **W0.1 Repo and harness**
 
 | Cap | Capability | Trace |
 | --- | --- | --- |
-| HAR-01 | uv project (Python 3.12), `respectful_offers` skeleton with `offers --version`, MIT licence, ruff pre-commit, `.gitattributes` forcing LF (EvalKit L-7) | NFR4 |
-| HAR-02 | CI: lint, types, tests and build on every push, on Linux and macOS, with least-privilege permissions | NFR4 |
+| HAR-01 | uv project (Python ≥3.11), `respectful_offers` skeleton with `offers --version`, MIT licence, ruff pre-commit, `.gitattributes` forcing LF (EvalKit L-7) | NFR4 |
+| HAR-02 | CI: lint, types, tests and build on every push, Python 3.11–3.13 on Linux, macOS and Windows, with least-privilege permissions | NFR4, OWNER D-21 |
 | HAR-03 | `verify_graph_eligibility.py` ported: cycles, unknown dependencies, building ahead of a non-green dependency; self-test | D-13 |
 | HAR-04 | `node_start.py` ported: eligibility, spec, criteria and tasks present, criteria cover every capability, `.base` written only by `--mark-building`; self-test | D-13 |
 | HAR-05 | `node_converge.py` with the 12 gates of §11.6, every gate reported, each with a self-test that proves it can fail | D-13 |
-| HAR-06 | Records: `graph.md` (20 nodes), `catalog.tsv` (109 rows), `decisions.md` with D-1 to D-18, `lessons.md` with the carried lessons, `changelog.md`, `docs/prereg.md` stub, `scripts/status.py` | D-13 |
+| HAR-06 | Records: `graph.md` (20 nodes), `catalog.tsv` (116 rows), `decisions.md` with D-1 to D-21, `lessons.md` with the carried lessons, `changelog.md`, `docs/prereg.md` stub, `scripts/status.py` | D-13 |
 | HAR-07 | Secret scan, raw-data scan and publish scan (`scripts/data_scan.py`) | NFR5, E5 |
 
 **N1.1 Schemas and config**
@@ -768,6 +772,7 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | FEA-04 | February and March cohorts with labels from `train.csv` and `train_v2.csv` | FR2 |
 | FEA-05 | Feature allow-list; age and gender only in the audit table, never joined | R7, H7 |
 | FEA-06 | `offers features` rebuilds both cohorts from raw files with one command; feature summary statistics | NFR4 |
+| FEA-07 | Your own data: `offers features --from-table` validates a user's CSV or Parquet features table against the `MemberFeatures` contract, with errors naming row and column | OWNER D-21 |
 
 **A2.1 Churn model and calibration**
 
@@ -869,6 +874,7 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | CLI-03 | `offers report --example` from the bundled synthetic run, never overwriting a real run folder (EvalKit L-30) | NFR4 |
 | CLI-04 | Exit codes 0–3 and `--json` on every command; top-level exception mapping | E4 |
 | CLI-05 | `offers run --all` from raw files with one command | NFR4 |
+| CLI-06 | `offers init` scaffolds a project folder and never overwrites user files (EvalKit L-30) | OWNER D-21 |
 
 **B2.3 Report deploy and README**
 
@@ -887,7 +893,7 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | PRF-03 | FAQ covers what a real A/B test would add, why a holdout, why DR, and why the rules sit outside learning | FR9 |
 | PRF-04 | "Simulated" labelling; conclusions stated per variant and as conditional | NFR1 |
 
-**B2.4 Release v0.1.0**
+**B2.4 Open-source packaging and v0.1.0**
 
 | Cap | Capability | Trace |
 | --- | --- | --- |
@@ -895,6 +901,11 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | OSS-02 | Decision log, data card, "how I built it" note and PRD link in the repo | Deliverables |
 | OSS-03 | Tag v0.1.0; CI green on the tag; results reproduce from a clean clone plus the raw files | NFR4 |
 | OSS-04 | Published artifacts re-checked against the DAT-03 licence ruling | NFR5 |
+| OSS-05 | Distribution `respectful-offers` on PyPI, CLI `offers`, import `respectful_offers`; release by GitHub trusted publishing on tag | OWNER D-21 |
+| OSS-06 | `uvx --from respectful-offers offers doctor` and `offers report --example` smoke test on every OS after release | OWNER D-21 |
+| OSS-07 | Docs: quickstart (first result in under 5 minutes on the synthetic example), using your own data, writing a simulator config, how the respect rules work, reproducing the published results | OWNER D-21 |
+| OSS-08 | CONTRIBUTING, SECURITY, CODE_OF_CONDUCT, issue and PR templates, semver and versioning policy | OWNER D-21 |
+| OSS-09 | Privacy statement: no telemetry; nothing leaves the machine except the KKBox download the user runs | OWNER D-21, NFR3 |
 
 **D3.1 Demo engine**
 
@@ -1025,7 +1036,8 @@ These seed `docs/lessons.md` so the verifier's earlier findings become day-one r
 - Kaggle account and API token in the environment, and the competition rules accepted on Kaggle, before N1.2.
 - Read the competition rules for the DAT-03 licence ruling.
 - Set the simulator values in A2.2 (askme with recommended starting values) before pre-registration.
-- Create the public GitHub repo `respectful-offers` at W0.1, or say whether it starts private.
+- Public repo `biplob819/respectful-offers` exists (created 2026-11-15).
+- Before B2.4: add a PyPI trusted publisher for `respectful-offers` (repo `biplob819/respectful-offers`, workflow `release.yml`, environment `pypi`).
 
 ---
 

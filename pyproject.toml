@@ -1,0 +1,71 @@
+[project]
+name = "respectful-offers"
+version = "0.0.1"
+description = "A subscription offer policy with a Thompson sampling bandit and two respect rules, evaluated offline against a holdout."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Biplob Chakraborty" }]
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "pyarrow>=16",
+    "pydantic>=2.7",
+    "pyyaml>=6",
+]
+
+[project.urls]
+Homepage = "https://github.com/biplob819/respectful-offers"
+
+[project.scripts]
+offers = "respectful_offers.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "hypothesis>=6.100",
+    "ruff>=0.6",
+    "pyright>=1.1.380",
+    "types-pyyaml>=6.0.12",
+    "pandas-stubs>=3.1.0.261029",
+]
+
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/respectful_offers"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/respectful_offers", "README.md", "LICENSE", "changelog.md"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "scripts", "tests"]
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]  # allow the › separator used in proof cells
+
+[tool.pyright]
+include = ["src", "scripts", "tests"]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+extraPaths = ["scripts"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["scripts"]
+markers = [
+    "contract: schema, column contract, CLI and interface contract tests",
+    "golden: end-to-end run on the synthetic fixture, byte-identical summary",
+    "respect: independent auditor, mutation and holdout leakage tests",
+    "ope: off-policy estimator validation against the simulator oracle",
+    "safety: secrets, raw data, publish scan, leakage and protected attributes",
+    "perf: demo latency budget",
+    "docs: documented commands run in a fixture project",
+]
