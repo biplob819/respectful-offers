@@ -1,0 +1,26 @@
+.venv/
+__pycache__/
+*.pyc
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.harness/
+.env
+.DS_Store
+
+# personal notes, not for the public repo
+Portfolio notes.md
+
+# KKBox raw data and member-level derived artifacts: never committed (NFR5)
+data/
+.offers/
+runs/
+
+# Streamlit local secrets
+.streamlit/secrets.toml
+
+# Claude Code local settings
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
