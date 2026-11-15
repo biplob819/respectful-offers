@@ -2,6 +2,8 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FIX] [N1.3] — the stale-cache guard hashes every project module a stage imports, transitively (L-26).
+- [FEAT] [N1.4] — features as of each cohort's label month via DuckDB with an explicit schema; provenance-checked as-of guard, early renewals excluded (D-28), audit table kept apart, `offers features` and `--from-table` for your own data.
 - [FEAT] [N1.2] — data contract: seeded synthetic data in the exact KKBox formats, `offers data download|verify|synthetic`, DuckDB-streamed manifest with checksums and date ranges, nested archive unpacking with traversal checks, data card.
 - [FEAT] [A2.3] — respect filter (R1 with nudges, R2, R3), cohort assignment, R7 context check, and an independent auditor that rebuilds histories from the logs; mutation-tested against three broken filters.
 - [FEAT] [N1.3] — stage runner: content-addressed store, cache keys, lineage, run log, counter-based CRN draws, cohort buckets, stale-cache version guard.

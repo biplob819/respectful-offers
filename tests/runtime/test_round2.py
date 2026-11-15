@@ -169,3 +169,30 @@ def test_float_root_seeds_are_refused():
         stage_seed(42.0, "x")  # type: ignore[arg-type]
     with pytest.raises(TypeError):
         member_uniforms(42.0, member_hashes(["a"]), 1, "s")  # type: ignore[arg-type]
+
+
+def test_a_helper_in_another_project_module_changes_the_hash(tmp_path, monkeypatch):
+    """N1.4 verifier: helpers called from another module escaped the hash, so changed feature
+    code served stale artifacts. Every project module a stage imports is now hashed."""
+    import respectful_offers.features.build as build
+    from respectful_offers.features.stage import FeaturesStage
+
+    before = versions.behaviour_hash(FeaturesStage)
+    original = versions._module_source(build.__name__)
+    versions._module_source.cache_clear()
+    monkeypatch.setattr(
+        versions,
+        "_module_source",
+        lambda name: (
+            original + "\n# edited"
+            if name == build.__name__
+            else versions.inspect.getsource(versions.importlib.import_module(name))
+        ),
+    )
+    assert versions.behaviour_hash(FeaturesStage) != before
+
+
+def test_editing_the_runner_does_not_force_every_stage_to_bump():
+    deps = versions._project_imports(("respectful_offers.features.stage",))
+    assert "respectful_offers.features.build" in deps
+    assert not any(d.startswith("respectful_offers.runtime") for d in deps)

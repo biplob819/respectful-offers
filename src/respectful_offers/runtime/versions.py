@@ -23,6 +23,7 @@ import argparse
 import ast
 import hashlib
 import importlib
+import importlib.util
 import inspect
 import json
 import pkgutil
@@ -147,6 +148,64 @@ def _is_data(value: Any) -> bool:
     return False
 
 
+# The runner and this guard are infrastructure, not stage behaviour; editing them must not
+# force every stage to bump.
+_INFRASTRUCTURE = ("respectful_offers.runtime",)
+
+
+@cache
+def _module_source(name: str) -> str:
+    module = sys.modules.get(name) or importlib.import_module(name)
+    try:
+        return inspect.getsource(module)
+    except (OSError, TypeError):
+        return ""
+
+
+def _imports_of(name: str) -> set[str]:
+    source = _module_source(name)
+    if not source:
+        return set()
+    found: set[str] = set()
+    package = name.rsplit(".", 1)[0]
+    for node in ast.walk(ast.parse(source)):
+        if isinstance(node, ast.ImportFrom):
+            if node.level:
+                base = ".".join(name.split(".")[: -node.level]) if node.level else package
+                mod = f"{base}.{node.module}" if node.module else base
+            else:
+                mod = node.module or ""
+            candidates = [mod] + [f"{mod}.{a.name}" for a in node.names]
+        elif isinstance(node, ast.Import):
+            candidates = [a.name for a in node.names]
+        else:
+            continue
+        for c in candidates:
+            if c.startswith("respectful_offers.") and _is_module(c):
+                found.add(c)
+    return found
+
+
+def _is_module(name: str) -> bool:
+    try:
+        return importlib.util.find_spec(name) is not None
+    except (ModuleNotFoundError, ValueError):  # e.g. a function imported from a module
+        return False
+
+
+def _project_imports(start: tuple[str, ...]) -> set[str]:
+    """Project modules reachable from `start` by import, excluding the runtime package."""
+    seen: set[str] = set()
+    todo = [m for m in start if m.startswith("respectful_offers.")]
+    while todo:
+        m = todo.pop()
+        if m in seen or m.startswith(_INFRASTRUCTURE):
+            continue
+        seen.add(m)
+        todo.extend(_imports_of(m) - seen)
+    return seen
+
+
 def behaviour_hash(cls: type[Stage]) -> str:
     h = hashlib.sha256()
     modules = []
@@ -163,6 +222,10 @@ def behaviour_hash(cls: type[Stage]) -> str:
             modules.append(klass.__module__)
     for name in modules:
         h.update(_module_constants(name).encode("utf-8"))
+    # every project module the stage's modules import, transitively, by full source: a change
+    # to any helper a stage calls (in any module) changes its hash (N1.4 verifier)
+    for name in sorted(_project_imports(tuple(modules))):
+        h.update(name.encode("utf-8") + b"\0" + _module_source(name).encode("utf-8"))
     extra: tuple[Callable[..., Any], ...] = getattr(cls, "extra_sources", ())
     for fn in extra:
         h.update(inspect.getsource(fn).encode("utf-8"))
