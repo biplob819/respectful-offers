@@ -136,16 +136,14 @@ def _all_strings(values: pd.Series) -> bool:
 
 def _key(v: Any) -> Any:
     """A hashable stand-in for a value; unhashable odd values (dicts, sets) stay unique."""
-    if isinstance(v, list | np.ndarray):
-        try:
-            return (type(v).__name__, tuple(v))
-        except TypeError:
-            return ("id", id(v))
+    key: Any = (
+        (type(v).__name__, tuple(v)) if isinstance(v, list | np.ndarray) else (type(v).__name__, v)
+    )
     try:
-        hash(v)
-    except TypeError:
+        hash(key)
+    except TypeError:  # nested lists, dicts, 2-D arrays: checked on their own
         return ("id", id(v))
-    return (type(v).__name__, v)
+    return key
 
 
 def _unique(values: pd.Series) -> list[Any]:

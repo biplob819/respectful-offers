@@ -461,6 +461,65 @@ def cmd_run(args: argparse.Namespace) -> int:
     return EXIT_OK if clean else EXIT_AUDIT
 
 
+def cmd_demo_cube(args: argparse.Namespace) -> int:
+    """The demo's aggregates-only cohort cube from a finished run (D3.1, D-12)."""
+    import pandas as pd
+
+    from respectful_offers.demo.cube import dumps, make_cube
+    from respectful_offers.schemas.config import ConfigError
+
+    try:
+        pipe = _Pipeline(args)
+        assert pipe.sim is not None
+        scores = pd.read_parquet(pipe.churn.path / "scores_mar.parquet")[["msno", "churn_risk"]]
+        features = pd.read_parquet(pipe.features.path / "features_mar.parquet")
+        run_dir = pipe.root / "runs" / args.run_id
+        if not (run_dir / "summary.json").is_file():
+            from respectful_offers.data.verify import DataError
+
+            raise DataError(f"no finished run in {run_dir}: run `offers evaluate` first")
+        audit = run_dir / "audit.json"
+        if audit.is_file() and json.loads(audit.read_text("utf-8")).get("clean") is not True:
+            _emit(
+                {"ok": False, "error": "the run's audit failed: no demo is built from it"},
+                args.json,
+                "offers demo-cube: the run's audit failed: no demo is built from it",
+            )
+            return EXIT_AUDIT
+        out = Path(args.out)
+        if "runs" in out.resolve().parts or out.is_symlink() or out.suffix != ".json":
+            raise ConfigError("--out must be a .json file outside any runs/ folder")
+        if out.exists():
+            try:
+                previous = json.loads(out.read_text("utf-8"))
+            except (OSError, ValueError):
+                previous = None
+            if not (
+                isinstance(previous, dict) and "cube_version" in previous and "cells" in previous
+            ):
+                raise ConfigError(f"{out} exists and is not a demo cube: it is never overwritten")
+        cube = make_cube(
+            scores,
+            features,
+            run_dir,
+            pipe.sim_path,
+            pipe.cfg,
+            pipe.sim,
+            config_path=pipe.config,
+            data_source=pipe.source,
+        )
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(dumps(cube), encoding="utf-8", newline="\n")
+    except (*_user_errors(), ValueError) as exc:
+        return _fail(args, "demo-cube", exc)
+    text = (
+        f"offers demo-cube: {len(cube['cells'])} cells from {cube['members']:,} members "
+        f"(every cell 20 or more; no member rows) in {out}"
+    )
+    _emit({"ok": True, "cube": str(out), "cells": len(cube["cells"])}, args.json, text)
+    return EXIT_OK
+
+
 def cmd_doctor(args: argparse.Namespace) -> int:
     from respectful_offers.doctor import run_checks
 
@@ -740,6 +799,18 @@ def build_parser() -> argparse.ArgumentParser:
     rn.add_argument("--run-id", default="latest")
     rn.add_argument("--json", action="store_true")
     rn.set_defaults(func=cmd_run)
+    dc = sub.add_parser("demo-cube", help="write the demo's aggregates-only cube from a run")
+    dc.add_argument("--out", default="demo/cube.json")
+    dc.add_argument("--config", default=None)
+    dc.add_argument("--simulator", default=None)
+    dc.add_argument("--data-dir", default="data")
+    dc.add_argument("--from-table", help="your own features table, as for the run")
+    dc.add_argument("--audit-table", help="optional audit table, as for the run")
+    dc.add_argument("--root", default=".")
+    dc.add_argument("--run-id", default="latest")
+    dc.add_argument("--prereg", default=None)
+    dc.add_argument("--json", action="store_true")
+    dc.set_defaults(func=cmd_demo_cube)
     dr = sub.add_parser("doctor", help="check this machine and project; prints no secrets")
     dr.add_argument("--root", default=".")
     dr.add_argument("--data-dir", default="data")

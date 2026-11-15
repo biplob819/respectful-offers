@@ -528,11 +528,11 @@ For each variant, every policy in §6.3 runs H = 3 periods on the evaluation coh
 
 ## 8. Demo architecture
 
-- **Data.** `offers demo-cube` writes a cohort cube from the evaluation cohort: counts per cell of risk decile × trend band × auto-renew × tenure band × price band, with cells under 20 members merged into their neighbours. It holds no member ids and no member rows (D-12). It ships with the frozen bandit posteriors and the three simulator variants.
+- **Data.** `offers demo-cube` writes a cohort cube from the evaluation cohort of a pre-registered, audit-clean run: counts, means and spreads per cell of risk decile × trend band × auto-renew × tenure band × price band, with cells under 20 members merged, counts rounded to fives and values to three significant figures (D-43). It holds no member ids and no member rows (D-12). It ships with the frozen bandit posteriors and the three simulator variants.
 - **Function.** `simulate(budget, threshold, variant)` samples 20,000 synthetic members from the cube with a fixed seed, then runs the vectorised three-period rollout for no-offer, the rule-following baseline, the bandit and the status quo. It recomputes the charts and the auditor's violation counts (zero for every respectful policy).
 - **Threshold slider.** Moving the threshold changes R2's allowed sets. The bandit's posterior stays the one trained at the reference threshold, and the screen says "bandit trained at threshold X". Denominators use the reference threshold (§7.4).
-- **Latency budget.** p95 under 2 s on a one-vCPU container (DMO-03 measures it in CI on a capped runner budget of 1 s for headroom).
-- **Agreement.** At the reference settings, the demo's figures fall within the full run's intervals (DMO-05).
+- **Latency budget.** p95 under 2 s, the cold call included: asserted on a developer machine, with a 3.5 s regression ceiling on shared CI runners; the target on the deployed page's hardware is measured there (DEM-03, D-43).
+- **Agreement.** At the reference settings, each policy's retained, paired incremental retained and offers per member-month fall within the full run's intervals widened by the demo's own sampling error (DMO-05, D-43). The demo's at-risk rate is not claimed to match.
 - **Hosting.** A page in the shared Streamlit Community Cloud app `portfolio-demos`. It makes no network or model calls and holds no secrets.
 - **Honesty.** The footer is always visible: "Every outcome on this screen is simulated. Assumptions: [link to the YAML]."
 
@@ -645,7 +645,7 @@ Status vocabulary: `not-started | spec | building | green`.
 | **B2.3** | Report deploy and README | B2.1, B2.2, A2.8 | README headline chart, report published on GitHub Pages, docs commands tested | US1 |
 | **P2.1** | PR/FAQ | A2.8, B2.1 | One-page PR/FAQ, numbers templated from `summary.json`, PDF | US6 |
 | **B2.4** | Open-source packaging and v0.1.0 | B2.3, P2.1 | PyPI `respectful-offers`, Python × OS CI matrix, docs (quickstart, your own data, simulator config), community files, history audit, data card, tag v0.1.0 | US6 |
-| **D3.1** | Demo engine | A2.8 | Aggregates-only cohort cube, `simulate()`, perf test, agreement with the full run | US7 |
+| **D3.1** | Demo engine | A2.7, B2.2 | Aggregates-only cohort cube, `simulate()`, perf test, agreement with the full run; built on a synthetic run, rebuilt from real data in A2.8 (D-42) | US7 |
 | **D3.2** | Demo page | D3.1, B2.2 | Streamlit page in `portfolio-demos` matching the PRD wireframe, deployed | US7 |
 | **D3.3** | Project page and video | B2.4, D3.2 | Case study page and 90-second video script, numbers checked against `summary.json`, links resolve | — |
 
@@ -683,7 +683,9 @@ graph LR
   B21 --> P21
   B23 --> B24[B2.4 OSS packaging + v0.1.0]
   P21 --> B24
-  A28 --> D31[D3.1 Demo engine]
+  A27 --> D31[D3.1 Demo engine]
+  B22 --> D31
+  D31 --> A28
   D31 --> D32[D3.2 Demo page]
   B22 --> D32
   B24 --> D33[D3.3 Project page + video]
@@ -728,7 +730,7 @@ N1.3 comes before N1.2 because the runtime is the riskier design, and N1.2 waits
 
 ### 11.4 Capability catalog
 
-Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`. A node turns green when all of its rows are green. The trace column links each capability to the PRD (US, FR, NFR, R) or to a loophole finding (Appendix A). **121 capabilities**: 110 in v0.1.0, 11 in the demo and project page.
+Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`. A node turns green when all of its rows are green. The trace column links each capability to the PRD (US, FR, NFR, R) or to a loophole finding (Appendix A). **122 capabilities**: 111 in v0.1.0 (REA-05 added by D-42), 11 in the demo and project page.
 
 **W0.1 Repo and harness**
 
@@ -881,6 +883,7 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | REA-02 | A sample of real decisions read end to end (member, allowed set, choice, response, renewal) and every failure reason confirmed before any number is reported (L-11) | L-11 |
 | REA-03 | Churn model report and leakage probe re-run on the real cohorts | FR2, C4 |
 | REA-04 | The run's published outputs pass the publish scan and respect the DAT-03 licence ruling | NFR5 |
+| REA-05 | The demo cube rebuilt from the real run with `offers demo-cube`, and the demo's agreement with the full run (DMO-05) re-checked on real data | D-42 |
 
 **B2.1 Results report**
 

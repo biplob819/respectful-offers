@@ -34,7 +34,7 @@ BOOL_TEXT = {"true": True, "false": False, "1": True, "0": False, "1.0": True, "
 
 class FeaturesStage(Stage):
     name = "features"
-    code_version = "3"
+    code_version = "4"
 
     def __init__(self, raw_dir: Path) -> None:
         self._raw_dir = Path(raw_dir)  # private: the manifest, not the path, is the identity

@@ -91,7 +91,7 @@ def load_user_table(path: Path, where: str | None = None) -> pd.DataFrame:
 
 class TableFeaturesStage(Stage):
     name = "features_table"
-    code_version = "1"
+    code_version = "2"
 
     def __init__(self, shown_as: tuple[str, str] = ("features table", "audit table")) -> None:
         self._shown_as = shown_as  # the user's file names for messages; not part of the key
