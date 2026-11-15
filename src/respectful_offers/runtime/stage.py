@@ -95,7 +95,7 @@ class RunContext:
         fd, name = tempfile.mkstemp(prefix=".run-", suffix=".json", dir=self.run_dir)
         with os.fdopen(fd, "w", encoding="utf-8") as fh:  # a unique temp file per writer
             fh.write(json.dumps(body, indent=2, sort_keys=True) + "\n")
-        os.replace(name, path)
+        _replace_with_retry(name, path)
         return path
 
 
@@ -246,3 +246,16 @@ def git_sha(root: Path) -> str:
         return out.stdout.strip()
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
+
+
+def _replace_with_retry(src: str, dst: Path, attempts: int = 200) -> None:
+    """os.replace, retried briefly: on Windows a replace onto a file another writer is
+    replacing at that moment raises PermissionError (EvalKit L-18). Last writer wins."""
+    for i in range(attempts):
+        try:
+            os.replace(src, dst)
+            return
+        except PermissionError:
+            if i == attempts - 1:
+                raise
+            time.sleep(0.005)
