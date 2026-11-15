@@ -42,53 +42,6 @@ def cmd_data(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
-def cmd_features(args: argparse.Namespace) -> int:
-    from respectful_offers.data.verify import DataError, read_manifest
-    from respectful_offers.features.stage import FeaturesStage, load_features_table
-    from respectful_offers.runtime import RunContext, git_sha, import_artifact, run_stage
-    from respectful_offers.schemas.contracts import ContractError
-
-    try:
-        if args.from_table:
-            df = load_features_table(Path(args.from_table))
-            counts = df.groupby("cohort").size().to_dict()
-            _emit(
-                {"ok": True, "source": "table", "members": counts},
-                args.json,
-                f"offers features: OK (your table: {counts})",
-            )
-            return EXIT_OK
-        data_dir = Path(args.data_dir)
-        manifest = read_manifest(data_dir / "manifest.json")
-        if manifest is None:
-            raise DataError(
-                "no verified data: run `offers data download` or `offers data synthetic` first"
-            )
-        ctx = RunContext(
-            Path(args.root),
-            run_id=args.run_id,
-            config_hash="features",
-            seed=0,
-            git_sha=git_sha(Path(args.root)),
-        )
-        src = import_artifact(ctx, "manifest", {"manifest.json": data_dir / "manifest.json"})
-        ref = run_stage(FeaturesStage(data_dir / "raw"), {"manifest": src}, ctx)
-        ctx.write_lineage()
-        stats = json.loads((ref.path / "stats.json").read_text(encoding="utf-8"))
-    except (DataError, ContractError) as exc:
-        _emit({"ok": False, "error": str(exc)}, args.json, f"offers features: {exc}")
-        return EXIT_DATA if isinstance(exc, DataError) else EXIT_ERROR
-    summary = ", ".join(
-        f"{c}: {s['members']:,} members, churn {s['churn_rate']:.1%}" for c, s in stats.items()
-    )
-    _emit(
-        {"ok": True, "source": manifest.get("source"), "artifact": ref.key, "stats": stats},
-        args.json,
-        f"offers features: OK ({summary}; data source: {manifest.get('source')})",
-    )
-    return EXIT_OK
-
-
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="offers", description=__doc__)
     parser.add_argument("--version", action="version", version=f"offers {__version__}")
@@ -100,15 +53,6 @@ def build_parser() -> argparse.ArgumentParser:
     data.add_argument("--seed", type=int, default=20261121, help="synthetic only")
     data.add_argument("--json", action="store_true")
     data.set_defaults(func=cmd_data)
-    feats = sub.add_parser("features", help="build member features as of each cohort's label month")
-    feats.add_argument("--data-dir", default="data")
-    feats.add_argument(
-        "--from-table", help="your own features table (.csv or .parquet) instead of KKBox"
-    )
-    feats.add_argument("--root", default=".", help="project folder holding .offers/ and runs/")
-    feats.add_argument("--run-id", default="features")
-    feats.add_argument("--json", action="store_true")
-    feats.set_defaults(func=cmd_features)
     return parser
 
 
