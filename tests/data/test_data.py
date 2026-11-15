@@ -102,8 +102,8 @@ def test_verify_records_everything_and_detects_changes(tmp_path, synth):
     assert len(f["sha256"]) == 64 and f["rows"] == len(pd.read_csv(raw / "transactions.csv"))
     assert f["date_ranges"]["transaction_date"][1] <= 20170228
     assert f["columns"] == list(COLUMNS["transactions.csv"])
-    with (raw / "train.csv").open("a", encoding="utf-8") as fh:
-        fh.write("S999999,0\n")
+    with (raw / "train.csv").open("ab") as fh:  # binary: text mode on Windows writes \r\n
+        fh.write(b"S999999,0\n")
     with pytest.raises(DataError, match=r"changed since the manifest.*train.csv"):
         verify(raw, tmp_path / "manifest.json")
 

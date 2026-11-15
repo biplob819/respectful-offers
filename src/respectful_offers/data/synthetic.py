@@ -178,7 +178,7 @@ def generate(out_dir: Path, spec: SyntheticSpec = SyntheticSpec()) -> dict[str, 
         returns 31 to 60 days after expiry for a fifth of churners."""
         stay = cohort & ~churn
         when = expiry + _days(rng.integers(-3, 30, n))
-        when = pd.DatetimeIndex(np.where(when < floor, floor, when))
+        when = when.where(when >= floor, floor)  # never before the cohort's as-of date
         back = cohort & churn & (rng.uniform(size=n) < 0.2)
         late = expiry + _days(rng.integers(31, 61, n))
         rows = []
