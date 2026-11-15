@@ -1,0 +1,23 @@
+# Run configuration for `offers evaluate` (Tech Spec §7, A2.7). Not pre-registered: only the
+# simulator is (D-3). Budget in NTD face value per 1,000 cohort members per period.
+schema_version: "1.0"
+seed: 20261121
+holdout_salt: "respectful-offers-v1"
+cohort_buckets:          # salted-hash buckets 0..100 (D-8)
+  holdout: [0, 10]
+  train: [10, 40]
+  logging: [40, 60]
+  eval: [60, 100]
+eval_sample: 200000
+horizon_periods: 3
+risk_threshold: 0.15     # the reference "at risk" line; R2 and the status quo use it
+budget_per_1000_per_period: 3000.0
+budget_sweep: [0.0, 1000.0, 3000.0, 6000.0, 12000.0]
+variants: [conservative, central, optimistic]
+decision_features: [churn_risk, auto_renew, tenure_days, cancels_90d, listening_trend_30d, price_30d, nudged, declined]
+ts_prior_precision: 1.0
+ts_noise_variance: 0.2   # reward is revenue ÷ price, so on a 0..1 scale
+ts_integration_nodes: 32
+ts_support_floor: 0.001
+bootstrap_blocks: 1000
+bootstrap_resamples: 10000

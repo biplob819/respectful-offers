@@ -46,8 +46,8 @@ class PeriodSpend(Model):
     def _within_budget(self) -> Self:
         if self.face_value_committed > self.budget * (1 + 1e-12):
             raise ValueError("face value committed exceeds the period budget (R4)")
-        if self.realised_cost > self.face_value_committed * (1 + 1e-12):
-            raise ValueError("realised cost exceeds the face value committed")
+        # realised cost is bounded by face value over the horizon, not per period: a plan
+        # change is charged in full when sent and paid in later periods (D-32, D-38)
         return self
 
 
@@ -58,7 +58,7 @@ class PolicySummary(Model):
     n_members: PosInt
     retained_per_1000: Interval
     incremental_retained_per_1000: Interval
-    retained_per_1000_at_risk: Interval
+    retained_per_1000_at_risk: Interval | None  # None below 30 at-risk members (D-38)
     ltv_proxy_per_member: Interval
     discount_cost_total: NonNegFloat
     cost_per_incremental_retained: Interval | None
@@ -71,15 +71,20 @@ class PolicySummary(Model):
 
     @model_validator(mode="after")
     def _ratio_defined_only_with_incremental_members(self) -> Self:
-        positive = self.incremental_retained_per_1000.point > 0
+        # the ratio's interval is bounded only if incremental retention is surely positive
+        positive = self.incremental_retained_per_1000.lo > 0
         ratio = self.cost_per_incremental_retained
         if ratio is not None and ratio.lo < 0:
             raise ValueError("cost per incremental retained member cannot be negative")
         if positive != (ratio is not None):
             raise ValueError(
-                "cost_per_incremental_retained must be present exactly when incremental "
-                "retention is positive"
+                "cost_per_incremental_retained must be present exactly when the incremental "
+                "retention interval lies above zero (D-38)"
             )
+        realised = math.fsum(s.realised_cost for s in self.spend)
+        face = math.fsum(s.face_value_committed for s in self.spend)
+        if realised > face * (1 + 1e-9) + 1e-9:
+            raise ValueError("realised cost exceeds the face value committed over the horizon")
         if set(self.violations) != {"R1", "R2", "R3", "R7", "R8"}:
             raise ValueError("violations must report exactly R1, R2, R3, R7 and R8")
         return self

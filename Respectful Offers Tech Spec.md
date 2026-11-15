@@ -500,7 +500,7 @@ For each variant, every policy in §6.3 runs H = 3 periods on the evaluation coh
 ### 7.3 Intervals and comparisons
 
 - Block bootstrap (D-16): each member's per-period outcomes are summed into one of 1,000 hash blocks; 10,000 resamples of blocks; percentile 95% intervals. One seeded resample matrix serves every policy, metric and variant.
-- Ratios (cost per incremental retained) are bootstrapped as ratios of block sums. When the incremental point estimate is ≤ 0, the ratio is `null` with its reason.
+- Ratios (cost per incremental retained) are bootstrapped as ratios of block sums. When the incremental interval does not lie above zero, the ratio's interval is unbounded, so it is `null`; resamples with no extra member count as unbounded, never dropped (D-38). More than 1% undefined resamples refuse an interval.
 - Paired differences between policies on the same resamples, a two-sided bootstrap p-value, and Holm at 5% per metric and variant. Ties are reported as ties.
 - The three variants are a **scenario analysis**, not an interval. The report never pools them.
 - Floats that reach an output are summed with `math.fsum` (EvalKit L-27).
@@ -511,13 +511,14 @@ For each variant, every policy in §6.3 runs H = 3 periods on the evaluation coh
 | --- | --- | --- |
 | Retained per 1,000 | Members still active after period H | Every evaluation member, fixed whatever the threshold |
 | Incremental retained per 1,000 | Retained under the policy minus retained under `no_offer`, on the same members | As above |
-| Retained per 1,000 at risk (US1) | As above, restricted to members with risk ≥ the **reference** threshold in config | At-risk members at the reference threshold, so the denominator does not move when the demo slider moves |
-| Cost per incremental retained (US2) | Σ discount cost ÷ incremental retained members | — |
+| Retained per 1,000 at risk (US1) | As above, restricted to members with risk ≥ the **reference** threshold in config; null below 30 at-risk members | At-risk members at the reference threshold, so the denominator does not move when the demo slider moves |
+| Cost per incremental retained (US2) | Σ discount cost ÷ incremental retained members; null unless the incremental interval lies above zero | — |
+| Members kept per discount dollar (pre-registered headline) | Incremental retained members per 1,000 NTD of discount, compared paired with Holm (D-38) | Discount cost |
 | 90-day LTV proxy | Σ net revenue over H periods per member, NTD | Every evaluation member |
 | Offer fatigue | Shown actions per active member-month; maximum per member-month | Active member-months |
 | No-offer share (R5) | Share of decisions that are `no_offer` | Decisions |
 | Exploration rate (R6) | Share of bandit decisions not equal to the posterior-mean best | Bandit decisions |
-| Spend against budget (R4) | Face value committed and realised cost per period | Per period |
+| Spend against budget (R4) | Face value committed (≤ budget each period) and realised cost per period; realised ≤ face over the horizon | Per period |
 | Violations (R1, R2, R3, R7, R8) | Auditor counts | Per policy and variant |
 | Churn model quality | AUC, Brier with CIs, ECE, reliability bins, two-feature baseline AUC | March cohort |
 | Holdout consistency | Realised holdout retention minus eval `no_offer` retention; the interval should contain 0 | Per variant |

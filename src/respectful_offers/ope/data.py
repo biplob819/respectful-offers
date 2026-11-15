@@ -8,7 +8,7 @@ from respectful_offers.ope.estimators import Logs
 from respectful_offers.policy.baselines import Policy, View
 from respectful_offers.policy.cohort import Cohort
 from respectful_offers.policy.respect import allowed_actions
-from respectful_offers.policy.rollout import RolloutResult
+from respectful_offers.policy.rollout import RolloutResult, eligible
 from respectful_offers.schemas.rows import ACTIONS
 from respectful_offers.schemas.simulator import SimulatorConfig
 from respectful_offers.sim.response import Tables
@@ -34,6 +34,7 @@ def period1_view(
         declined=np.zeros((n, 4), bool),
         risk_threshold=risk_threshold,
     )
+    allowed = eligible(allowed, cohort.price, np.ones(n))  # the rollout's eligibility rules
     free = np.array([True, sim.actions.content_nudge.cost == 0, False, False])
     return View(
         1,

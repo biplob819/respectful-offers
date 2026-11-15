@@ -28,7 +28,7 @@ from respectful_offers.runtime.seeds import member_uniforms
 from respectful_offers.schemas.contracts import DECISIONS, MEMBER_STATES, OUTCOMES, check_frame
 from respectful_offers.schemas.rows import ACTIONS
 from respectful_offers.schemas.simulator import SimulatorConfig
-from respectful_offers.sim.response import NO_OFFER, NUDGE, PLAN, Tables, respond
+from respectful_offers.sim.response import DISCOUNT, NO_OFFER, NUDGE, PLAN, Tables, respond
 
 _MASK_TUPLES = {m: tuple(a for i, a in enumerate(ACTIONS) if m >> i & 1) for m in range(16)}
 _ACTION_NAMES = np.array(ACTIONS, dtype=object)
@@ -40,6 +40,16 @@ class RolloutResult:
     outcomes: pd.DataFrame
     states: pd.DataFrame
     spend: list[dict[str, float]]
+
+
+def eligible(allowed: np.ndarray, price: np.ndarray, plan_multiplier: np.ndarray) -> np.ndarray:
+    """Eligibility, not respect: a plan change is offered once, from the full plan; and a
+    commercial offer needs something to discount (price > 0), so it is never free (D-38)."""
+    out = allowed.copy()
+    out[:, PLAN] &= plan_multiplier >= 1.0
+    out[:, DISCOUNT] &= price > 0
+    out[:, PLAN] &= price > 0
+    return out
 
 
 def _tuples(mask: np.ndarray) -> list[tuple[str, ...]]:
@@ -110,8 +120,7 @@ def rollout(
         else:  # the status quo ignores R1 and R2 (OWNER D-17), never R3
             allowed = np.ones((len(idx), 4), dtype=bool)
             allowed[hold[idx], 1:] = False
-        # eligibility, not respect: a plan change is offered once, from the full plan
-        allowed[:, PLAN] &= mult[idx] >= 1.0
+        allowed = eligible(allowed, cohort.price[idx], mult[idx])
         view = View(
             period=period,
             periods_left=periods - period + 1,

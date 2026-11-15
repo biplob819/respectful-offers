@@ -112,6 +112,103 @@ def cmd_prereg(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+def _commit(root: Path) -> str:
+    """The commit a run used, marked `-dirty` when the working tree has uncommitted changes
+    (the code that ran is then not exactly that commit)."""
+    import subprocess
+
+    from respectful_offers.runtime import git_sha
+
+    sha = git_sha(root)
+    if sha == "unknown":
+        return sha
+    try:
+        status = subprocess.run(
+            ["git", "status", "--porcelain", "--untracked-files=normal"],
+            cwd=root,
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout
+    except (OSError, subprocess.CalledProcessError):
+        return sha
+    return f"{sha}-dirty" if status.strip() else sha
+
+
+def cmd_evaluate(args: argparse.Namespace) -> int:
+    import shutil
+
+    from respectful_offers.churn.stage import ChurnStage
+    from respectful_offers.data.verify import DataError, read_manifest
+    from respectful_offers.evaluate.stage import EvaluateStage
+    from respectful_offers.features.stage import FeaturesStage
+    from respectful_offers.runtime import RunContext, import_artifact, run_stage
+    from respectful_offers.schemas import load_simulator_config
+    from respectful_offers.schemas.config import ConfigError, load_run_config
+    from respectful_offers.schemas.contracts import ContractError
+    from respectful_offers.schemas.summary import RunSummary
+    from respectful_offers.sim.prereg import PreregError, prereg_status, sha256
+
+    root = Path(args.root)
+    try:
+        cfg = load_run_config(Path(args.config))
+        sim_path = Path(args.simulator)
+        sim = load_simulator_config(sim_path)
+        if args.variant != "all":
+            if args.variant not in cfg.variants:
+                raise ConfigError(f"variant {args.variant!r} is not in {list(cfg.variants)}")
+            cfg = cfg.model_copy(update={"variants": (args.variant,)})
+        data_dir = Path(args.data_dir)
+        manifest = read_manifest(data_dir / "manifest.json")
+        if manifest is None:
+            raise DataError(
+                "no verified data: run `offers data download` or `offers data synthetic` first"
+            )
+        status = prereg_status(
+            sim_path, Path(args.prereg), args.exploratory, str(manifest.get("source"))
+        )
+        ctx = RunContext(
+            root,
+            run_id=args.run_id,
+            config_hash=sha256(Path(args.config))[:16],
+            seed=cfg.seed,
+            git_sha=_commit(root),
+            simulator_hash=sha256(sim_path)[:16],
+        )
+        src = import_artifact(ctx, "manifest", {"manifest.json": data_dir / "manifest.json"})
+        feats = run_stage(FeaturesStage(data_dir / "raw"), {"manifest": src}, ctx)
+        churn = run_stage(ChurnStage(), {"features": feats}, ctx)
+        stage = EvaluateStage(cfg, sim, status, args.run_id, git_sha=ctx.git_sha)
+        ref = run_stage(stage, {"features": feats, "churn": churn}, ctx)
+        ctx.write_lineage()
+        for name in ("summary.json", "frontier.json", "audit.json"):
+            shutil.copyfile(ref.path / name, ctx.run_dir / name)
+        summary = RunSummary.model_validate_json((ref.path / "summary.json").read_text("utf-8"))
+        clean = json.loads((ref.path / "audit.json").read_text("utf-8"))["clean"]
+    except (DataError, ContractError, ConfigError, PreregError) as exc:
+        _emit({"ok": False, "error": str(exc)}, args.json, f"offers evaluate: {exc}")
+        return EXIT_DATA if isinstance(exc, DataError) else EXIT_ERROR
+    variants = ", ".join(summary.variants)
+    lines = [f"offers evaluate: {summary.prereg_status}, simulated, variants {variants}"]
+    for p in summary.policies:
+        lines.append(
+            f"  {p.variant:12s} {p.policy:24s} retained/1000 {p.retained_per_1000.point:7.1f}  "
+            f"LTV {p.ltv_proxy_per_member.point:8.2f}  violations {sum(p.violations.values())}"
+        )
+    lines.append(f"  respectful policies audit {'clean' if clean else 'FAILED'}; {ctx.run_dir}")
+    _emit(
+        {
+            "ok": clean,
+            "run_dir": str(ctx.run_dir),
+            "prereg_status": summary.prereg_status,
+            "audit_clean": clean,
+        },
+        args.json,
+        "\n".join(lines),
+    )
+    return EXIT_OK if clean else EXIT_AUDIT
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="offers", description=__doc__)
     parser.add_argument("--version", action="version", version=f"offers {__version__}")
@@ -140,6 +237,21 @@ def build_parser() -> argparse.ArgumentParser:
     pre.add_argument("--replace", metavar="REASON", help="replace a registration, saying why")
     pre.add_argument("--json", action="store_true")
     pre.set_defaults(func=cmd_prereg)
+    ev = sub.add_parser("evaluate", help="roll out every policy under every variant; summary.json")
+    ev.add_argument("--variant", default="all", help="'all' or one variant name")
+    ev.add_argument("--config", default="configs/run.yaml")
+    ev.add_argument("--simulator", default="configs/simulator.yaml")
+    ev.add_argument("--prereg", default="docs/prereg.md")
+    ev.add_argument(
+        "--exploratory",
+        action="store_true",
+        help="allow an unregistered simulator (never published)",
+    )
+    ev.add_argument("--data-dir", default="data")
+    ev.add_argument("--root", default=".", help="project folder holding .offers/ and runs/")
+    ev.add_argument("--run-id", default="latest")
+    ev.add_argument("--json", action="store_true")
+    ev.set_defaults(func=cmd_evaluate)
     return parser
 
 
@@ -154,7 +266,10 @@ def main(argv: list[str] | None = None) -> int:
     except KeyboardInterrupt:
         return EXIT_ERROR
     except Exception as exc:  # a CLI owns its exit codes (EvalKit L-29)
-        print(f"offers: {type(exc).__name__}: {exc}", file=sys.stderr)
+        message = f"{type(exc).__name__}: {exc}"
+        if getattr(args, "json", False):  # --json promises JSON on stdout, even for a crash
+            print(json.dumps({"ok": False, "error": message}, sort_keys=True))
+        print(f"offers: {message}", file=sys.stderr)
         return EXIT_ERROR
 
 

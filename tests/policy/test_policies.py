@@ -402,3 +402,17 @@ def test_empty_cohorts_and_zero_periods_fail_clearly(cohort, sim):
             seed=7,
             run_id="t",
         )
+
+
+def test_commercial_offers_need_a_price_to_discount(cohort, sim):
+    """A member paying 0 cannot be given a discount or plan change: it would be free and
+    slip past a zero budget (D-38)."""
+    import dataclasses
+
+    price = cohort.price.copy()
+    price[::4] = 0.0
+    free_riders = dataclasses.replace(cohort, price=price)
+    d = run(StatusQuo(), free_riders, sim, budget=0.0).decisions.set_index("msno")
+    zero = d.loc[cohort.msno[::4]]
+    assert not zero["chosen"].isin(["discount_1m", "plan_change"]).any()
+    assert not zero["allowed"].map(lambda a: "discount_1m" in a or "plan_change" in a).any()

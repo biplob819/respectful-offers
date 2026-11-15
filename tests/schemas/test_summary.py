@@ -109,3 +109,27 @@ def test_summaries_pickle_and_deepcopy(data):
 
     s = RunSummary.model_validate_json(json.dumps(data))
     assert pickle.loads(pickle.dumps(s)) == s and copy.deepcopy(s) == s
+
+
+def test_spend_is_bounded_over_the_horizon_not_per_period():
+    """A plan change is charged in full when sent and paid in later periods (D-32, D-38)."""
+    import json
+
+    from harness_lib import ROOT
+    from respectful_offers.schemas.summary import RunSummary
+
+    d = json.loads(
+        (ROOT / "tests" / "fixtures" / "v1" / "run_summary.json").read_text(encoding="utf-8")
+    )
+    b = next(p for p in d["policies"] if p["policy"] == "bandit")
+    b["spend"] = [
+        {"period": 1, "budget": 1e6, "face_value_committed": 900.0, "realised_cost": 100.0},
+        {"period": 2, "budget": 1e6, "face_value_committed": 0.0, "realised_cost": 300.0},
+    ]
+    RunSummary.model_validate_json(json.dumps(d))  # 300 > 0 in period 2, fine over the horizon
+    b["spend"][1]["realised_cost"] = 900.0
+    with pytest.raises(ValidationError, match="over the horizon"):
+        RunSummary.model_validate_json(json.dumps(d))
+    b["spend"][1]["realised_cost"] = 1.0
+    b["retained_per_1000_at_risk"] = None  # too few members at risk: null, never a fake interval
+    RunSummary.model_validate_json(json.dumps(d))
