@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Literal, Self
+from typing import Literal, Self, get_args
 
 from pydantic import Field, field_validator, model_validator
 
@@ -119,6 +119,7 @@ class Comparison(Model):
         return self
 
 
+DISPARITY_METRICS = frozenset({"offer_rate", "retained_per_1000"})
 DISPARITY_GROUPS = {
     "age_band": {"<18", "18-24", "25-34", "35-44", "45+", "unknown"},
     "gender": {"female", "male", "unknown"},
@@ -175,11 +176,19 @@ class RunSummary(Versioned):
         ope_keys = [(o.policy, o.variant, o.estimator) for o in self.ope]
         if len(set(ope_keys)) != len(ope_keys):
             raise ValueError("one OPE row per policy × variant × estimator")
-        for attr, groups in self.disparity.items():
+        policy_names = set(get_args(PolicyName))
+        for key, groups in self.disparity.items():
+            # `attribute`, or `policy.metric.attribute` (D-34)
+            parts = key.split(".")
+            attr = parts[-1]
+            ok_prefix = len(parts) == 1 or (
+                len(parts) == 3 and parts[0] in policy_names and parts[1] in DISPARITY_METRICS
+            )
             allowed = DISPARITY_GROUPS.get(attr)
-            if allowed is None or not groups or not set(groups) <= allowed:
+            if not ok_prefix or allowed is None or not groups or not set(groups) <= allowed:
                 raise ValueError(
-                    f"disparity may only report {sorted(DISPARITY_GROUPS)} groups, got {attr}"
+                    f"disparity may only report {sorted(DISPARITY_GROUPS)} groups, keyed by "
+                    f"attribute or policy.metric.attribute, got {key}"
                 )
         keys = [(p.policy, p.variant) for p in self.policies]
         if len(set(keys)) != len(keys):

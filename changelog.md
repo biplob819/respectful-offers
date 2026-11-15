@@ -2,6 +2,8 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [CHANGE] [N1.1] — run config: `ts_integration_nodes` and `ts_support_floor` replace `ts_mc_draws` (D-35); disparity keys may be `policy.metric.attribute` (D-34); churn stage version 4 (its schemas changed).
+- [FEAT] [A2.5] — Thompson sampling bandit: disjoint Bayesian linear posteriors on revenue ÷ price; exact choice probabilities by a one-dimensional integral with a support floor applied last (D-35); simulated training; a frozen posterior that carries its flag, settings and column order; learning curve against the respectful oracle; allow-listed context with R7 proxy checks.
 - [FIX] [A2.4] — verifier round 1 (D-32, L-29): exact pacer, oracle falls back to its best free action, member-keyed choices, probabilities validated, status quo honours R3, clear errors on empty cohorts.
 - [FEAT] [A2.4] — policies (no offer, holdout, status quo, rule-following baseline, logging pilot, segment oracle), face-value budget pacer, and the H-period rollout engine with CRN, plan-change eligibility and contract-checked logs.
 - [FIX] [A2.1] — small model fits run on one thread (30x faster, same output); churn stage version 3.

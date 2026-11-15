@@ -47,6 +47,20 @@ def _bandit(d):
         (lambda d: d["comparisons"][0]["diff"].update(lo=-1.0), "spans 0"),
         (lambda d: _bandit(d)["cost_per_incremental_retained"].update(lo=-5.0), "negative"),
         (lambda d: d["disparity"].update(S0000001={}), "disparity"),
+        (
+            lambda d: d["disparity"].update(
+                {"bandit.offer_rate.city": {"x": d["disparity"]["gender"]["male"]}}
+            ),
+            "disparity",
+        ),
+        (
+            lambda d: d["disparity"].update({"rogue.offer_rate.gender": d["disparity"]["gender"]}),
+            "disparity",
+        ),
+        (
+            lambda d: d["disparity"].update({"bandit.revenue.gender": d["disparity"]["gender"]}),
+            "disparity",
+        ),
     ],
 )
 def test_inconsistent_summaries_are_refused(data, mutate, match):

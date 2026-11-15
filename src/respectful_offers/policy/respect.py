@@ -20,6 +20,7 @@ from collections.abc import Iterable, Sequence
 import numpy as np
 
 from respectful_offers.runtime.seeds import bucket
+from respectful_offers.schemas.config import protected_name
 from respectful_offers.schemas.rows import ACTIONS, PROTECTED_ATTRIBUTES
 
 NO_OFFER, NUDGE, DISCOUNT, PLAN = range(4)
@@ -97,7 +98,7 @@ def assign_cohorts(
 
 def check_context_columns(columns: Sequence[str], allow_list: Sequence[str]) -> None:
     """R7: a policy's context uses exactly the allow-listed features, never a protected one."""
-    bad = sorted(set(columns) & PROTECTED_ATTRIBUTES)
+    bad = sorted(c for c in columns if c in PROTECTED_ATTRIBUTES or protected_name(c))
     if bad:
         raise ValueError(f"R7: protected or proxy attributes in a policy context: {bad}")
     extra = sorted(set(columns) - set(allow_list))

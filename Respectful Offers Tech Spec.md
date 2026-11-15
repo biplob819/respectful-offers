@@ -279,7 +279,7 @@ class RunSummary(FrozenModel):
     comparisons: tuple[Comparison, ...]
     churn: ChurnReport
     holdout_check: FrozenDict[str, Interval]       # realised holdout vs eval no-offer retention, per variant
-    disparity: FrozenDict[str, FrozenDict[str, Interval]]   # attribute → group → offer rate and retention
+    disparity: FrozenDict[str, FrozenDict[str, Interval]]   # "policy.metric.attribute" → group → interval (D-34)
     started_at: datetime
     finished_at: datetime | None
 
@@ -297,7 +297,8 @@ class RunConfig(FrozenModel):
     decision_features: tuple[str, ...]     # the allow-list (D-9)
     ts_prior_precision: float
     ts_noise_variance: float
-    ts_mc_draws: int = 500
+    ts_integration_nodes: int = 32           # per action, exact choice probabilities (D-35)
+    ts_support_floor: float = 0.001          # every allowed action keeps at least this probability
     bootstrap_blocks: int = 1_000
     bootstrap_resamples: int = 10_000
 ```
@@ -472,11 +473,11 @@ The budget pacer applies to every policy except `holdout`, `no_offer` and `loggi
 
 ### 6.4 Thompson sampling bandit (`policy/bandit.py`)
 
-- **Context** xᵢ: the allow-listed features (calibrated risk, risk band one-hot, auto-renew, tenure band, listening trend, price, nudged flag, declined flags), standardised with training-cohort statistics.
+- **Context** xᵢ: the allow-listed features (calibrated risk, auto-renew, tenure, cancellations, listening trend, price, nudged flag, declined flags; risk band is skipped because calibrated risk carries it), standardised with training-cohort statistics. The posterior records its column order and refuses a context of any other shape or order.
 - **Model.** For each action, a Bayesian ridge posterior N(μₐ, Σₐ) on net revenue, with prior precision `ts_prior_precision` and noise variance `ts_noise_variance`.
 - **Choice.** Draw θₐ ~ N(μₐ, Σₐ) for each allowed action, score θₐᵀxᵢ, and pick the highest. `no_offer` wins when every offer's sampled value is below it, which is R5.
-- **Training.** Simulated online learning on the training cohort over H periods, with a batch posterior update after each period. The posterior after training is stored as an artifact and frozen for evaluation.
-- **Propensities.** π(a | xᵢ) is estimated from `ts_mc_draws` posterior draws per member, vectorised, and used for OPE and for the exploration rate (the share of decisions where the chosen action is not the posterior-mean best, R6).
+- **Training.** Simulated online learning on the training cohort over H periods, with a batch posterior update after each period. The posterior after training is stored as an artifact and frozen for evaluation; the frozen flag travels with it, and a frozen posterior never updates.
+- **Propensities.** π(a | xᵢ) is computed exactly, as the one-dimensional integral P(a wins) = ∫ Π_{b≠a} Φ_b dΦ_a over each member's independent normal scores, on a grid of `ts_integration_nodes` per action (worst error about 6e-4), then mixed with a uniform floor `ts_support_floor` over the allowed actions (D-35). They are used for OPE and for the exploration rate (the share of decisions where the drawn action is not the posterior-mean best, pooled over periods, R6).
 - **Learning curve.** Period-1 oracle value of the posterior after each training period, against the segment oracle and no-offer (BND-05).
 
 ---
@@ -493,7 +494,8 @@ For each variant, every policy in §6.3 runs H = 3 periods on the evaluation coh
 - **IPS:** V̂ = (1/n) Σ π(aᵢ|xᵢ)/μ(aᵢ|xᵢ) · rᵢ. **SNIPS:** the same, normalised by Σ π/μ. **DR:** V̂ = (1/n) Σ [Σₐ π(a|xᵢ) q̂(xᵢ, a) + π(aᵢ|xᵢ)/μ(aᵢ|xᵢ) · (rᵢ − q̂(xᵢ, aᵢ))], with q̂ a per-action gradient-boosted regressor (scikit-learn `HistGradientBoostingRegressor`, D-29) cross-fitted over two folds.
 - **Why period 1 only.** At period 1 no member has a history, so every policy's allowed set matches the logger's and the logger covers every action a target can take. From period 2 onwards histories diverge, and single-step OPE no longer applies. The estimators refuse a target from a later period (OPE-06).
 - **Support.** Every target puts zero mass outside the logger's allowed set (asserted). Effective sample size (Σw)²/Σw² is reported.
-- **Validation.** Each estimate is reported beside the oracle with `covered`. In `pytest -m ope`, 200 replicate logging cohorts of 5,000 synthetic members show that DR and SNIPS 95% interval coverage of the oracle lies between 0.90 and 0.98, with mean absolute bias below a pinned tolerance.
+- **Validation.** Each estimate is reported beside the exact oracle, computed on each member's own hidden segment (`expected_reward_by_segment`), with `covered`. In `pytest -m ope`, 200 replicate logging pilots on the 4,000-member fixture show, for no offer, the rule-following baseline, the segment oracle and a peaked stochastic target, that DR and SNIPS 95% interval coverage lies between 0.90 and 0.99 and the mean signed error is under 1 NTD per member (D-36).
+- **Guards.** Logs must be the uniform pilot's (propensity exactly 1/|allowed|, aligned, distinct members); an interval needs at least 20 populated hash blocks and at most 1% undefined SNIPS resamples; a target with zero weight on every logged action is refused.
 
 ### 7.3 Intervals and comparisons
 

@@ -110,7 +110,8 @@ class RunConfig(Versioned):
     decision_features: tuple[Name, ...] = Field(min_length=1)
     ts_prior_precision: float = Field(gt=0.0, allow_inf_nan=False)
     ts_noise_variance: float = Field(gt=0.0, allow_inf_nan=False)
-    ts_mc_draws: int = Field(default=500, ge=10, strict=True)
+    ts_integration_nodes: int = Field(default=32, ge=8, le=256, strict=True)
+    ts_support_floor: float = Field(default=0.001, gt=0.0, le=0.05, allow_inf_nan=False)
     bootstrap_blocks: int = Field(default=1_000, ge=10, strict=True)
     bootstrap_resamples: int = Field(default=10_000, ge=100, strict=True)
 

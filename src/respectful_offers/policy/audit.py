@@ -17,6 +17,7 @@ Counts per policy × variant:
 from __future__ import annotations
 
 import numbers
+import re
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any
@@ -31,6 +32,17 @@ KEYS = ["policy", "variant", "msno", "period"]
 _ALL_ACTIONS = frozenset({"no_offer", "content_nudge", "discount_1m", "plan_change"})
 _RESPONSES = frozenset({"accepted", "declined", "not_shown"})
 _PROTECTED = frozenset({"age", "bd", "age_band", "gender", "sex", "city", "registered_via", "msno"})
+_PROTECTED_WORDS = frozenset({"age", "bd", "gender", "sex", "city", "registered", "msno", "birth"})
+
+
+def _protected(column: str) -> bool:
+    """Its own proxy rule, written apart from the filter's: a column is protected if its name
+    or any word in it (snake, kebab or camel case, digits split off) is a protected word."""
+    spaced = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", column)
+    words = {w for w in re.split(r"[^a-z]+", spaced.lower()) if w}
+    return column in _PROTECTED or bool(words & _PROTECTED_WORDS)
+
+
 _AUDIT_ACTIONS = ("content_nudge", "discount_1m", "plan_change")
 _COMMERCIAL = ("discount_1m", "plan_change")
 MAX_PERIOD = 1_000
@@ -175,7 +187,7 @@ def audit(
     allowed = set(allow_list)
     for (policy, variant), g in d.groupby(["policy", "variant"], sort=True):
         cols = context_columns.get(str(policy), ())
-        r7 = len((set(cols) - allowed) | (set(cols) & _PROTECTED))
+        r7 = len((set(cols) - allowed) | {c for c in cols if _protected(c)})
         c = {r: int(g[r].sum()) for r in ("R1", "R2", "R3", "R8")}
         c["R7"] = r7
         key = (str(policy), str(variant))

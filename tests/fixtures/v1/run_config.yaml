@@ -15,6 +15,7 @@ variants: [conservative, central, optimistic]
 decision_features: [churn_risk, risk_band, auto_renew, tenure_days, listening_trend_30d, price_30d, nudged, declined]
 ts_prior_precision: 1.0
 ts_noise_variance: 2500.0
-ts_mc_draws: 500
+ts_integration_nodes: 32
+ts_support_floor: 0.001
 bootstrap_blocks: 1000
 bootstrap_resamples: 10000
