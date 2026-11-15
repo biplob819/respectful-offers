@@ -17,7 +17,7 @@ from respectful_offers.schemas._base import Fraction, Model, Name, NonNegFloat, 
 M = TypeVar("M", bound=Model)
 
 PROTECTED_ATTRIBUTES: frozenset[str] = frozenset(
-    {"age", "bd", "age_band", "gender", "city", "registered_via"}
+    {"age", "bd", "age_band", "gender", "sex", "city", "registered_via", "msno"}
 )
 
 Action = Literal["no_offer", "content_nudge", "discount_1m", "plan_change"]
