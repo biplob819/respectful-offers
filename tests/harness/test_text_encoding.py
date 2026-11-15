@@ -21,9 +21,11 @@ def offenders():
                 if name not in CALLS:
                     continue
                 if name == "open":
+                    # Path.open(mode) takes the mode first; open(path, mode) second
+                    pos = 0 if isinstance(f, ast.Attribute) else 1
                     mode = (
-                        node.args[1]
-                        if len(node.args) > 1
+                        node.args[pos]
+                        if len(node.args) > pos
                         else next((k.value for k in node.keywords if k.arg == "mode"), None)
                     )
                     if isinstance(mode, ast.Constant) and "b" in str(mode.value):

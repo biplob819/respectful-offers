@@ -48,7 +48,8 @@ class Stage(Generic[In, Out]):
 
     def cache_key(self, inputs: In, ctx: RunContext) -> str:
         # sha256 over canonical JSON of:
-        # name, code_version, input artifact hashes, ctx.config_hash, ctx.seed
+        # name, code_version, input artifact hashes, params() (instance attributes by default),
+        # ctx.config_hash, ctx.simulator_hash, ctx.seed  (D-26)
         ...
 
     def run(self, inputs: In, ctx: RunContext) -> Out: ...
@@ -439,7 +440,7 @@ The **segment oracle** policy sees each member's true segment and picks the allo
 | R1 declined stays declined | Remove every action in `state.declined`, nudges included (OWNER D-18) |
 | R2 content before commerce | If `churn_risk ≥ risk_threshold` and `not nudged`: allowed ∩ {`no_offer`, `content_nudge`} |
 | R8 one offer per month | Structural: one decision per active member per period |
-| R7 no protected attributes | Policy context columns must equal the allow-list; checked at policy construction and again by the auditor |
+| R7 no protected attributes | Policy context columns must come from the allow-list (a baseline may use fewer, e.g. risk alone) and never name a protected or proxy attribute; checked at policy construction and again by the auditor, which refuses a policy whose context was not logged (D-25) |
 | Always | `no_offer` is always allowed, so the allowed set is never empty |
 
 ### 6.2 Auditor (`policy/audit.py`)
