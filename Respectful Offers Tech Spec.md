@@ -32,6 +32,7 @@ Each decision below seeds `docs/decisions.md` as D-1 to D-24. `OWNER D-n` marks 
 | D-16 | Intervals come from a **block bootstrap**: 1,000 hash-defined member blocks, 10,000 resamples, one seeded resample matrix shared by every policy and metric, paired across policies under CRN. A gap counts as separated only after a Holm correction per metric and variant (as in EvalKit D-36, D-37) | A member-level bootstrap; no correction | A member-level resample matrix over 200,000 members is too large. Members are independent, so resampling blocks is valid and cheap. Holm stops one lucky comparison from being called a win |
 | OWNER D-17 | "Discount everyone at risk" appears twice: an unconstrained **status quo** reported with its violation counts, and a **rule-following baseline** through the filter. NFR2 becomes "zero violations for every respectful policy" (Q1) | Only the rule-following version | Filtering the baseline turns it into "nudge then discount" and erases the comparison the project exists to make (C5) |
 | OWNER D-21 | **Open source, as EvalKit is.** Published on PyPI as `respectful-offers` (free, checked 15 Nov 2026) by GitHub trusted publishing on tag; Python 3.11–3.13 on Linux, macOS and Windows; anyone can run the policy on **their own subscription data** through a documented features table, with `offers init`, `doctor`, `report --example`; docs, community files, semver, no telemetry and no network calls outside the KKBox download | A project repo only (D-14 as first written) | Owner's instruction (2026-11-15): "It should be published as an open source project". A tool others can run on their own members is more useful than one tied to one Kaggle dataset |
+| D-29 | The churn model and the DR reward model use scikit-learn's `HistGradientBoosting*` (gradient-boosted trees, the same family as LightGBM) instead of LightGBM | LightGBM (PRD) | LightGBM's macOS wheel needs Homebrew's `libomp` and fails to load on a clean machine (checked 15 Nov 2026); an open-source tool must work after a plain `pip install` on every OS, and scikit-learn wheels bundle OpenMP |
 | D-24 | The real KKBox download, its verification and the licence ruling move from N1.2 to a new node **N1.5**, and the real-data results run becomes node **A2.8**. The pipeline is built and proven on the synthetic KKBox-format fixture; only A2.8 and what publishes its numbers (B2.3, P2.1, D3.1) wait for real data | Keep everything behind N1.2 | Owner-only steps (Kaggle credentials, rules, licence) should not block building and testing the whole pipeline |
 | OWNER D-18 | R1 covers **every shown action**, the content nudge included: a nudge the member ignores is not repeated (Q2) | Commercial offers only | Matches the PRD's wording and is the simplest rule to audit |
 
@@ -489,7 +490,7 @@ For each variant, every policy in §6.3 runs H = 3 periods on the evaluation coh
 ### 7.2 Off-policy evaluation (period 1, validated)
 
 - **Logs.** Logging cohort, period 1: (xᵢ, allowed, aᵢ, μ(aᵢ | xᵢ) = 1/|allowedᵢ|, rᵢ).
-- **IPS:** V̂ = (1/n) Σ π(aᵢ|xᵢ)/μ(aᵢ|xᵢ) · rᵢ. **SNIPS:** the same, normalised by Σ π/μ. **DR:** V̂ = (1/n) Σ [Σₐ π(a|xᵢ) q̂(xᵢ, a) + π(aᵢ|xᵢ)/μ(aᵢ|xᵢ) · (rᵢ − q̂(xᵢ, aᵢ))], with q̂ a per-action LightGBM regressor cross-fitted over two folds.
+- **IPS:** V̂ = (1/n) Σ π(aᵢ|xᵢ)/μ(aᵢ|xᵢ) · rᵢ. **SNIPS:** the same, normalised by Σ π/μ. **DR:** V̂ = (1/n) Σ [Σₐ π(a|xᵢ) q̂(xᵢ, a) + π(aᵢ|xᵢ)/μ(aᵢ|xᵢ) · (rᵢ − q̂(xᵢ, aᵢ))], with q̂ a per-action gradient-boosted regressor (scikit-learn `HistGradientBoostingRegressor`, D-29) cross-fitted over two folds.
 - **Why period 1 only.** At period 1 no member has a history, so every policy's allowed set matches the logger's and the logger covers every action a target can take. From period 2 onwards histories diverge, and single-step OPE no longer applies. The estimators refuse a target from a later period (OPE-06).
 - **Support.** Every target puts zero mass outside the logger's allowed set (asserted). Effective sample size (Σw)²/Σw² is reported.
 - **Validation.** Each estimate is reported beside the oracle with `covered`. In `pytest -m ope`, 200 replicate logging cohorts of 5,000 synthetic members show that DR and SNIPS 95% interval coverage of the oracle lies between 0.90 and 0.98, with mean absolute bias below a pinned tolerance.
@@ -565,7 +566,7 @@ For each variant, every policy in §6.3 runs H = 3 periods on the evaluation coh
 | Performance | Demo `simulate` p95 within budget | `pytest -m perf` |
 | Docs | Every command in the README and docs runs in a scripted fixture project (EvalKit L-40) | `pytest -m docs` |
 
-**Determinism.** LightGBM runs with `deterministic=True`, `force_row_wise=True`, `num_threads=1` and a fixed seed. The golden summary rounds every float to 9 significant digits before writing, so it is byte-stable across machines. The golden test also runs on the CI's second OS.
+**Determinism.** The gradient-boosted models (scikit-learn `HistGradientBoosting*`, D-29) run with a fixed `random_state` and no early-stopping split, under the versions locked in uv.lock. The golden summary rounds every float to 9 significant digits before writing, so it is byte-stable across machines. The golden test also runs on the CI's second OS.
 
 **Observability.** Each run writes `runs/<run_id>/run.log` (JSON lines: stage, key, cache hit, rows in and out, seconds, error), and `summary.json` carries wall-clock time and stage timings. There is no spend ledger because nothing costs money (NFR3).
 
@@ -628,7 +629,7 @@ Status vocabulary: `not-started | spec | building | green`.
 | **N1.5** | KKBox acquisition and licence | N1.2 | Real KKBox files downloaded with the owner's credentials and verified; licence ruling recorded | — |
 | **N1.3** | Stage runner and artifact store | N1.1 | Stage contract, content-addressed store, lineage, seed tree with CRN streams, version check | US1 |
 | **N1.4** | Features | N1.2, N1.3 | DuckDB ingestion, as-of feature builder, February and March cohorts, allow-list, audit table, `offers features` | US1 |
-| **A2.1** | Churn model and calibration | N1.4 | LightGBM model, isotonic calibration, March report, risk scores and bands, `offers churn` | US1 |
+| **A2.1** | Churn model and calibration | N1.4 | Gradient-boosted churn model (D-29), isotonic calibration, March report, risk scores and bands, `offers churn` | US1 |
 | **A2.2** | Response simulator | A2.1, N1.3 | Segment response model, three variants set by the owner, CRN draws, oracle, `offers prereg` | US5 |
 | **A2.3** | Respect filter and auditor | N1.1 | `allowed_actions`, holdout assignment, independent auditor, property and mutation tests | US3, US4 |
 | **A2.4** | Policies, budget and rollout | A2.2, A2.3 | Policy protocol, baselines, pacer, logging pilot, segment oracle, vectorised rollout engine | US1, US2 |
@@ -793,7 +794,7 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 
 | Cap | Capability | Trace |
 | --- | --- | --- |
-| CHN-01 | Deterministic LightGBM churn model on the February cohort | FR2 |
+| CHN-01 | Deterministic gradient-boosted churn model (scikit-learn `HistGradientBoostingClassifier`, D-29) on the February cohort | FR2 |
 | CHN-02 | Isotonic calibration on a separate February fold | FR2, H11 |
 | CHN-03 | March report: AUC and Brier with CIs, ECE, reliability bins | FR2, US8 |
 | CHN-04 | Calibrated scores for the March cohort; risk and trend bands from config | FR2 |
@@ -1036,7 +1037,7 @@ These seed `docs/lessons.md` so the verifier's earlier findings become day-one r
 | Thompson sampling barely beats the rule-following baseline | That is a reportable finding. The pre-registered criterion is phrased so either answer is publishable, and the report explains the result through the learning curve and the oracle gap |
 | KKBox file date ranges differ from the assumptions in §9 | N1.2 records the real ranges and FEA-03 enforces the as-of rule against whatever they are |
 | The 30 GB user-log file is slow on a laptop | DuckDB streams it with filters; a cached filtered extract is a stage artifact, so the scan happens once |
-| LightGBM output drifts across OS or versions and breaks the golden run | Deterministic settings, a pinned version, 9-significant-digit rounding in the golden summary, golden test on both CI OSes |
+| Gradient-boosted model output drifts across OS or versions and breaks the golden run | Deterministic settings, a pinned version, 9-significant-digit rounding in the golden summary, golden test on both CI OSes |
 | The block bootstrap understates uncertainty | Members are independent and blocks are random hashes; a test compares block and member-level intervals on the fixture |
 | The myopic bandit undervalues nudges that unlock later options | The three-period rollout measures the real outcome; the write-up names the limitation and the segment oracle shows the headroom |
 | The licence forbids publishing derived aggregates | Read the rules in N1.2 before any derived work is published; the fallback dataset is a recorded decision |
@@ -1121,6 +1122,6 @@ Findings from the PRD review, with what closes each one. C = critical, H = high,
 - [Dudík, Langford and Li: Doubly robust policy evaluation and learning](https://arxiv.org/abs/1103.4601)
 - Swaminathan and Joachims: The self-normalized estimator for counterfactual learning (NeurIPS 2015)
 - [Agrawal and Goyal: Thompson sampling for contextual bandits with linear payoffs](https://arxiv.org/abs/1209.3352)
-- [LightGBM parameters: `deterministic`](https://lightgbm.readthedocs.io/en/latest/Parameters.html)
+- [scikit-learn: HistGradientBoostingClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingClassifier.html)
 - EvalKit: `~/EvalKit/EvalKit Tech Spec.md` §11, `docs/lessons.md`, `docs/decisions.md`, `scripts/node_converge.py`
 - Kova harness: `~/kova-hrtech/docs/sdd/kova-graph/NODE-RUNBOOK.md`

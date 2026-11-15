@@ -26,7 +26,7 @@ Generated from Respectful Offers Tech Spec §11.2 on 2026-11-15; edit here from 
 
 | Node | Title | Depends on | Verified by | Deliverable | Stories |
 | --- | --- | --- | --- | --- | --- |
-| **A2.1** | Churn model and calibration | N1.4 | node_converge + verifier | LightGBM model, isotonic calibration, March report, risk scores and bands, `offers churn` | US1 |
+| **A2.1** | Churn model and calibration | N1.4 | node_converge + verifier | Gradient-boosted churn model (D-29), isotonic calibration, March report, risk scores and bands, `offers churn` | US1 |
 | **A2.2** | Response simulator | A2.1, N1.3 | node_converge + verifier | Segment response model, three variants set by the owner, CRN draws, oracle, `offers prereg` | US5 |
 | **A2.3** | Respect filter and auditor | N1.1 | node_converge + verifier | `allowed_actions`, holdout assignment, independent auditor, property and mutation tests | US3, US4 |
 | **A2.4** | Policies, budget and rollout | A2.2, A2.3 | node_converge + verifier | Policy protocol, baselines, pacer, logging pilot, segment oracle, vectorised rollout engine | US1, US2 |
