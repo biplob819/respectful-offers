@@ -31,7 +31,7 @@ from respectful_offers.schemas.simulator import SimulatorConfig
 
 class ChurnStage(Stage):
     name = "churn"
-    code_version = "2"
+    code_version = "3"
 
     def run(self, inputs: Mapping[str, Path], out: Path, ctx: RunContext) -> None:
         feats = inputs["features"]

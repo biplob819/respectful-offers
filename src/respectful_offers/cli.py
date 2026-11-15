@@ -89,6 +89,29 @@ def cmd_features(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+def cmd_prereg(args: argparse.Namespace) -> int:
+    from respectful_offers.schemas.config import ConfigError
+    from respectful_offers.sim.prereg import PreregError, register
+
+    try:
+        digest = register(
+            Path(args.simulator),
+            Path(args.out),
+            scope=args.scope,
+            decisions_path=Path(args.decisions),
+            replace_reason=args.replace,
+        )
+    except (ConfigError, PreregError) as exc:
+        _emit({"ok": False, "error": str(exc)}, args.json, f"offers prereg: {exc}")
+        return EXIT_ERROR
+    _emit(
+        {"ok": True, "sha256": digest, "file": args.simulator},
+        args.json,
+        f"offers prereg: registered {args.simulator} (sha256 {digest[:12]}…) in {args.out}",
+    )
+    return EXIT_OK
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="offers", description=__doc__)
     parser.add_argument("--version", action="version", version=f"offers {__version__}")
@@ -109,6 +132,14 @@ def build_parser() -> argparse.ArgumentParser:
     feats.add_argument("--run-id", default="features")
     feats.add_argument("--json", action="store_true")
     feats.set_defaults(func=cmd_features)
+    pre = sub.add_parser("prereg", help="validate the simulator and freeze it by its sha256 (D-3)")
+    pre.add_argument("--simulator", default="configs/simulator.yaml")
+    pre.add_argument("--out", default="docs/prereg.md")
+    pre.add_argument("--scope", choices=["synthetic", "real"], default="synthetic")
+    pre.add_argument("--decisions", default="docs/decisions.md", help="decision log to append to")
+    pre.add_argument("--replace", metavar="REASON", help="replace a registration, saying why")
+    pre.add_argument("--json", action="store_true")
+    pre.set_defaults(func=cmd_prereg)
     return parser
 
 

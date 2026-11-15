@@ -27,6 +27,7 @@ from sklearn.metrics import brier_score_loss, roc_auc_score
 
 from respectful_offers.schemas.rows import PROTECTED_ATTRIBUTES
 from respectful_offers.schemas.summary import ChurnReport, Interval
+from respectful_offers.threads import small_fit_threads
 
 MODEL_FEATURES: tuple[str, ...] = (
     "tenure_days",
@@ -92,7 +93,8 @@ def train(feb: pd.DataFrame, seed: int) -> tuple[ChurnModel, dict[str, Any]]:
     if hold["churn_label"].nunique() < 2 or fit["churn_label"].nunique() < 2:
         raise ValueError("both February folds need churners and non-churners")
     model = HistGradientBoostingClassifier(random_state=seed, **HGB_PARAMS)
-    model.fit(_x(fit, MODEL_FEATURES), fit["churn_label"].astype(int).to_numpy())
+    with small_fit_threads(len(fit)):
+        model.fit(_x(fit, MODEL_FEATURES), fit["churn_label"].astype(int).to_numpy())
     raw = model.predict_proba(_x(hold, MODEL_FEATURES))[:, 1]
     y = hold["churn_label"].astype(int).to_numpy()
     iso = shrunk_isotonic(raw, y)

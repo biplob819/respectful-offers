@@ -2,6 +2,8 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FIX] [A2.1] — small model fits run on one thread (30x faster, same output); churn stage version 3.
+- [FEAT] [A2.2] — response simulator: hidden segments behind real features, exposure and acceptance effects, CRN draws, exact period-1 oracle and segment-oracle values, direction rules, `offers prereg`; recommended values registered for synthetic runs only, awaiting the owner (D-3).
 - [FEAT] [A2.1] — churn model: gradient-boosted classifier on February, isotonic calibration on a February fold, March report with bootstrap intervals, reliability bins and a two-feature baseline, calibrated March scores, model card; no pickles.
 - [FIX] [N1.3] — the stale-cache guard hashes every project module a stage imports, transitively (L-26).
 - [FEAT] [N1.4] — features as of each cohort's label month via DuckDB with an explicit schema; provenance-checked as-of guard, early renewals excluded (D-28), audit table kept apart, `offers features` and `--from-table` for your own data.

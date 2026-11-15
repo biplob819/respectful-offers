@@ -1768,6 +1768,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "pyyaml" },
     { name = "scikit-learn" },
+    { name = "threadpoolctl" },
 ]
 
 [package.optional-dependencies]
@@ -1799,6 +1800,7 @@ requires-dist = [
     { name = "pyyaml", specifier = ">=6" },
     { name = "scikit-learn", specifier = ">=1.9.1" },
     { name = "six", marker = "extra == 'data'", specifier = ">=1.17.0" },
+    { name = "threadpoolctl", specifier = ">=3.8.0" },
 ]
 provides-extras = ["data"]
 
