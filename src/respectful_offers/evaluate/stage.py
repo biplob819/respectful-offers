@@ -24,7 +24,7 @@ from respectful_offers.schemas.summary import ChurnReport
 
 class EvaluateStage(Stage):
     name = "evaluate"
-    code_version = "1"
+    code_version = "2"
 
     def __init__(
         self,
@@ -34,6 +34,7 @@ class EvaluateStage(Stage):
         run_id: str,
         git_sha: str = "unknown",
         stable_clock: bool = False,
+        data_source: str = "synthetic",
     ) -> None:
         self.run_config = json.loads(run_config.model_dump_json())
         self.simulator = json.loads(simulator.model_dump_json())
@@ -41,6 +42,7 @@ class EvaluateStage(Stage):
         self.run_id = run_id
         self.git_sha = git_sha  # in the cache key: a cached summary never carries a stale commit
         self.stable_clock = stable_clock
+        self.data_source = data_source
         self._cfg = run_config
         self._sim = simulator
 
@@ -65,6 +67,7 @@ class EvaluateStage(Stage):
             config_hash=ctx.config_hash,
             simulator_hash=ctx.simulator_hash or "none",
             prereg_status=self.prereg_status,
+            data_source=self.data_source,
         )
         write(evaluation, out, stable=self.stable_clock)
         audit = {"clean": evaluation.audit_clean, "rollouts": list(evaluation.audit)}

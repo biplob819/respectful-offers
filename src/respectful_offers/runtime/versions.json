@@ -1,11 +1,11 @@
 {
   "churn": {
-    "code_version": "5",
-    "hash": "62b93a0d392f36c9fd37eac8cd3204f38e2bc023e906f35c921914c92ba07d12"
+    "code_version": "6",
+    "hash": "8466558e409e94758067b9c558f60af69bfc3d11222cdff9b7135389b5a0f4f8"
   },
   "evaluate": {
-    "code_version": "1",
-    "hash": "b8338164fcd0a23922e5bf44fa734763faa9f6139f39ca39ae71ad17e7b8bf88"
+    "code_version": "2",
+    "hash": "41b3270557f912ee64c340dbb8b91c8a966b0709e1b088c4743ace9c43fcba24"
   },
   "features": {
     "code_version": "2",

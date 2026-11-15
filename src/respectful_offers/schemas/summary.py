@@ -149,6 +149,9 @@ class RunSummary(Versioned):
     simulator_hash: Name
     prereg_status: Literal["preregistered", "exploratory"]
     simulated: Literal[True]
+    # where the members came from: real KKBox files, other verified local files, generated
+    # synthetic members, or the user's own features table (the report says which, B2.1)
+    data_source: Literal["kaggle", "local", "synthetic", "your_table"]
 
     @field_validator("simulated", mode="before")
     @classmethod

@@ -178,7 +178,14 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
         src = import_artifact(ctx, "manifest", {"manifest.json": data_dir / "manifest.json"})
         feats = run_stage(FeaturesStage(data_dir / "raw"), {"manifest": src}, ctx)
         churn = run_stage(ChurnStage(), {"features": feats}, ctx)
-        stage = EvaluateStage(cfg, sim, status, args.run_id, git_sha=ctx.git_sha)
+        stage = EvaluateStage(
+            cfg,
+            sim,
+            status,
+            args.run_id,
+            git_sha=ctx.git_sha,
+            data_source=str(manifest.get("source")),
+        )
         ref = run_stage(stage, {"features": feats, "churn": churn}, ctx)
         ctx.write_lineage()
         for name in ("summary.json", "frontier.json", "audit.json"):
@@ -207,6 +214,21 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
         "\n".join(lines),
     )
     return EXIT_OK if clean else EXIT_AUDIT
+
+
+def cmd_report(args: argparse.Namespace) -> int:
+    from respectful_offers.report.build import ReportError, build_report
+    from respectful_offers.schemas.config import ConfigError
+
+    run_dir = Path(args.root) / "runs" / args.run_id
+    try:
+        card = Path(args.model_card) if args.model_card else None
+        path = build_report(run_dir, Path(args.simulator), Path(args.out), card)
+    except (ReportError, ConfigError) as exc:
+        _emit({"ok": False, "error": str(exc)}, args.json, f"offers report: {exc}")
+        return EXIT_ERROR
+    _emit({"ok": True, "report": str(path)}, args.json, f"offers report: wrote {path}")
+    return EXIT_OK
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -252,6 +274,14 @@ def build_parser() -> argparse.ArgumentParser:
     ev.add_argument("--run-id", default="latest")
     ev.add_argument("--json", action="store_true")
     ev.set_defaults(func=cmd_evaluate)
+    rep = sub.add_parser("report", help="build the static HTML report from a run's summary.json")
+    rep.add_argument("--root", default=".", help="project folder holding runs/")
+    rep.add_argument("--run-id", default="latest")
+    rep.add_argument("--simulator", default="configs/simulator.yaml", help="the file the run used")
+    rep.add_argument("--model-card", help="model_card.json from the churn stage (optional)")
+    rep.add_argument("--out", default="report", help="folder for index.html and charts/")
+    rep.add_argument("--json", action="store_true")
+    rep.set_defaults(func=cmd_report)
     return parser
 
 

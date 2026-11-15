@@ -61,6 +61,9 @@ extend-exclude = ["*.md"]
 select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
 ignore = ["RUF001", "RUF002", "RUF003"]  # allow the › separator used in proof cells
 
+[tool.ruff.lint.per-file-ignores]
+"src/respectful_offers/report/*.py" = ["E501"]  # HTML and SVG templates read better unbroken
+
 [tool.pyright]
 include = ["src", "scripts", "tests"]
 pythonVersion = "3.11"

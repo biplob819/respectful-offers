@@ -6,6 +6,7 @@
   "simulator_hash": "5eed",
   "prereg_status": "preregistered",
   "simulated": true,
+  "data_source": "synthetic",
   "variants": [
     "central"
   ],

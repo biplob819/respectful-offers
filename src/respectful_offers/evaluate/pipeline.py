@@ -27,7 +27,7 @@ import numpy as np
 import pandas as pd
 
 from respectful_offers.evaluate.metrics import Draws, member_outcomes, summarise
-from respectful_offers.evaluate.stats import Resampler, holm, interval, paired
+from respectful_offers.evaluate.stats import Resampler, holm, interval, mean_interval, paired
 from respectful_offers.ope.data import logs_from_pilot, period1_view, target_probabilities
 from respectful_offers.ope.estimators import estimate, fit_reward_model, oracle_value
 from respectful_offers.policy.audit import audit
@@ -320,8 +320,9 @@ def evaluate_variant(
                 )
             )
 
-    # budget frontier
+    # budget frontier, with block-bootstrap intervals on the shared resamples
     frontier = []
+    ev_block = r.block_of(ev.hashes)
     for budget in cfg.budget_sweep:
         for p, c in policies:
             if p.name not in SWEPT:
@@ -330,6 +331,10 @@ def evaluate_variant(
             counts = _audit(res, ev, p, cfg)
             note(p, f"sweep:{budget:g}", counts)
             o = member_outcomes(ev, res, H)
+            kept, _ = mean_interval(r, ev_block, o.retained, scale=1000.0)
+            inc, _ = mean_interval(
+                r, ev_block, o.retained - outs["no_offer"].retained, scale=1000.0
+            )
             frontier.append(
                 {
                     "variant": variant,
@@ -340,6 +345,10 @@ def evaluate_variant(
                         1000 * (o.retained - outs["no_offer"].retained).mean(), 4
                     ),
                     "spend_per_member": round(math.fsum(o.cost) / len(ev), 4),
+                    "retained_lo": round(kept.lo, 4),
+                    "retained_hi": round(kept.hi, 4),
+                    "incremental_lo": round(inc.lo, 4),
+                    "incremental_hi": round(inc.hi, 4),
                 }
             )
 
@@ -444,6 +453,7 @@ def run_evaluation(
     config_hash: str,
     simulator_hash: str,
     prereg_status: str,
+    data_source: str = "synthetic",
 ) -> Evaluation:
     started = dt.datetime.now(dt.UTC)
     check_inputs(scores, features, audit_attrs)
@@ -476,6 +486,7 @@ def run_evaluation(
         config_hash=config_hash,
         simulator_hash=simulator_hash,
         prereg_status=prereg_status,  # type: ignore[arg-type]
+        data_source=data_source,  # type: ignore[arg-type]
         simulated=True,
         variants=cfg.variants,
         policies=tuple(policies),
