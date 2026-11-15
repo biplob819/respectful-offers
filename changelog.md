@@ -2,6 +2,8 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FIX] [A2.4] — verifier round 1 (D-32, L-29): exact pacer, oracle falls back to its best free action, member-keyed choices, probabilities validated, status quo honours R3, clear errors on empty cohorts.
+- [FEAT] [A2.4] — policies (no offer, holdout, status quo, rule-following baseline, logging pilot, segment oracle), face-value budget pacer, and the H-period rollout engine with CRN, plan-change eligibility and contract-checked logs.
 - [FIX] [A2.1] — small model fits run on one thread (30x faster, same output); churn stage version 3.
 - [FEAT] [A2.2] — response simulator: hidden segments behind real features, exposure and acceptance effects, CRN draws, exact period-1 oracle and segment-oracle values, direction rules, `offers prereg`; recommended values registered for synthetic runs only, awaiting the owner (D-3).
 - [FEAT] [A2.1] — churn model: gradient-boosted classifier on February, isotonic calibration on a February fold, March report with bootstrap intervals, reliability bins and a two-feature baseline, calibrated March scores, model card; no pickles.

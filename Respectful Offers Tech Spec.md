@@ -187,7 +187,7 @@ class Decision(FrozenModel):               # decisions.parquet
     allowed: tuple[Action, ...]            # after the respect filter; all four for the status quo
     requested: Action                      # the policy's choice before the budget pacer
     chosen: Action
-    propensity: float                      # π(chosen | context): exact for logging, Monte Carlo for bandit, 1.0 if deterministic
+    propensity: float                      # π(requested | context), before the budget (D-32): exact for logging, Monte Carlo for bandit, 1.0 if deterministic
     budget_downgraded: bool
     face_value: float                      # NTD charged against the period budget
 
@@ -291,7 +291,7 @@ class RunConfig(FrozenModel):
     eval_sample: int | None = 200_000
     horizon_periods: int = 3
     risk_threshold: float                  # R2 and the "at risk" definition
-    budget_per_1000_per_period: float      # NTD face value
+    budget_per_1000_per_period: float      # NTD face value; × cohort size at the start, constant as members leave (D-32)
     budget_sweep: tuple[float, ...]        # extra budget levels for the frontier chart
     variants: tuple[str, ...] = ("conservative", "central", "optimistic")
     decision_features: tuple[str, ...]     # the allow-list (D-9)
