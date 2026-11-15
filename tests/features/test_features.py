@@ -224,8 +224,13 @@ def test_your_own_table_loads_from_csv_and_parquet(tmp_path, capsys):
     q = tmp_path / "mine.parquet"
     df.to_parquet(q)
     assert len(load_features_table(q)) == 3
+    # the CLI also applies the cohort rules every command on a table needs (B2.2)
+    assert main(["features", "--from-table", str(p), "--json"]) == 2
+    assert "need both churners and renewers" in json.loads(capsys.readouterr().out)["error"]
+    full = pd.concat([user_table(), user_table().iloc[[2]].assign(msno="u4", churn_label="1")])
+    full.to_csv(p, index=False)
     assert main(["features", "--from-table", str(p), "--json"]) == 0
-    assert json.loads(capsys.readouterr().out)["members"] == {"feb": 2, "mar": 1}
+    assert json.loads(capsys.readouterr().out)["members"] == {"feb": 2, "mar": 2}
 
 
 @pytest.mark.parametrize(

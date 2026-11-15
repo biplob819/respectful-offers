@@ -1,0 +1,863 @@
+{
+  "clean": true,
+  "rollouts": [
+    {
+      "policy": "no_offer",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "evaluation",
+      "variant": "conservative",
+      "violations": {
+        "R1": 114,
+        "R2": 224,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "segment_oracle",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "holdout",
+      "respectful": true,
+      "rollout": "holdout",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "logging",
+      "respectful": true,
+      "rollout": "logging_pilot",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:0",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:0",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:0",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:1000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 37,
+        "R2": 74,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:1000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:1000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:3000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 114,
+        "R2": 224,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:3000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:3000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:6000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 219,
+        "R2": 436,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:6000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:6000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:12000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 256,
+        "R2": 491,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:12000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:12000",
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "no_offer",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "evaluation",
+      "variant": "central",
+      "violations": {
+        "R1": 101,
+        "R2": 224,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "segment_oracle",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "holdout",
+      "respectful": true,
+      "rollout": "holdout",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "logging",
+      "respectful": true,
+      "rollout": "logging_pilot",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:0",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:0",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:0",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:1000",
+      "variant": "central",
+      "violations": {
+        "R1": 33,
+        "R2": 74,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:1000",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:1000",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:3000",
+      "variant": "central",
+      "violations": {
+        "R1": 101,
+        "R2": 224,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:3000",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:3000",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:6000",
+      "variant": "central",
+      "violations": {
+        "R1": 196,
+        "R2": 444,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:6000",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:6000",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:12000",
+      "variant": "central",
+      "violations": {
+        "R1": 233,
+        "R2": 507,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:12000",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:12000",
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "no_offer",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "evaluation",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 82,
+        "R2": 225,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "segment_oracle",
+      "respectful": true,
+      "rollout": "evaluation",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "holdout",
+      "respectful": true,
+      "rollout": "holdout",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "logging",
+      "respectful": true,
+      "rollout": "logging_pilot",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:0",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:0",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:0",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:1000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 28,
+        "R2": 74,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:1000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:1000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:3000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 82,
+        "R2": 225,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:3000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:3000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:6000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 155,
+        "R2": 445,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:6000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:6000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "status_quo",
+      "respectful": false,
+      "rollout": "sweep:12000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 189,
+        "R2": 522,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "rollout": "sweep:12000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "policy": "bandit",
+      "respectful": true,
+      "rollout": "sweep:12000",
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    }
+  ]
+}

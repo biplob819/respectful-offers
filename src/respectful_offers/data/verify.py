@@ -144,11 +144,20 @@ def verify(
                 f"raw file(s) changed since the manifest was written: {changed}. "
                 "Re-run `offers data download` (or `offers data synthetic`) to restore them."
             )
+    # The marker names where these exact files came from: "<source> <digest of their hashes>".
+    # A marker whose digest does not match the files (new files dropped into an old folder)
+    # is not trusted, so they are "local" until a download or `data synthetic` says otherwise.
+    digest = hashlib.sha256(
+        "".join(f"{n}:{files[n]['sha256']};" for n in REQUIRED).encode()
+    ).hexdigest()
     marker = raw_dir / SOURCE_MARKER
-    marked = marker.read_text(encoding="utf-8").strip() if marker.is_file() else None
+    marked = None
+    if marker.is_file():
+        parts = marker.read_text(encoding="utf-8").split()
+        if len(parts) == 2 and parts[1] == digest:
+            marked = parts[0]
     resolved = source or (old or {}).get("source") or marked or "local"
-    if resolved != marked:
-        marker.write_text(resolved + "\n", encoding="utf-8")
+    marker.write_text(f"{resolved} {digest}\n", encoding="utf-8")
     manifest = {"manifest_version": MANIFEST_VERSION, "source": resolved, "files": files}
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.name + ".tmp")

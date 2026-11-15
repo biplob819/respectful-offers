@@ -122,9 +122,9 @@ def audit(
     d = decisions[[*KEYS, "chosen"]].copy()
     o = outcomes[[*KEYS, "response"]].copy()
     for frame, name in ((d, "decisions"), (o, "outcomes")):
-        if (
-            frame["period"].dtype == bool
-            or frame["period"].map(lambda v: isinstance(v, bool)).any()
+        if frame["period"].dtype == bool or (
+            frame["period"].dtype == object
+            and frame["period"].map(lambda v: isinstance(v, bool)).any()
         ):
             raise ValueError(f"{name}: period must be a positive integer, not a boolean")
         try:
@@ -138,10 +138,10 @@ def audit(
         ):
             raise ValueError(f"{name}: period must be a positive integer up to {MAX_PERIOD}")
         frame["period"] = periods.astype(np.int64)
-    bad_actions = sorted(set(d["chosen"].astype(str)) - _ALL_ACTIONS)
+    bad_actions = sorted({str(v) for v in pd.unique(d["chosen"])} - _ALL_ACTIONS)
     if bad_actions:
         raise ValueError(f"unknown chosen action(s) {bad_actions}")
-    bad_responses = sorted(set(o["response"].astype(str)) - _RESPONSES)
+    bad_responses = sorted({str(v) for v in pd.unique(o["response"])} - _RESPONSES)
     if bad_responses:
         raise ValueError(f"unknown response value(s) {bad_responses}")
     joined = d.merge(o, on=KEYS, how="inner")
@@ -155,7 +155,7 @@ def audit(
             f"response {r['response']!r} contradicts chosen {r['chosen']!r} for {r['msno']} "
             f"period {r['period']}: a shown action is accepted or declined, no_offer is not_shown"
         )
-    missing_ctx = sorted(set(d["policy"].astype(str)) - set(context_columns))
+    missing_ctx = sorted({str(v) for v in pd.unique(d["policy"])} - set(context_columns))
     if missing_ctx:
         raise ValueError(
             f"no logged context columns for policy {missing_ctx} (R7 cannot pass unseen)"

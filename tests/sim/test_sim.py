@@ -301,8 +301,9 @@ def test_a_synthetic_registration_never_certifies_real_data(tmp_path):
     log.write_text("# Decision log\n", encoding="utf-8")
     register(y, pre, scope="synthetic", decisions_path=log)
     assert prereg_status(y, pre, False, data_source="synthetic") == "preregistered"
-    with pytest.raises(PreregError, match="synthetic runs only"):
-        prereg_status(y, pre, False, data_source="kaggle")
+    for real in ("kaggle", "local", "your_table"):  # every non-synthetic source is real data
+        with pytest.raises(PreregError, match="synthetic data only"):
+            prereg_status(y, pre, False, data_source=real)
     with pytest.raises(PreregError, match="pass a reason"):
         register(y, pre, scope="real", decisions_path=log)
     register(y, pre, scope="real", decisions_path=log, replace_reason="owner confirmed the values")

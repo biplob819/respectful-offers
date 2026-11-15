@@ -345,7 +345,7 @@ def simulate(budget: float, threshold: float, variant: str) -> DemoResult: ...  
 | `offers evaluate --variant all` | Rollouts, OPE, audit and aggregate; writes `summary.json` | Yes |
 | `offers report` | Builds the static report from `summary.json` | No |
 | `offers run --all` | Every stage from raw files with one command (NFR4) | Yes |
-| `offers init` | Writes `offers.yaml`, a simulator template and a features-table template into a new folder; never overwrites user files | No |
+| `offers init` | Writes `offers-run.yaml`, a simulator template, features and audit table templates and a README into a folder; never overwrites user files | No |
 | `offers features --from-table members.csv` | Uses your own subscription data: validates a CSV or Parquet features table against the `MemberFeatures` contract instead of building from KKBox | No |
 | `offers doctor` | Python version, data present and verified, prereg status, Kaggle credentials present (never printed) | No |
 | `offers report --example` | Renders the report from the bundled synthetic run | No |
@@ -641,7 +641,7 @@ Status vocabulary: `not-started | spec | building | green`.
 | **A2.7** | Evaluate and compare | A2.5, A2.6 | `offers evaluate`: rollouts per variant, metrics, paired comparisons, OPE beside oracle, audit, holdout check, budget sweep, disparity, `summary.json` | US1–US5, US8 |
 | **A2.8** | Real-data results run | A2.7, N1.5 | The pre-registered pipeline run on real KKBox data for all three variants, with real decisions read end to end | US1–US5 |
 | **B2.1** | Results report | A2.7 | Static HTML report with "Simulated" labels, YAML quoted, audit and calibration panels | US1, US2, US5, US8 |
-| **B2.2** | CLI | A2.7, B2.1 | Typer CLI (§4), `doctor`, `report --example`, `run --all`, exit codes, `--json` | US1 |
+| **B2.2** | CLI | A2.7, B2.1 | argparse CLI (§4, D-40), `doctor`, `report --example`, `run --all`, `init`, your own table, exit codes, `--json` | US1 |
 | **B2.3** | Report deploy and README | B2.1, B2.2, A2.8 | README headline chart, report published on GitHub Pages, docs commands tested | US1 |
 | **P2.1** | PR/FAQ | A2.8, B2.1 | One-page PR/FAQ, numbers templated from `summary.json`, PDF | US6 |
 | **B2.4** | Open-source packaging and v0.1.0 | B2.3, P2.1 | PyPI `respectful-offers`, Python × OS CI matrix, docs (quickstart, your own data, simulator config), community files, history audit, data card, tag v0.1.0 | US6 |

@@ -4,11 +4,15 @@
     "hash": "8466558e409e94758067b9c558f60af69bfc3d11222cdff9b7135389b5a0f4f8"
   },
   "evaluate": {
-    "code_version": "2",
-    "hash": "41b3270557f912ee64c340dbb8b91c8a966b0709e1b088c4743ace9c43fcba24"
+    "code_version": "3",
+    "hash": "f37d1a82454282ca95340682a4d6c9de757b515a9d41f0f820af05dee1cdad18"
   },
   "features": {
-    "code_version": "2",
-    "hash": "4e32ee1f65f8c34de32e11ead6b32ad36b1f90b5efebc559fe7dc8cd4fb3a743"
+    "code_version": "3",
+    "hash": "e0a94cef57182c8516aac47b7c7fffa42a5eae9a726e4859a1ab445d908c2b98"
+  },
+  "features_table": {
+    "code_version": "1",
+    "hash": "6bceb3f3ffb453a20ad8532302c2610745a1296d9c9f56e9a50048fe2f985afa"
   }
 }

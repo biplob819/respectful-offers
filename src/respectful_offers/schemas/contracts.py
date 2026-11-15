@@ -95,7 +95,7 @@ def check_frame(df: pd.DataFrame, contract: TableContract, stage: str) -> None:
             raise ContractError(
                 f"{where}: column {spec.name} has dtype {col.dtype}, not {spec.kind}"
             )
-        if spec.kind == "str" and len(values) and not all(isinstance(v, str) for v in values):
+        if spec.kind == "str" and len(values) and not _all_strings(values):
             raise ContractError(f"{where}: column {spec.name} holds non-string values")
         if spec.kind in ("int", "float") and len(values):
             arr = values.to_numpy(dtype=float)
@@ -110,11 +110,11 @@ def check_frame(df: pd.DataFrame, contract: TableContract, stage: str) -> None:
                     f"{where}: column {spec.name} has {arr.max()} above maximum {spec.max}"
                 )
         if spec.allowed is not None and len(values):
-            bad = sorted({str(v) for v in values} - spec.allowed)
+            bad = sorted({str(v) for v in _unique(values)} - spec.allowed)
             if bad:
                 raise ContractError(f"{where}: column {spec.name} has values {bad[:5]} not allowed")
         if spec.kind == "actions" and len(values):
-            for v in values:
+            for v in _unique(values):
                 ordered = isinstance(v, list | tuple | np.ndarray)
                 if not ordered or any(not isinstance(a, str) or a not in ACTIONS for a in v):
                     raise ContractError(
@@ -124,6 +124,49 @@ def check_frame(df: pd.DataFrame, contract: TableContract, stage: str) -> None:
         problem = rule(df)
         if problem:
             raise ContractError(f"{where}: {problem}")
+
+
+def _all_strings(values: pd.Series) -> bool:
+    if pd.api.types.is_string_dtype(values.dtype) and not pd.api.types.is_object_dtype(
+        values.dtype
+    ):
+        return True
+    return pd.api.types.infer_dtype(values, skipna=True) in ("string", "empty")
+
+
+def _key(v: Any) -> Any:
+    """A hashable stand-in for a value; unhashable odd values (dicts, sets) stay unique."""
+    if isinstance(v, list | np.ndarray):
+        try:
+            return (type(v).__name__, tuple(v))
+        except TypeError:
+            return ("id", id(v))
+    try:
+        hash(v)
+    except TypeError:
+        return ("id", id(v))
+    return (type(v).__name__, v)
+
+
+def _unique(values: pd.Series) -> list[Any]:
+    """The distinct values, checked once each (a rollout's columns repeat a handful of values
+    across hundreds of thousands of rows). Unhashable values are kept whole."""
+    seen: dict[Any, Any] = {}
+    for v in values.tolist():
+        seen.setdefault(_key(v), v)
+    return list(seen.values())
+
+
+def _map_unique(series: pd.Series, f: Any) -> pd.Series:
+    """`series.map(f)` evaluated once per distinct value."""
+    cache: dict[Any, bool] = {}
+    out = []
+    for v in series.tolist():
+        k = _key(v)
+        if k not in cache:
+            cache[k] = bool(f(v))
+        out.append(cache[k])
+    return pd.Series(out, index=series.index, dtype=bool)
 
 
 def _c(name: str, kind: Kind, **kw: object) -> ColumnSpec:
@@ -146,7 +189,7 @@ def _declined_rule(df: pd.DataFrame) -> str | None:
         )
 
     return _first_bad(
-        df["declined"].map(bad).astype(bool), df, "with declined not a sorted set of shown actions"
+        _map_unique(df["declined"], bad), df, "with declined not a sorted set of shown actions"
     )
 
 
@@ -162,7 +205,7 @@ def _decision_rules(df: pd.DataFrame) -> str | None:
 
     checks = [
         (
-            df["allowed"].map(allowed_bad).astype(bool),
+            _map_unique(df["allowed"], allowed_bad),
             "with allowed not an ordered set holding no_offer",
         ),
         (

@@ -71,6 +71,7 @@ def rollout(
     in_holdout: np.ndarray | None = None,
     context: np.ndarray | None = None,
     context_columns: tuple[str, ...] = (),
+    check: bool = True,
 ) -> RolloutResult:
     n = len(cohort)
     if n == 0:
@@ -226,7 +227,8 @@ def rollout(
     decisions = pd.concat(d_parts, ignore_index=True)
     outcomes = pd.concat(o_parts, ignore_index=True)
     states = pd.concat(s_parts, ignore_index=True)
-    check_frame(decisions, DECISIONS, f"rollout[{policy.name}]")
-    check_frame(outcomes, OUTCOMES, f"rollout[{policy.name}]")
-    check_frame(states, MEMBER_STATES, f"rollout[{policy.name}]")
+    if check:  # the demo skips these for speed; its logs still go through the auditor
+        check_frame(decisions, DECISIONS, f"rollout[{policy.name}]")
+        check_frame(outcomes, OUTCOMES, f"rollout[{policy.name}]")
+        check_frame(states, MEMBER_STATES, f"rollout[{policy.name}]")
     return RolloutResult(decisions, outcomes, states, spend)

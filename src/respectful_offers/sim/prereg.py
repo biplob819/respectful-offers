@@ -73,7 +73,7 @@ def register(
         "# Pre-registration\n\n"
         "Written by `offers prereg` (D-3). Evaluations refuse a simulator file whose sha256 is "
         "not the one below, unless run with `--exploratory` (stamped, never published). A "
-        "`synthetic` registration never certifies a run on real KKBox data.\n\n"
+        "`synthetic` registration never certifies a run on real data (KKBox or your own table).\n\n"
         "| Field | Value |\n| --- | --- |\n"
         f"| Simulator YAML sha256 | `{digest}` |\n"
         f"| File | `{Path(yaml_path).as_posix()}` |\n"
@@ -82,6 +82,7 @@ def register(
         f"| Variants | {', '.join(sorted(cfg.variants))} |\n"
         f"| Pre-registered success criteria | {CRITERIA} |\n"
     )
+    Path(prereg_path).parent.mkdir(parents=True, exist_ok=True)  # a fresh `offers init` project
     Path(prereg_path).write_text(text, encoding="utf-8")
     if decisions_path is not None and Path(decisions_path).is_file():
         why = (
@@ -107,6 +108,18 @@ def registered_scope(prereg_path: Path) -> str | None:
     return m.group(1) if m else None
 
 
+FILE_LINE = re.compile(r"^\| File \| `([^`]+)` \|$", re.MULTILINE)
+
+
+def registered_file(prereg_path: Path) -> str | None:
+    """The simulator file a registration names, so commands default to it."""
+    p = Path(prereg_path)
+    if not p.is_file():
+        return None
+    m = FILE_LINE.search(p.read_text(encoding="utf-8"))
+    return m.group(1) if m else None
+
+
 def registered_hash(prereg_path: Path) -> str | None:
     p = Path(prereg_path)
     if not p.is_file():
@@ -119,12 +132,13 @@ def prereg_status(
     yaml_path: Path, prereg_path: Path, exploratory: bool, data_source: str = "synthetic"
 ) -> Literal["preregistered", "exploratory"]:
     """`preregistered` only if the evaluated file's hash is registered with a scope that covers
-    the data (a synthetic registration never certifies KKBox data)."""
+    the data (a synthetic registration never certifies real data: KKBox, local files or your
+    own table)."""
     if not Path(yaml_path).is_file():
         raise PreregError(f"simulator file {yaml_path} does not exist")
     want = registered_hash(prereg_path)
     scope = registered_scope(prereg_path)
-    real = data_source == "kaggle"
+    real = data_source != "synthetic"  # KKBox, verified local files and your own table
     if want is not None and sha256(yaml_path) == want and (scope == "real" or not real):
         return "preregistered"
     if exploratory:
@@ -135,8 +149,9 @@ def prereg_status(
         )
     if sha256(yaml_path) == want:
         raise PreregError(
-            f"{prereg_path} registers this simulator for synthetic runs only; the owner confirms "
-            "the values and registers them with --scope real before any run on KKBox data"
+            f"{prereg_path} registers this simulator for synthetic data only; for real data (KKBox "
+            "or your own table), confirm the values and run `offers prereg --scope real`, or run "
+            "with --exploratory (never published)"
         )
     raise PreregError(
         f"{yaml_path} changed since it was pre-registered ({prereg_path}); register the change as "

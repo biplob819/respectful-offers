@@ -1,0 +1,2112 @@
+{
+  "churn": {
+    "auc": {
+      "hi": 0.737319,
+      "lo": 0.666747,
+      "point": 0.704512
+    },
+    "baseline_auc": {
+      "hi": 0.770583,
+      "lo": 0.691354,
+      "point": 0.73119
+    },
+    "brier": {
+      "hi": 0.053319,
+      "lo": 0.042511,
+      "point": 0.047854
+    },
+    "ece": 0.005697,
+    "features": [
+      "tenure_days",
+      "auto_renew",
+      "cancels_90d",
+      "listening_trend_30d",
+      "price_30d",
+      "plan_days"
+    ],
+    "reliability": [
+      [
+        0.016977,
+        0.011468,
+        436
+      ],
+      [
+        0.0223,
+        0.025287,
+        435
+      ],
+      [
+        0.025863,
+        0.022989,
+        435
+      ],
+      [
+        0.032923,
+        0.027586,
+        435
+      ],
+      [
+        0.03296,
+        0.050575,
+        435
+      ],
+      [
+        0.037528,
+        0.043678,
+        435
+      ],
+      [
+        0.050235,
+        0.03908,
+        435
+      ],
+      [
+        0.050235,
+        0.041379,
+        435
+      ],
+      [
+        0.09422,
+        0.082759,
+        435
+      ],
+      [
+        0.222441,
+        0.183908,
+        435
+      ]
+    ]
+  },
+  "comparisons": [
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": 3.997944,
+        "lo": -6.365741,
+        "point": -1.147447
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 0.6972,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": 4.662005,
+        "lo": -4.662073,
+        "point": 0.0
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 1.0,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 4.027676,
+        "lo": -1.681638,
+        "point": 1.147447
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 0.4747,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": 1.081445,
+        "lo": -1.692286,
+        "point": -0.317579
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.6474,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": 1.913515,
+        "lo": -0.914682,
+        "point": 0.468709
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.5104,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 1.609274,
+        "lo": 0.074996,
+        "point": 0.786288
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.0427,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": 3.205931,
+        "lo": -4.199039,
+        "point": -0.647833
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.7131,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": 3.67836,
+        "lo": -2.998688,
+        "point": 0.205641
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.9051,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 2.632612,
+        "lo": -0.987296,
+        "point": 0.853475
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.3267,
+      "separated": false,
+      "variant": "conservative"
+    },
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": -3.95922,
+        "lo": -12.777778,
+        "point": -8.032129
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 0.0007,
+      "separated": true,
+      "variant": "central"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": -2.285714,
+        "lo": -11.811024,
+        "point": -6.884682
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 0.0063,
+      "separated": true,
+      "variant": "central"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 4.543002,
+        "lo": -1.776225,
+        "point": 1.147447
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 0.5339,
+      "separated": false,
+      "variant": "central"
+    },
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": -0.36213,
+        "lo": -2.070851,
+        "point": -1.197109
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.0053,
+      "separated": true,
+      "variant": "central"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": 1.632906,
+        "lo": -0.949166,
+        "point": 0.318382
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.6309,
+      "separated": false,
+      "variant": "central"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 2.529032,
+        "lo": 0.559881,
+        "point": 1.515491
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.0032,
+      "separated": true,
+      "variant": "central"
+    },
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": -2.05705,
+        "lo": -5.971888,
+        "point": -3.93148
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.0001,
+      "separated": true,
+      "variant": "central"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": -0.452998,
+        "lo": -4.282872,
+        "point": -2.343521
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.0175,
+      "separated": true,
+      "variant": "central"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 3.008658,
+        "lo": 0.324466,
+        "point": 1.587959
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.0236,
+      "separated": true,
+      "variant": "central"
+    },
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": 11.229323,
+        "lo": -1.810638,
+        "point": 4.589788
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 0.1699,
+      "separated": false,
+      "variant": "optimistic"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": 14.934145,
+        "lo": 1.163433,
+        "point": 8.032129
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 0.0188,
+      "separated": false,
+      "variant": "optimistic"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 7.394767,
+        "lo": 0.0,
+        "point": 3.442341
+      },
+      "metric": "incremental_retained_per_1000",
+      "p_value": 0.0943,
+      "separated": false,
+      "variant": "optimistic"
+    },
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": 3.632053,
+        "lo": 0.23857,
+        "point": 1.870167
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.0299,
+      "separated": true,
+      "variant": "optimistic"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": 6.424093,
+        "lo": 2.309678,
+        "point": 4.295869
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.0001,
+      "separated": true,
+      "variant": "optimistic"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 3.747737,
+        "lo": 1.251314,
+        "point": 2.425702
+      },
+      "metric": "ltv_proxy_per_member",
+      "p_value": 0.0008,
+      "separated": true,
+      "variant": "optimistic"
+    },
+    {
+      "a": "bandit",
+      "b": "rule_following_baseline",
+      "diff": {
+        "hi": 5.787414,
+        "lo": -0.073872,
+        "point": 2.629525
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.0783,
+      "separated": false,
+      "variant": "optimistic"
+    },
+    {
+      "a": "bandit",
+      "b": "status_quo",
+      "diff": {
+        "hi": 8.286865,
+        "lo": 2.427696,
+        "point": 5.043974
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.0024,
+      "separated": true,
+      "variant": "optimistic"
+    },
+    {
+      "a": "rule_following_baseline",
+      "b": "status_quo",
+      "diff": {
+        "hi": 3.87538,
+        "lo": 1.177986,
+        "point": 2.414449
+      },
+      "metric": "incremental_retained_per_1000_ntd",
+      "p_value": 0.0013,
+      "separated": true,
+      "variant": "optimistic"
+    }
+  ],
+  "config_hash": "996831449ae52455",
+  "data_source": "synthetic",
+  "disparity": {
+    "bandit.offer_rate.age_band": {
+      "18-24": {
+        "hi": 0.23272,
+        "lo": 0.15668,
+        "point": 0.1939
+      },
+      "25-34": {
+        "hi": 0.22029,
+        "lo": 0.154818,
+        "point": 0.186885
+      },
+      "35-44": {
+        "hi": 0.204189,
+        "lo": 0.140124,
+        "point": 0.171901
+      },
+      "45+": {
+        "hi": 0.202953,
+        "lo": 0.154054,
+        "point": 0.177798
+      },
+      "<18": {
+        "hi": 0.25439,
+        "lo": 0.114498,
+        "point": 0.181208
+      },
+      "unknown": {
+        "hi": 0.217454,
+        "lo": 0.179846,
+        "point": 0.198637
+      }
+    },
+    "bandit.offer_rate.gender": {
+      "female": {
+        "hi": 0.20734,
+        "lo": 0.16429,
+        "point": 0.185532
+      },
+      "male": {
+        "hi": 0.205405,
+        "lo": 0.161744,
+        "point": 0.183448
+      },
+      "unknown": {
+        "hi": 0.212345,
+        "lo": 0.175804,
+        "point": 0.193928
+      }
+    },
+    "bandit.retained_per_1000.age_band": {
+      "18-24": {
+        "hi": 914.114812,
+        "lo": 807.452266,
+        "point": 863.354037
+      },
+      "25-34": {
+        "hi": 887.555323,
+        "lo": 790.243902,
+        "point": 840.375587
+      },
+      "35-44": {
+        "hi": 900.0,
+        "lo": 801.074565,
+        "point": 853.773585
+      },
+      "45+": {
+        "hi": 888.000521,
+        "lo": 818.666667,
+        "point": 854.219949
+      },
+      "<18": {
+        "hi": 937.5,
+        "lo": 741.37931,
+        "point": 846.153846
+      },
+      "unknown": {
+        "hi": 879.452055,
+        "lo": 828.828508,
+        "point": 854.341737
+      }
+    },
+    "bandit.retained_per_1000.gender": {
+      "female": {
+        "hi": 872.047244,
+        "lo": 809.345613,
+        "point": 841.603053
+      },
+      "male": {
+        "hi": 896.551724,
+        "lo": 837.573386,
+        "point": 867.588933
+      },
+      "unknown": {
+        "hi": 877.667141,
+        "lo": 824.396442,
+        "point": 851.332398
+      }
+    },
+    "rule_following_baseline.offer_rate.age_band": {
+      "18-24": {
+        "hi": 0.104762,
+        "lo": 0.034026,
+        "point": 0.067391
+      },
+      "25-34": {
+        "hi": 0.094307,
+        "lo": 0.037707,
+        "point": 0.063934
+      },
+      "35-44": {
+        "hi": 0.1264,
+        "lo": 0.057552,
+        "point": 0.090759
+      },
+      "45+": {
+        "hi": 0.083261,
+        "lo": 0.042918,
+        "point": 0.062218
+      },
+      "<18": {
+        "hi": 0.213848,
+        "lo": 0.038215,
+        "point": 0.119205
+      },
+      "unknown": {
+        "hi": 0.101175,
+        "lo": 0.065079,
+        "point": 0.082765
+      }
+    },
+    "rule_following_baseline.offer_rate.gender": {
+      "female": {
+        "hi": 0.101614,
+        "lo": 0.057294,
+        "point": 0.078877
+      },
+      "male": {
+        "hi": 0.083267,
+        "lo": 0.047417,
+        "point": 0.064872
+      },
+      "unknown": {
+        "hi": 0.101972,
+        "lo": 0.065491,
+        "point": 0.08313
+      }
+    },
+    "rule_following_baseline.retained_per_1000.age_band": {
+      "18-24": {
+        "hi": 924.531533,
+        "lo": 822.368421,
+        "point": 875.776398
+      },
+      "25-34": {
+        "hi": 908.109487,
+        "lo": 817.73399,
+        "point": 863.849765
+      },
+      "35-44": {
+        "hi": 908.602833,
+        "lo": 813.397129,
+        "point": 863.207547
+      },
+      "45+": {
+        "hi": 889.784946,
+        "lo": 822.222222,
+        "point": 856.777494
+      },
+      "<18": {
+        "hi": 962.962963,
+        "lo": 789.473684,
+        "point": 884.615385
+      },
+      "unknown": {
+        "hi": 882.610327,
+        "lo": 831.443943,
+        "point": 857.142857
+      }
+    },
+    "rule_following_baseline.retained_per_1000.gender": {
+      "female": {
+        "hi": 880.455975,
+        "lo": 819.492011,
+        "point": 851.145038
+      },
+      "male": {
+        "hi": 898.268502,
+        "lo": 839.552239,
+        "point": 869.565217
+      },
+      "unknown": {
+        "hi": 887.464838,
+        "lo": 837.027109,
+        "point": 862.552595
+      }
+    }
+  },
+  "finished_at": "2026-11-21T00:00:00Z",
+  "git_sha": "example",
+  "holdout_check": {
+    "central": {
+      "hi": 33.369826,
+      "lo": -42.432882,
+      "point": -3.811724
+    },
+    "conservative": {
+      "hi": 33.369826,
+      "lo": -42.432882,
+      "point": -3.811724
+    },
+    "optimistic": {
+      "hi": 33.369826,
+      "lo": -42.432882,
+      "point": -3.811724
+    }
+  },
+  "ope": [
+    {
+      "covered": true,
+      "effective_sample_size": 255.153,
+      "estimator": "ips",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 155.589007,
+        "lo": 124.236567,
+        "point": 139.85825
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 255.153,
+      "estimator": "snips",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 137.594231,
+        "lo": 127.425171,
+        "point": 132.659664
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 255.153,
+      "estimator": "dr",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 136.031569,
+        "lo": 125.489953,
+        "point": 130.902505
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 241.884,
+      "estimator": "ips",
+      "oracle": 131.331548,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 149.588955,
+        "lo": 118.638955,
+        "point": 134.124031
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 241.884,
+      "estimator": "snips",
+      "oracle": 131.331548,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 136.865667,
+        "lo": 126.67941,
+        "point": 131.932462
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 241.884,
+      "estimator": "dr",
+      "oracle": 131.331548,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 134.511612,
+        "lo": 124.179865,
+        "point": 129.496904
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 238.797,
+      "estimator": "ips",
+      "oracle": 131.761657,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 144.771409,
+        "lo": 113.991683,
+        "point": 129.178295
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 238.797,
+      "estimator": "snips",
+      "oracle": 131.761657,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 134.813485,
+        "lo": 124.089904,
+        "point": 129.608889
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 238.797,
+      "estimator": "dr",
+      "oracle": 131.761657,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 134.368664,
+        "lo": 123.763847,
+        "point": 129.214204
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 512.129,
+      "estimator": "ips",
+      "oracle": 129.603429,
+      "policy": "bandit",
+      "value": {
+        "hi": 137.332561,
+        "lo": 120.14423,
+        "point": 128.757096
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 512.129,
+      "estimator": "snips",
+      "oracle": 129.603429,
+      "policy": "bandit",
+      "value": {
+        "hi": 132.629364,
+        "lo": 125.114092,
+        "point": 129.048935
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 512.129,
+      "estimator": "dr",
+      "oracle": 129.603429,
+      "policy": "bandit",
+      "value": {
+        "hi": 132.799424,
+        "lo": 125.177319,
+        "point": 129.102505
+      },
+      "variant": "conservative"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 232.04,
+      "estimator": "ips",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 144.94769,
+        "lo": 113.903761,
+        "point": 129.315615
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 232.04,
+      "estimator": "snips",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 138.720956,
+        "lo": 128.04737,
+        "point": 133.606407
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 232.04,
+      "estimator": "dr",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 135.862158,
+        "lo": 125.811659,
+        "point": 131.003236
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 239.082,
+      "estimator": "ips",
+      "oracle": 131.61632,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 145.414983,
+        "lo": 114.715901,
+        "point": 129.864895
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 239.082,
+      "estimator": "snips",
+      "oracle": 131.61632,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 136.678125,
+        "lo": 125.886892,
+        "point": 131.466368
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 239.082,
+      "estimator": "dr",
+      "oracle": 131.61632,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 134.927205,
+        "lo": 124.741801,
+        "point": 130.024209
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 227.774,
+      "estimator": "ips",
+      "oracle": 132.400316,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 137.854583,
+        "lo": 107.900327,
+        "point": 122.843854
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 227.774,
+      "estimator": "snips",
+      "oracle": 132.400316,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 135.564874,
+        "lo": 124.913515,
+        "point": 130.503529
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 227.774,
+      "estimator": "dr",
+      "oracle": 132.400316,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 135.08239,
+        "lo": 125.407684,
+        "point": 130.491779
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 392.948,
+      "estimator": "ips",
+      "oracle": 128.446344,
+      "policy": "bandit",
+      "value": {
+        "hi": 143.193389,
+        "lo": 120.51799,
+        "point": 131.68336
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 392.948,
+      "estimator": "snips",
+      "oracle": 128.446344,
+      "policy": "bandit",
+      "value": {
+        "hi": 131.111055,
+        "lo": 122.617014,
+        "point": 126.959028
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 392.948,
+      "estimator": "dr",
+      "oracle": 128.446344,
+      "policy": "bandit",
+      "value": {
+        "hi": 131.022288,
+        "lo": 122.945433,
+        "point": 127.13385
+      },
+      "variant": "central"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 257.778,
+      "estimator": "ips",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 154.936648,
+        "lo": 123.645189,
+        "point": 139.114064
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 257.778,
+      "estimator": "snips",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 134.834418,
+        "lo": 124.717306,
+        "point": 130.041408
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 257.778,
+      "estimator": "dr",
+      "oracle": 131.244578,
+      "policy": "no_offer",
+      "value": {
+        "hi": 134.098721,
+        "lo": 123.772644,
+        "point": 129.165627
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 249.199,
+      "estimator": "ips",
+      "oracle": 131.984296,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 152.432767,
+        "lo": 121.516541,
+        "point": 136.826135
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 249.199,
+      "estimator": "snips",
+      "oracle": 131.984296,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 135.911258,
+        "lo": 125.627304,
+        "point": 130.883475
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 249.199,
+      "estimator": "dr",
+      "oracle": 131.984296,
+      "policy": "rule_following_baseline",
+      "value": {
+        "hi": 134.341145,
+        "lo": 124.078458,
+        "point": 129.373799
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 224.938,
+      "estimator": "ips",
+      "oracle": 133.067005,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 139.564184,
+        "lo": 109.693474,
+        "point": 124.327796
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 224.938,
+      "estimator": "snips",
+      "oracle": 133.067005,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 136.502442,
+        "lo": 127.301597,
+        "point": 132.08
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 224.938,
+      "estimator": "dr",
+      "oracle": 133.067005,
+      "policy": "segment_oracle",
+      "value": {
+        "hi": 136.415504,
+        "lo": 127.678661,
+        "point": 132.244733
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 386.838,
+      "estimator": "ips",
+      "oracle": 130.71237,
+      "policy": "bandit",
+      "value": {
+        "hi": 142.799862,
+        "lo": 120.25766,
+        "point": 131.516874
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 386.838,
+      "estimator": "snips",
+      "oracle": 130.71237,
+      "policy": "bandit",
+      "value": {
+        "hi": 132.673438,
+        "lo": 123.912277,
+        "point": 128.369377
+      },
+      "variant": "optimistic"
+    },
+    {
+      "covered": true,
+      "effective_sample_size": 386.838,
+      "estimator": "dr",
+      "oracle": 130.71237,
+      "policy": "bandit",
+      "value": {
+        "hi": 132.244075,
+        "lo": 123.66461,
+        "point": 128.072922
+      },
+      "variant": "optimistic"
+    }
+  ],
+  "policies": [
+    {
+      "cost_per_incremental_retained": null,
+      "discount_cost_total": 0.0,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "ltv_proxy_per_member": {
+        "hi": 384.193779,
+        "lo": 371.556863,
+        "point": 377.903614
+      },
+      "max_offers_in_a_month": 0,
+      "n_members": 1743,
+      "no_offer_share": 1.0,
+      "offers_per_member_month": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "policy": "no_offer",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 870.130418,
+        "lo": 836.201661,
+        "point": 853.126793
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 623.655914,
+        "lo": 484.536082,
+        "point": 554.973822
+      },
+      "spend": [
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 2,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 3,
+          "realised_cost": 0.0
+        }
+      ],
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": null,
+      "discount_cost_total": 3030.5,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 4.507042,
+        "lo": -1.772002,
+        "point": 1.147447
+      },
+      "ltv_proxy_per_member": {
+        "hi": 382.564993,
+        "lo": 369.847257,
+        "point": 376.261905
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.954993,
+      "offers_per_member_month": {
+        "hi": 0.054394,
+        "lo": 0.036181,
+        "point": 0.045007
+      },
+      "policy": "status_quo",
+      "respectful": false,
+      "retained_per_1000": {
+        "hi": 871.027307,
+        "lo": 837.563306,
+        "point": 854.27424
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 632.85177,
+        "lo": 497.236797,
+        "point": 565.445026
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5218.0,
+          "period": 1,
+          "realised_cost": 726.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5215.5,
+          "period": 2,
+          "realised_cost": 1345.5
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5212.0,
+          "period": 3,
+          "realised_cost": 959.0
+        }
+      ],
+      "variant": "conservative",
+      "violations": {
+        "R1": 114,
+        "R2": 224,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": null,
+      "discount_cost_total": 2643.0,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 6.204261,
+        "lo": -1.652028,
+        "point": 2.294894
+      },
+      "ltv_proxy_per_member": {
+        "hi": 383.280213,
+        "lo": 370.721206,
+        "point": 377.048193
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.926736,
+      "offers_per_member_month": {
+        "hi": 0.083922,
+        "lo": 0.063097,
+        "point": 0.073264
+      },
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 872.151599,
+        "lo": 838.447733,
+        "point": 855.421687
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 643.564356,
+        "lo": 507.6123,
+        "point": 575.91623
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5218.0,
+          "period": 2,
+          "realised_cost": 1296.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5212.0,
+          "period": 3,
+          "realised_cost": 1347.0
+        }
+      ],
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": null,
+      "discount_cost_total": 2310.54,
+      "exploration_rate": 0.36895,
+      "incremental_retained_per_1000": {
+        "hi": 4.640439,
+        "lo": -2.316189,
+        "point": 1.147447
+      },
+      "ltv_proxy_per_member": {
+        "hi": 383.069875,
+        "lo": 370.376159,
+        "point": 376.730614
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.657963,
+      "offers_per_member_month": {
+        "hi": 0.353497,
+        "lo": 0.330531,
+        "point": 0.342037
+      },
+      "policy": "bandit",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 871.177921,
+        "lo": 837.075003,
+        "point": 854.27424
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 623.655914,
+        "lo": 484.536082,
+        "point": 554.973822
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5194.16,
+          "period": 1,
+          "realised_cost": 253.69
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5198.08,
+          "period": 2,
+          "realised_cost": 606.79
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5226.62,
+          "period": 3,
+          "realised_cost": 1450.06
+        }
+      ],
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "discount_cost_total": 0.0,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 7.168459,
+        "lo": 1.184115,
+        "point": 4.016064
+      },
+      "ltv_proxy_per_member": {
+        "hi": 385.687765,
+        "lo": 373.368894,
+        "point": 379.572576
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.897436,
+      "offers_per_member_month": {
+        "hi": 0.112404,
+        "lo": 0.093004,
+        "point": 0.102564
+      },
+      "policy": "segment_oracle",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 873.802951,
+        "lo": 840.345699,
+        "point": 857.142857
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 623.655914,
+        "lo": 484.536082,
+        "point": 554.973822
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 2,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 3,
+          "realised_cost": 0.0
+        }
+      ],
+      "variant": "conservative",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": null,
+      "discount_cost_total": 0.0,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "ltv_proxy_per_member": {
+        "hi": 384.193779,
+        "lo": 371.556863,
+        "point": 377.903614
+      },
+      "max_offers_in_a_month": 0,
+      "n_members": 1743,
+      "no_offer_share": 1.0,
+      "offers_per_member_month": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "policy": "no_offer",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 870.130418,
+        "lo": 836.201661,
+        "point": 853.126793
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 623.655914,
+        "lo": 484.536082,
+        "point": 554.973822
+      },
+      "spend": [
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 2,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 3,
+          "realised_cost": 0.0
+        }
+      ],
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": {
+        "hi": 1031.7837,
+        "lo": 268.166,
+        "point": 426.7083
+      },
+      "discount_cost_total": 5120.5,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 11.571325,
+        "lo": 2.385141,
+        "point": 6.884682
+      },
+      "ltv_proxy_per_member": {
+        "hi": 382.640725,
+        "lo": 370.020307,
+        "point": 376.372633
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.955056,
+      "offers_per_member_month": {
+        "hi": 0.054574,
+        "lo": 0.035913,
+        "point": 0.044944
+      },
+      "policy": "status_quo",
+      "respectful": false,
+      "retained_per_1000": {
+        "hi": 876.544278,
+        "lo": 843.312615,
+        "point": 860.011474
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 684.210526,
+        "lo": 550.505051,
+        "point": 617.801047
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5218.0,
+          "period": 1,
+          "realised_cost": 1609.5
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5228.0,
+          "period": 2,
+          "realised_cost": 1857.5
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5221.5,
+          "period": 3,
+          "realised_cost": 1653.5
+        }
+      ],
+      "variant": "central",
+      "violations": {
+        "R1": 101,
+        "R2": 224,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": {
+        "hi": 458.5887,
+        "lo": 176.7249,
+        "point": 254.3571
+      },
+      "discount_cost_total": 3561.0,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 12.709417,
+        "lo": 3.932529,
+        "point": 8.032129
+      },
+      "ltv_proxy_per_member": {
+        "hi": 384.138572,
+        "lo": 371.535637,
+        "point": 377.888124
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.923447,
+      "offers_per_member_month": {
+        "hi": 0.08801,
+        "lo": 0.065723,
+        "point": 0.076553
+      },
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 877.710068,
+        "lo": 844.534999,
+        "point": 861.158921
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 692.307692,
+        "lo": 561.792218,
+        "point": 628.272251
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5228.0,
+          "period": 2,
+          "realised_cost": 1857.5
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5201.5,
+          "period": 3,
+          "realised_cost": 1703.5
+        }
+      ],
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": null,
+      "discount_cost_total": 2956.56,
+      "exploration_rate": 0.28345,
+      "incremental_retained_per_1000": {
+        "hi": 2.824899,
+        "lo": -2.831257,
+        "point": 0.0
+      },
+      "ltv_proxy_per_member": {
+        "hi": 383.020474,
+        "lo": 370.299064,
+        "point": 376.691015
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.811635,
+      "offers_per_member_month": {
+        "hi": 0.199878,
+        "lo": 0.176518,
+        "point": 0.188365
+      },
+      "policy": "bandit",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 870.220611,
+        "lo": 836.201661,
+        "point": 853.126793
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 629.032258,
+        "lo": 489.685296,
+        "point": 560.209424
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5214.58,
+          "period": 1,
+          "realised_cost": 188.35
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5209.96,
+          "period": 2,
+          "realised_cost": 835.48
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5210.29,
+          "period": 3,
+          "realised_cost": 1932.73
+        }
+      ],
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "discount_cost_total": 0.0,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 13.411274,
+        "lo": 4.512126,
+        "point": 8.605852
+      },
+      "ltv_proxy_per_member": {
+        "hi": 387.166581,
+        "lo": 374.886135,
+        "point": 381.055651
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.767093,
+      "offers_per_member_month": {
+        "hi": 0.246936,
+        "lo": 0.219192,
+        "point": 0.232907
+      },
+      "policy": "segment_oracle",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 877.934404,
+        "lo": 845.005525,
+        "point": 861.732645
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 634.288786,
+        "lo": 495.453503,
+        "point": 565.445026
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 2,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 3,
+          "realised_cost": 0.0
+        }
+      ],
+      "variant": "central",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": null,
+      "discount_cost_total": 0.0,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "ltv_proxy_per_member": {
+        "hi": 384.193779,
+        "lo": 371.556863,
+        "point": 377.903614
+      },
+      "max_offers_in_a_month": 0,
+      "n_members": 1743,
+      "no_offer_share": 1.0,
+      "offers_per_member_month": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "policy": "no_offer",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 870.130418,
+        "lo": 836.201661,
+        "point": 853.126793
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 623.655914,
+        "lo": 484.536082,
+        "point": 554.973822
+      },
+      "spend": [
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 2,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 0.0,
+          "face_value_committed": 0.0,
+          "period": 3,
+          "realised_cost": 0.0
+        }
+      ],
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": {
+        "hi": 662.7132,
+        "lo": 276.1903,
+        "point": 391.8611
+      },
+      "discount_cost_total": 7053.5,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 15.410959,
+        "lo": 5.586592,
+        "point": 10.327022
+      },
+      "ltv_proxy_per_member": {
+        "hi": 382.346574,
+        "lo": 369.913033,
+        "point": 376.1856
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.954919,
+      "offers_per_member_month": {
+        "hi": 0.054872,
+        "lo": 0.035883,
+        "point": 0.045081
+      },
+      "policy": "status_quo",
+      "respectful": false,
+      "retained_per_1000": {
+        "hi": 879.768868,
+        "lo": 846.926157,
+        "point": 863.453815
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 714.285714,
+        "lo": 582.471195,
+        "point": 649.21466
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5218.0,
+          "period": 1,
+          "realised_cost": 2428.5
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5228.0,
+          "period": 2,
+          "realised_cost": 2445.5
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5220.5,
+          "period": 3,
+          "realised_cost": 2179.5
+        }
+      ],
+      "variant": "optimistic",
+      "violations": {
+        "R1": 82,
+        "R2": 225,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": {
+        "hi": 304.7156,
+        "lo": 147.3443,
+        "point": 201.3542
+      },
+      "discount_cost_total": 4832.5,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 19.807716,
+        "lo": 8.163146,
+        "point": 13.769363
+      },
+      "ltv_proxy_per_member": {
+        "hi": 384.70913,
+        "lo": 372.447184,
+        "point": 378.611302
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.918016,
+      "offers_per_member_month": {
+        "hi": 0.094351,
+        "lo": 0.070271,
+        "point": 0.081984
+      },
+      "policy": "rule_following_baseline",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 882.929642,
+        "lo": 850.612707,
+        "point": 866.896156
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 744.680851,
+        "lo": 614.583333,
+        "point": 680.628272
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5215.5,
+          "period": 2,
+          "realised_cost": 2507.5
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5197.5,
+          "period": 3,
+          "realised_cost": 2325.0
+        }
+      ],
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": {
+        "hi": 206.0101,
+        "lo": 91.767,
+        "point": 131.65
+      },
+      "discount_cost_total": 4212.8,
+      "exploration_rate": 0.296311,
+      "incremental_retained_per_1000": {
+        "hi": 25.641026,
+        "lo": 11.547178,
+        "point": 18.359151
+      },
+      "ltv_proxy_per_member": {
+        "hi": 386.43747,
+        "lo": 374.550687,
+        "point": 380.481469
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.670389,
+      "offers_per_member_month": {
+        "hi": 0.344481,
+        "lo": 0.315505,
+        "point": 0.329611
+      },
+      "policy": "bandit",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 887.209416,
+        "lo": 855.262969,
+        "point": 871.485944
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 710.227273,
+        "lo": 575.268817,
+        "point": 643.979058
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5209.01,
+          "period": 1,
+          "realised_cost": 407.8
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5216.32,
+          "period": 2,
+          "realised_cost": 1553.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 5226.67,
+          "period": 3,
+          "realised_cost": 2252.0
+        }
+      ],
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    },
+    {
+      "cost_per_incremental_retained": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "point": 0.0
+      },
+      "discount_cost_total": 0.0,
+      "exploration_rate": null,
+      "incremental_retained_per_1000": {
+        "hi": 24.489796,
+        "lo": 11.553682,
+        "point": 17.785427
+      },
+      "ltv_proxy_per_member": {
+        "hi": 389.591137,
+        "lo": 377.768723,
+        "point": 383.703959
+      },
+      "max_offers_in_a_month": 1,
+      "n_members": 1743,
+      "no_offer_share": 0.813944,
+      "offers_per_member_month": {
+        "hi": 0.200786,
+        "lo": 0.171811,
+        "point": 0.186056
+      },
+      "policy": "segment_oracle",
+      "respectful": true,
+      "retained_per_1000": {
+        "hi": 886.508396,
+        "lo": 854.876582,
+        "point": 870.91222
+      },
+      "retained_per_1000_at_risk": {
+        "hi": 675.126904,
+        "lo": 538.043478,
+        "point": 607.329843
+      },
+      "spend": [
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 1,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 2,
+          "realised_cost": 0.0
+        },
+        {
+          "budget": 5229.0,
+          "face_value_committed": 0.0,
+          "period": 3,
+          "realised_cost": 0.0
+        }
+      ],
+      "variant": "optimistic",
+      "violations": {
+        "R1": 0,
+        "R2": 0,
+        "R3": 0,
+        "R7": 0,
+        "R8": 0
+      }
+    }
+  ],
+  "prereg_status": "preregistered",
+  "run_id": "example",
+  "schema_version": "1.0",
+  "simulated": true,
+  "simulator_hash": "f56881c05863cc5e",
+  "started_at": "2026-11-21T00:00:00Z",
+  "variants": [
+    "conservative",
+    "central",
+    "optimistic"
+  ]
+}

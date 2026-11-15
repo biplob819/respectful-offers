@@ -24,7 +24,7 @@ from respectful_offers.schemas.summary import ChurnReport
 
 class EvaluateStage(Stage):
     name = "evaluate"
-    code_version = "2"
+    code_version = "3"
 
     def __init__(
         self,
