@@ -533,7 +533,7 @@ For each variant, every policy in §6.3 runs H = 3 periods on the evaluation coh
 - **Threshold slider.** Moving the threshold changes R2's allowed sets. The bandit's posterior stays the one trained at the reference threshold, and the screen says "bandit trained at threshold X". Denominators use the reference threshold (§7.4).
 - **Latency budget.** p95 under 2 s, the cold call included: about 1.1 s on an idle developer machine; tests hold a 3.5 s regression ceiling; the target on the deployed page's hardware is measured there (DEM-03, D-43).
 - **Agreement.** At the reference settings, each policy's retained, paired incremental retained and offers per member-month fall within the full run's intervals widened by the demo's own sampling error (DMO-05, D-43). The demo's at-risk rate is not claimed to match.
-- **Hosting.** A page in the shared Streamlit Community Cloud app `portfolio-demos`. It makes no network or model calls and holds no secrets.
+- **Hosting.** A page in the shared Streamlit Community Cloud app `portfolio-demos`. It makes no network or model calls. It is protected by a passkey (OWNER D-48): only salted PBKDF2 hashes of the passkeys live in the app's Streamlit secrets, never in the repository, and the deployed page fails closed when none is set.
 - **Honesty.** The footer is always visible: "Every outcome on this screen is simulated. Assumptions: [link to the YAML]."
 
 ---
@@ -730,7 +730,7 @@ N1.3 comes before N1.2 because the runtime is the riskier design, and N1.2 waits
 
 ### 11.4 Capability catalog
 
-Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`. A node turns green when all of its rows are green. The trace column links each capability to the PRD (US, FR, NFR, R) or to a loophole finding (Appendix A). **122 capabilities**: 111 in v0.1.0 (REA-05 added by D-42), 11 in the demo and project page.
+Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`. A node turns green when all of its rows are green. The trace column links each capability to the PRD (US, FR, NFR, R) or to a loophole finding (Appendix A). **123 capabilities**: 111 in v0.1.0 (REA-05 added by D-42), 12 in the demo and project page (DEM-04 added by OWNER D-48).
 
 **W0.1 Repo and harness**
 
@@ -955,6 +955,7 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | DEM-01 | Streamlit page in `portfolio-demos`: sliders, variant switch, charts, holdout card, simulated footer | FR10 |
 | DEM-02 | Central variant by default; no network or model calls | NFR3 |
 | DEM-03 | Deployed with the cube and posteriors as files | FR10 |
+| DEM-04 | Deployed page behind a passkey: salted hashes in the app's secrets, revocable per passkey, lockout and throttle, fails closed (OWNER D-48) | FR10, NFR3 |
 
 **D3.3 Project page and video**
 

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -528,8 +529,41 @@ os.environ.setdefault("OFFERS_DEMO_CUBE", str(Path(__file__).with_name("cube.jso
 
 from respectful_offers.demo.app import main
 
-main()
+main(require_passkey=True)  # deployed: locked until a passkey hash is set, never by a setting
 """
+
+
+def cmd_demo_passkey(args: argparse.Namespace) -> int:
+    """Hash a passkey for the deployed demo's secrets (DEM-04); the passkey is never stored."""
+    import getpass
+
+    from respectful_offers.demo import gate
+
+    generated = None
+    try:
+        if args.generate:
+            passkey = generated = gate.generate_passkey()
+        elif args.stdin:
+            passkey = sys.stdin.readline().rstrip("\r\n")
+        else:
+            passkey = getpass.getpass("New demo passkey: ")
+            if getpass.getpass("Same passkey again: ") != passkey:
+                raise gate.PasskeyError("the two passkeys differ")
+        stored = gate.hash_passkey(passkey)
+    except gate.PasskeyError as exc:
+        return _fail(args, "demo-passkey", exc)
+    toml = f'[demo]\npasskey_hashes = ["{stored}"]'
+    payload: dict = {"ok": True, "hash": stored, "secrets_toml": toml}
+    text = (
+        "Paste into the Streamlit app's Settings > Secrets (add more hashes to the list to give "
+        "different people their own passkey; `--generate` makes a strong random one):"
+        f"\n\n{toml}\n"
+    )
+    if generated is not None:
+        payload["passkey"] = generated
+        text = f"Passkey (shown once, not stored anywhere): {generated}\n\n" + text
+    _emit(payload, args.json, text)
+    return EXIT_OK
 
 
 def cmd_demo_bundle(args: argparse.Namespace) -> int:
@@ -541,6 +575,8 @@ def cmd_demo_bundle(args: argparse.Namespace) -> int:
     from respectful_offers.schemas.config import ConfigError
 
     try:
+        if args.ref and not re.fullmatch(r"[0-9a-f]{7,40}|v\d+\.\d+\.\d+", args.ref):
+            raise ConfigError("--ref is a commit sha (7-40 hex characters) or a tag like v0.1.0")
         cube = Path(args.cube)
         if not cube.is_file():
             raise ConfigError(f"{cube}: no such cube; run `offers demo-cube` first")
@@ -576,7 +612,9 @@ def cmd_demo_bundle(args: argparse.Namespace) -> int:
         (out / "requirements.txt").write_text(
             "# Installable today from the public repository; after v0.1.0 is on PyPI this may be\n"
             f"# replaced by: respectful-offers[demo]=={__version__}\n"
-            "respectful-offers[demo] @ git+https://github.com/biplob819/respectful-offers\n",
+            "respectful-offers[demo] @ git+https://github.com/biplob819/respectful-offers"
+            + (f"@{args.ref}" if args.ref else "")
+            + "\n",
             encoding="utf-8",
         )
     except (*_user_errors(), ValueError) as exc:
@@ -883,8 +921,17 @@ def build_parser() -> argparse.ArgumentParser:
     db = sub.add_parser("demo-bundle", help="a folder that deploys the demo page as files")
     db.add_argument("--cube", default="demo/cube.json")
     db.add_argument("--out", default="demo/bundle")
+    db.add_argument(
+        "--ref", default=None, help="pin the package to this commit sha or tag (a push reinstalls)"
+    )
     db.add_argument("--json", action="store_true")
     db.set_defaults(func=cmd_demo_bundle)
+    dp = sub.add_parser("demo-passkey", help="hash a passkey for the deployed demo's secrets")
+    how = dp.add_mutually_exclusive_group()
+    how.add_argument("--generate", action="store_true", help="make a random passkey")
+    how.add_argument("--stdin", action="store_true", help="read the passkey from stdin")
+    dp.add_argument("--json", action="store_true")
+    dp.set_defaults(func=cmd_demo_passkey)
     dr = sub.add_parser("doctor", help="check this machine and project; prints no secrets")
     dr.add_argument("--root", default=".")
     dr.add_argument("--data-dir", default="data")

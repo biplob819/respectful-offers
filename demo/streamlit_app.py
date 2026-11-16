@@ -6,4 +6,4 @@ os.environ.setdefault("OFFERS_DEMO_CUBE", str(Path(__file__).with_name("cube.jso
 
 from respectful_offers.demo.app import main
 
-main()
+main(require_passkey=True)  # deployed: locked until a passkey hash is set, never by a setting

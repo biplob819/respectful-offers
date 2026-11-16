@@ -5,7 +5,8 @@
 Sliders for the discount budget and the risk threshold, a variant switch (central by default),
 members retained and discount spent per policy, the live auditor's counts, a holdout card and a
 footer that never lets anyone forget the outcomes are simulated. It reads one local file, the
-aggregates-only cube; it makes no network or model calls and holds no secrets (DEM-02).
+aggregates-only cube; it makes no network or model calls (DEM-02). The deployed page asks for
+a passkey first (DEM-04, `demo/gate.py`): only passkey hashes live in the app's secrets.
 """
 
 from __future__ import annotations
@@ -60,7 +61,72 @@ def threshold_range(cube: Any) -> tuple[float, float]:
     return 0.01, round(min(0.95, max(top, ref + 0.05)), 2)
 
 
-def main() -> None:
+def _secrets_section(st: Any) -> Any:
+    try:
+        return st.secrets.get("demo") or {}
+    except Exception:  # no secrets file: a local run
+        return {}
+
+
+def unlocked(st: Any, require: bool = False) -> bool:
+    """The passkey gate (DEM-04). Draws the gate and returns False until the page may show."""
+    import time
+
+    from respectful_offers.demo import gate
+
+    @st.cache_resource
+    def throttle() -> gate.Throttle:  # one per app process, shared by every session
+        return gate.Throttle()
+
+    try:
+        hashes = gate.configured_hashes(_secrets_section(st))
+    except gate.PasskeyError as exc:
+        st.error(f"This demo is locked: its passkey setting is broken ({exc}).")
+        return False
+    except Exception:  # any other malformed setting: locked, never open
+        st.error("This demo is locked: its passkey setting is broken.")
+        return False
+    if not hashes:
+        if require or gate.required():
+            st.error("This demo is locked: its owner has not set a passkey yet.")
+            return False
+        return True  # a local run with no passkey configured
+    state = st.session_state
+    if state.get("passkey_ok"):
+        return True
+    st.markdown("**This demo is protected by a passkey.** Ask the owner for one.")
+    now = time.time()
+    if state.get("passkey_locked_until", 0.0) > now:
+        wait = int(state["passkey_locked_until"] - now) + 1
+        st.error(f"Too many wrong passkeys. Try again in {wait} seconds.")
+        return False
+    if throttle().blocked():
+        st.error("Too many wrong passkeys from many visitors. Try again in a minute.")
+        return False
+    with st.form("passkey", clear_on_submit=True):
+        entered = st.text_input("Passkey", type="password")
+        submitted = st.form_submit_button("Unlock")
+    if not submitted:
+        return False
+    slot = throttle().try_acquire()  # reserved before the slow check: no overshoot
+    if slot is None:
+        st.error("Too many wrong passkeys from many visitors. Try again in a minute.")
+        return False
+    if gate.check_passkey(entered, hashes):
+        throttle().refund(slot)
+        state["passkey_ok"] = True
+        state["passkey_attempts"] = 0
+        st.rerun()
+        return True  # not reached: rerun draws the page
+    state["passkey_attempts"] = state.get("passkey_attempts", 0) + 1
+    if state["passkey_attempts"] >= gate.MAX_ATTEMPTS:
+        state["passkey_locked_until"] = now + gate.LOCKOUT_SECONDS
+        state["passkey_attempts"] = 0
+    st.error("That passkey is not right.")
+    return False
+
+
+def main(require_passkey: bool = False) -> None:
     import altair as alt
     import pandas as pd
     import streamlit as st
@@ -68,6 +134,9 @@ def main() -> None:
     from respectful_offers.demo.engine import load_cube, simulate
 
     st.set_page_config(page_title="Respectful Offers: policy simulator", layout="wide")
+    if not unlocked(st, require=require_passkey):
+        st.caption(FOOTER)
+        st.stop()
 
     @st.cache_resource
     def cube(path: str):
