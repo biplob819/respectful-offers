@@ -4,6 +4,7 @@ A subscription offer policy that predicts churn risk, chooses offers with a Thom
 
 **Status:** under construction, built node by node with a gated build harness. Run `python scripts/status.py` for live progress.
 
+- Live demo: [respectful-offers.streamlit.app](https://respectful-offers.streamlit.app/), a policy simulator (every outcome simulated; synthetic members until the real-data run lands)
 - Product: [Respectful Offers PRD](Respectful%20Offers%20PRD.md)
 - How it is built: [Respectful Offers Tech Spec](Respectful%20Offers%20Tech%20Spec.md)
 
