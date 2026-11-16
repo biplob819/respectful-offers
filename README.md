@@ -29,6 +29,7 @@ Data: [WSDM Cup 2018, KKBox's churn prediction challenge](https://www.kaggle.com
 | --- | --- |
 | **Results report** | [biplob819.github.io/respectful-offers](https://biplob819.github.io/respectful-offers/): every policy under every simulator variant, the respect audit, the holdout check, off-policy estimates beside the exact oracle, the churn model |
 | **Live demo** | [respectful-offers.streamlit.app](https://respectful-offers.streamlit.app/): a policy simulator on an aggregates-only cube of the real run (passkey protected; run it locally without one, below) |
+| **PR/FAQ** | [One page, working backwards](https://biplob819.github.io/respectful-offers/prfaq.pdf) ([Markdown](docs/site/prfaq.md)): what was built, the result, and what a real A/B test would add |
 | **Decision review** | [Real decisions, read end to end](results/kkbox/decision-review.md) before any number was published |
 | **Published results** | [`results/kkbox/`](results/kkbox/): summary, audit, lineage, churn model card |
 | **Guides** | [Quickstart](docs/guide/quickstart.md) · [Your own data](docs/guide/own-data.md) · [Writing a simulator](docs/guide/writing-a-simulator.md) · [How the respect rules work](docs/guide/respect-rules.md) · [Reproduce the results](docs/guide/reproduce.md) · [Privacy](docs/guide/privacy.md) |
