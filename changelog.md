@@ -2,6 +2,7 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FEAT] [D3.3] — project page: a case study (`docs/site/case-study.html`, on GitHub Pages) and a 90-second video script, generated from the PR/FAQ's facts by `scripts/project_page.py`; drift, template constants, script length and every link tested (live with `OFFERS_CHECK_LINKS=1`).
 - [FEAT] [B2.4] — v0.1.0, the open-source release: history audit (`scripts/history_audit.py`, every blob on every ref), version 0.1.0, PyPI metadata, release by trusted publishing on the tag with a smoke test of the published package on every OS, README links absolute for PyPI, guides corrected, how-it-was-built note, community files and privacy statement checked.
 - [FEAT] [P2.1] — PR/FAQ: one page (press release and FAQ) templated from `results/kkbox/summary.json` by `scripts/prfaq.py` into Markdown, HTML and a one-page PDF (`docs/site/`, on GitHub Pages); drift fails `--check`; linked from the README.
 - [FEAT] [B2.3] — README rebuilt around the real results: one chart and three sentences generated from `results/kkbox/summary.json` (`scripts/readme_assets.py --check` fails on drift), the simulated caveat, a three-line snippet, the KKBox credit, screenshots of the report and the demo, links to everything, a glossary; GitHub Pages workflow through `scripts/build_site.py` and the publish scan (row-data files refused); every documented command run in a fixture project; demo metric labels shortened.
