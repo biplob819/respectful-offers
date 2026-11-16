@@ -104,11 +104,12 @@ def test_no_offer_renews_at_one_minus_risk_and_sleeping_dogs_lose_from_offers(cf
     assert disc.renewed[disc.response == "declined"].mean() < none.renewed.mean() - 0.03
 
 
-def test_simulator_yaml_has_three_explained_variants_awaiting_the_owner(cfg):
+def test_simulator_yaml_has_three_explained_variants_confirmed_by_the_owner(cfg):
     assert set(cfg.variants) == {"conservative", "central", "optimistic"}
     assert direction_problems(cfg) == []
     text = CFG_PATH.read_text(encoding="utf-8")
-    assert "NOT yet confirmed by the owner" in text
+    assert "confirmed by the project owner on 2026-11-17 (OWNER D-47)" in text
+    assert "NOT yet confirmed" not in text
     for word in (
         "risk_bands",
         "segment_mix",

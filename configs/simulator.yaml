@@ -1,8 +1,9 @@
 # Respectful Offers response simulator (Tech Spec §5).
 #
-# STATUS: recommended starting values, NOT yet confirmed by the owner. Pre-registered for
-# synthetic runs only; the owner confirms or changes them before the real-data run (A2.8),
-# and every real evaluation refuses a file whose sha256 is not in docs/prereg.md (D-3).
+# STATUS: confirmed by the project owner on 2026-11-17 (OWNER D-47) and pre-registered for
+# real KKBox runs; every real evaluation refuses a file whose sha256 is not in docs/prereg.md
+# (D-3). Running on your own data? These are only starting values: set what you believe, then
+# `offers prereg --scope real` before any real evaluation.
 #
 # These values are assumptions, not measurements: KKBox data holds no offers. They are chosen
 # to be plausible and are bracketed by three variants, and every report quotes all three.

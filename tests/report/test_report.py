@@ -3,6 +3,7 @@ the HTML (RPT-01..06, EvalKit L-28, L-38)."""
 
 import json
 import re
+from html import escape as html_escape
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -264,7 +265,13 @@ def test_stamps_tell_the_truth_about_registration_and_data(run):
     assert "pre-registered" not in "".join(by_id(t, "sim-stamp")["text"])
     assert "synthetic" in "".join(by_id(t, "data-stamp")["text"])  # the fixture run is synthetic
     assert "not real people" in "".join(by_id(t, "reliability")["text"])
-    assert "real KKBox" not in html
+    # the quoted simulator says it is registered for real runs; the run's own words never do
+    quoted = SIM_YAML.read_text(encoding="utf-8")
+    outside = html
+    for form in (quoted, html_escape(quoted), html_escape(quoted, quote=False)):
+        outside = outside.replace(form, "")
+    assert outside != html, "the simulator is quoted on the page"
+    assert "real KKBox" not in outside
 
 
 def test_user_strings_never_become_markup(run):
