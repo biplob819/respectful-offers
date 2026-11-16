@@ -1,0 +1,160 @@
+{
+  "files": {
+    "members_v3.csv": {
+      "bytes": 427921437,
+      "columns": [
+        "msno",
+        "city",
+        "bd",
+        "gender",
+        "registered_via",
+        "registration_init_time"
+      ],
+      "date_ranges": {
+        "registration_init_time": [
+          20040326,
+          20170429
+        ]
+      },
+      "rows": 6769473,
+      "sha256": "5bacf7d28ee97b7f017feca8650f84169cfcd97bad8995e81344c41e31989edd",
+      "unparseable_dates": {
+        "registration_init_time": 0
+      }
+    },
+    "train.csv": {
+      "bytes": 46667771,
+      "columns": [
+        "msno",
+        "is_churn"
+      ],
+      "date_ranges": {},
+      "rows": 992931,
+      "sha256": "14140a13139b9952686a85b70378c106da4cef43180a3cd50a2962ce64724767",
+      "unparseable_dates": {}
+    },
+    "train_v2.csv": {
+      "bytes": 45635134,
+      "columns": [
+        "msno",
+        "is_churn"
+      ],
+      "date_ranges": {},
+      "rows": 970960,
+      "sha256": "1f7590a3467174f5a147db3fb85dd1393074b6c13da0fd6e70af31bf37dee5cc",
+      "unparseable_dates": {}
+    },
+    "transactions.csv": {
+      "bytes": 1729298376,
+      "columns": [
+        "msno",
+        "payment_method_id",
+        "payment_plan_days",
+        "plan_list_price",
+        "actual_amount_paid",
+        "is_auto_renew",
+        "transaction_date",
+        "membership_expire_date",
+        "is_cancel"
+      ],
+      "date_ranges": {
+        "membership_expire_date": [
+          19700101,
+          20170331
+        ],
+        "transaction_date": [
+          20150101,
+          20170228
+        ]
+      },
+      "rows": 21547746,
+      "sha256": "537c269140742fc74b28ba83941dff7b0ca00974dd48b80994948b8917adddef",
+      "unparseable_dates": {
+        "membership_expire_date": 0,
+        "transaction_date": 0
+      }
+    },
+    "transactions_v2.csv": {
+      "bytes": 115394513,
+      "columns": [
+        "msno",
+        "payment_method_id",
+        "payment_plan_days",
+        "plan_list_price",
+        "actual_amount_paid",
+        "is_auto_renew",
+        "transaction_date",
+        "membership_expire_date",
+        "is_cancel"
+      ],
+      "date_ranges": {
+        "membership_expire_date": [
+          20160419,
+          20361015
+        ],
+        "transaction_date": [
+          20150101,
+          20170331
+        ]
+      },
+      "rows": 1431009,
+      "sha256": "1d3015e32ed1661e9cfe813a9779b1b33e9d1d0829f1203633440045d4c6ea36",
+      "unparseable_dates": {
+        "membership_expire_date": 0,
+        "transaction_date": 0
+      }
+    },
+    "user_logs.csv": {
+      "bytes": 30514081415,
+      "columns": [
+        "msno",
+        "date",
+        "num_25",
+        "num_50",
+        "num_75",
+        "num_985",
+        "num_100",
+        "num_unq",
+        "total_secs"
+      ],
+      "date_ranges": {
+        "date": [
+          20150101,
+          20170228
+        ]
+      },
+      "rows": 392106543,
+      "sha256": "32d83038c86f7974b8f346bb7da1876a186248aa42c74a432517e70cf514d729",
+      "unparseable_dates": {
+        "date": 0
+      }
+    },
+    "user_logs_v2.csv": {
+      "bytes": 1431465728,
+      "columns": [
+        "msno",
+        "date",
+        "num_25",
+        "num_50",
+        "num_75",
+        "num_985",
+        "num_100",
+        "num_unq",
+        "total_secs"
+      ],
+      "date_ranges": {
+        "date": [
+          20170301,
+          20170331
+        ]
+      },
+      "rows": 18396362,
+      "sha256": "0188c4111de1c4fa4dc3fb6253542f14e142e4d05bbf2f3a4c1c345f0014bdce",
+      "unparseable_dates": {
+        "date": 0
+      }
+    }
+  },
+  "manifest_version": "1.0",
+  "source": "kaggle"
+}

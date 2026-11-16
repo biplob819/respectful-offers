@@ -2,6 +2,7 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FEAT] [N1.5] — real KKBox files downloaded with the owner's credentials and verified (seven files, 392,106,543 listening-log rows); manifest committed as `docs/data/kkbox-manifest.json` (file facts only); `DATA_CARD.md` states real counts, checksums and date ranges and what they reveal (`transactions_v2.csv` is not March-only, placeholder 1970 expiries, 3,339 duplicate rows), quotes the competition's data terms and records OWNER D-46; `OFFERS_REAL_DATA=1` re-verifies local files.
 - [FIX] [A2.5] [A2.6] — verifier round 2 (D-37, L-31): contexts carry their column names; posteriors validated on load; non-finite moments refused; one R7 word list in two independent copies proven to agree; pilot outcomes matched to their actions; tighter OPE bias bound; `bootstrap_blocks` ≥ 20.
 - [FIX] [D3.2] — the no-network test allows loopback (Windows asyncio wakes its event loop through a local socket pair); any connection off the machine still fails it.
 - [FIX] [D3.2] — verifier round 1 (D-45, L-36): a failed audit stops the page before any number; simulated labels on every metric; holdout card from the run; slider range from the cube; cube integrity digest and simulator hash check; bundle refuses symlinks and foreign files, turns off usage statistics, installs from the repository.

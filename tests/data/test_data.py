@@ -252,7 +252,7 @@ def test_data_card_is_honest_about_pending_facts():
     for name in REQUIRED:
         assert name.replace("_v2", "") in text or name in text
     assert "within 30 days" in text and "2017-03-01" in text
-    assert text.count("*Pending N1.5.*") >= 2
+    assert "pending" not in text.lower()  # N1.5 filled the date ranges and the licence
     assert "simulated" in text and "never committed" in text.lower()
     assert '"source": "synthetic"' in text and "refuses to write over" in text
     assert "exactly the KKBox formats" not in text  # the fixture's semantics are simpler
