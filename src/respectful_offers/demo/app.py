@@ -28,6 +28,12 @@ CITATION = (  # OWNER D-46: outputs built from KKBox data cite the challenge
     "used under its rules for non-commercial research and education. No member data is in "
     "this page or its cube."
 )
+MEMBERS = {
+    "kaggle": "real, anonymised KKBox subscribers (aggregates)",
+    "synthetic": "synthetic, not real people",
+    "local": "from verified local files (aggregates)",
+    "your_table": "from your own table (aggregates)",
+}
 FOOTER = (
     "Every outcome on this screen is simulated: members are sampled from an aggregates-only "
     "cube and respond as the pre-registered simulator says. Assumptions: the simulator YAML "
@@ -153,7 +159,8 @@ def main(require_passkey: bool = False) -> None:
     variants = list(ref["variants"])
     st.title("Respectful Offers: policy simulator")
     st.caption(
-        f"Simulated · members: {c.data['data_source']} · pre-registration: "
+        f"Simulated · members: {MEMBERS.get(c.data['data_source'], c.data['data_source'])} · "
+        "pre-registration: "
         f"{ref['prereg_status']} · simulator {ref['simulator_hash']}"
     )
     lo, hi = threshold_range(c)
@@ -203,8 +210,8 @@ def main(require_passkey: bool = False) -> None:
     for col, (_, r) in zip(cols, table.iterrows(), strict=True):
         is_base = r["Policy"] == POLICY_LABEL["no_offer"]
         col.metric(
-            f"{r['Policy']} (simulated)",
-            f"{r['Retained per 1,000']:.1f} kept per 1,000",
+            f"{r['Policy']}: members kept per 1,000 (simulated)",
+            f"{r['Retained per 1,000']:.1f}",
             None if is_base else f"{r['Extra kept per 1,000 vs no offer']:+.1f} vs no offer",
         )
         col.caption(

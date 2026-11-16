@@ -65,7 +65,7 @@ def test_the_page_shows_every_policy_and_never_hides_that_it_is_simulated(cube_f
     assert at.title[0].value == "Respectful Offers: policy simulator"
     labels = [m.label for m in at.metric]
     names = ("No offer", "Rule-following baseline", "Bandit", "Status quo (breaks the rules)")
-    assert labels == [f"{n} (simulated)" for n in names]
+    assert labels == [f"{n}: members kept per 1,000 (simulated)" for n in names]
     text = " ".join(c.value for c in at.caption)
     assert "Every outcome on this screen is simulated" in text and "Simulated" in text
     assert any("zero violations" in s.value for s in at.success)
