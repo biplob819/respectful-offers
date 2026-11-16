@@ -4,9 +4,10 @@ Your data has no offers in it, so how members respond to an offer is an assumpti
 simulator file (`simulator.yaml`) states that assumption openly, and every result is reported
 under all of its variants. Read the comments in the file: each value says what it means.
 
-- **Segments.** Each member has a hidden segment: `sure_thing` (renews anyway),
-  `persuadable` (an offer can change their mind), `lost_cause` and `sleeping_dog` (an offer
-  makes leaving more likely). The mix depends on risk band and listening trend.
+- **Segments.** Each member has a hidden segment: `sure_thing` (an offer does not change
+  their renewal, which stays at their own base rate), `persuadable` (an offer can change
+  their mind), `lost_cause` (leaves whatever you do) and `sleeping_dog` (an offer makes
+  leaving more likely). The mix depends on risk band and listening trend.
 - **Actions.** No offer, a content nudge, a one-month discount and a plan change, each with an
   acceptance rate and an exposure effect per segment.
 - **Variants.** At least `conservative`, `central` and `optimistic`, ordered as their names say.

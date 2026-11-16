@@ -1,12 +1,21 @@
 [project]
 name = "respectful-offers"
-version = "0.0.1"
+version = "0.1.0"
 description = "A subscription offer policy with a Thompson sampling bandit and two respect rules, evaluated offline against a holdout."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Biplob Chakraborty" }]
 requires-python = ">=3.11"
+keywords = ["churn", "retention", "bandit", "thompson-sampling", "off-policy-evaluation", "subscription"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
 dependencies = [
     "duckdb>=2.0.0",
     "numpy>=2.0",
@@ -20,6 +29,10 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/biplob819/respectful-offers"
+Documentation = "https://github.com/biplob819/respectful-offers/tree/main/docs/guide"
+Source = "https://github.com/biplob819/respectful-offers"
+Issues = "https://github.com/biplob819/respectful-offers/issues"
+Results = "https://biplob819.github.io/respectful-offers/"
 
 [project.scripts]
 offers = "respectful_offers.cli:main"

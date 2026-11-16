@@ -1,0 +1,61 @@
+name: release
+
+# Publishes to PyPI by trusted publishing (OWNER D-21) when a version tag is pushed.
+# One-time setup by the owner on pypi.org: add this repository and workflow as a trusted
+# publisher for the project `respectful-offers`, with environment `pypi`.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # the history audit scans every commit
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked --all-extras
+      - run: uv run pytest -q
+      - run: uv run python scripts/secret_scan.py && uv run python scripts/data_scan.py
+      - run: uv build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  smoke:
+    needs: publish
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: astral-sh/setup-uv@v6
+      - name: Install from PyPI and run the smoke commands (OSS-06)
+        shell: bash
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          for i in 1 2 3 4 5 6; do
+            uvx --from "respectful-offers==${version}" offers doctor && break
+            sleep 30
+          done
+          uvx --from "respectful-offers==${version}" offers report --example --out example
+          test -f example/index.html

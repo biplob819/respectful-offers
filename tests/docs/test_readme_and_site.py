@@ -53,8 +53,14 @@ def test_the_readme_links_everything_that_matters():
         "SECURITY.md",
     ):
         assert target in text, target
-    for rel in re.findall(r"\]\(((?!https?://)[^)#]+)\)", text):
-        assert (ROOT / rel.replace("%20", " ")).exists(), rel  # no dead relative link
+    repo = r"https://(?:github\.com/biplob819/respectful-offers/(?:blob|tree)/main|"
+    repo += r"raw\.githubusercontent\.com/biplob819/respectful-offers/main)/([^)#\s]+)"
+    targets = re.findall(r"\]\(" + repo + r"\)", text)
+    assert len(targets) > 20  # links are absolute, so the page also works on PyPI
+    for rel in targets:
+        assert (ROOT / rel.replace("%20", " ")).exists(), rel  # no dead link into the repo
+    relative = re.findall(r"\]\(((?!https?://|#)[^)]+)\)", text)
+    assert relative == [], f"relative links break on PyPI: {relative}"
 
 
 def test_the_site_is_the_published_report_and_passes_the_publish_scan(tmp_path, monkeypatch):

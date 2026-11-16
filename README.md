@@ -2,13 +2,13 @@
 
 [![CI](https://github.com/biplob819/respectful-offers/actions/workflows/ci.yml/badge.svg)](https://github.com/biplob819/respectful-offers/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/respectful-offers)](https://pypi.org/project/respectful-offers/)
-[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)](pyproject.toml)
-[![Licence: MIT](https://img.shields.io/badge/licence-MIT-green)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)](https://github.com/biplob819/respectful-offers/blob/main/pyproject.toml)
+[![Licence: MIT](https://img.shields.io/badge/licence-MIT-green)](https://github.com/biplob819/respectful-offers/blob/main/LICENSE)
 
 A subscription retention policy that predicts churn risk, chooses offers with a Thompson sampling bandit, and obeys two respect rules: **a declined offer stays declined**, and **members at risk see content before commerce**. It is evaluated offline, against a holdout, on real KKBox member behaviour with simulated offer responses.
 
 <!-- headline:start -->
-![Discount spent per extra member kept, by policy and simulator variant: the bandit spends the least in every variant](docs/img/headline.svg)
+![Discount spent per extra member kept, by policy and simulator variant: the bandit spends the least in every variant](https://raw.githubusercontent.com/biplob819/respectful-offers/main/docs/img/headline.svg)
 
 On 200,000 real KKBox members with **simulated** offer responses, the respectful bandit spent **97 NTD** of discount per extra member kept, against 211 NTD for the rule-following baseline and 289 NTD for the status quo, which breaks both respect rules (central variant). That was the pre-registered claim, more members kept per 1,000 NTD of discount than the baseline, and it holds in all three simulator variants (central +5.57, conservative +1.74, optimistic +9.36 members per 1,000 NTD; Holm-adjusted). In absolute terms the bandit keeps fewer extra members than the baseline (7.8 against 10.8 per 1,000, central): it leans on free content nudges and a cheaper plan instead of half-price months.
 
@@ -29,22 +29,22 @@ Data: [WSDM Cup 2018, KKBox's churn prediction challenge](https://www.kaggle.com
 | --- | --- |
 | **Results report** | [biplob819.github.io/respectful-offers](https://biplob819.github.io/respectful-offers/): every policy under every simulator variant, the respect audit, the holdout check, off-policy estimates beside the exact oracle, the churn model |
 | **Live demo** | [respectful-offers.streamlit.app](https://respectful-offers.streamlit.app/): a policy simulator on an aggregates-only cube of the real run (passkey protected; run it locally without one, below) |
-| **PR/FAQ** | [One page, working backwards](https://biplob819.github.io/respectful-offers/prfaq.pdf) ([Markdown](docs/site/prfaq.md)): what was built, the result, and what a real A/B test would add |
-| **Decision review** | [Real decisions, read end to end](results/kkbox/decision-review.md) before any number was published |
-| **Published results** | [`results/kkbox/`](results/kkbox/): summary, audit, lineage, churn model card |
-| **Guides** | [Quickstart](docs/guide/quickstart.md) · [Your own data](docs/guide/own-data.md) · [Writing a simulator](docs/guide/writing-a-simulator.md) · [How the respect rules work](docs/guide/respect-rules.md) · [Reproduce the results](docs/guide/reproduce.md) · [Privacy](docs/guide/privacy.md) |
-| **Product and design** | [PRD](Respectful%20Offers%20PRD.md) · [Tech Spec](Respectful%20Offers%20Tech%20Spec.md) · [Decision log](docs/decisions.md) · [Lessons](docs/lessons.md) · [Pre-registration](docs/prereg.md) · [Data card](DATA_CARD.md) · [Changelog](changelog.md) |
+| **PR/FAQ** | [One page, working backwards](https://biplob819.github.io/respectful-offers/prfaq.pdf) ([Markdown](https://github.com/biplob819/respectful-offers/blob/main/docs/site/prfaq.md)): what was built, the result, and what a real A/B test would add |
+| **Decision review** | [Real decisions, read end to end](https://github.com/biplob819/respectful-offers/blob/main/results/kkbox/decision-review.md) before any number was published |
+| **Published results** | [`results/kkbox/`](https://github.com/biplob819/respectful-offers/tree/main/results/kkbox/): summary, audit, lineage, churn model card |
+| **Guides** | [Quickstart](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/quickstart.md) · [Your own data](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/own-data.md) · [Writing a simulator](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/writing-a-simulator.md) · [How the respect rules work](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/respect-rules.md) · [Reproduce the results](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/reproduce.md) · [Privacy](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/privacy.md) |
+| **Product and design** | [PRD](https://github.com/biplob819/respectful-offers/blob/main/Respectful%20Offers%20PRD.md) · [Tech Spec](https://github.com/biplob819/respectful-offers/blob/main/Respectful%20Offers%20Tech%20Spec.md) · [Decision log](https://github.com/biplob819/respectful-offers/blob/main/docs/decisions.md) · [Lessons](https://github.com/biplob819/respectful-offers/blob/main/docs/lessons.md) · [Pre-registration](https://github.com/biplob819/respectful-offers/blob/main/docs/prereg.md) · [Data card](https://github.com/biplob819/respectful-offers/blob/main/DATA_CARD.md) · [Changelog](https://github.com/biplob819/respectful-offers/blob/main/changelog.md) |
 | **Package** | [`respectful-offers` on PyPI](https://pypi.org/project/respectful-offers/): CLI `offers`, import `respectful_offers` |
 
 ## What it looks like
 
 The results report (static HTML, no scripts, every simulated figure labelled):
 
-![The results report: headline verdict, policy comparison chart and stamps saying the outcomes are simulated and the members are real](docs/img/report.png)
+![The results report: headline verdict, policy comparison chart and stamps saying the outcomes are simulated and the members are real](https://raw.githubusercontent.com/biplob819/respectful-offers/main/docs/img/report.png)
 
 The demo: move the discount budget and the risk threshold, switch simulator variants, and watch members kept, discount spent and the live respect audit:
 
-![The demo page: sliders for budget and risk threshold, a variant switch, a card per policy and the live audit](docs/img/demo.png)
+![The demo page: sliders for budget and risk threshold, a variant switch, a card per policy and the live audit](https://raw.githubusercontent.com/biplob819/respectful-offers/main/docs/img/demo.png)
 
 ## How it works
 
@@ -64,7 +64,7 @@ offers doctor                          # checks Python, configs and data; prints
 offers report --example                # a complete report from synthetic members
 ```
 
-Then [run the whole pipeline on synthetic members](docs/guide/quickstart.md), [bring your own member table](docs/guide/own-data.md), or [reproduce the published results](docs/guide/reproduce.md). To run the demo locally (no passkey needed on your own machine):
+Then [run the whole pipeline on synthetic members](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/quickstart.md), [bring your own member table](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/own-data.md), or [reproduce the published results](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/reproduce.md). To run the demo locally (no passkey needed on your own machine):
 
 ```bash
 git clone https://github.com/biplob819/respectful-offers && cd respectful-offers
@@ -74,15 +74,15 @@ streamlit run src/respectful_offers/demo/app.py -- --cube demo/cube.json
 
 ## How it was built
 
-Node by node with a gated build harness: a node graph ([`docs/graph/`](docs/graph/)), a capability catalog where every row is proven by named tests, twelve convergence gates per node, and a skeptical verifier that tries to disprove each node before it turns green. Every verifier finding and owner ruling is in the [decision log](docs/decisions.md); every mistake worth not repeating is in [lessons](docs/lessons.md). `python scripts/status.py` prints live progress.
+Node by node with a gated build harness: a node graph ([`docs/graph/`](https://github.com/biplob819/respectful-offers/tree/main/docs/graph/)), a capability catalog where every row is proven by named tests, twelve convergence gates per node, and a skeptical verifier that tries to disprove each node before it turns green. Every verifier finding and owner ruling is in the [decision log](https://github.com/biplob819/respectful-offers/blob/main/docs/decisions.md); every mistake worth not repeating is in [lessons](https://github.com/biplob819/respectful-offers/blob/main/docs/lessons.md). `python scripts/status.py` prints live progress. The longer story: [how it was built](https://github.com/biplob819/respectful-offers/blob/main/docs/how-i-built-it.md).
 
 ## Privacy
 
-No telemetry. Nothing leaves your machine except the KKBox download you run yourself. KKBox data and member-level files are never committed; CI scans every push for them. See [privacy](docs/guide/privacy.md) and the [data card](DATA_CARD.md).
+No telemetry. Nothing leaves your machine except the KKBox download you run yourself. KKBox data and member-level files are never committed; CI scans every push for them. See [privacy](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/privacy.md) and the [data card](https://github.com/biplob819/respectful-offers/blob/main/DATA_CARD.md).
 
 ## Contributing
 
-Issues and pull requests are welcome: see [CONTRIBUTING](CONTRIBUTING.md), the [code of conduct](CODE_OF_CONDUCT.md) and, for vulnerabilities, [SECURITY](SECURITY.md). Licence: [MIT](LICENSE).
+Issues and pull requests are welcome: see [CONTRIBUTING](https://github.com/biplob819/respectful-offers/blob/main/CONTRIBUTING.md), the [code of conduct](https://github.com/biplob819/respectful-offers/blob/main/CODE_OF_CONDUCT.md) and, for vulnerabilities, [SECURITY](https://github.com/biplob819/respectful-offers/blob/main/SECURITY.md). Licence: [MIT](https://github.com/biplob819/respectful-offers/blob/main/LICENSE).
 
 ## Glossary
 

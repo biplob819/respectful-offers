@@ -126,5 +126,6 @@ def test_using_your_own_data_runs_as_written(tmp_path, monkeypatch, capsys):
     "path", ["docs/img/headline.svg", "docs/img/report.png", "docs/img/demo.png"]
 )
 def test_every_image_the_readme_shows_exists(path):
-    assert f"]({path})" in (ROOT / "README.md").read_text(encoding="utf-8")
+    raw = "https://raw.githubusercontent.com/biplob819/respectful-offers/main/"
+    assert f"]({raw}{path})" in (ROOT / "README.md").read_text(encoding="utf-8")
     assert (ROOT / path).is_file() and (ROOT / path).stat().st_size > 1000

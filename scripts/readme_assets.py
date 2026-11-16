@@ -91,7 +91,8 @@ def headline() -> str:
         [
             START,
             "![Discount spent per extra member kept, by policy and simulator variant: the "
-            "bandit spends the least in every variant](docs/img/headline.svg)",
+            "bandit spends the least in every variant]"
+            "(https://raw.githubusercontent.com/biplob819/respectful-offers/main/docs/img/headline.svg)",
             "",
             f"On {n:,} real KKBox members with **simulated** offer responses, the respectful "
             f"bandit spent **{cost['bandit'].point:.0f} NTD** of discount per extra member kept, "
