@@ -1,0 +1,75 @@
+{
+  "baseline_features": [
+    "tenure_days",
+    "auto_renew"
+  ],
+  "early_renewal_rows_dropped": {
+    "feb": 184360,
+    "mar": 170132
+  },
+  "features": [
+    "tenure_days",
+    "auto_renew",
+    "cancels_90d",
+    "listening_trend_30d",
+    "price_30d",
+    "plan_days"
+  ],
+  "leakage_checks": {
+    "feb": {
+      "auto_renew": 20170131,
+      "cancels_90d": 20170131,
+      "listening_trend_30d": 20170131,
+      "plan_days": 20170131,
+      "price_30d": 20170131,
+      "tenure_days": 20170131
+    },
+    "mar": {
+      "auto_renew": 20170228,
+      "cancels_90d": 20170228,
+      "listening_trend_30d": 20170228,
+      "plan_days": 20170228,
+      "price_30d": 20170228,
+      "tenure_days": 20170228
+    }
+  },
+  "model": "scikit-learn HistGradientBoostingClassifier (D-29)",
+  "params": {
+    "early_stopping": false,
+    "l2_regularization": 1.0,
+    "learning_rate": 0.08,
+    "max_iter": 150,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 50
+  },
+  "permutation_importance_auc_drop": {
+    "auto_renew": 0.159393,
+    "cancels_90d": 0.039644,
+    "listening_trend_30d": 0.02776,
+    "plan_days": 0.000801,
+    "price_30d": 0.047294,
+    "tenure_days": 0.036081
+  },
+  "protected_attributes_used": [],
+  "seed": 20261121,
+  "train": {
+    "calibration": {
+      "risk_bounds": [
+        0.001,
+        0.999
+      ],
+      "shrinkage_members": 20
+    },
+    "calibration_rows": 198246,
+    "params": {
+      "early_stopping": false,
+      "l2_regularization": 1.0,
+      "learning_rate": 0.08,
+      "max_iter": 150,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 50
+    },
+    "seed": 20261121,
+    "train_rows": 792584
+  }
+}

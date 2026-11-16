@@ -374,3 +374,18 @@ def test_report_is_deterministic(run, tmp_path):
         Path(out / "charts" / "ope.vl.json").read_bytes()
         == (tmp_path / "again" / "charts" / "ope.vl.json").read_bytes()
     )
+
+
+def test_a_report_on_kkbox_data_cites_the_challenge(run):
+    """OWNER D-46: published outputs built from KKBox data cite the challenge; others do not."""
+    root, _, html = run
+    assert 'id="citation"' not in html  # synthetic run: nothing to cite
+    s = RunSummary.model_validate_json(
+        (root / "runs" / "r" / "summary.json").read_text(encoding="utf-8")
+    ).model_copy(update={"data_source": "kaggle"})
+    frontier = json.loads((root / "runs" / "r" / "frontier.json").read_text(encoding="utf-8"))
+    page = render(s, frontier, SIM_YAML.read_text(encoding="utf-8"), "x")
+    cite = "".join(by_id(parse(page), "citation")["text"])
+    assert "WSDM Cup 2018" in cite and "non-commercial research and education" in cite
+    assert "No member data is published" in cite
+    assert "kaggle.com/competitions/kkbox-churn-prediction-challenge" in page

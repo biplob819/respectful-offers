@@ -63,7 +63,7 @@ CUBE_KEYS = {
     "reference",
     "agreement",
 }
-CELL_KEYS = {*DIMS, "count", "means", "sds"}
+CELL_KEYS = {*DIMS, "count", "means", "sds", "price_levels"}
 RANGES = {
     "churn_risk": (0.0, 1.0),
     "tenure_days": (0.0, 1e5),
@@ -104,6 +104,22 @@ def check_cube(data: dict[str, Any]) -> None:
             for v in cell["sds"].values()
         ):
             raise ValueError("a cube cell's spread is invalid")
+        levels = cell["price_levels"]
+        if (
+            not isinstance(levels, list)
+            or not levels
+            or any(
+                not isinstance(lv, list)
+                or len(lv) != 2
+                or any(isinstance(x, bool) or not isinstance(x, int | float) for x in lv)
+                or not (0.0 <= lv[0] <= RANGES["price_30d"][1])
+                or not (0.0 < lv[1] <= 1.0)
+                for lv in levels
+            )
+            or abs(sum(lv[1] for lv in levels) - 1.0) > 0.011
+            or len({lv[0] for lv in levels}) != len(levels)
+        ):
+            raise ValueError("a cube cell's price levels are invalid")
         total += n
     if total != data["members"]:
         raise ValueError("cube counts do not add up to its members")
@@ -137,7 +153,8 @@ def sample(
     cube: Cube, n: int = DEMO_MEMBERS, seed: int = DEMO_SEED
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Synthetic members in proportion to the cells (largest remainder), each with its cell's
-    means; auto-renew is drawn from the cell's share where the cell merged it."""
+    means; auto-renew is drawn from the cell's share where the cell merged it, and the price
+    from the cell's price levels (D-49)."""
     cells = cube.data["cells"]
     counts = np.array([c["count"] for c in cells], dtype=float)
     quota = counts / counts.sum() * n
@@ -163,7 +180,7 @@ def sample(
             "auto_renew": auto,
             "cancels_90d": normal("cancels_90d", 0).round().astype(int),
             "listening_trend_30d": normal("listening_trend_30d", -1.0),
-            "price_30d": means["price_30d"],
+            "price_30d": _prices(rng, cells, idx),
             "plan_days": 30,
             "churn_label": False,
         }
@@ -171,6 +188,15 @@ def sample(
     risk = _beta_risk(rng, means["churn_risk"].to_numpy(), sds["churn_risk"].to_numpy())
     scores = pd.DataFrame({"msno": msno, "churn_risk": risk})
     return scores, features
+
+
+def _prices(rng: np.random.Generator, cells: list[dict[str, Any]], idx: np.ndarray) -> np.ndarray:
+    out = np.empty(len(idx))
+    for c in np.unique(idx):
+        at = np.flatnonzero(idx == c)
+        levels = np.array(cells[c]["price_levels"], dtype=float)
+        out[at] = rng.choice(levels[:, 0], size=len(at), p=levels[:, 1] / levels[:, 1].sum())
+    return out
 
 
 def _beta_risk(rng: np.random.Generator, m: np.ndarray, s: np.ndarray) -> np.ndarray:

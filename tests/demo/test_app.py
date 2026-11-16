@@ -336,3 +336,13 @@ def test_the_page_uses_the_app_wide_throttle(cube_file, monkeypatch):
         assert any("many visitors" in e.value for e in third.error)
     finally:
         st.cache_resource.clear()
+
+
+def test_a_page_built_from_kkbox_data_cites_the_challenge(cube_file, monkeypatch):
+    """OWNER D-46: the demo of the real cube cites the challenge; a synthetic one does not."""
+    synthetic = page(cube_file, monkeypatch)
+    assert all("WSDM Cup 2018" not in c.value for c in synthetic.caption)
+    real = page(ROOT / "demo" / "cube.json", monkeypatch)
+    cites = [c.value for c in real.caption if "WSDM Cup 2018" in c.value]
+    assert cites and "non-commercial research and education" in cites[0]
+    assert "No member data" in cites[0]

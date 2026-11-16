@@ -9,7 +9,14 @@ import pytest
 
 from harness_lib import ROOT
 from respectful_offers import cli
-from respectful_offers.demo.cube import MIN_CELL, dumps, make_cube, merge_small
+from respectful_offers.demo.cube import (
+    K_LEVEL,
+    MIN_CELL,
+    dumps,
+    make_cube,
+    merge_small,
+    price_levels,
+)
 from respectful_offers.demo.engine import DEMO_MEMBERS, agreement, load_cube, simulate
 from respectful_offers.schemas import load_simulator_config
 from respectful_offers.schemas.config import load_run_config
@@ -241,6 +248,12 @@ def test_agreement_catches_a_broken_demo(built, tmp_path, name):
         (lambda d: d["cells"][0]["means"].update(churn_risk=5.0), "out of range"),
         (lambda d: d["reference"]["decision_features"].append("gender"), "protected"),
         (lambda d: d["posteriors"].pop("optimistic"), "no bandit posterior"),
+        (lambda d: d["cells"][0].update(price_levels=[]), "price levels"),
+        (lambda d: d["cells"][0].update(price_levels=[[99.0, 0.5]]), "price levels"),
+        (lambda d: d["cells"][0].update(price_levels=[[-1.0, 1.0]]), "price levels"),
+        (lambda d: d["cells"][0].update(price_levels=[[99.0, 0.5], [99.0, 0.5]]), "price levels"),
+        (lambda d: d["cells"][0].update(price_levels=[[99.0, True]]), "price levels"),
+        (lambda d: d["cells"][0].pop("price_levels"), "unexpected keys"),
     ],
 )
 def test_a_tampered_cube_is_refused(built, tmp_path, change, match):
@@ -471,3 +484,54 @@ def test_odd_values_in_an_actions_column_raise_a_contract_error():
     )
     with pytest.raises(ContractError):
         check_frame(frame, MEMBER_STATES, "test")
+
+
+# -- D-49 price levels (found by the real-data agreement check, REA-05) ---------------------------
+
+
+def test_price_levels_keep_real_plan_prices_and_hide_rare_ones():
+    prices = np.array([99.0] * 30 + [149.0] * 12 + [180.0] * 4 + [137.54] * 3 + [0.0] * 1)
+    levels = price_levels(prices)
+    values = [v for v, _ in levels]
+    assert values == [99.0, 149.0]  # 180 (4 members), 138 (3) and 0 (1) are under K_LEVEL
+    assert abs(sum(s for _, s in levels) - 1.0) < 1e-9
+    shares = {v: s for v, s in levels}
+    assert shares[99.0] == round(31 / 50, 2)  # the free member joins the nearest level, 99
+    assert shares[149.0] == round(19 / 50, 2)  # 138 and 180 join 149
+    assert price_levels(np.array([99.0, 120.0, 149.0, 180.0] * 4)) == [[137.0, 1.0]]  # no level
+    assert K_LEVEL >= 5
+
+
+@pytest.mark.parametrize("seed", range(20))
+def test_every_kept_price_level_stands_for_k_or_more_members(seed):
+    from respectful_offers.demo.cube import price_level_counts
+
+    rng = np.random.default_rng(seed)
+    n = int(rng.integers(20, 400))
+    plans = np.array([0.0, 99.0, 100.0, 129.0, 137.54, 149.0, 180.0])
+    prices = rng.choice(plans, size=n, p=rng.dirichlet(np.ones(len(plans))))
+    whole = np.round(prices)
+    levels, counts = price_level_counts(prices)
+    assert counts.sum() == (n if len(levels) else 0)  # every member is behind some level
+    for level, count in zip(levels, counts, strict=True):
+        assert count >= K_LEVEL  # merged levels only grow
+        assert (whole == level).sum() >= K_LEVEL  # and each was common on its own
+    published = [v for v, _ in price_levels(prices)]
+    assert set(published) <= set(levels) or len(published) == 1
+
+
+def test_the_demo_draws_prices_from_each_cells_levels(built):
+    from respectful_offers.demo.engine import sample
+
+    cube = load_cube(built[0])
+    _, feats = sample(cube)
+    allowed = {v for c in cube.data["cells"] for v, _ in c["price_levels"]}
+    assert set(feats["price_30d"].unique()) <= allowed  # real plan prices, never cell means
+    levels = {}
+    for c in cube.data["cells"]:
+        for v, s in c["price_levels"]:
+            levels[v] = levels.get(v, 0.0) + s * c["count"]
+    total = sum(levels.values())
+    got = feats["price_30d"].value_counts(normalize=True)
+    for v, mass in levels.items():
+        assert abs(got.get(v, 0.0) - mass / total) < 0.02, v

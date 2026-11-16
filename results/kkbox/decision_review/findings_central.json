@@ -1,0 +1,140 @@
+{
+ "replay_matches_run": {
+  "no_offer": [
+   858.685,
+   858.685
+  ],
+  "status_quo": [
+   870.345,
+   870.345
+  ],
+  "rule_following_baseline": [
+   869.465,
+   869.465
+  ],
+  "bandit": [
+   866.53,
+   866.53
+  ]
+ },
+ "members": 200000,
+ "bandit": {
+  "member_periods": 568598,
+  "choice_outside_allowed": 0,
+  "chosen": {
+   "no_offer": 481546,
+   "content_nudge": 76871,
+   "plan_change": 8184,
+   "discount_1m": 1997
+  },
+  "budget_downgraded": 1160,
+  "response_by_chosen": {
+   "content_nudge": {
+    "declined": 50860,
+    "accepted": 26011
+   },
+   "discount_1m": {
+    "accepted": 777,
+    "declined": 1220
+   },
+   "plan_change": {
+    "declined": 6747,
+    "accepted": 1437
+   }
+  },
+  "renewal_rate_by_segment_when_offered": {
+   "lost_cause": 0.7281,
+   "persuadable": 0.8438,
+   "sleeping_dog": 0.7892,
+   "sure_thing": 0.8867
+  },
+  "offers_to_sleeping_dogs": 11007,
+  "offers_to_sure_things": 36625,
+  "commercial_to_at_risk_in_period1": 0,
+  "r1_shown_again_after_decline": 0,
+  "r2_commercial_at_risk_without_earlier_nudge": 0,
+  "not_renewed_after_offer_by_segment_and_response": {
+   "lost_cause/accepted": 356,
+   "lost_cause/declined": 3403,
+   "persuadable/accepted": 979,
+   "persuadable/declined": 3018,
+   "sleeping_dog/accepted": 444,
+   "sleeping_dog/declined": 1876,
+   "sure_thing/accepted": 1232,
+   "sure_thing/declined": 2917
+  }
+ },
+ "rule_following_baseline": {
+  "member_periods": 568778,
+  "choice_outside_allowed": 0,
+  "chosen": {
+   "no_offer": 520728,
+   "content_nudge": 32045,
+   "discount_1m": 16005
+  },
+  "budget_downgraded": 14181,
+  "response_by_chosen": {
+   "content_nudge": {
+    "declined": 21729,
+    "accepted": 10316
+   },
+   "discount_1m": {
+    "accepted": 6076,
+    "declined": 9929
+   }
+  },
+  "renewal_rate_by_segment_when_offered": {
+   "lost_cause": 0.6911,
+   "persuadable": 0.8035,
+   "sleeping_dog": 0.686,
+   "sure_thing": 0.7426
+  },
+  "offers_to_sleeping_dogs": 6767,
+  "offers_to_sure_things": 10843,
+  "commercial_to_at_risk_in_period1": 0,
+  "r1_shown_again_after_decline": 0,
+  "r2_commercial_at_risk_without_earlier_nudge": 0,
+  "not_renewed_after_offer_by_segment_and_response": {
+   "lost_cause/accepted": 340,
+   "lost_cause/declined": 3359,
+   "persuadable/accepted": 833,
+   "persuadable/declined": 2795,
+   "sleeping_dog/accepted": 365,
+   "sleeping_dog/declined": 1760,
+   "sure_thing/accepted": 772,
+   "sure_thing/declined": 2019
+  }
+ },
+ "status_quo": {
+  "member_periods": 569780,
+  "choice_outside_allowed": 0,
+  "chosen": {
+   "no_offer": 544830,
+   "discount_1m": 24950
+  },
+  "budget_downgraded": 35604,
+  "response_by_chosen": {
+   "discount_1m": {
+    "accepted": 9331,
+    "declined": 15619
+   }
+  },
+  "renewal_rate_by_segment_when_offered": {
+   "lost_cause": 0.6175,
+   "persuadable": 0.8022,
+   "sleeping_dog": 0.606,
+   "sure_thing": 0.8038
+  },
+  "offers_to_sleeping_dogs": 3325,
+  "offers_to_sure_things": 6030,
+  "commercial_to_at_risk_in_period1": 8487,
+  "r1_shown_again_after_decline": 6540,
+  "r2_commercial_at_risk_without_earlier_nudge": 24950,
+  "not_renewed_after_offer_by_segment_and_response": {
+   "lost_cause/declined": 2407,
+   "persuadable/declined": 1840,
+   "sleeping_dog/declined": 1310,
+   "sure_thing/declined": 1183
+  }
+ }
+}

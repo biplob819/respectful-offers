@@ -371,6 +371,14 @@ LABELS = {
     "your_table": "labels from your own table, not simulated",
     "synthetic": "synthetic members and labels, generated for testing: not simulated outcomes, and not real people",
 }
+CITATION = {  # OWNER D-46: every published output built from KKBox data cites the challenge
+    "kaggle": (
+        'Data: <a href="https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge">'
+        "WSDM Cup 2018, KKBox's churn prediction challenge</a> (Kaggle), used under its rules for "
+        "non-commercial research and education. No member data is published: this page holds "
+        "aggregates only."
+    ),
+}
 SOURCE = {
     "kaggle": "Members: real, anonymised KKBox subscribers",
     "local": "Members: from verified local data files",
@@ -611,7 +619,13 @@ def render(
         _churn(summary, model_card),
         _yaml(simulator_yaml, simulator_sha),
         f"<footer><p>Schema {escape(summary.schema_version)} · config {escape(summary.config_hash)} · "
-        f"simulator {escape(summary.simulator_hash)} · started {summary.started_at.isoformat()}</p></footer>",
+        f"simulator {escape(summary.simulator_hash)} · started {summary.started_at.isoformat()}</p>"
+        + (
+            f'<p id="citation">{CITATION[summary.data_source]}</p>'
+            if summary.data_source in CITATION
+            else ""
+        )
+        + "</footer>",
         "</main></body></html>\n",
     ]
     return "".join(parts)

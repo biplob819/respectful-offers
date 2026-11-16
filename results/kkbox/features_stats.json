@@ -1,0 +1,50 @@
+{
+  "feb": {
+    "as_of": "2017-02-01",
+    "auto_renew_rate": 0.886295,
+    "churn_rate": 0.063386,
+    "cohort": "feb",
+    "dropped_no_history": 2095,
+    "dropped_only_excluded_rows": 6,
+    "early_renewal_rows_dropped": 184360,
+    "means": {
+      "cancels_90d": 0.039574,
+      "listening_trend_30d": 0.471371,
+      "price_30d": 128.848147,
+      "tenure_days": 1149.522431
+    },
+    "members": 990830,
+    "provenance": {
+      "auto_renew": 20170131,
+      "cancels_90d": 20170131,
+      "listening_trend_30d": 20170131,
+      "plan_days": 20170131,
+      "price_30d": 20170131,
+      "tenure_days": 20170131
+    }
+  },
+  "mar": {
+    "as_of": "2017-03-01",
+    "auto_renew_rate": 0.881516,
+    "churn_rate": 0.088748,
+    "cohort": "mar",
+    "dropped_no_history": 2524,
+    "dropped_only_excluded_rows": 5,
+    "early_renewal_rows_dropped": 170132,
+    "means": {
+      "cancels_90d": 0.041928,
+      "listening_trend_30d": 0.40454,
+      "price_30d": 129.500091,
+      "tenure_days": 1169.477958
+    },
+    "members": 968431,
+    "provenance": {
+      "auto_renew": 20170228,
+      "cancels_90d": 20170228,
+      "listening_trend_30d": 20170228,
+      "plan_days": 20170228,
+      "price_30d": 20170228,
+      "tenure_days": 20170228
+    }
+  }
+}

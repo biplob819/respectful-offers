@@ -22,6 +22,12 @@ POLICY_LABEL = {
     "bandit": "Bandit",
     "status_quo": "Status quo (breaks the rules)",
 }
+CITATION = (  # OWNER D-46: outputs built from KKBox data cite the challenge
+    "Members: aggregates of real, anonymised KKBox subscribers from the WSDM Cup 2018 KKBox "
+    "churn prediction challenge (kaggle.com/competitions/kkbox-churn-prediction-challenge), "
+    "used under its rules for non-commercial research and education. No member data is in "
+    "this page or its cube."
+)
 FOOTER = (
     "Every outcome on this screen is simulated: members are sampled from an aggregates-only "
     "cube and respond as the pre-registered simulator says. Assumptions: the simulator YAML "
@@ -239,6 +245,8 @@ def main(require_passkey: bool = False) -> None:
             st.write("This cube does not carry the run's holdout check.")
     st.divider()
     st.caption(FOOTER)
+    if c.data["data_source"] == "kaggle":
+        st.caption(CITATION)
     with st.expander("The simulator, quoted in full"):
         st.code(c.data["simulator_yaml"], language="yaml")
 

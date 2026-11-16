@@ -1,0 +1,492 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "values": [
+      {
+        "covered": true,
+        "effective_sample_size": 52227.974,
+        "estimator": "ips",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 122.485163,
+          "lo": 120.618329,
+          "point": 121.550129
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52227.974,
+        "estimator": "snips",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 121.299369,
+          "lo": 120.631602,
+          "point": 120.966258
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52227.974,
+        "estimator": "dr",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 121.253135,
+          "lo": 120.734997,
+          "point": 120.996134
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52081.165,
+        "estimator": "ips",
+        "oracle": 121.126495,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 122.646069,
+          "lo": 120.812327,
+          "point": 121.729247
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52081.165,
+        "estimator": "snips",
+        "oracle": 121.126495,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 121.70327,
+          "lo": 121.0535,
+          "point": 121.377732
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52081.165,
+        "estimator": "dr",
+        "oracle": 121.126495,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 121.47536,
+          "lo": 120.964486,
+          "point": 121.219385
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52007.847,
+        "estimator": "ips",
+        "oracle": 121.370074,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 122.452178,
+          "lo": 120.540049,
+          "point": 121.509872
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52007.847,
+        "estimator": "snips",
+        "oracle": 121.370074,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 121.723075,
+          "lo": 121.067524,
+          "point": 121.390182
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52007.847,
+        "estimator": "dr",
+        "oracle": 121.370074,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 121.689354,
+          "lo": 121.186316,
+          "point": 121.437204
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 54641.558,
+        "estimator": "ips",
+        "oracle": 121.09283,
+        "policy": "bandit",
+        "value": {
+          "hi": 122.272877,
+          "lo": 120.514931,
+          "point": 121.386218
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 54641.558,
+        "estimator": "snips",
+        "oracle": 121.09283,
+        "policy": "bandit",
+        "value": {
+          "hi": 121.455375,
+          "lo": 120.81745,
+          "point": 121.135614
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 54641.558,
+        "estimator": "dr",
+        "oracle": 121.09283,
+        "policy": "bandit",
+        "value": {
+          "hi": 121.299739,
+          "lo": 120.786345,
+          "point": 121.04567
+        },
+        "variant": "conservative"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52067.261,
+        "estimator": "ips",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 122.110264,
+          "lo": 120.243091,
+          "point": 121.17463
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52067.261,
+        "estimator": "snips",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 121.254914,
+          "lo": 120.622967,
+          "point": 120.938014
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52067.261,
+        "estimator": "dr",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 121.205218,
+          "lo": 120.691607,
+          "point": 120.953687
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52046.062,
+        "estimator": "ips",
+        "oracle": 121.545351,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 122.735308,
+          "lo": 120.831372,
+          "point": 121.769528
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52046.062,
+        "estimator": "snips",
+        "oracle": 121.545351,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 121.89109,
+          "lo": 121.242734,
+          "point": 121.565573
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 52046.062,
+        "estimator": "dr",
+        "oracle": 121.545351,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 121.804713,
+          "lo": 121.306677,
+          "point": 121.555562
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51947.598,
+        "estimator": "ips",
+        "oracle": 121.944306,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 122.852789,
+          "lo": 121.033411,
+          "point": 121.937372
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51947.598,
+        "estimator": "snips",
+        "oracle": 121.944306,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 122.254678,
+          "lo": 121.630902,
+          "point": 121.94052
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51947.598,
+        "estimator": "dr",
+        "oracle": 121.944306,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 122.207695,
+          "lo": 121.734917,
+          "point": 121.971407
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 54056.278,
+        "estimator": "ips",
+        "oracle": 121.63939,
+        "policy": "bandit",
+        "value": {
+          "hi": 123.114694,
+          "lo": 121.336371,
+          "point": 122.217925
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 54056.278,
+        "estimator": "snips",
+        "oracle": 121.63939,
+        "policy": "bandit",
+        "value": {
+          "hi": 122.096067,
+          "lo": 121.476401,
+          "point": 121.790416
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 54056.278,
+        "estimator": "dr",
+        "oracle": 121.63939,
+        "policy": "bandit",
+        "value": {
+          "hi": 121.911034,
+          "lo": 121.421344,
+          "point": 121.668983
+        },
+        "variant": "central"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51896.761,
+        "estimator": "ips",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 121.889268,
+          "lo": 119.958916,
+          "point": 120.911098
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51896.761,
+        "estimator": "snips",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 121.367021,
+          "lo": 120.729871,
+          "point": 121.049199
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51896.761,
+        "estimator": "dr",
+        "oracle": 120.969684,
+        "policy": "no_offer",
+        "value": {
+          "hi": 121.340337,
+          "lo": 120.830988,
+          "point": 121.084574
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51990.205,
+        "estimator": "ips",
+        "oracle": 122.073679,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 123.207367,
+          "lo": 121.297659,
+          "point": 122.24427
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51990.205,
+        "estimator": "snips",
+        "oracle": 122.073679,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 122.558495,
+          "lo": 121.911897,
+          "point": 122.233543
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51990.205,
+        "estimator": "dr",
+        "oracle": 122.073679,
+        "policy": "rule_following_baseline",
+        "value": {
+          "hi": 122.527398,
+          "lo": 122.023881,
+          "point": 122.278539
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51890.741,
+        "estimator": "ips",
+        "oracle": 122.611993,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 123.440342,
+          "lo": 121.549257,
+          "point": 122.495589
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51890.741,
+        "estimator": "snips",
+        "oracle": 122.611993,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 123.030019,
+          "lo": 122.423937,
+          "point": 122.724295
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 51890.741,
+        "estimator": "dr",
+        "oracle": 122.611993,
+        "policy": "segment_oracle",
+        "value": {
+          "hi": 122.979192,
+          "lo": 122.501068,
+          "point": 122.74195
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 53926.099,
+        "estimator": "ips",
+        "oracle": 122.276347,
+        "policy": "bandit",
+        "value": {
+          "hi": 123.862542,
+          "lo": 121.957991,
+          "point": 122.893261
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 53926.099,
+        "estimator": "snips",
+        "oracle": 122.276347,
+        "policy": "bandit",
+        "value": {
+          "hi": 122.821265,
+          "lo": 122.210922,
+          "point": 122.516659
+        },
+        "variant": "optimistic"
+      },
+      {
+        "covered": true,
+        "effective_sample_size": 53926.099,
+        "estimator": "dr",
+        "oracle": 122.276347,
+        "policy": "bandit",
+        "value": {
+          "hi": 122.697812,
+          "lo": 122.216938,
+          "point": 122.455931
+        },
+        "variant": "optimistic"
+      }
+    ]
+  },
+  "encoding": {
+    "color": {
+      "field": "covered"
+    },
+    "shape": {
+      "field": "estimator"
+    },
+    "x": {
+      "field": "value.point",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "policy"
+    }
+  },
+  "mark": "point",
+  "title": "Off-policy estimates against the exact oracle (Simulated)"
+}

@@ -1,7 +1,10 @@
 """The demo's cohort cube (Tech Spec §8, D-12, DMO-01): aggregates only, never member rows.
 
 Cells are risk decile × trend band × auto-renew × tenure band × price band over the
-evaluation cohort. Each cell keeps its member count and the means of the decision features.
+evaluation cohort. Each cell keeps its member count, the means of the decision features and
+its price levels: real prices are a few discrete plan prices (0, 99, 149, 180 NTD...), and a
+mean price changes which offers a member can get and what the bandit picks (D-49, found by the
+real-data agreement check). Every published price level covers at least `K_LEVEL` members.
 A cell under `MIN_CELL` members is merged by coarsening, one dimension at a time (price band,
 then tenure band, then auto-renew, then risk deciles into pairs, fives and all), anything
 still too small joins a single remainder cell, and a remainder still too small joins the
@@ -21,8 +24,9 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-CUBE_VERSION = "1"
+CUBE_VERSION = "2"
 MIN_CELL = 20
+K_LEVEL = 5  # members behind every published price level (disclosure control, D-49)
 DIMS = ("risk_decile", "trend_band", "auto_renew", "tenure_band", "price_band")
 MEANS = (
     "churn_risk",
@@ -124,6 +128,7 @@ def build_cube(
         cell["count"] = max(MIN_CELL, int(5 * round(len(g) / 5)))
         cell["means"] = {c: _sig3(float(g[f"m_{c}"].mean())) for c in MEANS}
         cell["sds"] = {c: _sig3(float(g[f"m_{c}"].std(ddof=0))) for c in SPREAD}
+        cell["price_levels"] = price_levels(g["m_price_30d"].to_numpy())
         cells.append(cell)
     if min(c["count"] for c in cells) < MIN_CELL:  # belt and braces: never a small cell
         raise ValueError("a cube cell holds fewer than the minimum members")
@@ -140,6 +145,33 @@ def build_cube(
         "reference": reference,
         "agreement": agreement,
     }
+
+
+def price_level_counts(prices: np.ndarray, k: int = K_LEVEL) -> tuple[np.ndarray, np.ndarray]:
+    """Whole-NTD price levels held by `k` or more members, and how many members each level
+    stands for once members at rarer prices join the nearest kept level. Empty when no price
+    is that common."""
+    whole = np.round(np.asarray(prices, dtype=float))
+    values, counts = np.unique(whole, return_counts=True)
+    kept = values[counts >= k]
+    if not len(kept):
+        return kept, counts[:0]
+    nearest = kept[np.abs(whole[:, None] - kept[None, :]).argmin(axis=1)]
+    return np.unique(nearest, return_counts=True)
+
+
+def price_levels(prices: np.ndarray, k: int = K_LEVEL) -> list[list[float]]:
+    """A cell's prices as [[price, share], ...]: whole NTD, each level held by `k` or more
+    members (members at rarer prices join the nearest kept level), shares to two decimals.
+    With no level that common, the cell's mean price is the only level."""
+    levels, n = price_level_counts(prices, k)
+    if not len(levels):
+        return [[_sig3(float(np.mean(prices))), 1.0]]
+    shares = np.round(n / n.sum(), 2)
+    keep = shares > 0  # a level under half a percent joins the most common one
+    levels, shares = levels[keep], shares[keep]
+    shares[np.argmax(shares)] += round(1.0 - float(shares.sum()), 2)  # sum exactly to one
+    return [[float(v), round(float(s), 2)] for v, s in zip(levels, shares, strict=True)]
 
 
 def _sig3(x: float) -> float:

@@ -1,0 +1,55 @@
+{
+  "config_hash": "996831449ae52455",
+  "git_sha": "2faad55e0a77",
+  "run_id": "real-v2",
+  "seed": 20261121,
+  "simulator_hash": "6ae089599c41b741",
+  "stages": [
+    {
+      "cache_hit": false,
+      "error": null,
+      "files": [
+        "manifest.json"
+      ],
+      "key": "dea46dac0d24ce80761ee3bf3ae6a8dd6b9802cdf3a46746b9c1a264cf9368a6",
+      "parents": [],
+      "seconds": 0.0,
+      "stage": "source:manifest",
+      "started_at": null
+    },
+    {
+      "cache_hit": true,
+      "error": null,
+      "key": "3aead049243ac18b1ccfe66cf7e6e6d5aef22174beaccf2a019ac2ceaf7c6d1f",
+      "parents": [
+        "dea46dac0d24ce80761ee3bf3ae6a8dd6b9802cdf3a46746b9c1a264cf9368a6"
+      ],
+      "seconds": 0.0,
+      "stage": "features",
+      "started_at": "2026-11-16T20:01:47+00:00"
+    },
+    {
+      "cache_hit": true,
+      "error": null,
+      "key": "c80fe53c7f30523007481a4259c4451bfad0a50394d21548b9c4dba4f5f02b01",
+      "parents": [
+        "3aead049243ac18b1ccfe66cf7e6e6d5aef22174beaccf2a019ac2ceaf7c6d1f"
+      ],
+      "seconds": 0.0,
+      "stage": "churn",
+      "started_at": "2026-11-16T20:01:47+00:00"
+    },
+    {
+      "cache_hit": false,
+      "error": null,
+      "key": "5e765ba49ae78b689d73cb257a4440fa5bbb93012eaad488f51a432e28d6a530",
+      "parents": [
+        "3aead049243ac18b1ccfe66cf7e6e6d5aef22174beaccf2a019ac2ceaf7c6d1f",
+        "c80fe53c7f30523007481a4259c4451bfad0a50394d21548b9c4dba4f5f02b01"
+      ],
+      "seconds": 620.003,
+      "stage": "evaluate",
+      "started_at": "2026-11-16T20:01:47+00:00"
+    }
+  ]
+}

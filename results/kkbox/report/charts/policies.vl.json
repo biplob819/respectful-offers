@@ -1,0 +1,1014 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "values": [
+      {
+        "cost_per_incremental_retained": null,
+        "discount_cost_total": 0.0,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 0.0,
+          "lo": 0.0,
+          "point": 0.0
+        },
+        "ltv_proxy_per_member": {
+          "hi": 345.69692,
+          "lo": 344.557316,
+          "point": 345.126233
+        },
+        "max_offers_in_a_month": 0,
+        "n_members": 200000,
+        "no_offer_share": 1.0,
+        "offers_per_member_month": {
+          "hi": 0.0,
+          "lo": 0.0,
+          "point": 0.0
+        },
+        "policy": "no_offer",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 860.16391,
+          "lo": 857.169234,
+          "point": 858.685
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 366.416504,
+          "lo": 355.129789,
+          "point": 360.685469
+        },
+        "spend": [
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 2,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 3,
+            "realised_cost": 0.0
+          }
+        ],
+        "variant": "conservative",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 363.1321,
+          "lo": 330.8711,
+          "point": 346.2176
+        },
+        "discount_cost_total": 447313.1035,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 6.820701,
+          "lo": 6.098139,
+          "point": 6.46
+        },
+        "ltv_proxy_per_member": {
+          "hi": 345.887571,
+          "lo": 344.758716,
+          "point": 345.324187
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.95636,
+        "offers_per_member_month": {
+          "hi": 0.044422,
+          "lo": 0.042895,
+          "point": 0.04364
+        },
+        "policy": "status_quo",
+        "respectful": false,
+        "retained_per_1000": {
+          "hi": 866.613232,
+          "lo": 863.656428,
+          "point": 865.145
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 414.429413,
+          "lo": 402.735953,
+          "point": 408.505441
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599985.32,
+            "period": 1,
+            "realised_cost": 145111.9504
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599955.5428,
+            "period": 2,
+            "realised_cost": 149952.8721
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599993.924,
+            "period": 3,
+            "realised_cost": 152248.281
+          }
+        ],
+        "variant": "conservative",
+        "violations": {
+          "R1": 7361,
+          "R2": 24799,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 339.6563,
+          "lo": 299.2839,
+          "point": 318.4967
+        },
+        "discount_cost_total": 298112.9279,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 5.020532,
+          "lo": 4.336295,
+          "point": 4.68
+        },
+        "ltv_proxy_per_member": {
+          "hi": 345.65961,
+          "lo": 344.529296,
+          "point": 345.098957
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.91879,
+        "offers_per_member_month": {
+          "hi": 0.082223,
+          "lo": 0.080238,
+          "point": 0.08121
+        },
+        "policy": "rule_following_baseline",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 864.842418,
+          "lo": 861.857357,
+          "point": 863.365
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 401.194816,
+          "lo": 389.487691,
+          "point": 395.32904
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599977.2662,
+            "period": 2,
+            "realised_cost": 143796.185
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599958.8517,
+            "period": 3,
+            "realised_cost": 154316.7429
+          }
+        ],
+        "variant": "conservative",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 228.0316,
+          "lo": 185.6163,
+          "point": 205.0374
+        },
+        "discount_cost_total": 104364.0469,
+        "exploration_rate": 0.027797,
+        "incremental_retained_per_1000": {
+          "hi": 2.829641,
+          "lo": 2.26356,
+          "point": 2.545
+        },
+        "ltv_proxy_per_member": {
+          "hi": 345.979179,
+          "lo": 344.845049,
+          "point": 345.412573
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.887879,
+        "offers_per_member_month": {
+          "hi": 0.113172,
+          "lo": 0.1111,
+          "point": 0.112121
+        },
+        "policy": "bandit",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 862.72272,
+          "lo": 859.689972,
+          "point": 861.23
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 384.289146,
+          "lo": 372.462128,
+          "point": 378.340366
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 39984.79,
+            "period": 1,
+            "realised_cost": 4989.48
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599989.1903,
+            "period": 2,
+            "realised_cost": 36804.0271
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 185663.9011,
+            "period": 3,
+            "realised_cost": 62570.5397
+          }
+        ],
+        "variant": "conservative",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 61.2147,
+          "lo": 50.2041,
+          "point": 55.4743
+        },
+        "discount_cost_total": 37888.9763,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 3.671539,
+          "lo": 3.166686,
+          "point": 3.415
+        },
+        "ltv_proxy_per_member": {
+          "hi": 346.874086,
+          "lo": 345.752268,
+          "point": 346.313843
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.890449,
+        "offers_per_member_month": {
+          "hi": 0.110539,
+          "lo": 0.108573,
+          "point": 0.109551
+        },
+        "policy": "segment_oracle",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 863.56567,
+          "lo": 860.586814,
+          "point": 862.1
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 379.440685,
+          "lo": 367.988441,
+          "point": 373.676808
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 274346.8829,
+            "period": 2,
+            "realised_cost": 17631.3064
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 42495.4528,
+            "period": 3,
+            "realised_cost": 20257.6699
+          }
+        ],
+        "variant": "conservative",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": null,
+        "discount_cost_total": 0.0,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 0.0,
+          "lo": 0.0,
+          "point": 0.0
+        },
+        "ltv_proxy_per_member": {
+          "hi": 345.69692,
+          "lo": 344.557316,
+          "point": 345.126233
+        },
+        "max_offers_in_a_month": 0,
+        "n_members": 200000,
+        "no_offer_share": 1.0,
+        "offers_per_member_month": {
+          "hi": 0.0,
+          "lo": 0.0,
+          "point": 0.0
+        },
+        "policy": "no_offer",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 860.16391,
+          "lo": 857.169234,
+          "point": 858.685
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 366.416504,
+          "lo": 355.129789,
+          "point": 360.685469
+        },
+        "spend": [
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 2,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 3,
+            "realised_cost": 0.0
+          }
+        ],
+        "variant": "central",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 297.569,
+          "lo": 280.3763,
+          "point": 288.7036
+        },
+        "discount_cost_total": 673256.8918,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 12.132025,
+          "lo": 11.191422,
+          "point": 11.66
+        },
+        "ltv_proxy_per_member": {
+          "hi": 346.575758,
+          "lo": 345.450466,
+          "point": 346.010116
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.956211,
+        "offers_per_member_month": {
+          "hi": 0.044608,
+          "lo": 0.043008,
+          "point": 0.043789
+        },
+        "policy": "status_quo",
+        "respectful": false,
+        "retained_per_1000": {
+          "hi": 871.798985,
+          "lo": 868.880074,
+          "point": 870.345
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 453.074443,
+          "lo": 441.096604,
+          "point": 446.998297
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599985.32,
+            "period": 1,
+            "realised_cost": 215250.2259
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599991.1808,
+            "period": 2,
+            "realised_cost": 225975.3874
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599961.951,
+            "period": 3,
+            "realised_cost": 232031.2785
+          }
+        ],
+        "variant": "central",
+        "violations": {
+          "R1": 6540,
+          "R2": 24950,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 219.0337,
+          "lo": 203.8868,
+          "point": 211.1662
+        },
+        "discount_cost_total": 455274.2483,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 11.242198,
+          "lo": 10.310882,
+          "point": 10.78
+        },
+        "ltv_proxy_per_member": {
+          "hi": 346.93981,
+          "lo": 345.813535,
+          "point": 346.380724
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.915521,
+        "offers_per_member_month": {
+          "hi": 0.085541,
+          "lo": 0.083451,
+          "point": 0.084479
+        },
+        "policy": "rule_following_baseline",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 870.919438,
+          "lo": 867.960171,
+          "point": 869.465
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 446.605641,
+          "lo": 434.443379,
+          "point": 440.484122
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599992.931,
+            "period": 2,
+            "realised_cost": 215628.4029
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599958.4029,
+            "period": 3,
+            "realised_cost": 239645.8454
+          }
+        ],
+        "variant": "central",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 102.5951,
+          "lo": 91.8127,
+          "point": 97.0342
+        },
+        "discount_cost_total": 152246.6758,
+        "exploration_rate": 0.018741,
+        "incremental_retained_per_1000": {
+          "hi": 8.246874,
+          "lo": 7.445369,
+          "point": 7.845
+        },
+        "ltv_proxy_per_member": {
+          "hi": 347.871793,
+          "lo": 346.744986,
+          "point": 347.309687
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.846901,
+        "offers_per_member_month": {
+          "hi": 0.154328,
+          "lo": 0.151892,
+          "point": 0.153099
+        },
+        "policy": "bandit",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 867.991237,
+          "lo": 865.022457,
+          "point": 866.53
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 412.884004,
+          "lo": 400.920776,
+          "point": 406.913909
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 33448.52,
+            "period": 1,
+            "realised_cost": 7182.82
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599992.3423,
+            "period": 2,
+            "realised_cost": 56282.4897
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 192201.5577,
+            "period": 3,
+            "realised_cost": 88781.3661
+          }
+        ],
+        "variant": "central",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 32.6449,
+          "lo": 27.801,
+          "point": 30.1703
+        },
+        "discount_cost_total": 53703.1038,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 9.298536,
+          "lo": 8.496872,
+          "point": 8.9
+        },
+        "ltv_proxy_per_member": {
+          "hi": 348.958237,
+          "lo": 347.834682,
+          "point": 348.398892
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.84872,
+        "offers_per_member_month": {
+          "hi": 0.15253,
+          "lo": 0.150113,
+          "point": 0.15128
+        },
+        "policy": "segment_oracle",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 869.006039,
+          "lo": 866.089235,
+          "point": 867.585
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 401.063855,
+          "lo": 389.532187,
+          "point": 395.292028
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 255007.905,
+            "period": 2,
+            "realised_cost": 22827.2746
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 54274.1748,
+            "period": 3,
+            "realised_cost": 30875.8292
+          }
+        ],
+        "variant": "central",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": null,
+        "discount_cost_total": 0.0,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 0.0,
+          "lo": 0.0,
+          "point": 0.0
+        },
+        "ltv_proxy_per_member": {
+          "hi": 345.69692,
+          "lo": 344.557316,
+          "point": 345.126233
+        },
+        "max_offers_in_a_month": 0,
+        "n_members": 200000,
+        "no_offer_share": 1.0,
+        "offers_per_member_month": {
+          "hi": 0.0,
+          "lo": 0.0,
+          "point": 0.0
+        },
+        "policy": "no_offer",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 860.16391,
+          "lo": 857.169234,
+          "point": 858.685
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 366.416504,
+          "lo": 355.129789,
+          "point": 360.685469
+        },
+        "spend": [
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 2,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 0.0,
+            "face_value_committed": 0.0,
+            "period": 3,
+            "realised_cost": 0.0
+          }
+        ],
+        "variant": "optimistic",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 275.8807,
+          "lo": 263.8945,
+          "point": 269.8041
+        },
+        "discount_cost_total": 881719.6821,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 16.889777,
+          "lo": 15.806695,
+          "point": 16.34
+        },
+        "ltv_proxy_per_member": {
+          "hi": 347.092467,
+          "lo": 345.97506,
+          "point": 346.531697
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.956083,
+        "offers_per_member_month": {
+          "hi": 0.044764,
+          "lo": 0.043111,
+          "point": 0.043917
+        },
+        "policy": "status_quo",
+        "respectful": false,
+        "retained_per_1000": {
+          "hi": 876.444857,
+          "lo": 873.580522,
+          "point": 875.025
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 487.984251,
+          "lo": 475.525979,
+          "point": 481.641868
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599985.32,
+            "period": 1,
+            "realised_cost": 280805.4332
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599994.9552,
+            "period": 2,
+            "realised_cost": 294063.0148
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599992.901,
+            "period": 3,
+            "realised_cost": 306851.234
+          }
+        ],
+        "variant": "optimistic",
+        "violations": {
+          "R1": 5538,
+          "R2": 25079,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 175.9126,
+          "lo": 166.6258,
+          "point": 171.2462
+        },
+        "discount_cost_total": 602957.8466,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 18.182544,
+          "lo": 17.031593,
+          "point": 17.605
+        },
+        "ltv_proxy_per_member": {
+          "hi": 348.551857,
+          "lo": 347.450166,
+          "point": 348.000474
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.911789,
+        "offers_per_member_month": {
+          "hi": 0.08934,
+          "lo": 0.087117,
+          "point": 0.088211
+        },
+        "policy": "rule_following_baseline",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 877.692065,
+          "lo": 874.857651,
+          "point": 876.29
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 497.14587,
+          "lo": 484.866541,
+          "point": 491.005996
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599979.1493,
+            "period": 2,
+            "realised_cost": 283338.7891
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 599959.2891,
+            "period": 3,
+            "realised_cost": 319619.0575
+          }
+        ],
+        "variant": "optimistic",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 68.9395,
+          "lo": 62.7917,
+          "point": 65.8069
+        },
+        "discount_cost_total": 190116.1666,
+        "exploration_rate": 0.016193,
+        "incremental_retained_per_1000": {
+          "hi": 14.99909,
+          "lo": 13.897335,
+          "point": 14.445
+        },
+        "ltv_proxy_per_member": {
+          "hi": 350.182229,
+          "lo": 349.075754,
+          "point": 349.624496
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.818981,
+        "offers_per_member_month": {
+          "hi": 0.182426,
+          "lo": 0.179641,
+          "point": 0.181019
+        },
+        "policy": "bandit",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 874.547566,
+          "lo": 871.688093,
+          "point": 873.13
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 449.655863,
+          "lo": 437.589929,
+          "point": 443.630172
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 34602.02,
+            "period": 1,
+            "realised_cost": 9514.6
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 568830.3622,
+            "period": 2,
+            "realised_cost": 70585.3939
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 182371.6616,
+            "period": 3,
+            "realised_cost": 110016.1726
+          }
+        ],
+        "variant": "optimistic",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      },
+      {
+        "cost_per_incremental_retained": {
+          "hi": 23.2622,
+          "lo": 20.175,
+          "point": 21.7059
+        },
+        "discount_cost_total": 70544.0658,
+        "exploration_rate": null,
+        "incremental_retained_per_1000": {
+          "hi": 16.815757,
+          "lo": 15.695222,
+          "point": 16.25
+        },
+        "ltv_proxy_per_member": {
+          "hi": 351.569341,
+          "lo": 350.457264,
+          "point": 351.011134
+        },
+        "max_offers_in_a_month": 1,
+        "n_members": 200000,
+        "no_offer_share": 0.756276,
+        "offers_per_member_month": {
+          "hi": 0.245252,
+          "lo": 0.242237,
+          "point": 0.243724
+        },
+        "policy": "segment_oracle",
+        "respectful": true,
+        "retained_per_1000": {
+          "hi": 876.34477,
+          "lo": 873.466139,
+          "point": 874.935
+        },
+        "retained_per_1000_at_risk": {
+          "hi": 436.011149,
+          "lo": 424.089991,
+          "point": 430.083648
+        },
+        "spend": [
+          {
+            "budget": 600000.0,
+            "face_value_committed": 0.0,
+            "period": 1,
+            "realised_cost": 0.0
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 257177.2541,
+            "period": 2,
+            "realised_cost": 28689.5042
+          },
+          {
+            "budget": 600000.0,
+            "face_value_committed": 62238.4054,
+            "period": 3,
+            "realised_cost": 41854.5616
+          }
+        ],
+        "variant": "optimistic",
+        "violations": {
+          "R1": 0,
+          "R2": 0,
+          "R3": 0,
+          "R7": 0,
+          "R8": 0
+        }
+      }
+    ]
+  },
+  "encoding": {
+    "shape": {
+      "field": "variant"
+    },
+    "x": {
+      "field": "incremental_retained_per_1000.point",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "policy"
+    }
+  },
+  "mark": "point",
+  "title": "Incremental retained per 1,000 (Simulated)"
+}
