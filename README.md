@@ -54,10 +54,9 @@ The demo: move the discount budget and the risk threshold, switch simulator vari
 3. **Policies.** No offer, the status quo (discount everyone at risk, ignoring the rules), a rule-following baseline, a Thompson sampling bandit, and a segment oracle as the ceiling, all under one discount budget.
 4. **Simulator.** Each member gets a hidden response segment (sure thing, persuadable, lost cause, sleeping dog) from a pre-registered mix that depends on their real features; three variants (conservative, central, optimistic) bracket the assumptions.
 5. **Evaluation.** Every policy is rolled out on the same 200,000 members with common random numbers, compared with paired block-bootstrap intervals and a Holm correction; off-policy estimates (IPS, SNIPS, doubly robust) are checked against the simulator's exact answer.
+6. **Release gates, in EvalKit's format.** `offers metrics` writes the results as [EvalKit](https://github.com/biplob819/evalkit)'s `metrics-1` file ([`results/kkbox/metrics.json`](https://github.com/biplob819/respectful-offers/blob/main/results/kkbox/metrics.json)), and CI gates every change on [`configs/gates.yaml`](https://github.com/biplob819/respectful-offers/blob/main/configs/gates.yaml): zero respect violations for every respectful policy, the pre-registered claim in every variant and a clean holdout check must hold; age-band disparity, churn-model quality and off-policy coverage warn. EvalKit's `evalkit gate` takes over from the local gate when it ships.
 
 ## Quickstart
-
-> Until v0.1.0 reaches PyPI, install from a clone instead: `pip install -e .` in this repository.
 
 ```bash
 pip install respectful-offers          # Python 3.11 to 3.13, any OS

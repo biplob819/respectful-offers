@@ -18,7 +18,7 @@ CATALOG_TSV = ROOT / "docs" / "graph" / "catalog.tsv"
 SPECS_DIR = ROOT / "specs"
 
 STATUSES = ("not-started", "spec", "building", "green")
-NODE_RE = re.compile(r"^[WNABPD]\d+\.\d+$")
+NODE_RE = re.compile(r"^[WNABPDE]\d+\.\d+$")
 NODE_LIKE_RE = re.compile(r"^[A-Za-z]\d+\.\d+$")  # looks like a node id but may be malformed
 CATALOG_FIELDS = ("cap_id", "node", "status", "proof", "note")
 PROOF_DIMENSIONS = ("logical", "contract", "golden", "repro", "respect")

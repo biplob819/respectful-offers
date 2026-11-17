@@ -1,0 +1,6833 @@
+{
+ "created_at": "2026-11-16T20:12:07.430556Z",
+ "metrics": [
+  {
+   "ci_high": 860.16391,
+   "ci_low": 857.169234,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 858.685
+  },
+  {
+   "ci_high": 0.0,
+   "ci_low": 0.0,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 0.0
+  },
+  {
+   "ci_high": 366.416504,
+   "ci_low": 355.129789,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 360.685469
+  },
+  {
+   "ci_high": 0.0,
+   "ci_low": 0.0,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.0
+  },
+  {
+   "ci_high": 345.69692,
+   "ci_low": 344.557316,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 345.126233
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 1.0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "ci_high": 866.613232,
+   "ci_low": 863.656428,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 865.145
+  },
+  {
+   "ci_high": 6.820701,
+   "ci_low": 6.098139,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 6.46
+  },
+  {
+   "ci_high": 414.429413,
+   "ci_low": 402.735953,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 408.505441
+  },
+  {
+   "ci_high": 0.044422,
+   "ci_low": 0.042895,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.04364
+  },
+  {
+   "ci_high": 345.887571,
+   "ci_low": 344.758716,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 345.324187
+  },
+  {
+   "ci_high": 363.1321,
+   "ci_low": 330.8711,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 346.2176
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 447313.1035
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.95636
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 7361
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 24799
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599985.32
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 145111.9504
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599955.5428
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 149952.8721
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599993.924
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 152248.281
+  },
+  {
+   "ci_high": 864.842418,
+   "ci_low": 861.857357,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 863.365
+  },
+  {
+   "ci_high": 5.020532,
+   "ci_low": 4.336295,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 4.68
+  },
+  {
+   "ci_high": 401.194816,
+   "ci_low": 389.487691,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 395.32904
+  },
+  {
+   "ci_high": 0.082223,
+   "ci_low": 0.080238,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.08121
+  },
+  {
+   "ci_high": 345.65961,
+   "ci_low": 344.529296,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 345.098957
+  },
+  {
+   "ci_high": 339.6563,
+   "ci_low": 299.2839,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 318.4967
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 298112.9279
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.91879
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599977.2662
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 143796.185
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599958.8517
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 154316.7429
+  },
+  {
+   "ci_high": 862.72272,
+   "ci_low": 859.689972,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 861.23
+  },
+  {
+   "ci_high": 2.829641,
+   "ci_low": 2.26356,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 2.545
+  },
+  {
+   "ci_high": 384.289146,
+   "ci_low": 372.462128,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 378.340366
+  },
+  {
+   "ci_high": 0.113172,
+   "ci_low": 0.1111,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.112121
+  },
+  {
+   "ci_high": 345.979179,
+   "ci_low": 344.845049,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 345.412573
+  },
+  {
+   "ci_high": 228.0316,
+   "ci_low": 185.6163,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 205.0374
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 104364.0469
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.887879
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "n": 200000,
+   "name": "exploration_rate",
+   "unit": "rate",
+   "value": 0.027797
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 39984.79
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 4989.48
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599989.1903
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 36804.0271
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 185663.9011
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 62570.5397
+  },
+  {
+   "ci_high": 863.56567,
+   "ci_low": 860.586814,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 862.1
+  },
+  {
+   "ci_high": 3.671539,
+   "ci_low": 3.166686,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 3.415
+  },
+  {
+   "ci_high": 379.440685,
+   "ci_low": 367.988441,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 373.676808
+  },
+  {
+   "ci_high": 0.110539,
+   "ci_low": 0.108573,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.109551
+  },
+  {
+   "ci_high": 346.874086,
+   "ci_low": 345.752268,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 346.313843
+  },
+  {
+   "ci_high": 61.2147,
+   "ci_low": 50.2041,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 55.4743
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 37888.9763
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.890449
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 274346.8829
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 17631.3064
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 42495.4528
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 20257.6699
+  },
+  {
+   "ci_high": 860.16391,
+   "ci_low": 857.169234,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 858.685
+  },
+  {
+   "ci_high": 0.0,
+   "ci_low": 0.0,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 0.0
+  },
+  {
+   "ci_high": 366.416504,
+   "ci_low": 355.129789,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 360.685469
+  },
+  {
+   "ci_high": 0.0,
+   "ci_low": 0.0,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.0
+  },
+  {
+   "ci_high": 345.69692,
+   "ci_low": 344.557316,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 345.126233
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 1.0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "ci_high": 871.798985,
+   "ci_low": 868.880074,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 870.345
+  },
+  {
+   "ci_high": 12.132025,
+   "ci_low": 11.191422,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 11.66
+  },
+  {
+   "ci_high": 453.074443,
+   "ci_low": 441.096604,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 446.998297
+  },
+  {
+   "ci_high": 0.044608,
+   "ci_low": 0.043008,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.043789
+  },
+  {
+   "ci_high": 346.575758,
+   "ci_low": 345.450466,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 346.010116
+  },
+  {
+   "ci_high": 297.569,
+   "ci_low": 280.3763,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 288.7036
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 673256.8918
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.956211
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 6540
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 24950
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599985.32
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 215250.2259
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599991.1808
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 225975.3874
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599961.951
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 232031.2785
+  },
+  {
+   "ci_high": 870.919438,
+   "ci_low": 867.960171,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 869.465
+  },
+  {
+   "ci_high": 11.242198,
+   "ci_low": 10.310882,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 10.78
+  },
+  {
+   "ci_high": 446.605641,
+   "ci_low": 434.443379,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 440.484122
+  },
+  {
+   "ci_high": 0.085541,
+   "ci_low": 0.083451,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.084479
+  },
+  {
+   "ci_high": 346.93981,
+   "ci_low": 345.813535,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 346.380724
+  },
+  {
+   "ci_high": 219.0337,
+   "ci_low": 203.8868,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 211.1662
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 455274.2483
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.915521
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599992.931
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 215628.4029
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599958.4029
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 239645.8454
+  },
+  {
+   "ci_high": 867.991237,
+   "ci_low": 865.022457,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 866.53
+  },
+  {
+   "ci_high": 8.246874,
+   "ci_low": 7.445369,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 7.845
+  },
+  {
+   "ci_high": 412.884004,
+   "ci_low": 400.920776,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 406.913909
+  },
+  {
+   "ci_high": 0.154328,
+   "ci_low": 0.151892,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.153099
+  },
+  {
+   "ci_high": 347.871793,
+   "ci_low": 346.744986,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 347.309687
+  },
+  {
+   "ci_high": 102.5951,
+   "ci_low": 91.8127,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 97.0342
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 152246.6758
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.846901
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "n": 200000,
+   "name": "exploration_rate",
+   "unit": "rate",
+   "value": 0.018741
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 33448.52
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 7182.82
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599992.3423
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 56282.4897
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 192201.5577
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 88781.3661
+  },
+  {
+   "ci_high": 869.006039,
+   "ci_low": 866.089235,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 867.585
+  },
+  {
+   "ci_high": 9.298536,
+   "ci_low": 8.496872,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 8.9
+  },
+  {
+   "ci_high": 401.063855,
+   "ci_low": 389.532187,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 395.292028
+  },
+  {
+   "ci_high": 0.15253,
+   "ci_low": 0.150113,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.15128
+  },
+  {
+   "ci_high": 348.958237,
+   "ci_low": 347.834682,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 348.398892
+  },
+  {
+   "ci_high": 32.6449,
+   "ci_low": 27.801,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 30.1703
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 53703.1038
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.84872
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 255007.905
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 22827.2746
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 54274.1748
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 30875.8292
+  },
+  {
+   "ci_high": 860.16391,
+   "ci_low": 857.169234,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 858.685
+  },
+  {
+   "ci_high": 0.0,
+   "ci_low": 0.0,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 0.0
+  },
+  {
+   "ci_high": 366.416504,
+   "ci_low": 355.129789,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 360.685469
+  },
+  {
+   "ci_high": 0.0,
+   "ci_low": 0.0,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.0
+  },
+  {
+   "ci_high": 345.69692,
+   "ci_low": 344.557316,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 345.126233
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 1.0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "ci_high": 876.444857,
+   "ci_low": 873.580522,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 875.025
+  },
+  {
+   "ci_high": 16.889777,
+   "ci_low": 15.806695,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 16.34
+  },
+  {
+   "ci_high": 487.984251,
+   "ci_low": 475.525979,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 481.641868
+  },
+  {
+   "ci_high": 0.044764,
+   "ci_low": 0.043111,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.043917
+  },
+  {
+   "ci_high": 347.092467,
+   "ci_low": 345.97506,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 346.531697
+  },
+  {
+   "ci_high": 275.8807,
+   "ci_low": 263.8945,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 269.8041
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 881719.6821
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.956083
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 5538
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 25079
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "status_quo",
+    "respectful": false,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599985.32
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 280805.4332
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599994.9552
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 294063.0148
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599992.901
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 306851.234
+  },
+  {
+   "ci_high": 877.692065,
+   "ci_low": 874.857651,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 876.29
+  },
+  {
+   "ci_high": 18.182544,
+   "ci_low": 17.031593,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 17.605
+  },
+  {
+   "ci_high": 497.14587,
+   "ci_low": 484.866541,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 491.005996
+  },
+  {
+   "ci_high": 0.08934,
+   "ci_low": 0.087117,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.088211
+  },
+  {
+   "ci_high": 348.551857,
+   "ci_low": 347.450166,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 348.000474
+  },
+  {
+   "ci_high": 175.9126,
+   "ci_low": 166.6258,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 171.2462
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 602957.8466
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.911789
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599979.1493
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 283338.7891
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 599959.2891
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 319619.0575
+  },
+  {
+   "ci_high": 874.547566,
+   "ci_low": 871.688093,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 873.13
+  },
+  {
+   "ci_high": 14.99909,
+   "ci_low": 13.897335,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 14.445
+  },
+  {
+   "ci_high": 449.655863,
+   "ci_low": 437.589929,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 443.630172
+  },
+  {
+   "ci_high": 0.182426,
+   "ci_low": 0.179641,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.181019
+  },
+  {
+   "ci_high": 350.182229,
+   "ci_low": 349.075754,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 349.624496
+  },
+  {
+   "ci_high": 68.9395,
+   "ci_low": 62.7917,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 65.8069
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 190116.1666
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.818981
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "n": 200000,
+   "name": "exploration_rate",
+   "unit": "rate",
+   "value": 0.016193
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 34602.02
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 9514.6
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 568830.3622
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 70585.3939
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 182371.6616
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 110016.1726
+  },
+  {
+   "ci_high": 876.34477,
+   "ci_low": 873.466139,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 874.935
+  },
+  {
+   "ci_high": 16.815757,
+   "ci_low": 15.695222,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 16.25
+  },
+  {
+   "ci_high": 436.011149,
+   "ci_low": 424.089991,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000_at_risk",
+   "unit": "ratio",
+   "value": 430.083648
+  },
+  {
+   "ci_high": 0.245252,
+   "ci_low": 0.242237,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "offers_per_member_month",
+   "unit": "ratio",
+   "value": 0.243724
+  },
+  {
+   "ci_high": 351.569341,
+   "ci_low": 350.457264,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 351.011134
+  },
+  {
+   "ci_high": 23.2622,
+   "ci_low": 20.175,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 21.7059
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 70544.0658
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "n": 200000,
+   "name": "no_offer_share",
+   "unit": "rate",
+   "value": 0.756276
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "max_offers_in_a_month",
+   "unit": "count",
+   "value": 1
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 1,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 0.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 257177.2541
+  },
+  {
+   "labels": {
+    "period": 2,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 28689.5042
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.budget",
+   "unit": "NTD",
+   "value": 600000.0
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.face_value_committed",
+   "unit": "NTD",
+   "value": 62238.4054
+  },
+  {
+   "labels": {
+    "period": 3,
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "spend.realised_cost",
+   "unit": "NTD",
+   "value": 41854.5616
+  },
+  {
+   "ci_high": -1.783138,
+   "ci_low": -2.478549,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": -2.135
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": -3.535145,
+   "ci_low": -4.289724,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": -3.915
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": -1.448522,
+   "ci_low": -2.124842,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": -1.78
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 0.395738,
+   "ci_low": 0.231711,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 0.313616
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 0.20815,
+   "ci_low": -0.029621,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 0.088386
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": false
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.1428
+  },
+  {
+   "ci_high": -0.125298,
+   "ci_low": -0.328276,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": -0.22523
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 2.216387,
+   "ci_low": 1.275757,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 1.737409
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 2.469757,
+   "ci_low": 1.522313,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 1.988801
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 0.42546,
+   "ci_low": 0.078509,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 0.251393
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "conservative"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0036
+  },
+  {
+   "ci_high": -2.51203,
+   "ci_low": -3.35771,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": -2.935
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": -3.296006,
+   "ci_low": -4.341739,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": -3.815
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": -0.434396,
+   "ci_low": -1.345519,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": -0.88
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 1.031005,
+   "ci_low": 0.82509,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 0.928963
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 1.46532,
+   "ci_low": 1.133271,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 1.299571
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 0.506052,
+   "ci_low": 0.234333,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 0.370608
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 6.096223,
+   "ci_low": 5.064173,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 5.570037
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 7.41647,
+   "ci_low": 6.290234,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 6.841884
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 1.420215,
+   "ci_low": 1.124798,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 1.271848
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "central"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": -2.679092,
+   "ci_low": -3.648328,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": -3.16
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": -1.243418,
+   "ci_low": -2.547491,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": -1.895
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 1.81319,
+   "ci_low": 0.715479,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "diff.incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 1.265
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "separated.incremental_retained_per_1000",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "p_value.incremental_retained_per_1000",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 1.749094,
+   "ci_low": 1.502374,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 1.624022
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 3.298753,
+   "ci_low": 2.887967,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 3.092799
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 1.634514,
+   "ci_low": 1.303133,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "diff.ltv_proxy_per_member",
+   "unit": "NTD",
+   "value": 1.468777
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "separated.ltv_proxy_per_member",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "p_value.ltv_proxy_per_member",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 10.023163,
+   "ci_low": 8.727865,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 9.356426
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 12.203449,
+   "ci_low": 10.807721,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 11.489579
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "bandit",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 2.277677,
+   "ci_low": 1.99402,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 2.133152
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "rule_following_baseline",
+    "b": "status_quo",
+    "variant": "optimistic"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "ci_high": 122.485163,
+   "ci_low": 120.618329,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.550129
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52227.974
+  },
+  {
+   "ci_high": 121.299369,
+   "ci_low": 120.631602,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 120.966258
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52227.974
+  },
+  {
+   "ci_high": 121.253135,
+   "ci_low": 120.734997,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 120.996134
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52227.974
+  },
+  {
+   "ci_high": 122.646069,
+   "ci_low": 120.812327,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.729247
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.126495
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52081.165
+  },
+  {
+   "ci_high": 121.70327,
+   "ci_low": 121.0535,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.377732
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.126495
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52081.165
+  },
+  {
+   "ci_high": 121.47536,
+   "ci_low": 120.964486,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.219385
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.126495
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52081.165
+  },
+  {
+   "ci_high": 122.452178,
+   "ci_low": 120.540049,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.509872
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.370074
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52007.847
+  },
+  {
+   "ci_high": 121.723075,
+   "ci_low": 121.067524,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.390182
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.370074
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52007.847
+  },
+  {
+   "ci_high": 121.689354,
+   "ci_low": 121.186316,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.437204
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.370074
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52007.847
+  },
+  {
+   "ci_high": 122.272877,
+   "ci_low": 120.514931,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.386218
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.09283
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 54641.558
+  },
+  {
+   "ci_high": 121.455375,
+   "ci_low": 120.81745,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.135614
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.09283
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 54641.558
+  },
+  {
+   "ci_high": 121.299739,
+   "ci_low": 120.786345,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.04567
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.09283
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 54641.558
+  },
+  {
+   "ci_high": 122.110264,
+   "ci_low": 120.243091,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.17463
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52067.261
+  },
+  {
+   "ci_high": 121.254914,
+   "ci_low": 120.622967,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 120.938014
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52067.261
+  },
+  {
+   "ci_high": 121.205218,
+   "ci_low": 120.691607,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 120.953687
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52067.261
+  },
+  {
+   "ci_high": 122.735308,
+   "ci_low": 120.831372,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.769528
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.545351
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52046.062
+  },
+  {
+   "ci_high": 121.89109,
+   "ci_low": 121.242734,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.565573
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.545351
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52046.062
+  },
+  {
+   "ci_high": 121.804713,
+   "ci_low": 121.306677,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.555562
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.545351
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 52046.062
+  },
+  {
+   "ci_high": 122.852789,
+   "ci_low": 121.033411,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.937372
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.944306
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51947.598
+  },
+  {
+   "ci_high": 122.254678,
+   "ci_low": 121.630902,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.94052
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.944306
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51947.598
+  },
+  {
+   "ci_high": 122.207695,
+   "ci_low": 121.734917,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.971407
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.944306
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51947.598
+  },
+  {
+   "ci_high": 123.114694,
+   "ci_low": 121.336371,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.217925
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.63939
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 54056.278
+  },
+  {
+   "ci_high": 122.096067,
+   "ci_low": 121.476401,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.790416
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.63939
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 54056.278
+  },
+  {
+   "ci_high": 121.911034,
+   "ci_low": 121.421344,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.668983
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 121.63939
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 54056.278
+  },
+  {
+   "ci_high": 121.889268,
+   "ci_low": 119.958916,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 120.911098
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51896.761
+  },
+  {
+   "ci_high": 121.367021,
+   "ci_low": 120.729871,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.049199
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51896.761
+  },
+  {
+   "ci_high": 121.340337,
+   "ci_low": 120.830988,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 121.084574
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 120.969684
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51896.761
+  },
+  {
+   "ci_high": 123.207367,
+   "ci_low": 121.297659,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.24427
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.073679
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51990.205
+  },
+  {
+   "ci_high": 122.558495,
+   "ci_low": 121.911897,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.233543
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.073679
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51990.205
+  },
+  {
+   "ci_high": 122.527398,
+   "ci_low": 122.023881,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.278539
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.073679
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51990.205
+  },
+  {
+   "ci_high": 123.440342,
+   "ci_low": 121.549257,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.495589
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.611993
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51890.741
+  },
+  {
+   "ci_high": 123.030019,
+   "ci_low": 122.423937,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.724295
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.611993
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51890.741
+  },
+  {
+   "ci_high": 122.979192,
+   "ci_low": 122.501068,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.74195
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.611993
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 51890.741
+  },
+  {
+   "ci_high": 123.862542,
+   "ci_low": 121.957991,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.893261
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.276347
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 53926.099
+  },
+  {
+   "ci_high": 122.821265,
+   "ci_low": 122.210922,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.516659
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.276347
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 53926.099
+  },
+  {
+   "ci_high": 122.697812,
+   "ci_low": 122.216938,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.value",
+   "unit": "NTD",
+   "value": 122.455931
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.oracle",
+   "unit": "NTD",
+   "value": 122.276347
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.covered",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "ope.effective_sample_size",
+   "unit": "ratio",
+   "value": 53926.099
+  },
+  {
+   "ci_high": 3.764813,
+   "ci_low": -1.844796,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "variant": "central"
+   },
+   "name": "holdout_check",
+   "unit": "ratio",
+   "value": 0.974285
+  },
+  {
+   "ci_high": 3.764813,
+   "ci_low": -1.844796,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "variant": "conservative"
+   },
+   "name": "holdout_check",
+   "unit": "ratio",
+   "value": 0.974285
+  },
+  {
+   "ci_high": 3.764813,
+   "ci_low": -1.844796,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "variant": "optimistic"
+   },
+   "name": "holdout_check",
+   "unit": "ratio",
+   "value": 0.974285
+  },
+  {
+   "ci_high": 0.842188,
+   "ci_low": 0.838952,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "name": "churn.auc",
+   "unit": "ratio",
+   "value": 0.840589
+  },
+  {
+   "ci_high": 0.72454,
+   "ci_low": 0.719983,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "name": "churn.baseline_auc",
+   "unit": "ratio",
+   "value": 0.722261
+  },
+  {
+   "ci_high": 0.059429,
+   "ci_low": 0.058671,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "name": "churn.brier",
+   "unit": "ratio",
+   "value": 0.059071
+  },
+  {
+   "name": "churn.ece",
+   "unit": "ratio",
+   "value": 0.026213
+  },
+  {
+   "labels": {
+    "bin": 0
+   },
+   "n": 96844,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.004937
+  },
+  {
+   "labels": {
+    "bin": 0
+   },
+   "n": 96844,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.005473
+  },
+  {
+   "labels": {
+    "bin": 1
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.007904
+  },
+  {
+   "labels": {
+    "bin": 1
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.019919
+  },
+  {
+   "labels": {
+    "bin": 2
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.010753
+  },
+  {
+   "labels": {
+    "bin": 2
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.023667
+  },
+  {
+   "labels": {
+    "bin": 3
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.013715
+  },
+  {
+   "labels": {
+    "bin": 3
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.036523
+  },
+  {
+   "labels": {
+    "bin": 4
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.015629
+  },
+  {
+   "labels": {
+    "bin": 4
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.040168
+  },
+  {
+   "labels": {
+    "bin": 5
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.020662
+  },
+  {
+   "labels": {
+    "bin": 5
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.038743
+  },
+  {
+   "labels": {
+    "bin": 6
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.025354
+  },
+  {
+   "labels": {
+    "bin": 6
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.042161
+  },
+  {
+   "labels": {
+    "bin": 7
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.038338
+  },
+  {
+   "labels": {
+    "bin": 7
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.05132
+  },
+  {
+   "labels": {
+    "bin": 8
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.112632
+  },
+  {
+   "labels": {
+    "bin": 8
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.141032
+  },
+  {
+   "labels": {
+    "bin": 9
+   },
+   "n": 96843,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.375428
+  },
+  {
+   "labels": {
+    "bin": 9
+   },
+   "n": 96843,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.488471
+  },
+  {
+   "ci_high": 0.318374,
+   "ci_low": 0.308283,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "18-24",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.313313
+  },
+  {
+   "ci_high": 0.188855,
+   "ci_low": 0.182686,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "25-34",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.185807
+  },
+  {
+   "ci_high": 0.184699,
+   "ci_low": 0.174959,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "35-44",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.179793
+  },
+  {
+   "ci_high": 0.183478,
+   "ci_low": 0.168248,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "45+",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.175793
+  },
+  {
+   "ci_high": 0.483756,
+   "ci_low": 0.450231,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "<18",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.4671
+  },
+  {
+   "ci_high": 0.109615,
+   "ci_low": 0.106916,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "unknown",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.108252
+  },
+  {
+   "ci_high": 0.223443,
+   "ci_low": 0.216685,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "female",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.220042
+  },
+  {
+   "ci_high": 0.22761,
+   "ci_low": 0.221101,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "male",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.22431
+  },
+  {
+   "ci_high": 0.109614,
+   "ci_low": 0.106958,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "unknown",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.108277
+  },
+  {
+   "ci_high": 741.661786,
+   "ci_low": 730.259756,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "18-24",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 735.864822
+  },
+  {
+   "ci_high": 857.797112,
+   "ci_low": 850.680803,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "25-34",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 854.271906
+  },
+  {
+   "ci_high": 871.227227,
+   "ci_low": 859.475008,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "35-44",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 865.414138
+  },
+  {
+   "ci_high": 884.77101,
+   "ci_low": 868.035636,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "45+",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 876.309564
+  },
+  {
+   "ci_high": 635.011723,
+   "ci_low": 592.592593,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "<18",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 613.756614
+  },
+  {
+   "ci_high": 899.009717,
+   "ci_low": 895.478796,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "unknown",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 897.264599
+  },
+  {
+   "ci_high": 826.822191,
+   "ci_low": 819.358656,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "female",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 823.1065
+  },
+  {
+   "ci_high": 824.406388,
+   "ci_low": 816.996273,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "male",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 820.717414
+  },
+  {
+   "ci_high": 898.192955,
+   "ci_low": 894.634801,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "unknown",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 896.44637
+  },
+  {
+   "ci_high": 0.265108,
+   "ci_low": 0.254739,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "18-24",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.259887
+  },
+  {
+   "ci_high": 0.101544,
+   "ci_low": 0.096345,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "25-34",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.098897
+  },
+  {
+   "ci_high": 0.082102,
+   "ci_low": 0.074282,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "35-44",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.078166
+  },
+  {
+   "ci_high": 0.071858,
+   "ci_low": 0.060553,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "45+",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.066049
+  },
+  {
+   "ci_high": 0.467498,
+   "ci_low": 0.428358,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "<18",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.447873
+  },
+  {
+   "ci_high": 0.048543,
+   "ci_low": 0.046456,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "unknown",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.047479
+  },
+  {
+   "ci_high": 0.140193,
+   "ci_low": 0.134042,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "female",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.13707
+  },
+  {
+   "ci_high": 0.146893,
+   "ci_low": 0.140799,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "male",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.143836
+  },
+  {
+   "ci_high": 0.0491,
+   "ci_low": 0.047038,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "unknown",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.offer_rate",
+   "unit": "rate",
+   "value": 0.048056
+  },
+  {
+   "ci_high": 752.494785,
+   "ci_low": 741.258955,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "18-24",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 746.866586
+  },
+  {
+   "ci_high": 862.255209,
+   "ci_low": 855.196777,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "25-34",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 858.777271
+  },
+  {
+   "ci_high": 871.759197,
+   "ci_low": 860.135513,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "35-44",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 865.925872
+  },
+  {
+   "ci_high": 884.075011,
+   "ci_low": 867.459626,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "45+",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 875.802636
+  },
+  {
+   "ci_high": 652.82477,
+   "ci_low": 609.182981,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "<18",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 631.216931
+  },
+  {
+   "ci_high": 900.243525,
+   "ci_low": 896.696604,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "age_band": "unknown",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 898.494366
+  },
+  {
+   "ci_high": 832.316606,
+   "ci_low": 824.894538,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "female",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 828.663226
+  },
+  {
+   "ci_high": 830.020894,
+   "ci_low": 822.691134,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "male",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 826.352551
+  },
+  {
+   "ci_high": 899.357549,
+   "ci_low": 895.772323,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "gender": "unknown",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "name": "group.retained_per_1000",
+   "unit": "ratio",
+   "value": 897.598357
+  }
+ ],
+ "project": "respectful-offers",
+ "provenance": {
+  "code_version": "2faad55e0a77",
+  "config_hash": "996831449ae52455",
+  "evalkit": null,
+  "snapshot": "simulator:6ae089599c41b741"
+ },
+ "run_id": "real-v2",
+ "schema_version": "metrics-1",
+ "simulated": true
+}

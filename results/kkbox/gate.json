@@ -1,0 +1,1616 @@
+{
+ "exit": 0,
+ "rows": [
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "no_offer",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "rule_following_baseline",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "policy": "segment_oracle",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "metric": "violations",
+   "observed": 0,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "lower",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "metric": "diff.incremental_retained_per_1000_ntd",
+   "observed": 1.275757,
+   "op": ">=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "metric": "separated.incremental_retained_per_1000_ntd",
+   "observed": true,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "lower",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "metric": "diff.incremental_retained_per_1000_ntd",
+   "observed": 5.064173,
+   "op": ">=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "central"
+   },
+   "metric": "separated.incremental_retained_per_1000_ntd",
+   "observed": true,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "lower",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "metric": "diff.incremental_retained_per_1000_ntd",
+   "observed": 8.727865,
+   "op": ">=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "a": "bandit",
+    "b": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "metric": "separated.incremental_retained_per_1000_ntd",
+   "observed": true,
+   "op": "==",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "lower",
+   "labels": {
+    "variant": "central"
+   },
+   "metric": "holdout_check",
+   "observed": -1.844796,
+   "op": "<=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "lower",
+   "labels": {
+    "variant": "conservative"
+   },
+   "metric": "holdout_check",
+   "observed": -1.844796,
+   "op": "<=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "lower",
+   "labels": {
+    "variant": "optimistic"
+   },
+   "metric": "holdout_check",
+   "observed": -1.844796,
+   "op": "<=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "upper",
+   "labels": {
+    "variant": "central"
+   },
+   "metric": "holdout_check",
+   "observed": 3.764813,
+   "op": ">=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "upper",
+   "labels": {
+    "variant": "conservative"
+   },
+   "metric": "holdout_check",
+   "observed": 3.764813,
+   "op": ">=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "upper",
+   "labels": {
+    "variant": "optimistic"
+   },
+   "metric": "holdout_check",
+   "observed": 3.764813,
+   "op": ">=",
+   "severity": "fail",
+   "status": "pass",
+   "threshold": 0
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "disparity": "age_band",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "metric": "group.offer_rate",
+   "observed": 0.358848,
+   "op": "<=",
+   "severity": "warn",
+   "status": "warn",
+   "threshold": 0.1
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "disparity": "age_band",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "metric": "group.offer_rate",
+   "observed": 0.400394,
+   "op": "<=",
+   "severity": "warn",
+   "status": "warn",
+   "threshold": 0.1
+  },
+  {
+   "bound": "lower",
+   "labels": {},
+   "metric": "churn.auc",
+   "observed": 0.838952,
+   "op": ">=",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": 0.8
+  },
+  {
+   "bound": "point",
+   "labels": {},
+   "metric": "churn.ece",
+   "observed": 0.026213,
+   "op": "<=",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": 0.05
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "no_offer",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "rule_following_baseline",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "segment_oracle",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "ips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "snips",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  },
+  {
+   "bound": "point",
+   "labels": {
+    "estimator": "dr",
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "metric": "ope.covered",
+   "observed": true,
+   "op": "==",
+   "severity": "warn",
+   "status": "pass",
+   "threshold": true
+  }
+ ],
+ "simulated": true,
+ "verdict": "pass",
+ "warnings": 2
+}

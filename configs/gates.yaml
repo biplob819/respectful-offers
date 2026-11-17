@@ -1,0 +1,76 @@
+# Release gates in EvalKit's gates format (EvalKit specs/B5.3-gates/spec.md §2, metrics-1).
+# Checked today by scripts/gate.py; `evalkit gate` replaces it once EvalKit v0.3.0 ships
+# (OWNER D-50). Severities are the owner's ruling, OWNER D-52. Every result is simulated.
+gates:
+  # the two respect rules, and the other audited rules, hold for every respectful policy
+  - metric: violations
+    labels: {respectful: true}
+    op: "=="
+    value: 0
+  # the pre-registered claim: the bandit keeps more members per 1,000 NTD than the
+  # rule-following baseline, in every variant, after Holm (docs/prereg.md)
+  # one gate per variant, so a missing variant is an error, never a pass
+  - metric: diff.incremental_retained_per_1000_ntd
+    labels: {a: bandit, b: rule_following_baseline, variant: conservative}
+    bound: lower
+    op: ">="
+    value: 0
+  - metric: separated.incremental_retained_per_1000_ntd
+    labels: {a: bandit, b: rule_following_baseline, variant: conservative}
+    op: "=="
+    value: true
+  - metric: diff.incremental_retained_per_1000_ntd
+    labels: {a: bandit, b: rule_following_baseline, variant: central}
+    bound: lower
+    op: ">="
+    value: 0
+  - metric: separated.incremental_retained_per_1000_ntd
+    labels: {a: bandit, b: rule_following_baseline, variant: central}
+    op: "=="
+    value: true
+  - metric: diff.incremental_retained_per_1000_ntd
+    labels: {a: bandit, b: rule_following_baseline, variant: optimistic}
+    bound: lower
+    op: ">="
+    value: 0
+  - metric: separated.incremental_retained_per_1000_ntd
+    labels: {a: bandit, b: rule_following_baseline, variant: optimistic}
+    op: "=="
+    value: true
+  # the holdout, never offered anything, retains like no offer: its interval spans 0
+  - metric: holdout_check
+    bound: lower
+    op: "<="
+    value: 0
+  - metric: holdout_check
+    bound: upper
+    op: ">="
+    value: 0
+  # audit only (Tech Spec §7): the offer-rate gap across age bands, per respectful policy
+  - metric: group.offer_rate
+    labels: {policy: bandit}
+    disparity: age_band
+    op: "<="
+    value: 0.10
+    severity: warn
+  - metric: group.offer_rate
+    labels: {policy: rule_following_baseline}
+    disparity: age_band
+    op: "<="
+    value: 0.10
+    severity: warn
+  # churn model quality; EvalKit's drift monitor (LED-04, v0.4) takes over later
+  - metric: churn.auc
+    bound: lower
+    op: ">="
+    value: 0.80
+    severity: warn
+  - metric: churn.ece
+    op: "<="
+    value: 0.05
+    severity: warn
+  # off-policy estimates against the simulator's exact value
+  - metric: ope.covered
+    op: "=="
+    value: true
+    severity: warn

@@ -52,3 +52,9 @@ Generated from Respectful Offers Tech Spec §11.2 on 2026-11-15; edit here from 
 | **D3.1** | Demo engine | A2.7, B2.2 | node_converge + verifier | Aggregates-only cohort cube, `simulate()`, `offers demo-cube`, perf test, agreement with the full run (built on a synthetic run; A2.8 rebuilds the cube from real data, D-42) | US7 |
 | **D3.2** | Demo page | D3.1, B2.2 | node_converge + verifier | Streamlit page in `portfolio-demos` matching the PRD wireframe, deployed | US7 |
 | **D3.3** | Project page and video | B2.4, D3.2 | node_converge + verifier | Case study page and 90-second video script, numbers checked against `summary.json`, links resolve | — |
+
+## Wave 4 — EvalKit adoption (OWNER D-50)
+
+| Node | Title | Depends on | Verified by | Deliverable | Stories |
+| --- | --- | --- | --- | --- | --- |
+| **E4.1** | EvalKit metrics export | A2.8, B2.2 | node_converge + verifier | `offers metrics` writes EvalKit's `metrics-1` format from `summary.json`; `configs/gates.yaml` in EvalKit's gates format, checked by a local gate until EvalKit v0.3.0 ships `evalkit gate` | US6 |

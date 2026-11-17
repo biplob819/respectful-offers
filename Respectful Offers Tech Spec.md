@@ -619,7 +619,7 @@ src/respectful_offers/
 
 Status vocabulary: `not-started | spec | building | green`.
 
-### 11.2 Build graph: 22 nodes in four waves
+### 11.2 Build graph: 23 nodes in five waves
 
 **v0.1.0, the open-source release on PyPI with published results (every Must story, US1–US6, plus US8): 19 nodes.** W0.1, N1.1–N1.5, A2.1–A2.8, B2.1–B2.4, P2.1.
 **Full scope, adding the demo, project page and video (US7): 22 nodes.**
@@ -648,8 +648,9 @@ Status vocabulary: `not-started | spec | building | green`.
 | **D3.1** | Demo engine | A2.7, B2.2 | Aggregates-only cohort cube, `simulate()`, perf test, agreement with the full run; built on a synthetic run, rebuilt from real data in A2.8 (D-42) | US7 |
 | **D3.2** | Demo page | D3.1, B2.2 | Streamlit page in `portfolio-demos` matching the PRD wireframe, deployed | US7 |
 | **D3.3** | Project page and video | B2.4, D3.2 | Case study page and 90-second video script, numbers checked against `summary.json`, links resolve | — |
+| **E4.1** | EvalKit metrics export (OWNER D-50) | A2.8, B2.2 | `offers metrics` writes EvalKit's `metrics-1` format from `summary.json`; `configs/gates.yaml` in EvalKit's gates format, checked by a local gate until EvalKit v0.3.0 ships `evalkit gate` | US6 |
 
-Waves: **W0** harness → **N1** data and core → **A2/B2/P2** policy pipeline, report and release → **D3** demo and project page. The results release, v0.1.0, ships at B2.4.
+Waves: **W0** harness → **N1** data and core → **A2/B2/P2** policy pipeline, report and release → **D3** demo and project page → **E4** EvalKit adoption (OWNER D-50). The results release, v0.1.0, ships at B2.4.
 
 ### 11.3 Node map, levels and build order
 
@@ -690,6 +691,8 @@ graph LR
   B22 --> D32
   B24 --> D33[D3.3 Project page + video]
   D32 --> D33
+  A28 --> E41[E4.1 EvalKit metrics export]
+  B22 --> E41
 ```
 
 **Dependency levels.** A node can start once every node it depends on, all in earlier levels, is green.
@@ -707,7 +710,7 @@ graph LR
 | 8 | A2.7 |
 | 9 | A2.8, B2.1 |
 | 10 | B2.2, P2.1, D3.1 |
-| 11 | B2.3, D3.2 |
+| 11 | B2.3, D3.2, E4.1 |
 | 12 | B2.4 |
 | 13 | D3.3 |
 
@@ -724,7 +727,7 @@ graph LR
 | 5 | A2.3 | 13 | N1.5 | 21 | D3.2 |
 | 6 | N1.4 | 14 | A2.8 | 22 | D3.3 |
 | 7 | A2.1 | 15 | B2.1 |  |  |
-| 8 | A2.2 | 16 | B2.2 |  |  |
+| 8 | A2.2 | 16 | B2.2 | 23 | E4.1 |
 
 N1.3 comes before N1.2 because the runtime is the riskier design, and N1.2 waits on the owner's Kaggle credentials. A2.3 comes early because it needs only schemas and the respect rules are the project's thesis. A2.6 comes before A2.5 because validating the estimators against the oracle is the riskier method. N1.5 and A2.8 wait for the owner's Kaggle credentials and licence ruling (D-24); everything before them runs on the synthetic fixture.
 
@@ -964,6 +967,13 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | PAG-01 | Case study page in the shared template, numbers checked against `summary.json` | Deliverables |
 | PAG-02 | 90-second video script on the two rules and the result, numbers checked | Deliverables |
 | PAG-03 | Every link resolves (report, PR/FAQ, demo, repo) | Deliverables |
+
+**E4.1 EvalKit metrics export (OWNER D-50, D-51)**
+
+| Cap | Capability | Trace |
+| --- | --- | --- |
+| EVK-01 | `offers metrics` writes `summary.json` as EvalKit's frozen `metrics-1` file: policy × variant labels, NTD unit, the run's block-bootstrap intervals carried exactly with `ci_method`, violations as counts per rule, `simulated: true`, no member ids; a validator applies every `metrics-1` rule | OWNER D-50 |
+| EVK-02 | `configs/gates.yaml` in EvalKit's gates format (respectful policies' violations `== 0`, the pre-registered claim, OPE coverage, age-band disparity); `scripts/gate.py` evaluates it with EvalKit's exit codes until `evalkit gate` ships; the committed `results/kkbox/metrics.json` and `gate.json` are checked in CI | OWNER D-50 |
 
 ### 11.5 Node lifecycle
 

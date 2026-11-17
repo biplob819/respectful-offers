@@ -753,6 +753,31 @@ def cmd_report(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+def cmd_metrics(args: argparse.Namespace) -> int:
+    """Write summary.json in EvalKit's metrics-1 format (E4.1, OWNER D-50)."""
+    from pydantic import ValidationError
+
+    from respectful_offers.metrics1 import MetricsError, dumps, to_metrics1
+    from respectful_offers.schemas.summary import load_summary
+
+    out = Path(args.out)
+    try:
+        text = dumps(to_metrics1(load_summary(Path(args.summary))))
+    except (OSError, ValidationError, MetricsError) as exc:
+        return _fail(args, "metrics", exc)
+    if args.check:
+        if not out.is_file() or out.read_text(encoding="utf-8") != text:
+            msg = f"offers metrics: {out} is stale; rerun without --check"
+            _emit({"ok": False, "error": msg}, args.json, msg)
+            return EXIT_AUDIT
+        _emit({"ok": True, "metrics": str(out), "current": True}, args.json, f"{out} is current")
+        return EXIT_OK
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(text, encoding="utf-8", newline="\n")
+    _emit({"ok": True, "metrics": str(out)}, args.json, f"offers metrics: wrote {out} (metrics-1)")
+    return EXIT_OK
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = _Parser(prog="offers", description=__doc__)
     parser.add_argument("--version", action="version", version=f"offers {__version__}")
@@ -926,6 +951,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     db.add_argument("--json", action="store_true")
     db.set_defaults(func=cmd_demo_bundle)
+    me = sub.add_parser("metrics", help="write summary.json in EvalKit's metrics-1 format")
+    me.add_argument("--summary", default="results/kkbox/summary.json")
+    me.add_argument("--out", default="results/kkbox/metrics.json")
+    me.add_argument("--check", action="store_true", help="exit 1 if --out is stale")
+    me.add_argument("--json", action="store_true")
+    me.set_defaults(func=cmd_metrics)
     dp = sub.add_parser("demo-passkey", help="hash a passkey for the deployed demo's secrets")
     how = dp.add_mutually_exclusive_group()
     how.add_argument("--generate", action="store_true", help="make a random passkey")

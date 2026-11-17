@@ -2,6 +2,7 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FEAT] [E4.1] — EvalKit metrics export (OWNER D-50, D-52): `offers metrics` writes `summary.json` as EvalKit's frozen `metrics-1` file (633 metrics: policy × variant labels, NTD, the run's intervals copied exactly, violations per rule with the respectful flag, `simulated: true`, no member ids) with a validator for every rule; `configs/gates.yaml` in EvalKit's gates format, checked by `scripts/gate.py` with EvalKit's exit codes until `evalkit gate` ships; committed `results/kkbox/metrics.json` and `gate.json` (pass, two age-band disparity warnings) checked in CI.
 - [DOC] [—] — OWNER D-50: EvalKit becomes the eval engine through its Wave 5 (metrics-summary export, gates, compare, monitoring ledger); four capabilities asked of EvalKit; exporter and monitoring nodes wait for EvalKit B5.3 and B5.7.
 - [FEAT] [D3.3] — project page: a case study (`docs/site/case-study.html`, on GitHub Pages) and a 90-second video script, generated from the PR/FAQ's facts by `scripts/project_page.py`; drift, template constants, script length and every link tested (live with `OFFERS_CHECK_LINKS=1`).
 - [FEAT] [B2.4] — v0.1.0, the open-source release: history audit (`scripts/history_audit.py`, every blob on every ref), version 0.1.0, PyPI metadata, release by trusted publishing on the tag with a smoke test of the published package on every OS, README links absolute for PyPI, guides corrected, how-it-was-built note, community files and privacy statement checked.
