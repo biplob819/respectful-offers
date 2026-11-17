@@ -217,8 +217,18 @@ def gate_pyright(ctx: Ctx) -> Result:
     return _tool_gate([sys.executable, "-m", "pyright"], ctx.root, "pyright clean")
 
 
+def _parallel() -> list[str]:
+    """Spread tests over every core when pytest-xdist is installed; a module's tests stay on
+    one worker (--dist loadfile) so its expensive module fixtures are built once (L-40)."""
+    import importlib.util
+
+    if importlib.util.find_spec("xdist") is None:
+        return []
+    return ["-n", "auto", "--dist", "loadfile"]
+
+
 def _pytest(root: Path, marker: str, label: str) -> Result:
-    code, out = _run([sys.executable, "-m", "pytest", "-q", "-m", marker], root)
+    code, out = _run([sys.executable, "-m", "pytest", "-q", *_parallel(), "-m", marker], root)
     if code == 0:
         last = out.splitlines()[-1] if out else ""
         return Result("PASS", f"{label}: {last}")
