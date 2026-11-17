@@ -70,8 +70,10 @@ def test_no_number_is_written_into_either_template(tmp_path, monkeypatch):
     pattern = r"[+-]?\d[\d,]*\.?\d*%?"
 
     def numbers() -> list[str]:
-        text = project_page.page() + project_page.script()
+        text = project_page.page() + project_page.script() + project_page.portfolio_md()
         text = re.sub(r"\| \d:\d\d \|", "|", text)  # timestamps are the script's own
+        text = re.sub(r"^\d\. ", "", text, flags=re.M)  # the case study's list numbers
+        text = re.sub(r"\]\([^)]*\)|sha256", "", text)  # link targets and the hash's name
         text = re.sub(r"Narration: \d+ words, about \d+ seconds", "", text)
         text = html.unescape(re.sub(r"<style>.*?</style>|<[^>]+>", " ", text))  # prose only
         return re.findall(pattern, text)
@@ -82,7 +84,9 @@ def test_no_number_is_written_into_either_template(tmp_path, monkeypatch):
     assert len(real) == len(other)
     constants = {a for a, b in zip(real, other, strict=True) if a == b}
     # the challenge's year, a unit, the video's length, and the holdout share the config fixes
-    assert constants <= {"2018", "1,000", "90", "10%"}, constants
+    # the portfolio page adds counts that scaling cannot move: "2 of 3 simulator variants"
+    # (signs) and "12 of 12" covered intervals (booleans)
+    assert constants <= {"2018", "1,000", "90", "10%", "2", "3", "12"}, constants
 
 
 def test_the_video_script_fits_ninety_seconds_and_labels_results_simulated():
@@ -124,3 +128,24 @@ def test_every_link_resolves_live(url):
     fetch = opener.open  # an HTTP request, not a text file: no encoding applies
     with fetch(req, timeout=30) as r:
         assert r.status == 200, (url, r.status)
+
+
+def test_the_portfolio_case_study_follows_the_approved_format():
+    md = (ROOT / "docs" / "case-study.md").read_text(encoding="utf-8")
+    head, rest = md.split("\n## My role\n", 1)
+    role, decisions = rest.split("\n## Key decisions\n", 1)
+    narrative = head.split("\n", 2)[2]
+    assert 120 <= len(narrative.split()) <= 180  # about 150 words
+    assert "Claude Code" in role and "I framed" in role  # honest about who did what
+    items = re.findall(r"^\d\. \*\*.+", decisions, flags=re.M)
+    assert len(items) == 3 and all("*Trade-off:*" in i for i in items)
+    f = prfaq.facts()
+    for n in (
+        f"{f['members']:,}",
+        f"{f['central.bandit.cost']:.0f} NTD",
+        f"{f['central.status_quo.violations']:,}",
+    ):
+        assert n in narrative, n
+    assert "simulated" in narrative
+    for url in project_page.LINKS.values():
+        assert f"]({url})" in md

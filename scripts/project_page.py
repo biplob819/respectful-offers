@@ -196,6 +196,86 @@ def script() -> str:
     return "\n".join(lines)
 
 
+def portfolio_md() -> str:
+    """`docs/case-study.md` for the portfolio page: about 150 words, the owner's role and
+    Claude Code's, and three key decisions with their trade-offs (the format AI Visibility's
+    page uses). Every number comes from the published summary."""
+    f = prfaq.facts()
+    c = "central"
+    fewer = 1 - f[f"{c}.bandit.inc"] / f[f"{c}.rule_following_baseline.inc"]
+    share = f[f"{c}.bandit.cost_total"] / f[f"{c}.rule_following_baseline.cost_total"]
+    costly = sum(
+        f[f"{v}.sq_minus_base"][0] > 0 and f[f"{v}.sq_minus_base"][3] for v in prfaq.VARIANTS
+    )
+    held = all(f[f"{v}.claim"][3] and f[f"{v}.claim"][0] > 0 for v in prfaq.VARIANTS)
+    narrative = (
+        "Subscription services fight churn with discounts, and the usual rule pays members who "
+        "would have stayed anyway and asks people again after they said no. I built Respectful "
+        "Offers, an open-source retention policy with two rules written outside the learning: a "
+        "declined offer stays declined, and members at risk see content before commerce. A "
+        "calibrated churn model scores each member, a filter removes every forbidden action, "
+        "and a Thompson sampling bandit chooses among a content nudge, a cheaper plan and a "
+        "half-price month within a budget. On "
+        f"{f['members']:,} real KKBox members, with offer responses simulated, it spent "
+        f"{f[f'{c}.bandit.cost']:.0f} NTD of discount per extra member kept, against "
+        f"{f[f'{c}.rule_following_baseline.cost']:.0f} for a rule-following baseline and "
+        f"{f[f'{c}.status_quo.cost']:.0f} for the status quo, which broke the rules "
+        f"{f[f'{c}.status_quo.violations']:,} times. "
+        + (
+            "The pre-registered claim held under all three simulator variants. "
+            if held
+            else "The pre-registered claim did not hold under every simulator variant. "
+        )
+        + f"The trade: {fewer:.0%} fewer extra members kept than the baseline, on {share:.0%} "
+        "of its discount."
+    )
+    role = (
+        "Product and engineering, end to end: I framed the problem, wrote the PRD and the "
+        "technical spec, and made every judgement call that belonged to a person: the licence "
+        "reading for the Kaggle data, the simulator's values (frozen and hashed before the real "
+        "run), the demo's passkey protection and which release gates fail or only warn. Claude "
+        "Code built the code, tests and documents node by node under a gated harness: no "
+        "capability counted as done until its named tests passed every convergence gate and a "
+        "skeptical verifier, given only the criteria and the code, failed to disprove it."
+    )
+    decisions = [
+        (
+            "Simulate responses on real members, and say so everywhere.",
+            "The KKBox data holds no offers, so responses come from a simulator in three "
+            "pre-registered variants, run on real members with common random numbers; every "
+            "result carries a Simulated label, and off-policy estimates are checked against the "
+            "simulator's exact answer "
+            f"({f['dr.covered']} of {f['dr.total']} doubly robust intervals covered it).",
+            "the result is conditional on the simulator's assumptions and says nothing about "
+            "real acceptance; only a live A/B test with the same holdout can.",
+        ),
+        (
+            "Rules outside the learning, checked by an independent auditor.",
+            "A pure filter sits in front of every respectful policy, and an auditor that never "
+            "imports it recounts every rule from the decision log.",
+            "the rules can cost members that ignoring them would keep: the rule-following "
+            "baseline kept fewer extra members than the unconstrained status quo in "
+            f"{costly} of {len(prfaq.VARIANTS)} simulator variants (central: "
+            f"{f[f'{c}.rule_following_baseline.inc']:.1f} against "
+            f"{f[f'{c}.status_quo.inc']:.1f} per 1,000).",
+        ),
+        (
+            "Pre-register, then gate releases on the claim.",
+            "The simulator's values were frozen by sha256 before the real run, and CI gates every "
+            "change on zero violations and the claim in every variant, in EvalKit's format.",
+            "no tuning after seeing results, and a release can be blocked by a number, in "
+            "exchange for results a skeptical reader can check.",
+        ),
+    ]
+    title = "Respectful Offers: retention offers that take no for an answer"
+    lines = [f"# {title}", "", narrative, "", "## My role", "", role, "", "## Key decisions", ""]
+    for i, (head, what, trade) in enumerate(decisions, start=1):
+        lines.append(f"{i}. **{head}** {what} *Trade-off:* {trade}")
+    links = " · ".join(f"[{k}]({u})" for k, u in LINKS.items())
+    lines += ["", f"**Links:** {links}", ""]
+    return "\n".join(lines)
+
+
 def narration_words(text: str) -> int:
     rows = [r for r in text.splitlines() if re.match(r"\| \d:\d\d \|", r)]
     return sum(len(r.rsplit("|", 2)[1].split()) for r in rows)
@@ -205,7 +285,11 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args(argv)
-    files = {OUT / "case-study.html": page(), OUT / "video-script.md": script()}
+    files = {
+        OUT / "case-study.html": page(),
+        OUT / "video-script.md": script(),
+        ROOT / "docs" / "case-study.md": portfolio_md(),
+    }
     if args.check:
         stale = [p.name for p, t in files.items() if not p.is_file() or p.read_text("utf-8") != t]
         if stale:
