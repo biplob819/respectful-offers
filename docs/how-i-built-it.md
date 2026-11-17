@@ -4,7 +4,7 @@ The project was built the way its Tech Spec says, node by node, by an AI coding 
 under a gated harness, with the owner making every judgement call that belonged to a person.
 
 **The graph.** The [Tech Spec](../Respectful%20Offers%20Tech%20Spec.md) splits the work into
-23 nodes ([`docs/graph/graph.md`](graph/graph.md)) and 125 capabilities
+25 nodes ([`docs/graph/graph.md`](graph/graph.md)) and 129 capabilities
 ([`docs/graph/catalog.tsv`](graph/catalog.tsv)). A node may start only when every node it
 depends on is green, and only with a spec, acceptance criteria and a task list
 (`scripts/node_start.py`).

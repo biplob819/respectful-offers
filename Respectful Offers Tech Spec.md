@@ -619,7 +619,7 @@ src/respectful_offers/
 
 Status vocabulary: `not-started | spec | building | green`.
 
-### 11.2 Build graph: 23 nodes in five waves
+### 11.2 Build graph: 25 nodes in five waves
 
 **v0.1.0, the open-source release on PyPI with published results (every Must story, US1–US6, plus US8): 19 nodes.** W0.1, N1.1–N1.5, A2.1–A2.8, B2.1–B2.4, P2.1.
 **Full scope, adding the demo, project page and video (US7): 22 nodes.**
@@ -649,6 +649,8 @@ Status vocabulary: `not-started | spec | building | green`.
 | **D3.2** | Demo page | D3.1, B2.2 | Streamlit page in `portfolio-demos` matching the PRD wireframe, deployed | US7 |
 | **D3.3** | Project page and video | B2.4, D3.2 | Case study page and 90-second video script, numbers checked against `summary.json`, links resolve | — |
 | **E4.1** | EvalKit metrics export (OWNER D-50) | A2.8, B2.2 | `offers metrics` writes EvalKit's `metrics-1` format from `summary.json`; `configs/gates.yaml` in EvalKit's gates format, checked by a local gate until EvalKit v0.3.0 ships `evalkit gate` | US6 |
+| **E4.2** | Switch to `evalkit gate` (blocked on EvalKit v0.3.0) | E4.1 | CI gates with `evalkit gate` (an optional extra, never a runtime requirement), same verdict as the local gate; offline contract tests on EvalKit's public API, so EvalKit's canary runs this repo (`tests=auto`) | US6 |
+| **E4.3** | Monitoring and improvement on EvalKit B5.7 (blocked on EvalKit v0.4.0) | E4.2 | `offers monitor` (binned feature shares, calibration, violations, cost, disparity per period; drift and alarms by EvalKit LED-01..05) and `offers challenge` (paired challenger vs champion under CRN, promotion by a pre-stated rule, recorded in EvalKit's ledger and the decision log); responses stay simulated | US6 |
 
 Waves: **W0** harness → **N1** data and core → **A2/B2/P2** policy pipeline, report and release → **D3** demo and project page → **E4** EvalKit adoption (OWNER D-50). The results release, v0.1.0, ships at B2.4.
 
@@ -693,6 +695,8 @@ graph LR
   D32 --> D33
   A28 --> E41[E4.1 EvalKit metrics export]
   B22 --> E41
+  E41 --> E42[E4.2 evalkit gate]
+  E42 --> E43[E4.3 Monitor + challenge]
 ```
 
 **Dependency levels.** A node can start once every node it depends on, all in earlier levels, is green.
@@ -711,8 +715,8 @@ graph LR
 | 9 | A2.8, B2.1 |
 | 10 | B2.2, P2.1, D3.1 |
 | 11 | B2.3, D3.2, E4.1 |
-| 12 | B2.4 |
-| 13 | D3.3 |
+| 12 | B2.4, E4.2 |
+| 13 | D3.3, E4.3 |
 
 **Critical path to v0.1.0 (13 nodes):** W0.1 → N1.1 → N1.2 → N1.4 → A2.1 → A2.2 → A2.4 → A2.5 → A2.7 → B2.1 → B2.2 → B2.3 → B2.4. A2.8 (the real-data run) must also be green before B2.3, and N1.5 (the owner's Kaggle credentials and licence ruling) before A2.8. D3.3 adds a fourteenth node for full scope.
 
@@ -728,6 +732,8 @@ graph LR
 | 6 | N1.4 | 14 | A2.8 | 22 | D3.3 |
 | 7 | A2.1 | 15 | B2.1 |  |  |
 | 8 | A2.2 | 16 | B2.2 | 23 | E4.1 |
+|  |  |  |  | 24 | E4.2 |
+|  |  |  |  | 25 | E4.3 |
 
 N1.3 comes before N1.2 because the runtime is the riskier design, and N1.2 waits on the owner's Kaggle credentials. A2.3 comes early because it needs only schemas and the respect rules are the project's thesis. A2.6 comes before A2.5 because validating the estimators against the oracle is the riskier method. N1.5 and A2.8 wait for the owner's Kaggle credentials and licence ruling (D-24); everything before them runs on the synthetic fixture.
 
@@ -974,6 +980,20 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 | --- | --- | --- |
 | EVK-01 | `offers metrics` writes `summary.json` as EvalKit's frozen `metrics-1` file: policy × variant labels, NTD unit, the run's block-bootstrap intervals carried exactly with `ci_method`, violations as counts per rule, `simulated: true`, no member ids; a validator applies every `metrics-1` rule | OWNER D-50 |
 | EVK-02 | `configs/gates.yaml` in EvalKit's gates format (respectful policies' violations `== 0`, the pre-registered claim, OPE coverage, age-band disparity); `scripts/gate.py` evaluates it with EvalKit's exit codes until `evalkit gate` ships; the committed `results/kkbox/metrics.json` and `gate.json` are checked in CI | OWNER D-50 |
+
+**E4.2 Switch to `evalkit gate` (blocked on EvalKit v0.3.0, B5.4)**
+
+| Cap | Capability | Trace |
+| --- | --- | --- |
+| EVK-03 | CI gates with `evalkit gate` (evalkit-harness ≥ 0.3.0 as an optional extra, never a runtime requirement); same verdict as `scripts/gate.py` on the committed files and on every planted defect; EvalKit's metrics-1 loader and `validate_metrics1` agree | OWNER D-50 |
+| EVK-04 | Offline contract tests on EvalKit's public API only, which EvalKit's canary runs; the registry row flips to `tests=auto` in EvalKit's own build (D-61 rule 4) | OWNER D-50, EvalKit D-61 |
+
+**E4.3 Monitoring and improvement on EvalKit B5.7 (blocked on EvalKit v0.4.0, B5.10)**
+
+| Cap | Capability | Trace |
+| --- | --- | --- |
+| MON-01 | `offers monitor`: per period, `metrics-1` with binned feature shares (no bin under 30 members), calibration, violations, cost per extra member kept and disparity; PSI, calibration deltas and alarms computed by EvalKit (LED-01, LED-02, LED-04, LED-05); outcomes stay simulated | OWNER D-50 |
+| MON-02 | `offers challenge`: challenger vs champion on the same members under CRN, paired claim comparison with Holm, `evalkit compare` deltas; promotion only by the pre-stated rule (claim improves in every variant, zero violations, no fail alarm); every challenge recorded in EvalKit's experiment ledger (LED-03) and `docs/decisions.md` | OWNER D-50 |
 
 ### 11.5 Node lifecycle
 

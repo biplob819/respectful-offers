@@ -2,6 +2,8 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [CHORE] [—] — parallel tests: pytest-xdist in the dev group; `node_converge.py` and CI run `-n auto --dist loadfile` (unit gate 262 s → 134 s on 16 cores, L-40).
+- [DOC] [E4.2, E4.3] — pre-specced (owner approved): E4.2 switches CI to `evalkit gate` and gives EvalKit's canary offline contract tests (blocked on EvalKit v0.3.0); E4.3 adds `offers monitor` and `offers challenge` on EvalKit's B5.7 ledger with a pre-stated promotion rule (blocked on EvalKit v0.4.0). Graph now 25 nodes, 129 capabilities.
 - [FEAT] [E4.1] — EvalKit metrics export (OWNER D-50, D-52): `offers metrics` writes `summary.json` as EvalKit's frozen `metrics-1` file (633 metrics: policy × variant labels, NTD, the run's intervals copied exactly, violations per rule with the respectful flag, `simulated: true`, no member ids) with a validator for every rule; `configs/gates.yaml` in EvalKit's gates format, checked by `scripts/gate.py` with EvalKit's exit codes until `evalkit gate` ships; committed `results/kkbox/metrics.json` and `gate.json` (pass, two age-band disparity warnings) checked in CI.
 - [DOC] [—] — OWNER D-50: EvalKit becomes the eval engine through its Wave 5 (metrics-summary export, gates, compare, monitoring ledger); four capabilities asked of EvalKit; exporter and monitoring nodes wait for EvalKit B5.3 and B5.7.
 - [FEAT] [D3.3] — project page: a case study (`docs/site/case-study.html`, on GitHub Pages) and a 90-second video script, generated from the PR/FAQ's facts by `scripts/project_page.py`; drift, template constants, script length and every link tested (live with `OFFERS_CHECK_LINKS=1`).
