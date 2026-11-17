@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="1000" height="720" role="img" aria-labelledby="t d" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<title id="t">Respectful Offers architecture</title><desc id="d">Interfaces (CLI, report, demo, EvalKit gates) sit on the respectful_offers library: features, churn, simulator, policies with the respect filter, auditor, off-policy estimators, evaluation and report, over a cached stage runner and artifact store. A gated build harness and CI build and release it.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#80868b"/></marker></defs>
+<rect width="1000" height="720" fill="#ffffff"/>
+<text x="500" y="34" font-size="20" font-weight="700" fill="#1d1d1f" text-anchor="middle">Respectful Offers: architecture</text>
+<text x="500" y="56" font-size="12" font-weight="400" fill="#5f6368" text-anchor="middle">Python 3.11–3.13 package respectful-offers · no model calls · no telemetry</text>
+<rect x="24" y="74" width="952" height="104" rx="10" fill="none" stroke="#dadce0" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="36" y="92" font-size="11" font-weight="600" fill="#5f6368" text-anchor="start">Interfaces</text>
+<rect x="40" y="100" width="216" height="60" rx="8" fill="#f3e8fd" stroke="#8430ce" stroke-width="1.5"/>
+<text x="148" y="127" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">CLI: offers</text>
+<text x="148" y="143" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">data · features · evaluate · run · metrics</text>
+<rect x="274" y="100" width="216" height="60" rx="8" fill="#f3e8fd" stroke="#8430ce" stroke-width="1.5"/>
+<text x="382" y="127" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Static report</text>
+<text x="382" y="143" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">inline SVG, GitHub Pages</text>
+<rect x="508" y="100" width="216" height="60" rx="8" fill="#f3e8fd" stroke="#8430ce" stroke-width="1.5"/>
+<text x="616" y="127" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Streamlit demo</text>
+<text x="616" y="143" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">cube only, passkey gate</text>
+<rect x="742" y="100" width="216" height="60" rx="8" fill="#f3e8fd" stroke="#8430ce" stroke-width="1.5"/>
+<text x="850" y="127" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">EvalKit gates</text>
+<text x="850" y="143" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">metrics-1 · configs/gates.yaml</text>
+<rect x="24" y="196" width="952" height="252" rx="10" fill="none" stroke="#dadce0" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="36" y="214" font-size="11" font-weight="600" fill="#5f6368" text-anchor="start">Library: respectful_offers (every interface calls it)</text>
+<rect x="40" y="222" width="216" height="58" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
+<text x="148" y="248" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">features</text>
+<text x="148" y="264" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">as-of builder, allow-list</text>
+<rect x="274" y="222" width="216" height="58" rx="8" fill="#e6f4ea" stroke="#188038" stroke-width="1.5"/>
+<text x="382" y="248" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">churn</text>
+<text x="382" y="264" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">model, calibration, card</text>
+<rect x="508" y="222" width="216" height="58" rx="8" fill="#fef7e0" stroke="#b06000" stroke-width="1.5"/>
+<text x="616" y="248" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">sim</text>
+<text x="616" y="264" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">response model, variants</text>
+<rect x="742" y="222" width="216" height="58" rx="8" fill="#fce8e6" stroke="#c5221f" stroke-width="1.5"/>
+<text x="850" y="248" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">policy.respect</text>
+<text x="850" y="264" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">allowed actions (R1, R2)</text>
+<rect x="40" y="294" width="216" height="58" rx="8" fill="#fef7e0" stroke="#b06000" stroke-width="1.5"/>
+<text x="148" y="320" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">policy</text>
+<text x="148" y="336" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">bandit, baselines, budget</text>
+<rect x="274" y="294" width="216" height="58" rx="8" fill="#fce8e6" stroke="#c5221f" stroke-width="1.5"/>
+<text x="382" y="320" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">policy.audit</text>
+<text x="382" y="336" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">independent recount</text>
+<rect x="508" y="294" width="216" height="58" rx="8" fill="#fce8e6" stroke="#c5221f" stroke-width="1.5"/>
+<text x="616" y="320" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">ope</text>
+<text x="616" y="336" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">IPS, SNIPS, DR</text>
+<rect x="742" y="294" width="216" height="58" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
+<text x="850" y="320" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">evaluate</text>
+<text x="850" y="336" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">rollouts, bootstrap, Holm</text>
+<rect x="40" y="366" width="216" height="58" rx="8" fill="#f3e8fd" stroke="#8430ce" stroke-width="1.5"/>
+<text x="148" y="392" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">report</text>
+<text x="148" y="408" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">HTML + SVG charts</text>
+<rect x="274" y="366" width="216" height="58" rx="8" fill="#f3e8fd" stroke="#8430ce" stroke-width="1.5"/>
+<text x="382" y="392" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">demo</text>
+<text x="382" y="408" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">cube, engine, passkey</text>
+<rect x="508" y="366" width="216" height="58" rx="8" fill="#f3e8fd" stroke="#8430ce" stroke-width="1.5"/>
+<text x="616" y="392" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">metrics1</text>
+<text x="616" y="408" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">EvalKit export + validator</text>
+<rect x="742" y="366" width="216" height="58" rx="8" fill="#f8f9fa" stroke="#80868b" stroke-width="1.5"/>
+<text x="850" y="392" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">schemas</text>
+<text x="850" y="408" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">frozen pydantic contracts</text>
+<rect x="24" y="466" width="952" height="96" rx="10" fill="none" stroke="#dadce0" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="36" y="484" font-size="11" font-weight="600" fill="#5f6368" text-anchor="start">Runtime</text>
+<rect x="40" y="490" width="216" height="56" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
+<text x="148" y="515" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Stage runner</text>
+<text x="148" y="531" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">cache keys: code, inputs, config, seed</text>
+<rect x="274" y="490" width="216" height="56" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
+<text x="382" y="515" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Artifact store</text>
+<text x="382" y="531" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">.offers/store, content-addressed</text>
+<rect x="508" y="490" width="216" height="56" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
+<text x="616" y="515" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Lineage</text>
+<text x="616" y="531" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">runs/&lt;id&gt;/run.json</text>
+<rect x="742" y="490" width="216" height="56" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
+<text x="850" y="515" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Seeds</text>
+<text x="850" y="531" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">per-member CRN streams</text>
+<rect x="24" y="580" width="952" height="100" rx="10" fill="none" stroke="#dadce0" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="36" y="598" font-size="11" font-weight="600" fill="#5f6368" text-anchor="start">Build and release</text>
+<rect x="40" y="604" width="216" height="56" rx="8" fill="#f8f9fa" stroke="#80868b" stroke-width="1.5"/>
+<text x="148" y="629" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Build harness</text>
+<text x="148" y="645" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">node graph · 12 gates · verifier</text>
+<rect x="274" y="604" width="216" height="56" rx="8" fill="#f8f9fa" stroke="#80868b" stroke-width="1.5"/>
+<text x="382" y="629" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">CI</text>
+<text x="382" y="645" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">3 Pythons × 3 OS, scans, gates</text>
+<rect x="508" y="604" width="216" height="56" rx="8" fill="#f8f9fa" stroke="#80868b" stroke-width="1.5"/>
+<text x="616" y="629" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Release</text>
+<text x="616" y="645" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">PyPI trusted publishing on tag</text>
+<rect x="742" y="604" width="216" height="56" rx="8" fill="#f8f9fa" stroke="#80868b" stroke-width="1.5"/>
+<text x="850" y="629" font-size="13" font-weight="600" fill="#1d1d1f" text-anchor="middle">Records</text>
+<text x="850" y="645" font-size="11" font-weight="400" fill="#5f6368" text-anchor="middle">decisions · lessons · changelog</text>
+<rect x="24" y="696" width="14" height="14" rx="3" fill="#e8f0fe" stroke="#1a73e8"/>
+<text x="44" y="707" font-size="11" font-weight="400" fill="#5f6368" text-anchor="start">data and runtime</text>
+<rect x="153.2" y="696" width="14" height="14" rx="3" fill="#e6f4ea" stroke="#188038"/>
+<text x="173.2" y="707" font-size="11" font-weight="400" fill="#5f6368" text-anchor="start">model</text>
+<rect x="214.2" y="696" width="14" height="14" rx="3" fill="#fef7e0" stroke="#b06000"/>
+<text x="234.2" y="707" font-size="11" font-weight="400" fill="#5f6368" text-anchor="start">policies</text>
+<rect x="293.8" y="696" width="14" height="14" rx="3" fill="#fce8e6" stroke="#c5221f"/>
+<text x="313.8" y="707" font-size="11" font-weight="400" fill="#5f6368" text-anchor="start">rules and checks</text>
+<rect x="423" y="696" width="14" height="14" rx="3" fill="#f3e8fd" stroke="#8430ce"/>
+<text x="443" y="707" font-size="11" font-weight="400" fill="#5f6368" text-anchor="start">outputs</text>
+<rect x="496.4" y="696" width="14" height="14" rx="3" fill="#f8f9fa" stroke="#80868b"/>
+<text x="516.4" y="707" font-size="11" font-weight="400" fill="#5f6368" text-anchor="start">contracts, build</text>
+</svg>
