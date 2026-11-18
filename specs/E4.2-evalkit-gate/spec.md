@@ -9,7 +9,7 @@ Gate releases with EvalKit's own `evalkit gate` on the committed `results/kkbox/
 
 ### CI gates with `evalkit gate` (EVK-03)
 - `evalkit-harness>=0.3.0,<0.4` is added as an optional extra (`[project.optional-dependencies] evalkit`) and to the dev group, never as a runtime requirement. `pip install respectful-offers` keeps working without EvalKit, and `offers metrics` imports nothing from it.
-- CI runs `evalkit gate results/kkbox/metrics.json --config configs/gates.yaml --out results/kkbox/gate.evalkit.json` in place of `scripts/gate.py`. Its verdict on the committed files must match the E4.1 one: exit 0, every fail gate holds, the two age-band disparity warnings listed, `simulated: true` shown.
+- CI runs `evalkit gate results/kkbox/metrics.json --config configs/gates.yaml --out ${{ runner.temp }}/gate.json` in place of `scripts/gate.py` (the step's exit code is the gate; the committed `results/kkbox/gate.json` stays the local oracle's output). Its verdict on the committed files must match the E4.1 one: exit 0, every fail gate holds, the two age-band disparity warnings listed, `simulated: true` shown.
 - `scripts/gate.py` is kept only as a test oracle. A test runs both on the committed files and on each planted defect from `tests/evalkit/test_gate.py`, and requires the same exit code and the same pass/warn/fail status per gate row. Any disagreement is recorded as a decision and reported to EvalKit (D-61 rule 3), never patched silently on either side.
 - The local validator (`validate_metrics1`) is checked against EvalKit's own metrics-1 loader on the committed file and on each planted defect: both accept, or both refuse.
 

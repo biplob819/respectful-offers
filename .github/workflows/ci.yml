@@ -33,5 +33,5 @@ jobs:
       - run: uv run python scripts/data_scan.py
       - run: uv run python scripts/verify_graph_eligibility.py
       - run: uv run offers metrics --check
-      - run: uv run python scripts/gate.py results/kkbox/metrics.json --check results/kkbox/gate.json
+      - run: uv run evalkit gate results/kkbox/metrics.json --config configs/gates.yaml --out ${{ runner.temp }}/gate.json
       - run: uv build

@@ -191,7 +191,8 @@ def test_the_committed_gate_json_is_current():
 def test_ci_runs_the_export_and_the_gate():
     ci = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
     assert "offers metrics --check" in ci
-    assert "scripts/gate.py results/kkbox/metrics.json --check results/kkbox/gate.json" in ci
+    # E4.2: EvalKit's own gate runs in CI; scripts/gate.py stays as the test oracle
+    assert "evalkit gate results/kkbox/metrics.json --config configs/gates.yaml" in ci
 
 
 def test_a_malformed_gates_file_exits_2_with_gate_json(tmp_path):

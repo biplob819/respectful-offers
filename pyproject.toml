@@ -46,6 +46,9 @@ data = [
 demo = [
     "streamlit>=1.40",
 ]
+evalkit = [
+    "evalkit-harness>=0.3,<0.4",
+]
 
 [dependency-groups]
 dev = [
@@ -56,6 +59,7 @@ dev = [
     "types-pyyaml>=6.0.12",
     "pandas-stubs>=3.1.0.261029",
     "pytest-xdist>=3.6",
+    "evalkit-harness>=0.3,<0.4",
 ]
 
 [build-system]

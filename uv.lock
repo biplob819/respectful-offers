@@ -567,6 +567,19 @@ wheels = [
 ]
 
 [[package]]
+name = "evalkit-harness"
+version = "0.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pydantic" },
+    { name = "pyyaml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2b/88/9fc0e7a89adc0904d3f6bf67d9994ef632fd39f9e4f6faffc7364c2af9d5/evalkit_harness-0.3.0.tar.gz", hash = "sha256:fd9ee78f0fb8aa04c2871a6ca604684b4226c8f876232a940f7bf49ebad1e155", size = 396069, upload-time = "2026-11-17T17:13:03.504Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6d/3c/3b32f8bbc002e997b8e8613738d9017ae5837a8219170db556b5d9b1554d/evalkit_harness-0.3.0-py3-none-any.whl", hash = "sha256:0fe817a353f6da97d4796c1e39eda7d1a8badd01856d47c157dd69cca7baf0f7", size = 463418, upload-time = "2026-11-17T17:13:02.294Z" },
+]
+
+[[package]]
 name = "execnet"
 version = "2.1.2"
 source = { registry = "https://pypi.org/simple" }
@@ -2111,9 +2124,13 @@ data = [
 demo = [
     { name = "streamlit" },
 ]
+evalkit = [
+    { name = "evalkit-harness" },
+]
 
 [package.dev-dependencies]
 dev = [
+    { name = "evalkit-harness" },
     { name = "hypothesis" },
     { name = "pandas-stubs" },
     { name = "pyright" },
@@ -2126,6 +2143,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "duckdb", specifier = ">=2.0.0" },
+    { name = "evalkit-harness", marker = "extra == 'evalkit'", specifier = ">=0.3,<0.4" },
     { name = "kaggle", marker = "extra == 'data'", specifier = ">=2.2.5" },
     { name = "numpy", specifier = ">=2.0" },
     { name = "pandas", specifier = ">=2.2" },
@@ -2138,10 +2156,11 @@ requires-dist = [
     { name = "streamlit", marker = "extra == 'demo'", specifier = ">=1.40" },
     { name = "threadpoolctl", specifier = ">=3.8.0" },
 ]
-provides-extras = ["data", "demo"]
+provides-extras = ["data", "demo", "evalkit"]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "evalkit-harness", specifier = ">=0.3,<0.4" },
     { name = "hypothesis", specifier = ">=6.100" },
     { name = "pandas-stubs", specifier = ">=3.1.0.261029" },
     { name = "pyright", specifier = ">=1.1.380" },
