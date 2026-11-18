@@ -62,7 +62,9 @@ PUBLIC = {
     },
 }
 
-# Where the two validators disagree, by decision (D-53), reported to EvalKit (D-61 rule 3)
+# Where EvalKit 0.3.0 accepts what this repo refuses (D-53). EvalKit adopted the rule on its
+# main branch (3882a09, ships in 0.4.0), so its canary sees both refuse; the published 0.3.0
+# still accepts. Ours must always refuse; drop this set when the pin moves to >=0.4 (D-54).
 KNOWN_DISAGREEMENTS = {"member-id-shaped"}
 
 
@@ -235,7 +237,8 @@ def test_both_validators_agree_on_every_planted_defect(doc, needle):
     except (evalkit_metrics.MetricsError, ValueError):
         theirs = "refuse"
     if needle in KNOWN_DISAGREEMENTS:
-        assert (ours, theirs) == ("refuse", "accept"), "D-53 changed: update the decision"
+        assert ours == "refuse"
+        assert theirs in ("accept", "refuse")  # 0.3.0 release accepts; EvalKit main refuses
     else:
         assert ours == theirs == "refuse"
 
