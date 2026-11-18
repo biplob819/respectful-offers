@@ -103,7 +103,7 @@
   },
   {
    "labels": {
-    "bin": 0,
+    "bin": 1,
     "feature": "auto_renew"
    },
    "n": 990830,
@@ -113,7 +113,7 @@
   },
   {
    "labels": {
-    "bin": 1,
+    "bin": 2,
     "feature": "auto_renew"
    },
    "n": 990830,
@@ -123,13 +123,23 @@
   },
   {
    "labels": {
-    "bin": 0,
+    "bin": 1,
     "feature": "cancels_90d"
    },
    "n": 990830,
    "name": "drift.feature_share",
    "unit": "rate",
-   "value": 1.0
+   "value": 0.961444446
+  },
+  {
+   "labels": {
+    "bin": 2,
+    "feature": "cancels_90d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.038555554
   },
   {
    "labels": {
@@ -269,7 +279,17 @@
    "n": 990830,
    "name": "drift.feature_share",
    "unit": "rate",
-   "value": 0.996361636
+   "value": 0.973025645
+  },
+  {
+   "labels": {
+    "bin": 2,
+    "feature": "plan_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.023335991
   },
   {
    "ci_high": 0.044302108,

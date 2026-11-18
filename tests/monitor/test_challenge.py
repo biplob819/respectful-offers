@@ -241,3 +241,50 @@ def test_a_committed_challenge_is_valid_aggregates_and_reproduces_the_champion(p
 
 def test_at_least_one_challenge_is_committed():
     assert CHALLENGES
+
+
+def test_an_outcome_check_that_could_not_run_withholds_promotion():
+    got = decide(GOOD, [], ["cost", "disparity"])
+    assert got["decision"] == "NO-PROMOTION"
+    assert any("not run (cost)" in r for r in got["reasons"])
+    assert any("not run (disparity)" in r for r in got["reasons"])
+
+
+def test_every_refusal_that_needs_no_rollout_happens_before_anything_is_opened(inputs):
+    scores, *_ = inputs
+    with pytest.raises(ChallengeError, match="simulator changed"):
+        ch.precheck(
+            scores["champion"],
+            scores["challenger"],
+            champion_simulator_hash="a",
+            simulator_hash="b",
+        )
+    with pytest.raises(ChallengeError, match="miss"):
+        ch.precheck(
+            scores["champion"],
+            scores["challenger"].iloc[100:],
+            champion_simulator_hash="s",
+            simulator_hash="s",
+        )
+    ch.precheck(
+        scores["champion"], scores["challenger"], champion_simulator_hash="s", simulator_hash="s"
+    )
+
+
+def test_a_challenge_is_recorded_by_default():
+    from respectful_offers.cli import build_parser
+
+    args = build_parser().parse_args(["challenge", "--challenger-seed", "5"])
+    assert args.record == "docs/decisions.md"
+    assert args.ledger == "docs/measurements/experiments.jsonl"
+    assert args.no_record is False
+
+
+def test_a_recorded_challenge_is_found_before_it_reruns(tmp_path):
+    path = tmp_path / "decisions.md"
+    row = decision_row(
+        decide([], []), date="2026-11-18", champion="r", challenger="r-challenger-s5-e3"
+    )
+    path.write_text(row + "\n", encoding="utf-8")
+    assert ch.already_recorded(path, "r-challenger-s5-e3")
+    assert not ch.already_recorded(path, "r-challenger-s6-e3")

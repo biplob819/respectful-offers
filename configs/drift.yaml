@@ -1,0 +1,14 @@
+# EvalKit drift config (EvalKit docs/drift.md) at the OWNER D-56 severities: feature drift and
+# calibration drift warn, they never fail a period. They are reasons to run a challenger
+# (`offers challenge`), not to block. The levels and tolerances are EvalKit's defaults.
+psi_warn: 0.1
+psi_alarm: 0.25
+calibration:
+  brier_tolerance: 0.01
+  ece_tolerance: 0.02
+  bin_tolerance: 0.10
+  binning: equal-width   # the export's ten fixed bins [k/10, (k+1)/10) align across periods
+severity:
+  psi: warn
+  calibration: warn
+  bins: warn

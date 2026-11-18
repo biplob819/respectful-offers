@@ -146,8 +146,36 @@ def challenge_variant(
     return out
 
 
-def decide(variants: list[dict[str, Any]], fail_alarms: list[dict[str, Any]]) -> dict[str, Any]:
-    """The promotion rule, as the spec states it. Every reason it is not met is listed."""
+def precheck(
+    champion_scores: pd.DataFrame,
+    challenger_scores: pd.DataFrame,
+    *,
+    champion_simulator_hash: str | None,
+    simulator_hash: str | None,
+) -> None:
+    """Every refusal that needs no rollout, so a refused challenge never opens an experiment."""
+    if not champion_simulator_hash or champion_simulator_hash != simulator_hash:
+        raise ChallengeError(
+            f"the simulator changed (champion {champion_simulator_hash}, now {simulator_hash}): "
+            "a changed simulator needs a new pre-registration and a rerun of every variant (D-3)"
+        )
+    risk = challenger_scores.set_index("msno")["churn_risk"]
+    got = risk.reindex(champion_scores["msno"]).to_numpy(dtype=float)
+    if np.isnan(got).any():
+        raise ChallengeError("the challenger's scores miss some of the champion's members")
+    if not ((got >= 0) & (got <= 1)).all():
+        raise ChallengeError("the challenger's churn risks must be probabilities")
+
+
+def decide(
+    variants: list[dict[str, Any]],
+    fail_alarms: list[dict[str, Any]],
+    not_checked: list[str] | tuple[str, ...] = (),
+) -> dict[str, Any]:
+    """The promotion rule, as the spec states it. Every reason it is not met is listed.
+
+    An outcome check that could not run (cost and disparity need a baseline period) is never
+    read as passed, so it withholds promotion like a fail alarm does (D-59)."""
     sep = holm([v["p_value"] for v in variants]) if variants else []
     reasons: list[str] = []
     rows = []
@@ -169,6 +197,8 @@ def decide(variants: list[dict[str, Any]], fail_alarms: list[dict[str, Any]]) ->
         reasons.append("no variant was compared")
     for a in fail_alarms:
         reasons.append(f"fail alarm ({a['check']}): {a['message']}")
+    for check in not_checked:
+        reasons.append(f"outcome check not run ({check}): it needs a baseline period")
     return {
         "decision": "NO-PROMOTION" if reasons else "PROMOTION",
         "variants": rows,
@@ -188,12 +218,14 @@ def run_challenge(
     champion_simulator_hash: str | None,
     simulator_hash: str | None,
     fail_alarms: list[dict[str, Any]],
+    not_checked: list[str] | tuple[str, ...] = (),
 ) -> dict[str, Any]:
-    if not champion_simulator_hash or champion_simulator_hash != simulator_hash:
-        raise ChallengeError(
-            f"the simulator changed (champion {champion_simulator_hash}, now {simulator_hash}): "
-            "a changed simulator needs a new pre-registration and a rerun of every variant (D-3)"
-        )
+    precheck(
+        champion_scores,
+        challenger_scores,
+        champion_simulator_hash=champion_simulator_hash,
+        simulator_hash=simulator_hash,
+    )
     r = Resampler.create(cfg.bootstrap_blocks, cfg.bootstrap_resamples, cfg.seed)
     variants = [
         challenge_variant(
@@ -201,7 +233,7 @@ def run_challenge(
         )
         for v in cfg.variants
     ]
-    result = decide(variants, fail_alarms)
+    result = decide(variants, fail_alarms, not_checked)
     result["compared"] = variants
     return result
 
@@ -278,6 +310,10 @@ def decision_row(result: dict[str, Any], *, date: str, champion: str, challenger
         f"every variant after Holm, zero respect violations, no fail alarm | "
         f"{'Promote' if result['decision'] == 'NO-PROMOTION' else 'Keep the champion'} | {why} |"
     )
+
+
+def already_recorded(path: Path, challenger: str) -> bool:
+    return f"**Challenge {challenger} against" in path.read_text(encoding="utf-8")
 
 
 def append_decision(path: Path, row: str) -> None:

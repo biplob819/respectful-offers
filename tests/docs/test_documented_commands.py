@@ -17,6 +17,12 @@ SKIP = {
     "with a fake client, and results/kkbox is its output",
     "offers run --all": "on real KKBox data after a download: tests/results checks the "
     "published run it produced",
+    "offers monitor export": "on real KKBox data after a download: tests/monitor/test_export.py "
+    "checks the committed results/kkbox/monitor files it wrote",
+    "offers challenge --challenger-seed 20261122 --baseline <a baseline period's metrics.json>": (
+        "seven minutes on real KKBox data: tests/monitor checks the committed challenge, its "
+        "decision row and its experiment-ledger entries"
+    ),
 }
 QUICKSTART = (
     "offers doctor",
@@ -29,6 +35,11 @@ OWN_DATA = (
     "offers features --from-table features.csv --audit-table audit.csv",
     "offers prereg --scope real",
     "offers run --all --from-table features.csv --audit-table audit.csv",
+)
+
+MONITOR = (
+    "offers monitor drift --ledger docs/measurements/runs.jsonl",
+    "offers monitor check --period results/kkbox/metrics.json",
 )
 
 
@@ -81,9 +92,10 @@ def test_the_extractor_finds_commands_in_every_documented_form():
 def test_every_documented_command_is_run_here_or_skipped_for_a_reason():
     docs = documented()
     assert docs, "no documented commands found"
-    covered = set(QUICKSTART) | set(OWN_DATA) | set(SKIP)
+    covered = set(QUICKSTART) | set(OWN_DATA) | set(MONITOR) | set(SKIP)
     assert docs <= covered, f"documented but never run: {sorted(docs - covered)}"
-    assert set(QUICKSTART) | set(OWN_DATA) <= docs, "a scenario runs a command no doc shows"
+    scenarios = set(QUICKSTART) | set(OWN_DATA) | set(MONITOR)
+    assert scenarios <= docs, "a scenario runs a command no doc shows"
 
 
 def run(command: str) -> int:
@@ -129,3 +141,25 @@ def test_every_image_the_readme_shows_exists(path):
     raw = "https://raw.githubusercontent.com/biplob819/respectful-offers/main/"
     assert f"]({raw}{path})" in (ROOT / "README.md").read_text(encoding="utf-8")
     assert (ROOT / path).is_file() and (ROOT / path).stat().st_size > 1000
+
+
+def test_the_monitoring_guide_runs_as_written(tmp_path, monkeypatch, capsys):
+    """On a copy of the committed aggregates, so the real ledger is never appended to."""
+    import shutil
+
+    pytest.importorskip("evalkit.drift", reason="the `evalkit` extra is not installed")
+    for rel in (
+        "configs/drift.yaml",
+        "results/kkbox/metrics.json",
+        "results/kkbox/monitor/reference-2017-02.metrics.json",
+        "results/kkbox/monitor/period-2017-03.metrics.json",
+    ):
+        (tmp_path / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(ROOT / rel, tmp_path / rel)
+    monkeypatch.chdir(tmp_path)
+    for command in MONITOR:
+        assert run(command) == 0, command
+    capsys.readouterr()
+    assert (tmp_path / "docs" / "measurements" / "runs.jsonl").is_file()
+    rel = "results/kkbox/monitor/drift.json"
+    assert (tmp_path / rel).read_bytes() == (ROOT / rel).read_bytes()

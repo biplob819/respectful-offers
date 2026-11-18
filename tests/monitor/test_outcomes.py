@@ -164,3 +164,15 @@ def test_monitor_check_exits_0_on_a_pass_1_on_a_fail_and_2_on_bad_input(tmp_path
     broken.write_text('{"schema_version": "metrics-1"}', encoding="utf-8")
     assert _cli("--period", str(broken)) == 2
     assert _cli("--period", str(tmp_path / "missing.json")) == 2
+
+
+def test_a_file_with_no_outcomes_is_bad_input_never_a_pass(tmp_path):
+    from respectful_offers.monitor.outcomes import OutcomeError
+
+    drift_input = ROOT / "results" / "kkbox" / "monitor" / "reference-2017-02.metrics.json"
+    doc = json.loads(drift_input.read_text(encoding="utf-8"))
+    with pytest.raises(OutcomeError, match="no violations or claim rows"):
+        outcome_alarms(None, doc)
+    with pytest.raises(OutcomeError):
+        outcome_alarms(doc, REAL)  # nor as a baseline
+    assert _cli("--period", str(drift_input)) == 2

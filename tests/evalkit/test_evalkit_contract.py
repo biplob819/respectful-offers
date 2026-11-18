@@ -34,8 +34,10 @@ from tests.evalkit import test_metrics1 as local_metrics_tests  # noqa: E402
 METRICS = ROOT / "results" / "kkbox" / "metrics.json"
 GATES = ROOT / "configs" / "gates.yaml"
 
-# EvalKit 0.3 public names this repo may use (EvalKit scripts/check_public_api.py, PUBLIC)
+# EvalKit 0.4 public names this repo may use (EvalKit scripts/check_public_api.py, PUBLIC)
 PUBLIC = {
+    "evalkit.drift": {"check", "freeze_reference", "to_metrics"},
+    "evalkit.ledger": {"close_experiment", "open_experiment", "record_run"},
     "evalkit": {"__version__"},
     "evalkit.metrics": {
         "Metric",
@@ -61,11 +63,6 @@ PUBLIC = {
         "run_gate",
     },
 }
-
-# Where EvalKit 0.3.0 accepts what this repo refuses (D-53). EvalKit adopted the rule on its
-# main branch (3882a09, ships in 0.4.0), so its canary sees both refuse; the published 0.3.0
-# still accepts. Ours must always refuse; drop this set when the pin moves to >=0.4 (D-54).
-KNOWN_DISAGREEMENTS = {"member-id-shaped"}
 
 
 def _doc() -> dict:
@@ -236,11 +233,7 @@ def test_both_validators_agree_on_every_planted_defect(doc, needle):
         theirs = "accept"
     except (evalkit_metrics.MetricsError, ValueError):
         theirs = "refuse"
-    if needle in KNOWN_DISAGREEMENTS:
-        assert ours == "refuse"
-        assert theirs in ("accept", "refuse")  # 0.3.0 release accepts; EvalKit main refuses
-    else:
-        assert ours == theirs == "refuse"
+    assert ours == theirs == "refuse"  # 0.4 refuses id-shaped label values too (D-54)
 
 
 def test_both_validators_accept_the_committed_file():
@@ -305,7 +298,28 @@ def test_this_repo_imports_only_evalkits_public_api():
     ]
     assert not bad, bad
     files = {f for f, _, _ in _evalkit_imports()}
-    assert files == {"tests/evalkit/test_evalkit_contract.py"}  # never the runtime package
+    # the runtime package reaches EvalKit only through the monitor bridge, and only lazily
+    assert files == {"tests/evalkit/test_evalkit_contract.py", BRIDGE}
+    tree = ast.parse((ROOT / BRIDGE).read_text(encoding="utf-8"))
+    top = [n for n in tree.body if isinstance(n, ast.ImportFrom | ast.Import)]
+    assert not [n for n in top if "evalkit" in ast.dump(n)]  # never at import time
+
+
+BRIDGE = "src/respectful_offers/monitor/ledger.py"
+
+
+def test_the_drift_command_without_evalkit_is_bad_input_never_a_pass(tmp_path):
+    code = (
+        "import sys; sys.modules['evalkit'] = None; sys.modules['evalkit.drift'] = None\n"
+        "from respectful_offers.cli import main\n"
+        f"raise SystemExit(main(['monitor', 'drift', '--out-dir', {str(tmp_path)!r}, "
+        "'--reference', 'results/kkbox/monitor/reference-2017-02.metrics.json', "
+        "'--period-drift', 'results/kkbox/monitor/period-2017-03.metrics.json']))\n"
+    )
+    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, cwd=ROOT)
+    assert out.returncode == 2, (out.stdout, out.stderr)
+    assert "EvalKit is not installed" in out.stdout + out.stderr
+    assert not list(tmp_path.iterdir())
 
 
 def test_the_package_runs_without_evalkit(tmp_path):

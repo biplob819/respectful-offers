@@ -49,8 +49,19 @@ def _find(doc: dict[str, Any], name: str, **labels: Any) -> dict[str, Any] | Non
     return None
 
 
+class OutcomeError(ValueError):
+    """The file holds no policy outcomes, so no outcome check can run: bad input, never a pass."""
+
+
 def _variants(doc: dict[str, Any]) -> list[str]:
-    return sorted({m["labels"]["variant"] for m in _rows(doc, "violations")})
+    names = ("violations", f"diff.{CLAIM}", f"separated.{CLAIM}")
+    got = {m["labels"]["variant"] for n in names for m in _rows(doc, n) if "variant" in m["labels"]}
+    if not got:
+        raise OutcomeError(
+            f"{doc.get('run_id')}: no violations or claim rows: not a period's outcomes "
+            "(a drift input or an empty export?)"
+        )
+    return sorted(got)
 
 
 def respect_alarms(period: dict[str, Any]) -> list[Alarm]:
@@ -153,6 +164,9 @@ def disparity_alarms(baseline: dict[str, Any], period: dict[str, Any]) -> list[A
 
 def outcome_alarms(baseline: dict[str, Any] | None, period: dict[str, Any]) -> dict[str, Any]:
     """Every outcome check of `period`, against `baseline` where a check needs one."""
+    _variants(period)  # refuses a file with no outcomes before any check reads it
+    if baseline is not None:
+        _variants(baseline)
     alarms = respect_alarms(period) + claim_alarms(period)
     not_checked: list[str] = []
     if baseline is None:

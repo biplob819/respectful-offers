@@ -1,0 +1,201 @@
+{
+ "calibration": {
+  "binning": null,
+  "bins": [
+   {
+    "bin": "0",
+    "mean_pred": 0.020062363,
+    "n": 168012,
+    "obs_rate": 0.019921196
+   },
+   {
+    "bin": "1",
+    "mean_pred": 0.151168927,
+    "n": 11495,
+    "obs_rate": 0.15354502
+   },
+   {
+    "bin": "2",
+    "mean_pred": 0.233491183,
+    "n": 7287,
+    "obs_rate": 0.23850693
+   },
+   {
+    "bin": "3",
+    "mean_pred": 0.374569193,
+    "n": 3861,
+    "obs_rate": 0.386428386
+   },
+   {
+    "bin": "4",
+    "mean_pred": 0.460052272,
+    "n": 3797,
+    "obs_rate": 0.471951541
+   },
+   {
+    "bin": "5",
+    "mean_pred": 0.519715129,
+    "n": 2269,
+    "obs_rate": 0.542970472
+   },
+   {
+    "bin": "6",
+    "mean_pred": 0.65467357,
+    "n": 366,
+    "obs_rate": 0.718579235
+   },
+   {
+    "bin": "7",
+    "mean_pred": 0.72489484,
+    "n": 640,
+    "obs_rate": 0.8671875
+   },
+   {
+    "bin": "8",
+    "mean_pred": 0.830733662,
+    "n": 519,
+    "obs_rate": 0.973025048
+   }
+  ],
+  "brier": {
+   "ci_high": 0.044302108,
+   "ci_low": 0.042986813,
+   "ci_method": "member bootstrap percentile 95% (1,000 resamples)",
+   "value": 0.043642443
+  },
+  "ece": {
+   "ci_high": null,
+   "ci_low": null,
+   "ci_method": null,
+   "value": 0.002116678
+  },
+  "n": 198246,
+  "prefix": "churn",
+  "source": "metrics"
+ },
+ "created_at": "2026-11-16T20:12:07Z",
+ "features": {
+  "auto_renew": {
+   "bins": [
+    "1",
+    "2"
+   ],
+   "kind": "binned",
+   "metric": "drift.feature_share",
+   "missing_share": null,
+   "n": 990830,
+   "shares": [
+    0.113704672,
+    0.886295328
+   ]
+  },
+  "cancels_90d": {
+   "bins": [
+    "1",
+    "2"
+   ],
+   "kind": "binned",
+   "metric": "drift.feature_share",
+   "missing_share": null,
+   "n": 990830,
+   "shares": [
+    0.961444446,
+    0.038555554
+   ]
+  },
+  "listening_trend_30d": {
+   "bins": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "kind": "binned",
+   "metric": "drift.feature_share",
+   "missing_share": null,
+   "n": 990830,
+   "shares": [
+    0.1,
+    0.1,
+    0.1,
+    0.097093346,
+    0.202905645,
+    0.1,
+    0.099991926,
+    0.100006056,
+    0.100003028
+   ]
+  },
+  "plan_days": {
+   "bins": [
+    "0",
+    "1",
+    "2"
+   ],
+   "kind": "binned",
+   "metric": "drift.feature_share",
+   "missing_share": null,
+   "n": 990830,
+   "shares": [
+    0.003638364,
+    0.973025645,
+    0.023335991
+   ]
+  },
+  "price_30d": {
+   "bins": [
+    "0",
+    "1",
+    "2"
+   ],
+   "kind": "binned",
+   "metric": "drift.feature_share",
+   "missing_share": null,
+   "n": 990830,
+   "shares": [
+    0.008448472,
+    0.470231018,
+    0.521320509
+   ]
+  },
+  "tenure_days": {
+   "bins": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+   ],
+   "kind": "binned",
+   "metric": "drift.feature_share",
+   "missing_share": null,
+   "n": 990830,
+   "shares": [
+    0.09987788,
+    0.099842556,
+    0.09937628,
+    0.100154416,
+    0.100193777,
+    0.100396637,
+    0.100024222,
+    0.100011102,
+    0.100119092,
+    0.100004037
+   ]
+  }
+ },
+ "profile_sha256": "88fb748f04448bfc094bc448fc97ca066395f1712fc26f8324f7ab878dde01be",
+ "schema": "drift-ref-1",
+ "source_kind": "metrics",
+ "source_sha256": "727e6cc3a59565cf88aed91bd4c17e81421c0c195bbd145d0bd6a03deebcde77"
+}

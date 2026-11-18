@@ -3,9 +3,13 @@
  "calibration_bins": "10 equal-width bins of predicted risk, [k/10, (k+1)/10)",
  "features": {
   "auto_renew": [
+   0.0,
    1.0
   ],
-  "cancels_90d": [],
+  "cancels_90d": [
+   0.0,
+   5e-324
+  ],
   "listening_trend_30d": [
    -0.5737992877745371,
    -0.3361229132259423,
@@ -17,7 +21,8 @@
    2.325
   ],
   "plan_days": [
-   30.0
+   30.0,
+   30.000000000000004
   ],
   "price_30d": [
    99.0,
@@ -35,6 +40,6 @@
    2658.0
   ]
  },
- "rule": "deciles of the baseline cohort, repeated edges merged, bins [e_i, e_i+1) open at both ends, no bin under 30 members; bin k lies above edge k-1",
+ "rule": "deciles of the baseline cohort, repeated edges merged, bins [e_i, e_i+1) open at both ends, no non-empty bin under 30 members; a feature whose deciles are one value v gets bins below, equal to and above v (the second edge is the next float after v); bin k lies above edge k-1",
  "schema_version": "drift-bins-1"
 }

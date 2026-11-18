@@ -107,7 +107,25 @@ def test_baseline_bins_never_hold_fewer_than_thirty_members():
     for f, edges in bins.items():
         idx = np.searchsorted(np.asarray(edges), base[f].to_numpy(), side="right")
         counts = np.bincount(idx, minlength=len(edges) + 1)
-        assert (counts >= MIN_MEMBERS).all(), (f, counts)
+        assert ((counts == 0) | (counts >= MIN_MEMBERS)).all(), (f, counts)
+
+
+def test_a_feature_whose_deciles_are_one_value_keeps_a_bin_above_it():
+    # cancels_90d on KKBox: 96% of members at 0, so every decile is 0. One bin would hide
+    # any drift in the 4% who cancelled; EvalKit's constant-reference rule keeps it visible
+    base = _members(5_000, 6)
+    base["cancels_90d"] = 0.0
+    base.loc[:299, "cancels_90d"] = 1.0
+    edges = feature_bins(base)["cancels_90d"]
+    assert len(edges) == 2 and edges[0] == 0.0 < edges[1] < 1e-300
+    counts = np.bincount(np.searchsorted(edges, base["cancels_90d"], side="right"), minlength=3)
+    assert counts.tolist() == [0, 4_700, 300]
+    shares = {
+        m["labels"]["bin"]: m["value"]
+        for m in _doc(base, {"cancels_90d": edges})["metrics"]
+        if m["name"] == "drift.feature_share"
+    }
+    assert shares == {1: 0.94, 2: 0.06}  # the empty bin below 0 is left out, never shown as 0
 
 
 def test_a_period_bin_under_thirty_members_is_refused_not_published():
@@ -180,7 +198,8 @@ def test_both_periods_share_the_published_bin_edges():
                 for m in doc["metrics"]
                 if m["name"] == "drift.feature_share" and m["labels"]["feature"] == f
             )
-            assert got == list(range(n_bins)), f
+            assert set(got) <= set(range(n_bins)) and len(got) == len(set(got)), f
+            assert len(got) >= 2, f  # no feature folded into one bin, where drift cannot show
 
 
 @pytest.mark.skipif(

@@ -47,10 +47,16 @@ def feature_bins(baseline: pd.DataFrame, features: tuple[str, ...] = MODEL_FEATU
             raise MonitorError(f"{f}: non-finite values in the baseline")
         qs = np.quantile(x, np.linspace(0, 1, N_DECILES + 1)[1:-1])
         edges = sorted({float(q) for q in qs})
-        # bins are [e_i, e_{i+1}), open at both ends; drop edges until no bin is small
+        if len(edges) == 1:
+            # every decile is one value (cancels_90d: 96% of members at 0): EvalKit's rule for
+            # a constant reference, bins below, equal and above it, so a move off it shows
+            edges.append(float(np.nextafter(edges[0], np.inf)))
+        # bins are [e_i, e_{i+1}), open at both ends; drop edges until no bin is small. An
+        # empty bin is not small: it publishes no member, and dropping its edge could fold
+        # every member into one bin and hide that feature's drift
         while True:
             counts = _counts(x, edges)
-            small = [i for i, c in enumerate(counts) if c < MIN_MEMBERS]
+            small = [i for i, c in enumerate(counts) if 0 < c < MIN_MEMBERS]
             if not small or not edges:
                 break
             i = small[0]
@@ -70,7 +76,9 @@ def _shares(df: pd.DataFrame, bins: dict[str, list[float]], where: str) -> list[
     for f, edges in bins.items():
         counts = _counts(df[f].to_numpy(dtype=float), edges)
         for b, c in enumerate(counts):
-            if 0 < c < MIN_MEMBERS:
+            if c == 0:
+                continue  # an empty bin is left out; EvalKit reads it as empty (docs/drift.md)
+            if c < MIN_MEMBERS:
                 raise MonitorError(
                     f"{where}: {f} bin {b} holds {c} members, under {MIN_MEMBERS}: not published"
                 )
@@ -177,7 +185,9 @@ def bins_doc(bins: dict[str, list[float]], baseline: str) -> dict[str, Any]:
         "baseline": baseline,
         "rule": (
             f"deciles of the baseline cohort, repeated edges merged, bins [e_i, e_i+1) open at "
-            f"both ends, no bin under {MIN_MEMBERS} members; bin k lies above edge k-1"
+            f"both ends, no non-empty bin under {MIN_MEMBERS} members; a feature whose deciles "
+            "are one value v gets bins below, equal to and above v (the second edge is the "
+            "next float after v); bin k lies above edge k-1"
         ),
         "features": {f: edges for f, edges in bins.items()},
         "calibration_bins": f"{N_CAL_BINS} equal-width bins of predicted risk, [k/10, (k+1)/10)",

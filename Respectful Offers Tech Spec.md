@@ -650,7 +650,7 @@ Status vocabulary: `not-started | spec | building | green`.
 | **D3.3** | Project page and video | B2.4, D3.2 | Case study page and 90-second video script, numbers checked against `summary.json`, links resolve | — |
 | **E4.1** | EvalKit metrics export (OWNER D-50) | A2.8, B2.2 | `offers metrics` writes EvalKit's `metrics-1` format from `summary.json`; `configs/gates.yaml` in EvalKit's gates format, checked by a local gate until EvalKit v0.3.0 ships `evalkit gate` | US6 |
 | **E4.2** | Switch to `evalkit gate` (blocked on EvalKit v0.3.0) | E4.1 | CI gates with `evalkit gate` (an optional extra, never a runtime requirement), same verdict as the local gate; offline contract tests on EvalKit's public API, so EvalKit's canary runs this repo (`tests=auto`) | US6 |
-| **E4.3** | Monitoring and improvement on EvalKit B5.7 (blocked on EvalKit v0.4.0) | E4.2 | `offers monitor` (binned feature shares, calibration, violations, cost, disparity per period; drift and alarms by EvalKit LED-01..05) and `offers challenge` (paired challenger vs champion under CRN, promotion by a pre-stated rule, recorded in EvalKit's ledger and the decision log); responses stay simulated | US6 |
+| **E4.3** | Monitoring and improvement on EvalKit B5.7 (EvalKit v0.4.0) | E4.2 | `offers monitor` (binned feature shares, calibration, violations, cost, disparity per period; drift and alarms by EvalKit LED-01..05) and `offers challenge` (paired challenger vs champion under CRN, promotion by a pre-stated rule, recorded in EvalKit's ledger and the decision log); responses stay simulated | US6 |
 
 Waves: **W0** harness → **N1** data and core → **A2/B2/P2** policy pipeline, report and release → **D3** demo and project page → **E4** EvalKit adoption (OWNER D-50). The results release, v0.1.0, ships at B2.4.
 
@@ -985,15 +985,15 @@ Each row becomes one line in `docs/graph/catalog.tsv` with status `not-started`.
 
 | Cap | Capability | Trace |
 | --- | --- | --- |
-| EVK-03 | CI gates with `evalkit gate` (evalkit-harness ≥ 0.3.0 as an optional extra, never a runtime requirement); same verdict as `scripts/gate.py` on the committed files and on every planted defect; EvalKit's metrics-1 loader and `validate_metrics1` agree | OWNER D-50 |
+| EVK-03 | CI gates with `evalkit gate` (evalkit-harness ≥ 0.4.0 since E4.3, as an optional extra, never a runtime requirement); same verdict as `scripts/gate.py` on the committed files and on every planted defect; EvalKit's metrics-1 loader and `validate_metrics1` agree | OWNER D-50 |
 | EVK-04 | Offline contract tests on EvalKit's public API only, which EvalKit's canary runs; the registry row flips to `tests=auto` in EvalKit's own build (D-61 rule 4) | OWNER D-50, EvalKit D-61 |
 
-**E4.3 Monitoring and improvement on EvalKit B5.7 (blocked on EvalKit v0.4.0, B5.10)**
+**E4.3 Monitoring and improvement on EvalKit B5.7 (EvalKit v0.4.0, D-59)**
 
 | Cap | Capability | Trace |
 | --- | --- | --- |
-| MON-01 | `offers monitor`: per period, `metrics-1` with binned feature shares (no bin under 30 members), calibration, violations, cost per extra member kept and disparity; PSI, calibration deltas and alarms computed by EvalKit (LED-01, LED-02, LED-04, LED-05); outcomes stay simulated | OWNER D-50 |
-| MON-02 | `offers challenge`: challenger vs champion on the same members under CRN, paired claim comparison with Holm, `evalkit compare` deltas; promotion only by the pre-stated rule (claim improves in every variant, zero violations, no fail alarm); every challenge recorded in EvalKit's experiment ledger (LED-03) and `docs/decisions.md` | OWNER D-50 |
+| MON-01 | `offers monitor` (`export`, `drift`, `check`): per period, `metrics-1` with binned feature shares (no non-empty bin under 30 members, a constant feature kept in below/equal/above bins), calibration on ten equal-width bins; PSI, calibration deltas and alarms computed by EvalKit (`evalkit.drift`, LED-04, LED-05) at `configs/drift.yaml` (every severity warn) and recorded in its run history (LED-01, LED-02); outcome checks (violations, claim, cost, disparity) fail; outcomes stay simulated | OWNER D-50, D-56, D-59 |
+| MON-02 | `offers challenge`: challenger vs champion on the same members under CRN, paired claim comparison with Holm, `evalkit compare` deltas; promotion only by the pre-stated rule (claim improves in every variant, zero violations, no fail alarm); every challenge opened in EvalKit's experiment ledger (LED-03) before any rollout and closed with EvalKit's unpaired compare, and recorded in `docs/decisions.md` | OWNER D-50, D-58, D-59 |
 
 ### 11.5 Node lifecycle
 

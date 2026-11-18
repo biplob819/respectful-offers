@@ -1,0 +1,528 @@
+{
+ "alarms": 5,
+ "blocking_alarms": 0,
+ "calibration": {
+  "bins": "compared",
+  "bins_not_comparable": [],
+  "bins_status": "compared",
+  "deltas": [
+   {
+    "changed": true,
+    "ci_high": 0.01617583928966461,
+    "ci_low": 0.014657136964741142,
+    "delta": 0.015428857999999997,
+    "method": "MOVER (unpaired)",
+    "name": "brier",
+    "p_holm": 0.0,
+    "p_value": 0.0,
+    "severity": "warn",
+    "status": "alarm",
+    "tolerance": 0.01,
+    "worse": true
+   },
+   {
+    "changed": true,
+    "ci_high": 0.025069400730652308,
+    "ci_low": 0.022815207749002482,
+    "delta": 0.02392848947703097,
+    "delta_raw": 0.024095838,
+    "method": "debiased against no drift (pooled per-bin rates; parametric bootstrap, seed 7, 10000 resamples)",
+    "name": "ece",
+    "no_drift_expected": 0.0001673485229690292,
+    "p_holm": 0.0005999400059994001,
+    "p_value": 0.00019998000199980003,
+    "severity": "warn",
+    "status": "alarm",
+    "tolerance": 0.02,
+    "worse": true
+   },
+   {
+    "bin": "0",
+    "changed": true,
+    "ci_high": 0.016268667139552346,
+    "ci_low": 0.014707344950218379,
+    "delta": 0.015494315937104774,
+    "gap_new": 0.015353149042144892,
+    "gap_ref": -0.0001411668949598821,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 818130,
+    "n_ref": 168012,
+    "name": "bin 0",
+    "obs_delta": 0.015054907937104775,
+    "p_holm": 0.0,
+    "p_value": 0.0,
+    "severity": "warn",
+    "status": "warn",
+    "tolerance": 0.1,
+    "worse": true
+   },
+   {
+    "bin": "1",
+    "changed": true,
+    "ci_high": 0.04020047628914233,
+    "ci_low": 0.025423134662333986,
+    "delta": 0.03288369127280005,
+    "gap_new": 0.035259783846527754,
+    "gap_ref": 0.0023760925737277006,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 55958,
+    "n_ref": 11495,
+    "name": "bin 1",
+    "obs_delta": 0.03557896627280005,
+    "p_holm": 3.4060165672576115e-17,
+    "p_value": 5.676694278762686e-18,
+    "severity": "warn",
+    "status": "warn",
+    "tolerance": 0.1,
+    "worse": true
+   },
+   {
+    "bin": "2",
+    "changed": true,
+    "ci_high": 0.04581505975109447,
+    "ci_low": 0.02416929200157223,
+    "delta": 0.03508048741687986,
+    "gap_new": 0.0400962345664613,
+    "gap_ref": 0.005015747149581445,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 38308,
+    "n_ref": 7287,
+    "name": "bin 2",
+    "obs_delta": 0.03553504541687988,
+    "p_holm": 1.4742478694312852e-09,
+    "p_value": 2.94849573886257e-10,
+    "severity": "warn",
+    "status": "warn",
+    "tolerance": 0.1,
+    "worse": true
+   },
+   {
+    "bin": "3",
+    "changed": true,
+    "ci_high": 0.16702144365346108,
+    "ci_low": 0.13270242344539424,
+    "delta": 0.14994185670942717,
+    "gap_new": 0.1618010501378136,
+    "gap_ref": 0.011859193428386428,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 17618,
+    "n_ref": 3861,
+    "name": "bin 3",
+    "obs_delta": 0.14552756770942715,
+    "p_holm": 2.9434590802634295e-64,
+    "p_value": 3.679323850329287e-65,
+    "severity": "warn",
+    "status": "alarm",
+    "tolerance": 0.1,
+    "worse": true
+   },
+   {
+    "bin": "4",
+    "changed": true,
+    "ci_high": 0.13514208940304284,
+    "ci_low": 0.10010950645882699,
+    "delta": 0.1176512580985159,
+    "gap_new": 0.12955052678853435,
+    "gap_ref": 0.01189926869001845,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 18490,
+    "n_ref": 3797,
+    "name": "bin 4",
+    "obs_delta": 0.11750221809851591,
+    "p_holm": 1.266989266780982e-38,
+    "p_value": 1.8099846668299742e-39,
+    "severity": "warn",
+    "status": "alarm",
+    "tolerance": 0.1,
+    "worse": true
+   },
+   {
+    "bin": "5",
+    "changed": true,
+    "ci_high": 0.22263645469768664,
+    "ci_low": 0.17853120446205856,
+    "delta": 0.2005508792858165,
+    "gap_new": 0.22380622185919674,
+    "gap_ref": 0.023255342573380244,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 12798,
+    "n_ref": 2269,
+    "name": "bin 5",
+    "obs_delta": 0.20230222728581648,
+    "p_holm": 2.5566481555049286e-70,
+    "p_value": 2.840720172783254e-71,
+    "severity": "warn",
+    "status": "alarm",
+    "tolerance": 0.1,
+    "worse": true
+   },
+   {
+    "bin": "6",
+    "changed": true,
+    "ci_high": 0.17739318851487515,
+    "ci_low": 0.07757722509936273,
+    "delta": 0.12594860075990888,
+    "gap_new": 0.18985426573258646,
+    "gap_ref": 0.06390566497267758,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 2053,
+    "n_ref": 366,
+    "name": "bin 6",
+    "obs_delta": 0.12603839775990888,
+    "p_holm": 1.3349673767754129e-06,
+    "p_value": 3.337418441938532e-07,
+    "severity": "warn",
+    "status": "warn",
+    "tolerance": 0.1,
+    "worse": true
+   },
+   {
+    "bin": "7",
+    "changed": false,
+    "ci_high": 0.06101388376193055,
+    "ci_low": 0.002585464355276953,
+    "delta": 0.030352913787234037,
+    "gap_new": 0.172645573787234,
+    "gap_ref": 0.14229265999999996,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 3008,
+    "n_ref": 640,
+    "name": "bin 7",
+    "obs_delta": 0.03075132978723405,
+    "p_holm": 0.06431315279830228,
+    "p_value": 0.03215657639915114,
+    "severity": "warn",
+    "status": "ok",
+    "tolerance": 0.1,
+    "worse": true
+   },
+   {
+    "bin": "8",
+    "changed": false,
+    "ci_high": 0.019863908226549046,
+    "ci_low": -0.014008707051645364,
+    "delta": 0.0007006361902111014,
+    "gap_new": 0.14299202235976793,
+    "gap_ref": 0.14229138616955683,
+    "method": "calibration gap; MOVER of Clopper-Pearson",
+    "n_new": 2068,
+    "n_ref": 519,
+    "name": "bin 8",
+    "obs_delta": -0.0030057058097888723,
+    "p_holm": 0.9256198670189418,
+    "p_value": 0.9256198670189418,
+    "severity": "warn",
+    "status": "ok",
+    "tolerance": 0.1,
+    "worse": true
+   }
+  ],
+  "holm_family": 11,
+  "level": "alarm",
+  "new": {
+   "binning": null,
+   "bins": [
+    {
+     "bin": "0",
+     "mean_pred": 0.019622955,
+     "n": 818130,
+     "obs_rate": 0.034976104
+    },
+    {
+     "bin": "1",
+     "mean_pred": 0.153864202,
+     "n": 55958,
+     "obs_rate": 0.189123986
+    },
+    {
+     "bin": "2",
+     "mean_pred": 0.233945741,
+     "n": 38308,
+     "obs_rate": 0.274041976
+    },
+    {
+     "bin": "3",
+     "mean_pred": 0.370154904,
+     "n": 17618,
+     "obs_rate": 0.531955954
+    },
+    {
+     "bin": "4",
+     "mean_pred": 0.459903232,
+     "n": 18490,
+     "obs_rate": 0.589453759
+    },
+    {
+     "bin": "5",
+     "mean_pred": 0.521466477,
+     "n": 12798,
+     "obs_rate": 0.745272699
+    },
+    {
+     "bin": "6",
+     "mean_pred": 0.654763367,
+     "n": 2053,
+     "obs_rate": 0.844617633
+    },
+    {
+     "bin": "7",
+     "mean_pred": 0.725293256,
+     "n": 3008,
+     "obs_rate": 0.89793883
+    },
+    {
+     "bin": "8",
+     "mean_pred": 0.82702732,
+     "n": 2068,
+     "obs_rate": 0.970019342
+    }
+   ],
+   "brier": {
+    "ci_high": 0.059429254,
+    "ci_low": 0.058670807,
+    "ci_method": "member bootstrap percentile 95% (1,000 resamples)",
+    "value": 0.059071301
+   },
+   "ece": {
+    "ci_high": null,
+    "ci_low": null,
+    "ci_method": null,
+    "value": 0.026212516
+   },
+   "n": 968431,
+   "source": "metrics"
+  },
+  "reference": {
+   "binning": null,
+   "bins": [
+    {
+     "bin": "0",
+     "mean_pred": 0.020062363,
+     "n": 168012,
+     "obs_rate": 0.019921196
+    },
+    {
+     "bin": "1",
+     "mean_pred": 0.151168927,
+     "n": 11495,
+     "obs_rate": 0.15354502
+    },
+    {
+     "bin": "2",
+     "mean_pred": 0.233491183,
+     "n": 7287,
+     "obs_rate": 0.23850693
+    },
+    {
+     "bin": "3",
+     "mean_pred": 0.374569193,
+     "n": 3861,
+     "obs_rate": 0.386428386
+    },
+    {
+     "bin": "4",
+     "mean_pred": 0.460052272,
+     "n": 3797,
+     "obs_rate": 0.471951541
+    },
+    {
+     "bin": "5",
+     "mean_pred": 0.519715129,
+     "n": 2269,
+     "obs_rate": 0.542970472
+    },
+    {
+     "bin": "6",
+     "mean_pred": 0.65467357,
+     "n": 366,
+     "obs_rate": 0.718579235
+    },
+    {
+     "bin": "7",
+     "mean_pred": 0.72489484,
+     "n": 640,
+     "obs_rate": 0.8671875
+    },
+    {
+     "bin": "8",
+     "mean_pred": 0.830733662,
+     "n": 519,
+     "obs_rate": 0.973025048
+    }
+   ],
+   "brier": {
+    "ci_high": 0.044302108,
+    "ci_low": 0.042986813,
+    "ci_method": "member bootstrap percentile 95% (1,000 resamples)",
+    "value": 0.043642443
+   },
+   "ece": {
+    "ci_high": null,
+    "ci_low": null,
+    "ci_method": null,
+    "value": 0.002116678
+   },
+   "n": 198246,
+   "source": "metrics"
+  },
+  "tolerances": {
+   "bin": 0.1,
+   "brier": 0.01,
+   "ece": 0.02
+  }
+ },
+ "exit_code": 0,
+ "features": [
+  {
+   "bins": 2,
+   "bins_one_side": {
+    "new_only": [],
+    "reference_only": []
+   },
+   "expected_psi": 2.041852956205573e-06,
+   "feature": "auto_renew",
+   "kind": "binned",
+   "level": "ok",
+   "missing_share_new": null,
+   "missing_share_ref": null,
+   "n_new": 968431,
+   "n_ref": 990830,
+   "psi": 0.00022266370368032143,
+   "psi_alarm": 0.25,
+   "psi_shown": "0.0002",
+   "psi_warn": 0.1,
+   "severity": "warn",
+   "small_batch": false
+  },
+  {
+   "bins": 2,
+   "bins_one_side": {
+    "new_only": [],
+    "reference_only": []
+   },
+   "expected_psi": 2.041852956205573e-06,
+   "feature": "cancels_90d",
+   "kind": "binned",
+   "level": "ok",
+   "missing_share_new": null,
+   "missing_share_ref": null,
+   "n_new": 968431,
+   "n_ref": 990830,
+   "psi": 0.00013696526781799243,
+   "psi_alarm": 0.25,
+   "psi_shown": "0.0001",
+   "psi_warn": 0.1,
+   "severity": "warn",
+   "small_batch": false
+  },
+  {
+   "bins": 9,
+   "bins_one_side": {
+    "new_only": [],
+    "reference_only": []
+   },
+   "expected_psi": 1.6334823649644585e-05,
+   "feature": "listening_trend_30d",
+   "kind": "binned",
+   "level": "ok",
+   "missing_share_new": null,
+   "missing_share_ref": null,
+   "n_new": 968431,
+   "n_ref": 990830,
+   "psi": 0.007862120947845785,
+   "psi_alarm": 0.25,
+   "psi_shown": "0.0079",
+   "psi_warn": 0.1,
+   "severity": "warn",
+   "small_batch": false
+  },
+  {
+   "bins": 3,
+   "bins_one_side": {
+    "new_only": [],
+    "reference_only": []
+   },
+   "expected_psi": 4.083705912411146e-06,
+   "feature": "plan_days",
+   "kind": "binned",
+   "level": "ok",
+   "missing_share_new": null,
+   "missing_share_ref": null,
+   "n_new": 968431,
+   "n_ref": 990830,
+   "psi": 0.0007871382327620579,
+   "psi_alarm": 0.25,
+   "psi_shown": "0.0008",
+   "psi_warn": 0.1,
+   "severity": "warn",
+   "small_batch": false
+  },
+  {
+   "bins": 3,
+   "bins_one_side": {
+    "new_only": [],
+    "reference_only": []
+   },
+   "expected_psi": 4.083705912411146e-06,
+   "feature": "price_30d",
+   "kind": "binned",
+   "level": "ok",
+   "missing_share_new": null,
+   "missing_share_ref": null,
+   "n_new": 968431,
+   "n_ref": 990830,
+   "psi": 0.00021375154266318872,
+   "psi_alarm": 0.25,
+   "psi_shown": "0.0002",
+   "psi_warn": 0.1,
+   "severity": "warn",
+   "small_batch": false
+  },
+  {
+   "bins": 10,
+   "bins_one_side": {
+    "new_only": [],
+    "reference_only": []
+   },
+   "expected_psi": 1.837667660585016e-05,
+   "feature": "tenure_days",
+   "kind": "binned",
+   "level": "ok",
+   "missing_share_new": null,
+   "missing_share_ref": null,
+   "n_new": 968431,
+   "n_ref": 990830,
+   "psi": 0.004101827811600495,
+   "psi_alarm": 0.25,
+   "psi_shown": "0.0041",
+   "psi_warn": 0.1,
+   "severity": "warn",
+   "small_batch": false
+  }
+ ],
+ "new": {
+  "kind": "metrics",
+  "source_sha256": "6a54e95ff95f702c0d99ae5495b8f5735f6851256a2f29e9ac7a8b54efc5ad56"
+ },
+ "reference": {
+  "created_at": "2026-11-16T20:12:07Z",
+  "profile_sha256": "88fb748f04448bfc094bc448fc97ca066395f1712fc26f8324f7ab878dde01be",
+  "source_sha256": "727e6cc3a59565cf88aed91bd4c17e81421c0c195bbd145d0bd6a03deebcde77"
+ },
+ "schema": "drift-1",
+ "settings": {
+  "feature_levels": {},
+  "psi_alarm": 0.25,
+  "psi_epsilon": 0.0001,
+  "psi_warn": 0.1,
+  "resamples": 10000,
+  "seed": 7,
+  "severity": {
+   "bins": "warn",
+   "calibration": "warn",
+   "psi": "warn"
+  }
+ },
+ "verdict": "alarm",
+ "warns": 4
+}

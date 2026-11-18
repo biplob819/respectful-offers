@@ -1,8 +1,8 @@
 # E4.3 Monitoring and improvement on EvalKit B5.7
 
-**Wave 4. Depends on:** E4.2. **Blocked on EvalKit v0.4.0 (EvalKit B5.10)**: it ships the monitoring and improvement ledger (B5.7: LED-01 run history, LED-02 trend and alarm bands, LED-03 experiment ledger with a freeze guard, LED-04 drift and calibration monitor, LED-05 PSI drift defaults). Run-vs-run compare (B5.6: RVR-01..RVR-03) ships earlier, in v0.3.0. Decisions: OWNER D-50, D-51; EvalKit D-62, D-63, D-65.
+**Wave 4. Depends on:** E4.2. **Built on EvalKit v0.4.0 (tagged 2026-11-18, D-59)**, which ships the monitoring and improvement ledger (B5.7: LED-01 run history, LED-02 trend and alarm bands, LED-03 experiment ledger with a freeze guard, LED-04 drift and calibration monitor, LED-05 PSI drift defaults). Run-vs-run compare (B5.6: RVR-01..RVR-03) ships earlier, in v0.3.0. Decisions: OWNER D-50, D-51; EvalKit D-62, D-63, D-65.
 
-**Interface status.** On 2026-11-17, EvalKit's B5.6 and B5.7 have capability rows in its Tech Spec but no frozen spec. This spec fixes only what this repo must provide. The calls into EvalKit are named by capability and are written against EvalKit's spec once it is frozen.
+**Interface status.** Written on 2026-11-17 before EvalKit froze B5.7; built against EvalKit 0.4.0's public `evalkit.drift` and `evalkit.ledger` (D-59).
 
 **Honest limit.** Member features, churn scores and calibration are real KKBox data. Offer responses still come from the pre-registered simulator. Monitoring therefore shows how the loop works and catches drift in the real inputs. It does not measure how real members respond to offers, and every monitored outcome carries `simulated: true`.
 
@@ -12,7 +12,7 @@ Run the policy period after period the way a live deployment would. Each period 
 ## Interface
 
 ### `offers monitor` (MON-01)
-`offers monitor export [--run-id real-v2] [--out-dir results/kkbox/monitor]` writes the drift and calibration inputs; `offers monitor check --period <metrics-1> [--baseline <metrics-1>] [--out alarms.json]` runs the outcome checks at the OWNER D-56 severities (0 pass, 1 fail, 2 bad input). Cost and disparity need a baseline period and are reported as not checked without one, never as passed.
+`offers monitor export [--run-id real-v2] [--out-dir results/kkbox/monitor]` writes the drift and calibration inputs; `offers monitor drift [--reference <metrics-1>] [--period-drift <metrics-1>] [--drift-config configs/drift.yaml] [--ledger docs/measurements/runs.jsonl]` has EvalKit freeze the reference, check the period (writes `drift-ref.json`, `drift.json`, `drift.metrics.json`) and record it in the run history; `offers monitor check --period <metrics-1> [--baseline <metrics-1>] [--out alarms.json]` runs the outcome checks at the OWNER D-56 severities (0 pass, 1 fail, 2 bad input). Cost and disparity need a baseline period and are reported as not checked without one, never as passed.
 - Periods come from the real data: the KKBox files cover several label months, so February serves as the baseline and March as the first monitored period. With more months, each later month becomes another period. A period run is the existing pipeline with a later `as_of` and the frozen champion (no retraining).
 - **This repo provides, aggregates only:**
   - each period's `metrics.json` (`metrics-1`, from E4.1);
@@ -23,7 +23,7 @@ Run the policy period after period the way a live deployment would. Each period 
 - Exit codes follow EvalKit's gate scheme: 0 no fail alarm, 1 a fail alarm, 2 bad input. Alarm severities are set by the owner before the node starts (one ask sitting), in the way OWNER D-52 set gate severities.
 
 ### `offers challenge` (MON-02)
-`offers challenge --challenger-seed <n> [--challenger-epochs <e>] [--run-id real-v2] [--baseline <metrics-1>] [--out-dir results/kkbox/challenge] [--record docs/decisions.md] [--json]`
+`offers challenge --challenger-seed <n> [--challenger-epochs <e>] [--run-id real-v2] [--baseline <metrics-1>] [--out-dir results/kkbox/challenge] [--record docs/decisions.md] [--ledger docs/measurements/experiments.jsonl] [--ledger-baseline results/kkbox/metrics.json] [--no-record] [--json]` (recording is on by default; an outcome check that could not run withholds promotion, D-59)
 - The champion is the published run, rebuilt from its seed and checked to reproduce its March scores exactly. The challenger is a churn model and a bandit retrained with the challenger's seed (and epochs), on February data and the training cohort only (D-58).
 - Both are rolled out on the champion's evaluation members **in the champion's simulated world**: base retention and hidden segments come from the champion's scores, so the world does not move when the model does; only what each policy reads differs. Decision and response draws are keyed by member, period and variant (common random numbers). The champion arm therefore reproduces the published bandit figure for figure.
 - It exports `challenge.metrics.json` (`metrics-1`: both arms labelled `arm`, and `diff/separated/p_value.incremental_retained_per_1000_ntd` {a: challenger, b: champion, variant}, this repo's paired block-bootstrap intervals with Holm across the variants, D-16) and `challenge.json` (decision, reasons, the outcome checks of the period).
@@ -33,7 +33,7 @@ Run the policy period after period the way a live deployment would. Each period 
   1. the claim metric improves (lower bound > 0, separated after Holm);
   2. the respectful policies have zero violations;
   3. no fail alarm fires from MON-01.
-- **Record:** every challenge, promoted or not, is written to EvalKit's experiment ledger (LED-03; its freeze guard stops a challenger from being tuned on the period it is judged on) and to `docs/decisions.md` as a PROMOTION or NO-PROMOTION row with run ids and hashes. A challenger can never change the pre-registered simulator: a changed simulator needs a new pre-registration and a rerun of every variant (D-3).
+- **Record:** every challenge, promoted or not, is written to EvalKit's experiment ledger (LED-03: opened before either arm is rolled out, closed with EvalKit's compare of the per-arm files `champion.metrics.json` and `challenger.metrics.json`; the held-out `look` is not used, D-59) and to `docs/decisions.md` as a PROMOTION or NO-PROMOTION row with run ids and hashes. A challenger can never change the pre-registered simulator: a changed simulator needs a new pre-registration and a rerun of every variant (D-3).
 
 ## Out of scope
 - Real offer responses, which need a real A/B test (PR/FAQ).

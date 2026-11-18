@@ -1,0 +1,315 @@
+{
+ "created_at": "2026-11-16T20:12:07.430556Z",
+ "metrics": [
+  {
+   "ci_high": 863.054419,
+   "ci_low": 860.040203,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 861.57
+  },
+  {
+   "ci_high": 3.186591,
+   "ci_low": 2.584985,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 2.885
+  },
+  {
+   "ci_high": 219.276,
+   "ci_low": 180.7867,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 198.4209
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "conservative"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 114488.8529
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "ci_high": 867.803261,
+   "ci_low": 864.839916,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 866.345
+  },
+  {
+   "ci_high": 8.074044,
+   "ci_low": 7.255264,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 7.66
+  },
+  {
+   "ci_high": 103.1069,
+   "ci_low": 91.9006,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 97.2725
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "central"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 149021.4402
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "ci_high": 874.718377,
+   "ci_low": 871.850461,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 873.305
+  },
+  {
+   "ci_high": 15.172506,
+   "ci_low": 14.074968,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 14.62
+  },
+  {
+   "ci_high": 66.167,
+   "ci_low": 60.3083,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 63.1938
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "variant": "optimistic"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 184778.7109
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "policy": "bandit",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  }
+ ],
+ "project": "respectful-offers",
+ "provenance": {
+  "code_version": "2faad55e0a77",
+  "config_hash": "996831449ae52455",
+  "evalkit": null,
+  "snapshot": "churn:c80fe53c7f305230"
+ },
+ "run_id": "real-v2-challenger-s20261122-e3-challenger",
+ "schema_version": "metrics-1",
+ "simulated": true
+}

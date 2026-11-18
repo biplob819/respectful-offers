@@ -2,6 +2,8 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FEAT] [E4.3] — EvalKit 0.4 wired in (D-59): pin `evalkit-harness>=0.4,<0.5`; the D-54 known disagreement dropped (both validators refuse); `offers monitor drift` runs `evalkit.drift` at `configs/drift.yaml` (D-56 severities, all warn; equal-width bins compared) and records the period in EvalKit's run history; `offers challenge --ledger` opens and closes the challenge in EvalKit's experiment ledger; drift contract tests; guide `docs/guide/monitoring.md`.
+- [FIX] [E4.3] — drift export: `cancels_90d` (every February decile 0) had been folded into one bin, so its drift could never show; it now gets below/equal/above bins and empty bins are left out (L-42).
 - [DOC] [—] — README shows the looping walkthrough GIF (`docs/assets/walkthrough.gif`) near the top, linked to its shot list; owner request
 - [FEAT] [E4.3] — monitoring export side (MON-01, part): `offers monitor export` writes February reference and March period drift inputs in EvalKit's frozen LED-04 shape (feature shares, Brier, ECE, equal-width reliability bins; aggregates only, real data), checked end to end with EvalKit main's `evalkit drift`: no feature drift, calibration worse out of time (warns, OWNER D-56). Severities: OWNER D-56.
 - [DOC] [E4.2] — EvalKit adopted the id-shaped-label rule (D-54) and flipped this repo's canary row to `tests=auto`; the contract test now requires this repo to refuse and accepts either EvalKit answer until the pin reaches 0.4 (43 passed against EvalKit 0.3.0 and against EvalKit main).

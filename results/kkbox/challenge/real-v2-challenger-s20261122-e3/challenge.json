@@ -7,6 +7,11 @@
  },
  "champion": "real-v2",
  "decision": "NO-PROMOTION",
+ "experiment_ledger": {
+  "experiment": "E1",
+  "ledger": "docs/measurements/experiments.jsonl",
+  "verdict": "inconclusive"
+ },
  "outcome_checks": {
   "alarms": [],
   "baseline": null,

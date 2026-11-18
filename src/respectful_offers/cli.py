@@ -782,6 +782,8 @@ def cmd_monitor(args: argparse.Namespace) -> int:
     """Drift and calibration inputs for EvalKit's drift monitor (E4.3 MON-01, LED-04)."""
     if args.action == "check":
         return cmd_monitor_check(args)
+    if args.action == "drift":
+        return cmd_monitor_drift(args)
     import numpy as np
     import pandas as pd
 
@@ -890,19 +892,62 @@ def cmd_monitor_check(args: argparse.Namespace) -> int:
     return EXIT_AUDIT if got["fail"] else EXIT_OK
 
 
+def cmd_monitor_drift(args: argparse.Namespace) -> int:
+    """EvalKit's drift check of a period against the frozen baseline (LED-04, OWNER D-56)."""
+    from respectful_offers.metrics1 import MetricsError
+    from respectful_offers.monitor.ledger import (
+        EvalKitMissing,
+        record_run,
+        run_drift,
+        summarise_drift,
+    )
+
+    out = Path(args.out_dir)
+    ref = Path(args.reference) if args.reference else out / "reference-2017-02.metrics.json"
+    period = Path(args.period_drift) if args.period_drift else out / "period-2017-03.metrics.json"
+    try:
+        got = run_drift(ref, period, out, config=Path(args.drift_config))
+        recorded = None
+        if args.ledger:
+            check = record_run(got["metrics"], ledger=Path(args.ledger))
+            recorded = {"ledger": args.ledger, "exit_code": check.exit_code}
+    except (EvalKitMissing, MetricsError, OSError, ValueError) as exc:
+        return _fail(args, "monitor drift", exc)
+    s = summarise_drift(got["report"])
+    flagged = [r for r in s["rows"] if r["level"] not in ("ok", "unchanged", "no_interval")]
+    lines = [
+        f"offers monitor drift: {len(flagged)} flagged of {len(s['rows'])} checks; "
+        + ("none blocks (warn severity, OWNER D-56)" if s["exit_code"] == 0 else "FAIL")
+        + f"; reliability bins {s['bins']} (real features and labels)"
+    ]
+    lines += [f"  {r['level']:<6} {r['check']}: {float(r['value']):+.4f}" for r in flagged]
+    lines.append(f"  wrote {', '.join(got['files'])} to {out}")
+    if recorded:
+        lines.append(f"  recorded in {recorded['ledger']}")
+    _emit(
+        {"ok": s["exit_code"] == 0, **s, "files": got["files"], "recorded": recorded},
+        args.json,
+        "\n".join(lines),
+    )
+    return EXIT_AUDIT if s["exit_code"] == 1 else EXIT_OK
+
+
 def cmd_challenge(args: argparse.Namespace) -> int:
     """Champion against a retrained challenger, and the promotion rule (E4.3 MON-02)."""
     import numpy as np
     import pandas as pd
 
     from respectful_offers.churn.model import train
+    from respectful_offers.evaluate.pipeline import BANDIT_EPOCHS
     from respectful_offers.metrics1 import dumps, to_metrics1
     from respectful_offers.monitor.challenge import (
         ChallengeError,
         Challenger,
+        already_recorded,
         append_decision,
         challenge_doc,
         decision_row,
+        precheck,
         run_challenge,
     )
     from respectful_offers.monitor.outcomes import outcome_alarms
@@ -919,8 +964,11 @@ def cmd_challenge(args: argparse.Namespace) -> int:
                 f"{pipe.ctx.config_hash}): a challenge runs on the champion's own settings"
             )
         sim_hash = sha256(pipe.sim_path)[:16] if pipe.sim_path.is_file() else None
-        if args.challenger_seed == pipe.cfg.seed and args.challenger_epochs is None:
+        epochs = BANDIT_EPOCHS if args.challenger_epochs is None else args.challenger_epochs
+        if args.challenger_seed == pipe.cfg.seed and epochs == BANDIT_EPOCHS:
             raise ChallengeError("the challenger must differ from the champion (seed or epochs)")
+        record_path = None if args.no_record else args.record
+        ledger_path = None if args.no_record else args.ledger
         feb = pd.read_parquet(pipe.features.path / "features_feb.parquet")
         mar = pd.read_parquet(pipe.features.path / "features_mar.parquet")
         stored = pd.read_parquet(pipe.churn.path / "scores_mar.parquet")[["msno", "churn_risk"]]
@@ -940,6 +988,29 @@ def cmd_challenge(args: argparse.Namespace) -> int:
             **({} if args.challenger_epochs is None else {"epochs": args.challenger_epochs}),
         )
         name = f"{args.run_id}-challenger-s{challenger.seed}-e{challenger.epochs}"
+        if record_path and already_recorded(Path(record_path), name):
+            raise ChallengeError(
+                f"{name} is already recorded in {record_path}: rerun it with --no-record"
+            )
+        precheck(  # every refusal before the experiment is opened in an append-only ledger
+            stored,
+            chall_scores,
+            champion_simulator_hash=summary.simulator_hash,
+            simulator_hash=sim_hash,
+        )
+        exp_id = None
+        if ledger_path:  # declared in EvalKit's experiment ledger before any arm is rolled out
+            from respectful_offers.monitor.ledger import open_challenge
+
+            published = load_metrics(Path(args.ledger_baseline))
+            if published["run_id"] != args.run_id:
+                raise ChallengeError(
+                    f"{args.ledger_baseline} is run {published['run_id']}, not the champion "
+                    f"{args.run_id}"
+                )
+            exp_id = open_challenge(
+                baseline=Path(args.ledger_baseline), challenger=name, ledger=Path(ledger_path)
+            )
         result = run_challenge(
             stored,
             chall_scores,
@@ -951,6 +1022,7 @@ def cmd_challenge(args: argparse.Namespace) -> int:
             champion_simulator_hash=summary.simulator_hash,
             simulator_hash=sim_hash,
             fail_alarms=fails,
+            not_checked=checks["not_checked"],
         )
         stamp = (summary.finished_at or summary.started_at).isoformat().replace("+00:00", "Z")
         prov = {
@@ -965,6 +1037,17 @@ def cmd_challenge(args: argparse.Namespace) -> int:
     out = Path(args.out_dir) / name
     out.mkdir(parents=True, exist_ok=True)
     (out / "challenge.metrics.json").write_text(dumps(doc), encoding="utf-8", newline="\n")
+    ledger = None
+    if exp_id is not None and ledger_path:
+        from respectful_offers.monitor.ledger import arm_doc, close_challenge
+
+        arms = {arm: out / f"{arm}.metrics.json" for arm in ("champion", "challenger")}
+        for arm, path in arms.items():
+            path.write_text(dumps(arm_doc(doc, arm)), encoding="utf-8", newline="\n")
+        closed = close_challenge(
+            exp_id, before=arms["champion"], after=arms["challenger"], ledger=Path(ledger_path)
+        )
+        ledger = {"ledger": ledger_path, "experiment": exp_id, "verdict": closed.verdict}
     record = {
         "schema_version": "challenge-1",
         "champion": args.run_id,
@@ -980,11 +1063,12 @@ def cmd_challenge(args: argparse.Namespace) -> int:
         "variants": result["variants"],
         "reasons": result["reasons"],
         "outcome_checks": checks,
+        "experiment_ledger": ledger,
     }
     (out / "challenge.json").write_text(
         json.dumps(record, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n"
     )
-    if args.record:
+    if record_path:
         row = decision_row(
             result,
             date=stamp[:10] if args.date is None else args.date,
@@ -992,11 +1076,16 @@ def cmd_challenge(args: argparse.Namespace) -> int:
             challenger=name,
         )
         try:
-            append_decision(Path(args.record), row)
+            append_decision(Path(record_path), row)
         except ChallengeError as exc:
             return _fail(args, "challenge", exc)
     lines = [f"offers challenge: {result['decision']} ({name} against {args.run_id}; simulated)"]
     lines += [f"  {r}" for r in result["reasons"]]
+    if ledger:
+        lines.append(
+            f"  {ledger['experiment']} in {ledger['ledger']}: EvalKit compare {ledger['verdict']} "
+            "(unpaired; the paired test above decides)"
+        )
     lines.append(f"  wrote {out}")
     _emit({"ok": True, "out": str(out), **record}, args.json, "\n".join(lines))
     return EXIT_OK
@@ -1182,7 +1271,11 @@ def build_parser() -> argparse.ArgumentParser:
     me.add_argument("--json", action="store_true")
     me.set_defaults(func=cmd_metrics)
     mo = sub.add_parser("monitor", help="drift and calibration inputs for EvalKit's monitor")
-    mo.add_argument("action", choices=["export", "check"])
+    mo.add_argument("action", choices=["export", "check", "drift"])
+    mo.add_argument("--reference", default=None, help="drift only: the baseline's drift input")
+    mo.add_argument("--period-drift", default=None, help="drift only: the period's drift input")
+    mo.add_argument("--drift-config", default="configs/drift.yaml", help="drift only")
+    mo.add_argument("--ledger", default=None, help="drift only: record in this EvalKit run history")
     mo.add_argument("--period", default="results/kkbox/metrics.json", help="check only")
     mo.add_argument("--baseline", default=None, help="check only: the baseline period's metrics")
     mo.add_argument("--out", default=None, help="check only: write the alarms as JSON")
@@ -1200,8 +1293,25 @@ def build_parser() -> argparse.ArgumentParser:
     cg.add_argument("--challenger-epochs", type=int, default=None)
     cg.add_argument("--baseline", default=None, help="the baseline period's metrics-1 file")
     cg.add_argument("--out-dir", default="results/kkbox/challenge")
-    cg.add_argument("--record", default=None, help="append the decision row to this file")
+    cg.add_argument(
+        "--record", default="docs/decisions.md", help="append the decision row to this file"
+    )
     cg.add_argument("--date", default=None, help="date for the decision row")
+    cg.add_argument(
+        "--ledger",
+        default="docs/measurements/experiments.jsonl",
+        help="EvalKit experiment ledger to record in",
+    )
+    cg.add_argument(
+        "--no-record",
+        action="store_true",
+        help="write the results only: no decision row, no experiment (a rerun of a recorded one)",
+    )
+    cg.add_argument(
+        "--ledger-baseline",
+        default="results/kkbox/metrics.json",
+        help="the champion's published metrics-1 file (the experiment's baseline)",
+    )
     cg.add_argument("--config", default=None)
     cg.add_argument("--simulator", default=None)
     cg.add_argument("--data-dir", default="data")
