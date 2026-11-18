@@ -1,0 +1,21 @@
+# Read by the portfolio site (biplob819.github.io), which pulls docs/case-study.md.
+title: "Respectful Offers: retention offers that take no for an answer"
+slug: respectful-offers
+summary: "An open-source retention policy with respect rules outside the learning, evaluated on 200,000 real KKBox members with simulated offer responses."
+case_study: docs/case-study.md
+repo: https://github.com/biplob819/respectful-offers
+links:
+  report: https://biplob819.github.io/respectful-offers/
+  case_study: https://biplob819.github.io/respectful-offers/case-study.html
+  prfaq: https://biplob819.github.io/respectful-offers/prfaq.pdf
+  demo: https://respectful-offers.streamlit.app/  # passkey protected (OWNER D-48)
+  package: https://pypi.org/project/respectful-offers/
+  data_card: https://github.com/biplob819/respectful-offers/blob/main/DATA_CARD.md
+  decision_review: https://github.com/biplob819/respectful-offers/blob/main/results/kkbox/decision-review.md
+images:
+  walkthrough: docs/assets/walkthrough.gif  # D-57: replaces the video
+  dataflow: docs/img/dataflow.svg
+  architecture: docs/img/architecture.svg
+  report: docs/img/report.png
+  demo: docs/img/demo.png
+tech: [Python, uv, NumPy, pandas, scikit-learn, DuckDB, Pydantic, Streamlit, EvalKit, GitHub Actions]
