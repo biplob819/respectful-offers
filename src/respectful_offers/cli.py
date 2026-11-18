@@ -778,6 +778,84 @@ def cmd_metrics(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+def cmd_monitor(args: argparse.Namespace) -> int:
+    """Drift and calibration inputs for EvalKit's drift monitor (E4.3 MON-01, LED-04)."""
+    import numpy as np
+    import pandas as pd
+
+    from respectful_offers.churn.model import MODEL_FEATURES, calibration_fold, train
+    from respectful_offers.metrics1 import dumps, validate_metrics1
+    from respectful_offers.monitor.export import MonitorError, bins_doc, feature_bins, period_doc
+    from respectful_offers.schemas.summary import load_summary
+
+    try:
+        pipe = _Pipeline(args, need_simulator=False)
+        run_dir = pipe.root / "runs" / args.run_id
+        summary = load_summary(run_dir / "summary.json")
+        feb = pd.read_parquet(pipe.features.path / "features_feb.parquet")
+        mar = pd.read_parquet(pipe.features.path / "features_mar.parquet")
+        stored = pd.read_parquet(pipe.churn.path / "scores_mar.parquet")
+        model, _ = train(feb, seed=pipe.cfg.seed)  # the run's champion, rebuilt from its seed
+        risk = model.risk(mar)
+        if not np.array_equal(risk, stored["churn_risk"].to_numpy()):
+            raise MonitorError(
+                "the rebuilt churn model does not reproduce the run's March scores exactly: "
+                "the monitor never reports on a model other than the one the run published"
+            )
+        hold = feb[calibration_fold(feb["msno"])]
+        bins = feature_bins(feb[list(MODEL_FEATURES)])
+        stamp = (summary.finished_at or summary.started_at).isoformat().replace("+00:00", "Z")
+        prov = {
+            "code_version": summary.git_sha,
+            "snapshot": f"churn:{pipe.churn.key[:16]}",
+            "config_hash": summary.config_hash,
+            "evalkit": None,
+        }
+        docs = {
+            "reference-2017-02.metrics.json": period_doc(
+                run_id=f"{summary.run_id}-feb",
+                created_at=stamp,
+                provenance=prov,
+                members=feb[list(MODEL_FEATURES)],
+                bins=bins,
+                y=hold["churn_label"].astype(int).to_numpy(),
+                p=model.risk(hold),
+                seed=pipe.cfg.seed,
+            ),
+            "period-2017-03.metrics.json": period_doc(
+                run_id=f"{summary.run_id}-mar",
+                created_at=stamp,
+                provenance=prov,
+                members=mar[list(MODEL_FEATURES)],
+                bins=bins,
+                y=mar["churn_label"].astype(int).to_numpy(),
+                p=risk,
+                seed=pipe.cfg.seed,
+            ),
+        }
+        for doc in docs.values():
+            validate_metrics1(doc)
+    except (MonitorError, ValueError, *_user_errors()) as exc:
+        return _fail(args, "monitor", exc)
+    out = Path(args.out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    for name, doc in docs.items():
+        (out / name).write_text(dumps(doc), encoding="utf-8", newline="\n")
+    (out / "bins.json").write_text(
+        json.dumps(bins_doc(bins, "2017-02"), indent=1, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    written = sorted([*docs, "bins.json"])
+    _emit(
+        {"ok": True, "out": str(out), "files": written},
+        args.json,
+        f"offers monitor: wrote "
+        f"{', '.join(written)} to {out} (real features and labels, aggregates only)",
+    )
+    return EXIT_OK
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = _Parser(prog="offers", description=__doc__)
     parser.add_argument("--version", action="version", version=f"offers {__version__}")
@@ -957,6 +1035,16 @@ def build_parser() -> argparse.ArgumentParser:
     me.add_argument("--check", action="store_true", help="exit 1 if --out is stale")
     me.add_argument("--json", action="store_true")
     me.set_defaults(func=cmd_metrics)
+    mo = sub.add_parser("monitor", help="drift and calibration inputs for EvalKit's monitor")
+    mo.add_argument("action", choices=["export"])
+    mo.add_argument("--out-dir", default="results/kkbox/monitor")
+    mo.add_argument("--config", default=None)
+    mo.add_argument("--simulator", default=None)
+    mo.add_argument("--data-dir", default="data")
+    mo.add_argument("--root", default=".")
+    mo.add_argument("--run-id", default="real-v2")
+    mo.add_argument("--json", action="store_true")
+    mo.set_defaults(func=cmd_monitor)
     dp = sub.add_parser("demo-passkey", help="hash a passkey for the deployed demo's secrets")
     how = dp.add_mutually_exclusive_group()
     how.add_argument("--generate", action="store_true", help="make a random passkey")

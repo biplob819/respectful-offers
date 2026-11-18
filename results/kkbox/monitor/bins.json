@@ -1,0 +1,40 @@
+{
+ "baseline": "2017-02",
+ "calibration_bins": "10 equal-width bins of predicted risk, [k/10, (k+1)/10)",
+ "features": {
+  "auto_renew": [
+   1.0
+  ],
+  "cancels_90d": [],
+  "listening_trend_30d": [
+   -0.5737992877745371,
+   -0.3361229132259423,
+   -0.16399654747225614,
+   0.0,
+   0.011158342189160468,
+   0.23452768729641693,
+   0.6506024096385542,
+   2.325
+  ],
+  "plan_days": [
+   30.0
+  ],
+  "price_30d": [
+   99.0,
+   149.0
+  ],
+  "tenure_days": [
+   164.0,
+   315.0,
+   417.0,
+   525.0,
+   756.0,
+   1137.0,
+   1448.0,
+   1884.0,
+   2658.0
+  ]
+ },
+ "rule": "deciles of the baseline cohort, repeated edges merged, bins [e_i, e_i+1) open at both ends, no bin under 30 members; bin k lies above edge k-1",
+ "schema_version": "drift-bins-1"
+}

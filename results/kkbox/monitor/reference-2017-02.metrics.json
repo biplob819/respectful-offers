@@ -1,0 +1,462 @@
+{
+ "created_at": "2026-11-16T20:12:07.430556Z",
+ "metrics": [
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.09987788
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.099842556
+  },
+  {
+   "labels": {
+    "bin": 2,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.09937628
+  },
+  {
+   "labels": {
+    "bin": 3,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100154416
+  },
+  {
+   "labels": {
+    "bin": 4,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100193777
+  },
+  {
+   "labels": {
+    "bin": 5,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100396637
+  },
+  {
+   "labels": {
+    "bin": 6,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100024222
+  },
+  {
+   "labels": {
+    "bin": 7,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100011102
+  },
+  {
+   "labels": {
+    "bin": 8,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100119092
+  },
+  {
+   "labels": {
+    "bin": 9,
+    "feature": "tenure_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100004037
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "auto_renew"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.113704672
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "auto_renew"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.886295328
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "cancels_90d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 1.0
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.1
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.1
+  },
+  {
+   "labels": {
+    "bin": 2,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.1
+  },
+  {
+   "labels": {
+    "bin": 3,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.097093346
+  },
+  {
+   "labels": {
+    "bin": 4,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.202905645
+  },
+  {
+   "labels": {
+    "bin": 5,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.1
+  },
+  {
+   "labels": {
+    "bin": 6,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.099991926
+  },
+  {
+   "labels": {
+    "bin": 7,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100006056
+  },
+  {
+   "labels": {
+    "bin": 8,
+    "feature": "listening_trend_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100003028
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "price_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.008448472
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "price_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.470231018
+  },
+  {
+   "labels": {
+    "bin": 2,
+    "feature": "price_30d"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.521320509
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "plan_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.003638364
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "plan_days"
+   },
+   "n": 990830,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.996361636
+  },
+  {
+   "ci_high": 0.044302108,
+   "ci_low": 0.042986813,
+   "ci_method": "member bootstrap percentile 95% (1,000 resamples)",
+   "n": 198246,
+   "name": "churn.brier",
+   "unit": "ratio",
+   "value": 0.043642443
+  },
+  {
+   "n": 198246,
+   "name": "churn.ece",
+   "unit": "ratio",
+   "value": 0.002116678
+  },
+  {
+   "labels": {
+    "bin": 0
+   },
+   "n": 168012,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.020062363
+  },
+  {
+   "labels": {
+    "bin": 0
+   },
+   "n": 168012,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.019921196
+  },
+  {
+   "labels": {
+    "bin": 1
+   },
+   "n": 11495,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.151168927
+  },
+  {
+   "labels": {
+    "bin": 1
+   },
+   "n": 11495,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.15354502
+  },
+  {
+   "labels": {
+    "bin": 2
+   },
+   "n": 7287,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.233491183
+  },
+  {
+   "labels": {
+    "bin": 2
+   },
+   "n": 7287,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.23850693
+  },
+  {
+   "labels": {
+    "bin": 3
+   },
+   "n": 3861,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.374569193
+  },
+  {
+   "labels": {
+    "bin": 3
+   },
+   "n": 3861,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.386428386
+  },
+  {
+   "labels": {
+    "bin": 4
+   },
+   "n": 3797,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.460052272
+  },
+  {
+   "labels": {
+    "bin": 4
+   },
+   "n": 3797,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.471951541
+  },
+  {
+   "labels": {
+    "bin": 5
+   },
+   "n": 2269,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.519715129
+  },
+  {
+   "labels": {
+    "bin": 5
+   },
+   "n": 2269,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.542970472
+  },
+  {
+   "labels": {
+    "bin": 6
+   },
+   "n": 366,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.65467357
+  },
+  {
+   "labels": {
+    "bin": 6
+   },
+   "n": 366,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.718579235
+  },
+  {
+   "labels": {
+    "bin": 7
+   },
+   "n": 640,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.72489484
+  },
+  {
+   "labels": {
+    "bin": 7
+   },
+   "n": 640,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.8671875
+  },
+  {
+   "labels": {
+    "bin": 8
+   },
+   "n": 519,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.830733662
+  },
+  {
+   "labels": {
+    "bin": 8
+   },
+   "n": 519,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.973025048
+  }
+ ],
+ "project": "respectful-offers",
+ "provenance": {
+  "code_version": "2faad55e0a77",
+  "config_hash": "996831449ae52455",
+  "evalkit": null,
+  "snapshot": "churn:c80fe53c7f305230"
+ },
+ "run_id": "real-v2-feb",
+ "schema_version": "metrics-1",
+ "simulated": false
+}

@@ -1,0 +1,462 @@
+{
+ "created_at": "2026-11-16T20:12:07.430556Z",
+ "metrics": [
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.102611337
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.098751486
+  },
+  {
+   "labels": {
+    "bin": 2,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.082555185
+  },
+  {
+   "labels": {
+    "bin": 3,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.098049319
+  },
+  {
+   "labels": {
+    "bin": 4,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.103858716
+  },
+  {
+   "labels": {
+    "bin": 5,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.106692165
+  },
+  {
+   "labels": {
+    "bin": 6,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.100507935
+  },
+  {
+   "labels": {
+    "bin": 7,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.098974527
+  },
+  {
+   "labels": {
+    "bin": 8,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.105093703
+  },
+  {
+   "labels": {
+    "bin": 9,
+    "feature": "tenure_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.102905628
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "auto_renew"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.118484435
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "auto_renew"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.881515565
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "cancels_90d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 1.0
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.118068298
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.113069491
+  },
+  {
+   "labels": {
+    "bin": 2,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.103870074
+  },
+  {
+   "labels": {
+    "bin": 3,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.09608635
+  },
+  {
+   "labels": {
+    "bin": 4,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.199538222
+  },
+  {
+   "labels": {
+    "bin": 5,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.096954765
+  },
+  {
+   "labels": {
+    "bin": 6,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.091727753
+  },
+  {
+   "labels": {
+    "bin": 7,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.086933401
+  },
+  {
+   "labels": {
+    "bin": 8,
+    "feature": "listening_trend_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.093751646
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "price_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.007505956
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "price_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.465669728
+  },
+  {
+   "labels": {
+    "bin": 2,
+    "feature": "price_30d"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.526824317
+  },
+  {
+   "labels": {
+    "bin": 0,
+    "feature": "plan_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.00220563
+  },
+  {
+   "labels": {
+    "bin": 1,
+    "feature": "plan_days"
+   },
+   "n": 968431,
+   "name": "drift.feature_share",
+   "unit": "rate",
+   "value": 0.99779437
+  },
+  {
+   "ci_high": 0.059429254,
+   "ci_low": 0.058670807,
+   "ci_method": "member bootstrap percentile 95% (1,000 resamples)",
+   "n": 968431,
+   "name": "churn.brier",
+   "unit": "ratio",
+   "value": 0.059071301
+  },
+  {
+   "n": 968431,
+   "name": "churn.ece",
+   "unit": "ratio",
+   "value": 0.026212516
+  },
+  {
+   "labels": {
+    "bin": 0
+   },
+   "n": 818130,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.019622955
+  },
+  {
+   "labels": {
+    "bin": 0
+   },
+   "n": 818130,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.034976104
+  },
+  {
+   "labels": {
+    "bin": 1
+   },
+   "n": 55958,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.153864202
+  },
+  {
+   "labels": {
+    "bin": 1
+   },
+   "n": 55958,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.189123986
+  },
+  {
+   "labels": {
+    "bin": 2
+   },
+   "n": 38308,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.233945741
+  },
+  {
+   "labels": {
+    "bin": 2
+   },
+   "n": 38308,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.274041976
+  },
+  {
+   "labels": {
+    "bin": 3
+   },
+   "n": 17618,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.370154904
+  },
+  {
+   "labels": {
+    "bin": 3
+   },
+   "n": 17618,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.531955954
+  },
+  {
+   "labels": {
+    "bin": 4
+   },
+   "n": 18490,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.459903232
+  },
+  {
+   "labels": {
+    "bin": 4
+   },
+   "n": 18490,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.589453759
+  },
+  {
+   "labels": {
+    "bin": 5
+   },
+   "n": 12798,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.521466477
+  },
+  {
+   "labels": {
+    "bin": 5
+   },
+   "n": 12798,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.745272699
+  },
+  {
+   "labels": {
+    "bin": 6
+   },
+   "n": 2053,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.654763367
+  },
+  {
+   "labels": {
+    "bin": 6
+   },
+   "n": 2053,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.844617633
+  },
+  {
+   "labels": {
+    "bin": 7
+   },
+   "n": 3008,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.725293256
+  },
+  {
+   "labels": {
+    "bin": 7
+   },
+   "n": 3008,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.89793883
+  },
+  {
+   "labels": {
+    "bin": 8
+   },
+   "n": 2068,
+   "name": "churn.reliability.predicted",
+   "unit": "rate",
+   "value": 0.82702732
+  },
+  {
+   "labels": {
+    "bin": 8
+   },
+   "n": 2068,
+   "name": "churn.reliability.observed",
+   "unit": "rate",
+   "value": 0.970019342
+  }
+ ],
+ "project": "respectful-offers",
+ "provenance": {
+  "code_version": "2faad55e0a77",
+  "config_hash": "996831449ae52455",
+  "evalkit": null,
+  "snapshot": "churn:c80fe53c7f305230"
+ },
+ "run_id": "real-v2-mar",
+ "schema_version": "metrics-1",
+ "simulated": false
+}
