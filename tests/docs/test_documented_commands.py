@@ -161,5 +161,10 @@ def test_the_monitoring_guide_runs_as_written(tmp_path, monkeypatch, capsys):
         assert run(command) == 0, command
     capsys.readouterr()
     assert (tmp_path / "docs" / "measurements" / "runs.jsonl").is_file()
+    from tests.monitor.test_drift import same
+
     rel = "results/kkbox/monitor/drift.json"
-    assert (tmp_path / rel).read_bytes() == (ROOT / rel).read_bytes()
+    same(
+        json.loads((tmp_path / rel).read_text(encoding="utf-8")),
+        json.loads((ROOT / rel).read_text(encoding="utf-8")),
+    )

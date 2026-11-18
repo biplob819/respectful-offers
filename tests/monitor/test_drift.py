@@ -1,6 +1,7 @@
 """E4.3 MON-01 on EvalKit 0.4: drift and calibration at the D-56 severities, and the ledgers."""
 
 import json
+import math
 import subprocess
 import sys
 from pathlib import Path
@@ -35,10 +36,36 @@ def test_the_drift_config_is_the_owner_ruling():
     assert (cfg["psi_warn"], cfg["psi_alarm"]) == (0.1, 0.25)
 
 
-@pytest.mark.parametrize("name", ["drift-ref.json", "drift.json", "drift.metrics.json"])
-def test_the_committed_drift_files_reproduce_byte_for_byte(fresh, name):
+def same(a, b, where="$"):
+    """Exactly equal, except floats, which agree to 1e-9 relative: EvalKit's bootstrap sums
+    differ in the last digits across CPUs and platforms (CI: Linux, Windows, macOS)."""
+    if isinstance(a, float) or isinstance(b, float):
+        assert isinstance(a, int | float) and isinstance(b, int | float), where
+        assert math.isclose(a, b, rel_tol=1e-9, abs_tol=1e-12), (where, a, b)
+    elif isinstance(a, dict):
+        assert isinstance(b, dict) and a.keys() == b.keys(), where
+        for k in a:
+            same(a[k], b[k], f"{where}.{k}")
+    elif isinstance(a, list):
+        assert isinstance(b, list) and len(a) == len(b), where
+        for i, (x, y) in enumerate(zip(a, b, strict=True)):
+            same(x, y, f"{where}[{i}]")
+    else:
+        assert a == b, (where, a, b)  # every level, status, count, hash and name exactly
+
+
+@pytest.mark.parametrize("name", ["drift-ref.json", "drift.metrics.json"])
+def test_the_committed_drift_inputs_reproduce_byte_for_byte(fresh, name):
     out, _ = fresh
     assert (out / name).read_bytes() == (MON / name).read_bytes()
+
+
+def test_the_committed_drift_check_reproduces_on_any_platform(fresh):
+    out, _ = fresh
+    same(
+        json.loads((out / "drift.json").read_text(encoding="utf-8")),
+        json.loads((MON / "drift.json").read_text(encoding="utf-8")),
+    )
 
 
 def test_every_model_feature_gets_a_psi_and_the_bins_are_compared(fresh):

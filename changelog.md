@@ -2,6 +2,7 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [FIX] [E4.3] — CI: `drift.json` differs in the last float digits across platforms (EvalKit's bootstrap sums), so it is compared structurally (every level, status, count and hash exact; floats to 1e-9); the drift inputs still reproduce byte for byte.
 - [FEAT] [E4.3] — EvalKit 0.4 wired in (D-59): pin `evalkit-harness>=0.4,<0.5`; the D-54 known disagreement dropped (both validators refuse); `offers monitor drift` runs `evalkit.drift` at `configs/drift.yaml` (D-56 severities, all warn; equal-width bins compared) and records the period in EvalKit's run history; `offers challenge --ledger` opens and closes the challenge in EvalKit's experiment ledger; drift contract tests; guide `docs/guide/monitoring.md`.
 - [FIX] [E4.3] — drift export: `cancels_90d` (every February decile 0) had been folded into one bin, so its drift could never show; it now gets below/equal/above bins and empty bins are left out (L-42).
 - [DOC] [—] — README shows the looping walkthrough GIF (`docs/assets/walkthrough.gif`) near the top, linked to its shot list; owner request
