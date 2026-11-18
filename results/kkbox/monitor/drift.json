@@ -502,11 +502,13 @@
  ],
  "new": {
   "kind": "metrics",
+  "simulated": false,
   "source_sha256": "6a54e95ff95f702c0d99ae5495b8f5735f6851256a2f29e9ac7a8b54efc5ad56"
  },
  "reference": {
   "created_at": "2026-11-16T20:12:07Z",
-  "profile_sha256": "88fb748f04448bfc094bc448fc97ca066395f1712fc26f8324f7ab878dde01be",
+  "profile_sha256": "585c1705b8378a87561a4e3f4c720d0c99df1b448ed17727b77059ed89aec5ed",
+  "simulated": false,
   "source_sha256": "727e6cc3a59565cf88aed91bd4c17e81421c0c195bbd145d0bd6a03deebcde77"
  },
  "schema": "drift-1",

@@ -568,15 +568,15 @@ wheels = [
 
 [[package]]
 name = "evalkit-harness"
-version = "0.4.0"
+version = "0.4.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c5/f1/8dc5acb2fdd79d4e1a9cd0214abcb5d4e7b3c8f4ecfc3ee14db36162bd71/evalkit_harness-0.4.0.tar.gz", hash = "sha256:1695d3ff1ad28ea8c17830a77059bfc647c60d78545e25519947cb99615e949d", size = 469486, upload-time = "2026-11-18T11:05:26.01Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5f/84/5c78b75af8184bb1eefa15fa00defe8e1388ae7968d4a6b8470c8596566b/evalkit_harness-0.4.1.tar.gz", hash = "sha256:26ea7a9d1ade05564c7f1ad460c60fae051bb9d7b74b5c1e5e050e3ffd9e9389", size = 509225, upload-time = "2026-11-18T14:20:33.775Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/24/29/b8868e53b0ab4b2cd90e42cea2f8b57d52190906a3b7859c42635683655c/evalkit_harness-0.4.0-py3-none-any.whl", hash = "sha256:7bceabbd9a47f3b884a6e35ca588159aea927c1901a7c6c8a888df9965f92030", size = 539318, upload-time = "2026-11-18T11:05:24.681Z" },
+    { url = "https://files.pythonhosted.org/packages/c3/93/1d8109d2609275ccfec1f35b554d1b1e87796a09fa7eb822472923fb850b/evalkit_harness-0.4.1-py3-none-any.whl", hash = "sha256:b260c5cf05c91f567bfa90e190879061e2467afcf2c61d63eb80dd5a66f95f7e", size = 572485, upload-time = "2026-11-18T14:20:32.178Z" },
 ]
 
 [[package]]
@@ -2143,7 +2143,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "duckdb", specifier = ">=2.0.0" },
-    { name = "evalkit-harness", marker = "extra == 'evalkit'", specifier = ">=0.4,<0.5" },
+    { name = "evalkit-harness", marker = "extra == 'evalkit'", specifier = ">=0.4.1,<0.5" },
     { name = "kaggle", marker = "extra == 'data'", specifier = ">=2.2.5" },
     { name = "numpy", specifier = ">=2.0" },
     { name = "pandas", specifier = ">=2.2" },
@@ -2160,7 +2160,7 @@ provides-extras = ["data", "demo", "evalkit"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "evalkit-harness", specifier = ">=0.4,<0.5" },
+    { name = "evalkit-harness", specifier = ">=0.4.1,<0.5" },
     { name = "hypothesis", specifier = ">=6.100" },
     { name = "pandas-stubs", specifier = ">=3.1.0.261029" },
     { name = "pyright", specifier = ">=1.1.380" },

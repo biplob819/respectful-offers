@@ -77,7 +77,6 @@ def run_drift(
         created_at=period_doc["created_at"],
     )
     emitted["provenance"] = period_doc["provenance"]
-    emitted["simulated"] = period_doc["simulated"]  # EvalKit leaves the flag out; it is ours
     validate_metrics1(emitted)
     out_dir.mkdir(parents=True, exist_ok=True)
     files = {
