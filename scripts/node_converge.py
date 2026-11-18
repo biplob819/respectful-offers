@@ -238,7 +238,16 @@ def _pytest(root: Path, marker: str, label: str) -> Result:
 
 
 def gate_pytest(ctx: Ctx) -> Result:
-    return _pytest(ctx.root, PYTEST_UNIT_MARKERS, "unit")
+    if not _parallel():
+        return _pytest(ctx.root, PYTEST_UNIT_MARKERS, "unit")
+    # timing budgets are measured alone, never beside parallel workers (L-41)
+    unit = _pytest(ctx.root, f"({PYTEST_UNIT_MARKERS}) and not perf", "unit")
+    if unit.status == "FAIL":
+        return unit
+    code, out = _run([sys.executable, "-m", "pytest", "-q", "-m", "perf"], ctx.root)
+    if code not in (0, 5):
+        return Result("FAIL", _tail(out))
+    return unit
 
 
 def gate_golden(ctx: Ctx) -> Result:

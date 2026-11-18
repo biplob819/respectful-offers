@@ -253,11 +253,12 @@ def _evalkit_imports() -> list[tuple[str, str, str]]:
             for node in ast.walk(tree):
                 if isinstance(node, ast.ImportFrom) and (node.module or "").startswith("evalkit"):
                     found += [
-                        (str(path.relative_to(ROOT)), node.module or "", a.name) for a in node.names
+                        (path.relative_to(ROOT).as_posix(), node.module or "", a.name)
+                        for a in node.names
                     ]
                 elif isinstance(node, ast.Import):
                     found += [
-                        (str(path.relative_to(ROOT)), a.name, "")
+                        (path.relative_to(ROOT).as_posix(), a.name, "")
                         for a in node.names
                         if a.name.startswith("evalkit")
                     ]
