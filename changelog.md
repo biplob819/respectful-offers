@@ -2,6 +2,7 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [DOC] [—] — README shows the looping walkthrough GIF (`docs/assets/walkthrough.gif`) near the top, linked to its shot list; owner request
 - [FEAT] [E4.3] — monitoring export side (MON-01, part): `offers monitor export` writes February reference and March period drift inputs in EvalKit's frozen LED-04 shape (feature shares, Brier, ECE, equal-width reliability bins; aggregates only, real data), checked end to end with EvalKit main's `evalkit drift`: no feature drift, calibration worse out of time (warns, OWNER D-56). Severities: OWNER D-56.
 - [DOC] [E4.2] — EvalKit adopted the id-shaped-label rule (D-54) and flipped this repo's canary row to `tests=auto`; the contract test now requires this repo to refuse and accepts either EvalKit answer until the pin reaches 0.4 (43 passed against EvalKit 0.3.0 and against EvalKit main).
 - [FIX] [E4.2] — CI on Windows and 3-core runners: the public-API test compares repo paths with `as_posix()`; timing-budget tests (`-m perf`) run alone after the parallel suite, in CI and in `node_converge.py` (L-41).

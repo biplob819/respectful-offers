@@ -23,6 +23,8 @@ offers data download && offers run --all   # the published run (Kaggle token nee
 Data: [WSDM Cup 2018, KKBox's churn prediction challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge) on Kaggle, used under its rules for non-commercial research and education. No member data is in this repository.
 <!-- headline:end -->
 
+[![Walkthrough: the report's headline, every policy, the frontier chart, the respect audit, the off-policy check, the release gates, the local demo and the case study (all outcomes simulated)](https://raw.githubusercontent.com/biplob819/respectful-offers/main/docs/assets/walkthrough.gif)](https://github.com/biplob819/respectful-offers/blob/main/docs/walkthrough.md)
+
 ## Links
 
 | | |
