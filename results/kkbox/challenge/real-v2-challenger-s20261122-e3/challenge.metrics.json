@@ -1,0 +1,719 @@
+{
+ "created_at": "2026-11-16T20:12:07.430556Z",
+ "metrics": [
+  {
+   "ci_high": 862.72272,
+   "ci_low": 859.689972,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 861.23
+  },
+  {
+   "ci_high": 2.829641,
+   "ci_low": 2.26356,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "conservative"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 2.545
+  },
+  {
+   "ci_high": 228.0316,
+   "ci_low": 185.6163,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "conservative"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 205.0374
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "variant": "conservative"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 104364.0469
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "ci_high": 863.054419,
+   "ci_low": 860.040203,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "conservative"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 861.57
+  },
+  {
+   "ci_high": 3.186591,
+   "ci_low": 2.584985,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "conservative"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 2.885
+  },
+  {
+   "ci_high": 219.276,
+   "ci_low": 180.7867,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "conservative"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 198.4209
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "variant": "conservative"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 114488.8529
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "conservative"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "ci_high": 0.423278,
+   "ci_low": -0.100923,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "conservative"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 0.162633
+  },
+  {
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "conservative"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": false
+  },
+  {
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "conservative"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.2277
+  },
+  {
+   "ci_high": 867.991237,
+   "ci_low": 865.022457,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "central"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 866.53
+  },
+  {
+   "ci_high": 8.246874,
+   "ci_low": 7.445369,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "central"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 7.845
+  },
+  {
+   "ci_high": 102.5951,
+   "ci_low": 91.8127,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "central"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 97.0342
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "variant": "central"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 152246.6758
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "ci_high": 867.803261,
+   "ci_low": 864.839916,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "central"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 866.345
+  },
+  {
+   "ci_high": 8.074044,
+   "ci_low": 7.255264,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "central"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 7.66
+  },
+  {
+   "ci_high": 103.1069,
+   "ci_low": 91.9006,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "central"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 97.2725
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "variant": "central"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 149021.4402
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "central"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "ci_high": 0.19467,
+   "ci_low": -0.251068,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "central"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": -0.025244
+  },
+  {
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "central"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": false
+  },
+  {
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "central"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.827
+  },
+  {
+   "ci_high": 874.547566,
+   "ci_low": 871.688093,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 873.13
+  },
+  {
+   "ci_high": 14.99909,
+   "ci_low": 13.897335,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "optimistic"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 14.445
+  },
+  {
+   "ci_high": 68.9395,
+   "ci_low": 62.7917,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "champion",
+    "variant": "optimistic"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 65.8069
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "variant": "optimistic"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 190116.1666
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "champion",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "ci_high": 874.718377,
+   "ci_low": 871.850461,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "optimistic"
+   },
+   "name": "retained_per_1000",
+   "unit": "ratio",
+   "value": 873.305
+  },
+  {
+   "ci_high": 15.172506,
+   "ci_low": 14.074968,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "optimistic"
+   },
+   "name": "incremental_retained_per_1000",
+   "unit": "ratio",
+   "value": 14.62
+  },
+  {
+   "ci_high": 66.167,
+   "ci_low": 60.3083,
+   "ci_method": "block-bootstrap percentile 95% (D-16)",
+   "labels": {
+    "arm": "challenger",
+    "variant": "optimistic"
+   },
+   "name": "cost_per_incremental_retained",
+   "unit": "NTD",
+   "value": 63.1938
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "variant": "optimistic"
+   },
+   "name": "discount_cost_total",
+   "unit": "NTD",
+   "value": 184778.7109
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R1",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R2",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R3",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R7",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "labels": {
+    "arm": "challenger",
+    "respectful": true,
+    "rule": "R8",
+    "variant": "optimistic"
+   },
+   "name": "violations",
+   "unit": "count",
+   "value": 0
+  },
+  {
+   "ci_high": 0.97163,
+   "ci_low": 0.28918,
+   "ci_method": "paired block-bootstrap percentile 95%; Holm per metric and variant (D-16)",
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "optimistic"
+   },
+   "name": "diff.incremental_retained_per_1000_ntd",
+   "unit": "ratio",
+   "value": 0.628362
+  },
+  {
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "optimistic"
+   },
+   "name": "separated.incremental_retained_per_1000_ntd",
+   "unit": "bool",
+   "value": true
+  },
+  {
+   "labels": {
+    "a": "challenger",
+    "b": "champion",
+    "variant": "optimistic"
+   },
+   "name": "p_value.incremental_retained_per_1000_ntd",
+   "unit": "rate",
+   "value": 0.0001
+  },
+  {
+   "name": "promoted",
+   "unit": "bool",
+   "value": false
+  }
+ ],
+ "project": "respectful-offers",
+ "provenance": {
+  "code_version": "2faad55e0a77",
+  "config_hash": "996831449ae52455",
+  "evalkit": null,
+  "snapshot": "churn:c80fe53c7f305230"
+ },
+ "run_id": "real-v2-challenger-s20261122-e3",
+ "schema_version": "metrics-1",
+ "simulated": true
+}

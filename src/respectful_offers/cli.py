@@ -780,6 +780,8 @@ def cmd_metrics(args: argparse.Namespace) -> int:
 
 def cmd_monitor(args: argparse.Namespace) -> int:
     """Drift and calibration inputs for EvalKit's drift monitor (E4.3 MON-01, LED-04)."""
+    if args.action == "check":
+        return cmd_monitor_check(args)
     import numpy as np
     import pandas as pd
 
@@ -853,6 +855,150 @@ def cmd_monitor(args: argparse.Namespace) -> int:
         f"offers monitor: wrote "
         f"{', '.join(written)} to {out} (real features and labels, aggregates only)",
     )
+    return EXIT_OK
+
+
+def load_metrics(path: Path) -> dict:
+    """A metrics-1 file, validated."""
+    from respectful_offers.metrics1 import validate_metrics1
+
+    doc = json.loads(Path(path).read_text(encoding="utf-8"))
+    validate_metrics1(doc)
+    return doc
+
+
+def cmd_monitor_check(args: argparse.Namespace) -> int:
+    """The outcome checks of a period at the OWNER D-56 severities: 0 pass, 1 fail, 2 bad input."""
+    from respectful_offers.metrics1 import MetricsError
+    from respectful_offers.monitor.outcomes import outcome_alarms
+
+    try:
+        period = load_metrics(Path(args.period))
+        baseline = load_metrics(Path(args.baseline)) if args.baseline else None
+    except (MetricsError, OSError, ValueError) as exc:
+        return _fail(args, "monitor check", exc)
+    got = outcome_alarms(baseline, period)
+    if args.out:
+        Path(args.out).write_text(
+            json.dumps(got, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n"
+        )
+    lines = [f"offers monitor check: {'FAIL' if got['fail'] else 'pass'} (simulated outcomes)"]
+    lines += [f"  {a['severity']} {a['check']}: {a['message']}" for a in got["alarms"]]
+    if got["not_checked"]:
+        lines.append(f"  not checked without a baseline: {', '.join(got['not_checked'])}")
+    _emit({"ok": not got["fail"], **got}, args.json, "\n".join(lines))
+    return EXIT_AUDIT if got["fail"] else EXIT_OK
+
+
+def cmd_challenge(args: argparse.Namespace) -> int:
+    """Champion against a retrained challenger, and the promotion rule (E4.3 MON-02)."""
+    import numpy as np
+    import pandas as pd
+
+    from respectful_offers.churn.model import train
+    from respectful_offers.metrics1 import dumps, to_metrics1
+    from respectful_offers.monitor.challenge import (
+        ChallengeError,
+        Challenger,
+        append_decision,
+        challenge_doc,
+        decision_row,
+        run_challenge,
+    )
+    from respectful_offers.monitor.outcomes import outcome_alarms
+    from respectful_offers.schemas.summary import load_summary
+    from respectful_offers.sim.prereg import sha256
+
+    try:
+        pipe = _Pipeline(args)
+        assert pipe.sim is not None
+        summary = load_summary(pipe.root / "runs" / args.run_id / "summary.json")
+        if summary.config_hash != pipe.ctx.config_hash:
+            raise ChallengeError(
+                f"the run config changed since {args.run_id} ({summary.config_hash} against "
+                f"{pipe.ctx.config_hash}): a challenge runs on the champion's own settings"
+            )
+        sim_hash = sha256(pipe.sim_path)[:16] if pipe.sim_path.is_file() else None
+        if args.challenger_seed == pipe.cfg.seed and args.challenger_epochs is None:
+            raise ChallengeError("the challenger must differ from the champion (seed or epochs)")
+        feb = pd.read_parquet(pipe.features.path / "features_feb.parquet")
+        mar = pd.read_parquet(pipe.features.path / "features_mar.parquet")
+        stored = pd.read_parquet(pipe.churn.path / "scores_mar.parquet")[["msno", "churn_risk"]]
+        champ, _ = train(feb, seed=pipe.cfg.seed)  # the run's champion, rebuilt from its seed
+        if not np.array_equal(champ.risk(mar), stored["churn_risk"].to_numpy()):
+            raise ChallengeError(
+                "the rebuilt champion does not reproduce the run's March scores exactly"
+            )
+        chall, _ = train(feb, seed=args.challenger_seed)  # trained on February only
+        chall_scores = pd.DataFrame({"msno": mar["msno"], "churn_risk": chall.risk(mar)})
+        period = to_metrics1(summary)
+        baseline = load_metrics(Path(args.baseline)) if args.baseline else None
+        checks = outcome_alarms(baseline, period)
+        fails = [a for a in checks["alarms"] if a["severity"] == "fail"]
+        challenger = Challenger(
+            seed=args.challenger_seed,
+            **({} if args.challenger_epochs is None else {"epochs": args.challenger_epochs}),
+        )
+        name = f"{args.run_id}-challenger-s{challenger.seed}-e{challenger.epochs}"
+        result = run_challenge(
+            stored,
+            chall_scores,
+            mar,
+            pipe.sim,
+            pipe.cfg,
+            challenger,
+            run_id=name,
+            champion_simulator_hash=summary.simulator_hash,
+            simulator_hash=sim_hash,
+            fail_alarms=fails,
+        )
+        stamp = (summary.finished_at or summary.started_at).isoformat().replace("+00:00", "Z")
+        prov = {
+            "code_version": summary.git_sha,
+            "snapshot": f"churn:{pipe.churn.key[:16]}",
+            "config_hash": summary.config_hash,
+            "evalkit": None,
+        }
+        doc = challenge_doc(result, run_id=name, created_at=stamp, provenance=prov)
+    except (ChallengeError, ValueError, *_user_errors()) as exc:
+        return _fail(args, "challenge", exc)
+    out = Path(args.out_dir) / name
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "challenge.metrics.json").write_text(dumps(doc), encoding="utf-8", newline="\n")
+    record = {
+        "schema_version": "challenge-1",
+        "champion": args.run_id,
+        "challenger": name,
+        "challenger_settings": {
+            "churn_seed": challenger.seed,
+            "bandit_seed": challenger.seed,
+            "bandit_epochs": challenger.epochs,
+        },
+        "simulator_hash": sim_hash,
+        "simulated": True,
+        "decision": result["decision"],
+        "variants": result["variants"],
+        "reasons": result["reasons"],
+        "outcome_checks": checks,
+    }
+    (out / "challenge.json").write_text(
+        json.dumps(record, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n"
+    )
+    if args.record:
+        row = decision_row(
+            result,
+            date=stamp[:10] if args.date is None else args.date,
+            champion=args.run_id,
+            challenger=name,
+        )
+        try:
+            append_decision(Path(args.record), row)
+        except ChallengeError as exc:
+            return _fail(args, "challenge", exc)
+    lines = [f"offers challenge: {result['decision']} ({name} against {args.run_id}; simulated)"]
+    lines += [f"  {r}" for r in result["reasons"]]
+    lines.append(f"  wrote {out}")
+    _emit({"ok": True, "out": str(out), **record}, args.json, "\n".join(lines))
     return EXIT_OK
 
 
@@ -1036,7 +1182,10 @@ def build_parser() -> argparse.ArgumentParser:
     me.add_argument("--json", action="store_true")
     me.set_defaults(func=cmd_metrics)
     mo = sub.add_parser("monitor", help="drift and calibration inputs for EvalKit's monitor")
-    mo.add_argument("action", choices=["export"])
+    mo.add_argument("action", choices=["export", "check"])
+    mo.add_argument("--period", default="results/kkbox/metrics.json", help="check only")
+    mo.add_argument("--baseline", default=None, help="check only: the baseline period's metrics")
+    mo.add_argument("--out", default=None, help="check only: write the alarms as JSON")
     mo.add_argument("--out-dir", default="results/kkbox/monitor")
     mo.add_argument("--config", default=None)
     mo.add_argument("--simulator", default=None)
@@ -1045,6 +1194,20 @@ def build_parser() -> argparse.ArgumentParser:
     mo.add_argument("--run-id", default="real-v2")
     mo.add_argument("--json", action="store_true")
     mo.set_defaults(func=cmd_monitor)
+    cg = sub.add_parser("challenge", help="champion against a retrained challenger; promotion rule")
+    cg.add_argument("--run-id", default="real-v2", help="the champion run")
+    cg.add_argument("--challenger-seed", type=int, required=True)
+    cg.add_argument("--challenger-epochs", type=int, default=None)
+    cg.add_argument("--baseline", default=None, help="the baseline period's metrics-1 file")
+    cg.add_argument("--out-dir", default="results/kkbox/challenge")
+    cg.add_argument("--record", default=None, help="append the decision row to this file")
+    cg.add_argument("--date", default=None, help="date for the decision row")
+    cg.add_argument("--config", default=None)
+    cg.add_argument("--simulator", default=None)
+    cg.add_argument("--data-dir", default="data")
+    cg.add_argument("--root", default=".")
+    cg.add_argument("--json", action="store_true")
+    cg.set_defaults(func=cmd_challenge)
     dp = sub.add_parser("demo-passkey", help="hash a passkey for the deployed demo's secrets")
     how = dp.add_mutually_exclusive_group()
     how.add_argument("--generate", action="store_true", help="make a random passkey")

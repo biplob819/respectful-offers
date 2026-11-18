@@ -1,0 +1,46 @@
+{
+ "challenger": "real-v2-challenger-s20261122-e3",
+ "challenger_settings": {
+  "bandit_epochs": 3,
+  "bandit_seed": 20261122,
+  "churn_seed": 20261122
+ },
+ "champion": "real-v2",
+ "decision": "NO-PROMOTION",
+ "outcome_checks": {
+  "alarms": [],
+  "baseline": null,
+  "fail": false,
+  "not_checked": [
+   "cost",
+   "disparity"
+  ],
+  "period": "real-v2",
+  "schema_version": "outcome-alarms-1",
+  "simulated": true
+ },
+ "reasons": [
+  "conservative: the claim does not improve (challenger minus champion lower bound -0.100923)",
+  "central: the claim does not improve (challenger minus champion lower bound -0.251068)"
+ ],
+ "schema_version": "challenge-1",
+ "simulated": true,
+ "simulator_hash": "6ae089599c41b741",
+ "variants": [
+  {
+   "improved": false,
+   "separated": false,
+   "variant": "conservative"
+  },
+  {
+   "improved": false,
+   "separated": false,
+   "variant": "central"
+  },
+  {
+   "improved": true,
+   "separated": true,
+   "variant": "optimistic"
+  }
+ ]
+}

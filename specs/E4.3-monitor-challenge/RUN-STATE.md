@@ -1,7 +1,8 @@
 # E4.3 run state
 
-**Now:** spec (blocked on EvalKit v0.4.0, B5.7)
+**Now:** build (export, outcome checks and challenge built; drift config, ledger and the EvalKit pin wait on EvalKit v0.4.0)
 
 ## History
 - 2026-11-17 — spec written ahead of EvalKit v0.4.0 (owner approved pre-speccing). B5.6 and B5.7 have capability rows in EvalKit's Tech Spec but no frozen spec yet, so this spec fixes only what this repo provides. `results/kkbox/features_stats.json` holds only per-feature means, so drift needs new binned distributions (MON-01).
 - 2026-11-18 — owner ruling OWNER D-56 recorded; node started. Export side of MON-01 built on EvalKit's frozen LED-04 input shape: `offers monitor export` rebuilds the champion from the run's seed (checked to reproduce all 968,431 March scores exactly), writes February reference and March period metrics-1 files (feature shares on February decile bins, no bin under 30 members; Brier with a bootstrap interval, ECE, ten equal-width reliability bins) and `bins.json`. EvalKit main's `evalkit drift` reads them end to end: no feature drift (PSI < 0.01); calibration alarms (Brier +0.015, ECE +0.024), which warn under D-56. Waiting on EvalKit v0.4.0 for the ledger, `evalkit drift` in a release, and `offers challenge`.
+- 2026-11-18 — outcome checks and `offers challenge` built ahead of v0.4.0 (owner approved). `offers monitor check` runs the four D-56 fail checks on metrics-1 files. First real challenge (challenger seed 20261122, 3 epochs) against real-v2: champion arm reproduces all published bandit figures exactly; challenger minus champion, extra members per 1,000 NTD: conservative +0.16 [−0.10, +0.42], central −0.03 [−0.25, +0.19], optimistic +0.63 [+0.29, +0.97] → NO-PROMOTION (recorded in docs/decisions.md). Still waiting on v0.4.0: `evalkit-harness>=0.4`, drift config with D-56 severities, LED-01..03 ledger, dropping KNOWN_DISAGREEMENTS.
