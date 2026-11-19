@@ -2,6 +2,7 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [CHORE] [B2.4] — v0.2.0 on PyPI: the monitoring and challenger release (`offers monitor export|drift|check`, `offers challenge`, the `[evalkit]` extra on EvalKit 0.4.1); version bumped in one place each (pyproject, package, lock), tag `v0.2.0` publishes by trusted publishing.
 - [CHORE] [E4.3] — EvalKit 0.4.1: pin `>=0.4.1,<0.5`; `drift.to_metrics()` now carries the `simulated` flag, so this repo's workaround is dropped; `drift-ref.json` and `drift.json` regenerated (they gain the flag; every figure and level unchanged; `drift.metrics.json` byte-identical).
 - [FIX] [E4.3] — CI: `drift.json` differs in the last float digits across platforms (EvalKit's bootstrap sums), so it is compared structurally (every level, status, count and hash exact; floats to 1e-9); the drift inputs still reproduce byte for byte.
 - [FEAT] [E4.3] — EvalKit 0.4 wired in (D-59): pin `evalkit-harness>=0.4,<0.5`; the D-54 known disagreement dropped (both validators refuse); `offers monitor drift` runs `evalkit.drift` at `configs/drift.yaml` (D-56 severities, all warn; equal-width bins compared) and records the period in EvalKit's run history; `offers challenge --ledger` opens and closes the challenge in EvalKit's experiment ledger; drift contract tests; guide `docs/guide/monitoring.md`.

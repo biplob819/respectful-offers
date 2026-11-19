@@ -83,9 +83,9 @@ def test_one_version_everywhere():
     from respectful_offers import __version__
 
     version = pyproject()["project"]["version"]
-    assert version == __version__ == "0.1.0"
+    assert version == __version__ == "0.2.0"
     lock = (ROOT / "uv.lock").read_text(encoding="utf-8")
-    assert re.search(r'name = "respectful-offers"\nversion = "0\.1\.0"', lock)
+    assert re.search(r'name = "respectful-offers"\nversion = "0\.2\.0"', lock)
 
 
 # --- OSS-04 published artifacts and the licence ruling --------------------------------

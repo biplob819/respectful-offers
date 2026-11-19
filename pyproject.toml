@@ -1,6 +1,6 @@
 [project]
 name = "respectful-offers"
-version = "0.1.0"
+version = "0.2.0"
 description = "A subscription offer policy with a Thompson sampling bandit and two respect rules, evaluated offline against a holdout."
 readme = "README.md"
 license = "MIT"
