@@ -2,6 +2,7 @@
 
 Format: `[TYPE] [NODE] — summary`, newest first.
 
+- [DOC] [—] — README: "What changed, measured" (before → after rows with their sources and commits), "Next" (baseline period, recalibration, the age-band offer-rate gap, a live pilot) and two report screenshots (`docs/img/audit.png`, `docs/img/frontier.png`); for the portfolio page.
 - [CHORE] [B2.4] — v0.2.0 on PyPI: the monitoring and challenger release (`offers monitor export|drift|check`, `offers challenge`, the `[evalkit]` extra on EvalKit 0.4.1); version bumped in one place each (pyproject, package, lock), tag `v0.2.0` publishes by trusted publishing.
 - [CHORE] [E4.3] — EvalKit 0.4.1: pin `>=0.4.1,<0.5`; `drift.to_metrics()` now carries the `simulated` flag, so this repo's workaround is dropped; `drift-ref.json` and `drift.json` regenerated (they gain the flag; every figure and level unchanged; `drift.metrics.json` byte-identical).
 - [FIX] [E4.3] — CI: `drift.json` differs in the last float digits across platforms (EvalKit's bootstrap sums), so it is compared structurally (every level, status, count and hash exact; floats to 1e-9); the drift inputs still reproduce byte for byte.

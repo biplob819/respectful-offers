@@ -49,6 +49,14 @@ The demo: move the discount budget and the risk threshold, switch simulator vari
 
 ![The demo page: sliders for budget and risk threshold, a variant switch, a card per policy and the live audit](https://raw.githubusercontent.com/biplob819/respectful-offers/main/docs/img/demo.png)
 
+The respect audit: an independent auditor recounts every rule from the decision logs, so the status quo's violations are shown and every respectful policy reads zero:
+
+![The report's respect audit: violations of rules R1, R2, R3, R7 and R8 for every policy and variant; the status quo breaks R1 and R2 thousands of times, every respectful policy shows zero, and the holdout check is consistent](https://raw.githubusercontent.com/biplob819/respectful-offers/main/docs/img/audit.png)
+
+Members kept against discount spent, one point per budget level: the bandit keeps the most members at low spend:
+
+![The report's frontier chart for the central variant: members retained per 1,000 against discount spend per member for the status quo, the rule-following baseline and the bandit, with 95% intervals; the bandit sits highest at low spend](https://raw.githubusercontent.com/biplob819/respectful-offers/main/docs/img/frontier.png)
+
 ## How it works
 
 1. **Churn risk.** A gradient-boosted model, calibrated, trained on February 2017 members and evaluated on March (AUC 0.84 on real labels). Age and gender never enter it; they are only audited.
@@ -58,6 +66,26 @@ The demo: move the discount budget and the risk threshold, switch simulator vari
 5. **Evaluation.** Every policy is rolled out on the same 200,000 members with common random numbers, compared with paired block-bootstrap intervals and a Holm correction; off-policy estimates (IPS, SNIPS, doubly robust) are checked against the simulator's exact answer.
 6. **Release gates, in EvalKit's format.** `offers metrics` writes the results as [EvalKit](https://github.com/biplob819/evalkit)'s `metrics-1` file ([`results/kkbox/metrics.json`](https://github.com/biplob819/respectful-offers/blob/main/results/kkbox/metrics.json)), and CI gates every change on [`configs/gates.yaml`](https://github.com/biplob819/respectful-offers/blob/main/configs/gates.yaml): zero respect violations for every respectful policy, the pre-registered claim in every variant and a clean holdout check must hold; age-band disparity, churn-model quality and off-policy coverage warn. CI runs EvalKit's own `evalkit gate` (`pip install 'respectful-offers[evalkit]'`; the package itself never needs EvalKit), and EvalKit's downstream canary runs this repo's contract tests before every EvalKit release.
 7. **Monitoring and challengers.** Each period, `offers monitor` has EvalKit 0.4 check the real inputs and the churn model's calibration for drift (they warn) and checks the outcomes the claim rests on (they fail). `offers challenge` tests a retrained model and bandit against the champion under a promotion rule stated in advance, records it in EvalKit's experiment ledger and in the decision log. The first challenger was not promoted. See [monitoring](https://github.com/biplob819/respectful-offers/blob/main/docs/guide/monitoring.md).
+
+## What changed, measured
+
+Each row is a before and after measured on committed files; the sources hold every figure.
+
+| Change | Before | After | Source |
+|---|---|---|---|
+| Status quo → bandit: respect violations (central variant, 200,000 members, outcomes simulated) | 31,490 (R1 6,540 + R2 24,950) | 0 | [`metrics.json`](https://github.com/biplob819/respectful-offers/blob/main/results/kkbox/metrics.json), run `real-v2`, commit `2faad55` |
+| Status quo → bandit: discount per extra member kept (NTD, central, simulated) | 288.70 (280.38 to 297.57) | 97.03 (91.81 to 102.60) | same |
+| Rule-following baseline → bandit: the same cost (NTD, central, simulated) | 211.17 (203.89 to 219.03) | 97.03 (91.81 to 102.60); +5.57 extra members kept per 1,000 NTD (+5.06 to +6.10, Holm p = 0.0001) | same |
+| Drift binning fix (L-42): could `cancels_90d` drift be seen? (real data) | no: one bin, PSI 0 by construction, a planted shift never alarmed (`091ed83`) | yes: three bins, March PSI 0.0001, a planted shift alarms that feature alone (`396fb34`) | [`bins.json`](https://github.com/biplob819/respectful-offers/blob/main/results/kkbox/monitor/bins.json), [`drift.json`](https://github.com/biplob819/respectful-offers/blob/main/results/kkbox/monitor/drift.json) |
+| Parallel tests (L-40): unit gate wall time | 262 s serial | 134 s (`--dist loadfile`, 16 cores; `112fb6b`) | [lessons](https://github.com/biplob819/respectful-offers/blob/main/docs/lessons.md) L-40 |
+| Champion → first challenger: extra members kept per 1,000 NTD (central, simulated) | champion | −0.03 (−0.25 to +0.19): not promoted | [`challenge/`](https://github.com/biplob819/respectful-offers/tree/main/results/kkbox/challenge) |
+
+## Next
+
+- **A baseline period for the outcome checks.** Cost per extra member kept and the age-band gap are reported as not checked until a second monitored period gives them a baseline; the next `offers monitor check --baseline` closes that.
+- **Recalibrate before the next challenger.** March calibration warns (Brier +0.015, ECE +0.024, three mid-risk bins out by 0.12 to 0.20), so the next challenger refits the calibrator on a March fold rather than only changing the seed.
+- **The age-band offer-rate gap.** Respectful policies offer at different rates across age bands (gap 0.36 for the bandit, 0.40 for the rule-following baseline, against a 0.10 warning line). It warns today; whether to make it a constraint is open.
+- **Real responses.** Members, features and churn labels are real; offer responses are simulated. A small live pilot with a holdout is the only way to replace the simulator, and the decision logs are already in the shape it would need.
 
 ## Quickstart
 

@@ -135,7 +135,14 @@ def test_using_your_own_data_runs_as_written(tmp_path, monkeypatch, capsys):
 
 
 @pytest.mark.parametrize(
-    "path", ["docs/img/headline.svg", "docs/img/report.png", "docs/img/demo.png"]
+    "path",
+    [
+        "docs/img/headline.svg",
+        "docs/img/report.png",
+        "docs/img/demo.png",
+        "docs/img/audit.png",
+        "docs/img/frontier.png",
+    ],
 )
 def test_every_image_the_readme_shows_exists(path):
     raw = "https://raw.githubusercontent.com/biplob819/respectful-offers/main/"
