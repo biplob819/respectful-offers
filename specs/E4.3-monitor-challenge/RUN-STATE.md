@@ -1,6 +1,6 @@
 # E4.3 run state
 
-**Now:** green; PAUSED 2026-11-20 at owner request (Claude account change). Resume point: nothing in flight; main is complete (v0.2.0 on PyPI, demo live and passkey-gated, CI green). On RESUME: no pending node work; optional only: rotate the Kaggle token, the next monitored period (`offers monitor export|drift|check --baseline`), a recalibrated challenger (README "Next").
+**Now:** green (resumed 2026-11-20). Complete: v0.2.0 on PyPI, demo live and passkey-gated, CI green. Optional, waiting on the owner: rotate the Kaggle token, the next monitored period (`offers monitor export|drift|check --baseline`), a recalibrated challenger (README "Next").
 
 ## History
 - 2026-11-17 — spec written ahead of EvalKit v0.4.0 (owner approved pre-speccing). B5.6 and B5.7 have capability rows in EvalKit's Tech Spec but no frozen spec yet, so this spec fixes only what this repo provides. `results/kkbox/features_stats.json` holds only per-feature means, so drift needs new binned distributions (MON-01).
@@ -13,3 +13,4 @@
 - 2026-11-18 — EvalKit 0.4.1 adopted: pin `>=0.4.1,<0.5`, `simulated` workaround dropped, drift-ref and drift.json regenerated (flag added, figures unchanged). Gates pass.
 - 2026-11-19 — v0.2.0 released (tag `v0.2.0`, release run 44504408577: build, publish and smoke on three OSes passed). Demo deployed at respectful-offers.streamlit.app with the `[demo]` secrets; passkey screen confirmed from a signed-out browser, and the owner confirmed it unlocks. README gained "What changed, measured", "Next" and two report screenshots (990f24a), used by the portfolio page.
 - 2026-11-20 — paused at owner request (Claude account change), relayed by the portfolio session. No run, edit or push in flight.
+- 2026-11-20 — resumed after the account switch (relayed by the portfolio session). Nothing pending.
