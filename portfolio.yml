@@ -19,3 +19,65 @@ images:
   report: docs/img/report.png
   demo: docs/img/demo.png
 tech: [Python, uv, NumPy, pandas, scikit-learn, DuckDB, Pydantic, Streamlit, EvalKit, GitHub Actions]
+# Scope toggle on the portfolio page: built (core v1), cut (dropped on purpose), later (planned).
+priorities:
+  - item: "A churn-risk model trained on real KKBox subscription behaviour"
+    call: built
+    why: "Real member features, scores and churn labels make the risk side of every result real, not simulated."
+    source: "Respectful Offers PRD.md"
+  - item: "A bandit that learns which of four offers to make each member"
+    call: built
+    why: "It keeps more members per unit of discount than discounting everyone at risk."
+    source: "Respectful Offers PRD.md"
+  - item: "Respect rules applied outside the learning and recounted by an independent auditor"
+    call: built
+    why: "A policy should never be able to learn its way around a member's no."
+    source: "OWNER D-17"
+  - item: "Every policy compared on 200,000 real members under three simulator assumptions"
+    call: built
+    why: "Offer responses are simulated, so three pre-registered variants bracket how wrong the assumptions could be."
+    source: "OWNER D-1"
+  - item: "An open-source package on PyPI that runs on your own subscription data"
+    call: built
+    why: "Others can rerun the method on their own members, not just read about it."
+    source: "OWNER D-21"
+  - item: "A passkey-protected live demo of the policy simulator"
+    call: built
+    why: "Reviewers can move the budget and see the trade-offs without the page being open to everyone."
+    source: "OWNER D-48"
+  - item: "Monthly drift checks and challenger tests with a promotion rule stated in advance"
+    call: built
+    why: "A live policy needs a way to notice it is slipping and to replace it only on evidence."
+    source: "D-59"
+  - item: "Sending real offers to members and running the policy in production"
+    call: cut
+    why: "The project is offline research on public data, so nothing is sent to anyone."
+    source: "Respectful Offers PRD.md"
+  - item: "A content recommender behind the content nudge"
+    call: cut
+    why: "The nudge stays a placeholder so the work stays on offers and respect rules."
+    source: "Respectful Offers PRD.md"
+  - item: "Off-policy estimates as the headline result"
+    call: cut
+    why: "On simulated logs they can only recover the simulator's own settings, so they became a check instead."
+    source: "OWNER D-1"
+  - item: "A narrated demo video"
+    call: cut
+    why: "A silent looping walkthrough GIF replaced the video on every portfolio project."
+    source: "D-57"
+  - item: "A second monitored period so cost and fairness checks have a baseline"
+    call: later
+    why: "Until then those two checks are reported as not checked, never as passed."
+    source: "README.md (Next)"
+  - item: "Refit the churn model's calibration before the next challenger"
+    call: later
+    why: "March calibration moved beyond tolerance, so a new random seed alone is not enough."
+    source: "results/kkbox/monitor/drift.json"
+  - item: "Decide whether the age-band offer-rate gap should become a hard rule"
+    call: later
+    why: "The gap is above its warning line today and only warns."
+    source: "results/kkbox/gate.json"
+  - item: "A small live pilot with a holdout to replace simulated responses"
+    call: later
+    why: "Only real responses can replace the simulator, and the decision logs are already in the shape it needs."
+    source: "README.md (Next)"
