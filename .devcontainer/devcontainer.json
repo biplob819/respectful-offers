@@ -17,6 +17,8 @@
       ]
     }
   },
+  // commits made in the container use the GitHub noreply address, never a personal one
+  "postCreateCommand": "git config user.email 180013578+biplob819@users.noreply.github.com",
   "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; [ -f requirements.txt ] && pip3 install --user -r requirements.txt; pip3 install --user streamlit; echo '✅ Packages installed and Requirements met'",
   "postAttachCommand": {
     "server": "streamlit run demo/streamlit_app.py --server.enableCORS false --server.enableXsrfProtection false"

@@ -1161,4 +1161,4 @@ Findings from the PRD review, with what closes each one. C = critical, H = high,
 - [Agrawal and Goyal: Thompson sampling for contextual bandits with linear payoffs](https://arxiv.org/abs/1209.3352)
 - [scikit-learn: HistGradientBoostingClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingClassifier.html)
 - EvalKit: `~/EvalKit/EvalKit Tech Spec.md` §11, `docs/lessons.md`, `docs/decisions.md`, `scripts/node_converge.py`
-- Kova harness: `~/kova-hrtech/docs/sdd/kova-graph/NODE-RUNBOOK.md`
+- Kova's build harness (private): its node runbook
